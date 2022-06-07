@@ -19,6 +19,7 @@ import AdminProductPage from 'pages/AdminProductPage/AdminProductPage';
 import AdminStockPage from 'pages/AdminStockPage/AdminStockPage';
 import AdminUserPage from 'pages/AdminUserPage/AdminUserPage';
 import CollectionsPage from 'pages/CollectionsPage/CollectionsPage';
+import Navbar from 'components/Navbar';
 
 function App() {
   return (
@@ -29,7 +30,7 @@ function App() {
           <Route path="landing" element={<LandingPage />} />
 
           {/* Router for   */}
-          <Route path="/" element={<Headers />}>
+          <Route path="/" element={<Navbar />}>
             <Route index element={<HomePage />} />
             <Route path="login" element={<LoginPage />} />
             <Route path="register" element={<RegisterPage />} />
