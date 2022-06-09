@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import React from "react";
 import styled from "styled-components";
 
@@ -7,14 +7,14 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { Badge } from "@mui/material";
 import { Search } from "@mui/icons-material";
 
-=======
+
 import React from 'react';
 import styled from 'styled-components';
 import SearchIcon from '@mui/icons-material/Search';
 import { Link } from '@mui/material';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import Badge from '@mui/material/Badge';
->>>>>>> ccf45ac5ea0502a9b9a5507d2e57a65485f6c34d
+
 
 const Container = styled.div`
   height: 10px;
@@ -79,11 +79,11 @@ function Navbar() {
             <Logo>Whale Succulent</Logo>
           </Center>
           <Right>
-            <SearchContainer>
+            {/* <SearchContainer>
               <Input />
-<<<<<<< HEAD
+
               <Search style={{ color: "gray", fontSize: 15 }} />
-            </SearchContainer>
+            </SearchContainer> */}
 
             <Menuitem>
                 Sign In
@@ -91,10 +91,15 @@ function Navbar() {
             <Menuitem>
               <Badge  badgeContent={2} color="primary">
                 <ShoppingCartOutlinedIcon/>
-=======
               <SearchIcon style={{ color: 'gray', fontSize: 15 }} />
-            </SearchContainer>
+              </Badge>
+            <SearchContainer />
+            </Menuitem>
+
+              <SearchIcon style={{ color: 'gray', fontSize: 15 }} />
+            <SearchContainer />
             <Menuitem>
+
               <Link href={'/login'} underline="none" color={'black'}>
                 Sign In
               </Link>
@@ -103,7 +108,6 @@ function Navbar() {
             <Menuitem>
               <Badge badgeContent={2} color="primary">
                 <ShoppingCartOutlinedIcon />
->>>>>>> ccf45ac5ea0502a9b9a5507d2e57a65485f6c34d
               </Badge>
             </Menuitem>
           </Right>
@@ -112,5 +116,6 @@ function Navbar() {
     </div>
   );
 }
+
 
 export default Navbar;
