@@ -1,20 +1,9 @@
-
 import React from "react";
 import styled from "styled-components";
-
-// import {  Link } from "@mui/material";
-import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import { Badge } from "@mui/material";
-import { Search } from "@mui/icons-material";
-
-
-import React from 'react';
-import styled from 'styled-components';
-import SearchIcon from '@mui/icons-material/Search';
-import { Link } from '@mui/material';
-import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import Badge from '@mui/material/Badge';
-
+import SearchIcon from "@mui/icons-material/Search";
+import { Link } from "@mui/material";
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import Badge from "@mui/material/Badge";
 
 const Container = styled.div`
   height: 10px;
@@ -79,28 +68,12 @@ function Navbar() {
             <Logo>Whale Succulent</Logo>
           </Center>
           <Right>
-            {/* <SearchContainer>
+            <SearchContainer>
               <Input />
-
-              <Search style={{ color: "gray", fontSize: 15 }} />
-            </SearchContainer> */}
-
+              <SearchIcon style={{ color: "gray", fontSize: 15 }} />
+            </SearchContainer>
             <Menuitem>
-                Sign In
-              </Menuitem>
-            <Menuitem>
-              <Badge  badgeContent={2} color="primary">
-                <ShoppingCartOutlinedIcon/>
-              <SearchIcon style={{ color: 'gray', fontSize: 15 }} />
-              </Badge>
-            <SearchContainer />
-            </Menuitem>
-
-              <SearchIcon style={{ color: 'gray', fontSize: 15 }} />
-            <SearchContainer />
-            <Menuitem>
-
-              <Link href={'/login'} underline="none" color={'black'}>
+              <Link href={"/login"} underline="none" color={"black"}>
                 Sign In
               </Link>
             </Menuitem>
@@ -116,6 +89,5 @@ function Navbar() {
     </div>
   );
 }
-
 
 export default Navbar;
