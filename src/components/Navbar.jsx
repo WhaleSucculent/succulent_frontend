@@ -18,10 +18,7 @@ const Wrapper = styled.div`
 const Left = styled.div`
   display: flex;
 `;
-// const Language = styled.span`
-//     font-size: 15px;
-//     cursor: pointer;
-// `
+
 const SearchContainer = styled.div`
   border: 1px solid lightgrey;
   display: flex;

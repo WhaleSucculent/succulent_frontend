@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import Navbar from 'components/Navbar'
+import NavbarLogin from 'components/NavbarLogin'
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { Link } from '@mui/material';
@@ -161,7 +161,7 @@ const SummaryPrice=styled.span`
 function Cart() {
   return (
         <Container>
-            <Navbar />
+            <NavbarLogin />
             <Wrapper>
                 <Title>Shopping Cart</Title>
                 <Top>
