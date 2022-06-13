@@ -4,9 +4,8 @@ import Cart from "./Cart.jsx";
 const CheckoutPage = () => {
   return (
     <div>
-      Shopping Cart
       <Cart />
-      </div>
+    </div>
   )
 }
 

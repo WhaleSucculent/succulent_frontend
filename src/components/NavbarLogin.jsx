@@ -1,8 +1,8 @@
-import  React,{useState} from 'react';
-import SearchIcon from "@mui/icons-material/Search";
-import styled from "styled-components";
-import { Badge, Link } from "@mui/material";
-import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import React, { useState } from 'react';
+import SearchIcon from '@mui/icons-material/Search';
+import styled from 'styled-components';
+import { Badge, Link } from '@mui/material';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import MenuItem from '@mui/material/MenuItem';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
@@ -20,7 +20,7 @@ const Container = styled.div`
 const Wrapper = styled.div`
   padding: 10px 20px;
   display: flex;
-  
+
   align-items: center;
   justify-content: space-between;
 `;
@@ -77,12 +77,12 @@ function Navbar() {
         <Wrapper>
           <Left>
             <Menuitem>
-              <Link href={"/"} underline="none"color={"black"}>
+              <Link href={'/'} underline="none" color={'black'}>
                 Shop
               </Link>
             </Menuitem>
             <Menuitem>
-            <Link href={"/products"} underline="none"color={"black"}>
+              <Link href={'/products'} underline="none" color={'black'}>
                 Sale
               </Link>
             </Menuitem>
@@ -93,93 +93,93 @@ function Navbar() {
             <Logo>Whale Succulent</Logo>
           </Center>
           <Right>
-          <SearchContainer>
+            <SearchContainer>
               <Input />
-              <SearchIcon style={{ color: "gray",fontSize: 15 }} />
+              <SearchIcon style={{ color: 'gray', fontSize: 15 }} />
             </SearchContainer>
 
             <Menuitem>
-            {/* <Link href={"/login"} underline="none"color={"black"}>
+              {/* <Link href={"/login"} underline="none"color={"black"}>
                 Sign In
               </Link> */}
-               <IconButton
-            onClick={handleClick}
-            size="small"
-            sx={{ ml: 2 }}
-            aria-controls={open ? 'account-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
-          >
-            <Avatar sx={{ width: 30, height: 30 }}>U</Avatar>
-          </IconButton>
-          <Menu
-        anchorEl={anchorEl}
-        id="account-menu"
-        open={open}
-        onClose={handleClose}
-        onClick={handleClose}
-        PaperProps={{
-          elevation: 0,
-          sx: {
-            overflow: 'visible',
-            filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-            mt: 1.5,
-            '& .MuiAvatar-root': {
-              width: 32,
-              height: 32,
-              ml: -0.5,
-              mr: 1,
-            },
-            '&:before': {
-              content: '""',
-              display: 'block',
-              position: 'absolute',
-              top: 0,
-              right: 14,
-              width: 10,
-              height: 10,
-              bgcolor: 'background.paper',
-              transform: 'translateY(-50%) rotate(45deg)',
-              zIndex: 0,
-            },
-          },
-        }}
-        transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-        anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-      >
-        <MenuItem>
-        <ListItemIcon>
-          <ManageAccountsOutlinedIcon fontSize="small"/>
-        </ListItemIcon>
-        My account
-        </MenuItem>
-        <MenuItem>
-        <ListItemIcon>
-          <LocalMallIcon fontSize="small"/> </ListItemIcon>
-          My Orders
-        </MenuItem>
-        <Divider />
-        {/* <MenuItem>
+              <IconButton
+                onClick={handleClick}
+                size="small"
+                sx={{ ml: 2 }}
+                aria-controls={open ? 'account-menu' : undefined}
+                aria-haspopup="true"
+                aria-expanded={open ? 'true' : undefined}
+              >
+                <Avatar sx={{ width: 30, height: 30 }}>U</Avatar>
+              </IconButton>
+              <Menu
+                anchorEl={anchorEl}
+                id="account-menu"
+                open={open}
+                onClose={handleClose}
+                onClick={handleClose}
+                PaperProps={{
+                  elevation: 0,
+                  sx: {
+                    overflow: 'visible',
+                    filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+                    mt: 1.5,
+                    '& .MuiAvatar-root': {
+                      width: 32,
+                      height: 32,
+                      ml: -0.5,
+                      mr: 1,
+                    },
+                    '&:before': {
+                      content: '""',
+                      display: 'block',
+                      position: 'absolute',
+                      top: 0,
+                      right: 14,
+                      width: 10,
+                      height: 10,
+                      bgcolor: 'background.paper',
+                      transform: 'translateY(-50%) rotate(45deg)',
+                      zIndex: 0,
+                    },
+                  },
+                }}
+                transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+                anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+              >
+                <MenuItem>
+                  <ListItemIcon>
+                    <ManageAccountsOutlinedIcon fontSize="small" />
+                  </ListItemIcon>
+                  My account
+                </MenuItem>
+                <MenuItem>
+                  <ListItemIcon>
+                    <LocalMallIcon fontSize="small" />{' '}
+                  </ListItemIcon>
+                  My Orders
+                </MenuItem>
+                <Divider />
+                {/* <MenuItem>
           <ListItemIcon>
             <PersonAdd fontSize="small" />
           </ListItemIcon>
           Add another account
         </MenuItem> */}
-        <MenuItem>
-          <ListItemIcon>
-            <SettingsIcon fontSize="small" />
-          </ListItemIcon>
-          Settings
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <LogoutRoundedIcon fontSize="small" />
-          </ListItemIcon>
-          Logout
-        </MenuItem>
-      </Menu>
-              
-              </Menuitem>
+                <MenuItem>
+                  <ListItemIcon>
+                    <SettingsIcon fontSize="small" />
+                  </ListItemIcon>
+                  Settings
+                </MenuItem>
+                <MenuItem>
+                  <ListItemIcon>
+                    <LogoutRoundedIcon fontSize="small" />
+                  </ListItemIcon>
+                  Logout
+                </MenuItem>
+              </Menu>
+            </Menuitem>
             <Menuitem>
               <Badge badgeContent={2} color="primary">
                 <ShoppingCartOutlinedIcon />
@@ -188,7 +188,7 @@ function Navbar() {
           </Right>
         </Wrapper>
       </Container>
-    </div> 
+    </div>
   );
 }
 

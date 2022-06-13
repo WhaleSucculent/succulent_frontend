@@ -34,7 +34,7 @@ function App() {
           <Route path="landing" element={<LandingPage/>} />
 
           {/* Router for   */}
-          <Route path="/" element={<CheckoutPage/>}>
+          <Route path="/" element={<Navbar/>}>
             <Route index element={<HomePage />} />
             <Route path="login" element={<LoginPage />} />
             <Route path="register" element={<RegisterPage />} />
@@ -46,7 +46,7 @@ function App() {
               <Route path="rare" element={<CollectionsPage />} />
               <Route path="best" element={<CollectionsPage />} />
             </Route>
-            <Route path="/checkout" element={<CheckoutPage />} />
+            <Route path="checkout" element={<CheckoutPage />} />
             <Route path="payment" element={<PaymentPage />} />
             <Route path="profile" element={<UserProfilePage />} />
           </Route>
