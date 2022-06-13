@@ -179,7 +179,7 @@ function Cart() {
                     <Img src="https://images.unsplash.com/photo-1509587584298-0f3b3a3a1797?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=713&q=80"/>
                       <Details>
                         <Name><Link href={"#"} underline="hover"color={"black"}><b>Plant 1</b></Link></Name>
-                        <ProductId>#12315</ProductId>
+                        <ProductId>#12315,Stock # or Desc here</ProductId>
                         <ProductId>$9.99</ProductId>
                         
                       
@@ -204,7 +204,7 @@ function Cart() {
                     <Img src="https://images.unsplash.com/photo-1509587584298-0f3b3a3a1797?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=713&q=80"/>
                       <Details>
                         <Name><b>Plant 2</b></Name>
-                        <ProductId>#00962</ProductId>
+                        <ProductId>#00962,Stock # or Desc here</ProductId>
                         <ProductId>$1.99</ProductId>
                         
                       
@@ -229,7 +229,7 @@ function Cart() {
                     <Img src="https://images.unsplash.com/photo-1509587584298-0f3b3a3a1797?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=713&q=80"/>
                       <Details>
                         <Name><b>Plant 3</b></Name>
-                        <ProductId>#12005</ProductId>
+                        <ProductId>#12005,Stock # or Desc here</ProductId>
                         <ProductId>$7.99</ProductId>
                         
                       
