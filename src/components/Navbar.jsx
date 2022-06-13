@@ -72,7 +72,7 @@ function Navbar() {
           <Right>
             <SearchContainer>
               <Input />
-              <SearchIcon style={{ color: 'gray', fontSize: 15 }} />
+              <SearchIcon style={{ color: "gray", fontSize: 15 }} />
             </SearchContainer>
             <NavLink to={'/login'} underline="none" color={'black'}>
               <Menuitem>Sign In</Menuitem>
