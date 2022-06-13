@@ -46,7 +46,7 @@ function App() {
               <Route path="rare" element={<CollectionsPage />} />
               <Route path="best" element={<CollectionsPage />} />
             </Route>
-            <Route path="checkout" element={<CheckoutPage />} />
+            <Route path="/checkout" element={<CheckoutPage />} />
             <Route path="payment" element={<PaymentPage />} />
             <Route path="profile" element={<UserProfilePage />} />
           </Route>
