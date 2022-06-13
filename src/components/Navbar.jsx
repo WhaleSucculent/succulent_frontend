@@ -1,9 +1,9 @@
-import React from "react";
-import styled from "styled-components";
-import SearchIcon from "@mui/icons-material/Search";
-import { Link } from "@mui/material";
-import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import Badge from "@mui/material/Badge";
+import React from 'react';
+import styled from 'styled-components';
+import SearchIcon from '@mui/icons-material/Search';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import Badge from '@mui/material/Badge';
+import { Link, NavLink, Outlet } from 'react-router-dom';
 
 const Container = styled.div`
   height: 10px;
@@ -18,10 +18,7 @@ const Wrapper = styled.div`
 const Left = styled.div`
   display: flex;
 `;
-// const Language = styled.span`
-//     font-size: 15px;
-//     cursor: pointer;
-// `
+
 const SearchContainer = styled.div`
   border: 1px solid lightgrey;
   display: flex;
@@ -59,33 +56,38 @@ function Navbar() {
       <Container>
         <Wrapper>
           <Left>
-            <Menuitem>Shop</Menuitem>
-            <Menuitem>Sale</Menuitem>
-            <Menuitem>About Us</Menuitem>
+            <NavLink to={'/products'}>
+              <Menuitem>Succulents</Menuitem>
+            </NavLink>
+            <Menuitem>Soils</Menuitem>
+            <Menuitem>Pots</Menuitem>
+            <Menuitem>Grow lights</Menuitem>
           </Left>
 
           <Center>
-            <Logo>Succulent Shopping</Logo>
+            <Link to={'/'}>
+              <Logo>Whale Succulent</Logo>
+            </Link>
           </Center>
           <Right>
             <SearchContainer>
               <Input />
               <SearchIcon style={{ color: "gray", fontSize: 15 }} />
             </SearchContainer>
-            <Menuitem>
-              <Link href={"/login"} underline="none" color={"black"}>
-                Sign In
-              </Link>
-            </Menuitem>
-
-            <Menuitem>
-              <Badge badgeContent={2} color="primary">
-                <ShoppingCartOutlinedIcon />
-              </Badge>
-            </Menuitem>
+            <NavLink to={'/login'} underline="none" color={'black'}>
+              <Menuitem>Sign In</Menuitem>
+            </NavLink>
+            <NavLink to={'/checkout'}>
+              <Menuitem>
+                <Badge badgeContent={2} color="primary">
+                  <ShoppingCartOutlinedIcon />
+                </Badge>
+              </Menuitem>
+            </NavLink>
           </Right>
         </Wrapper>
       </Container>
+      <Outlet />
     </div>
   );
 }
