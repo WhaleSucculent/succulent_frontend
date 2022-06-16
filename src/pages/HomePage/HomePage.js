@@ -1,10 +1,59 @@
 import React from "react";
-import { GET_PRODUCTS } from "queries/productQueries";
+import { GET_PRODUCTS } from "../../queries/productQueries";
 import { useQuery } from "@apollo/client";
-import { useState } from "react";
+import PropTypes from "prop-types";
+import Box from "@mui/material/Box";
+import ProductCard from "components/ProductCard";
+
+function Item(props) {
+  const { sx, ...other } = props;
+  return (
+    <Box
+      sx={{
+        p: 1,
+        m: 1,
+        borderRadius: 2,
+        fontSize: "0.875rem",
+        fontWeight: "700",
+        ...sx,
+      }}
+      {...other}
+    />
+  );
+}
+
+Item.propTypes = {
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(
+      PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])
+    ),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
+};
 
 const HomePage = () => {
-  return <div></div>;
+  const { loading, error, data } = useQuery(GET_PRODUCTS);
+  console.log(data);
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Something went wrong</p>;
+
+  return (
+    <div>
+      <Box sx={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)" }}>
+        {!loading &&
+          !error &&
+          data.products.map((product) => (
+            <Item>
+              <ProductCard key={product.id} product={product} />
+            </Item>
+          ))}
+      </Box>
+    </div>
+  );
 };
 
 export default HomePage;
