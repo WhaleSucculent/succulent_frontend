@@ -4,9 +4,13 @@ const GET_PRODUCTS = gql`
   query getProducts {
     products {
       name
-      id
-      postDate
-      colors
+      description
+      priceList {
+        price
+      }
+      review {
+        stars
+      }
     }
   }
 `;
