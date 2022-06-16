@@ -21,7 +21,9 @@ import AdminUserPage from "pages/AdminUserPage/AdminUserPage";
 import CollectionsPage from "pages/CollectionsPage/CollectionsPage";
 import Nav from "components/Nav";
 import Cart from "pages/CheckoutPage/Cart";
+
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
+
 const cache = new InMemoryCache({
   typePolicies: {
     Query: {
@@ -40,10 +42,12 @@ const cache = new InMemoryCache({
     },
   },
 });
+
 const client = new ApolloClient({
   uri: "https://succulentbackend.azurewebsites.net/graphql",
   cache,
 });
+
 function App() {
   return (
     <div className="App">

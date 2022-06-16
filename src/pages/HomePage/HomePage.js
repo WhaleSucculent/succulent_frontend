@@ -1,24 +1,29 @@
 import React from "react";
+import Carousel from "./Carousel";
 import { GET_PRODUCTS } from "../../queries/productQueries";
 import { useQuery } from "@apollo/client";
 import PropTypes from "prop-types";
 import Box from "@mui/material/Box";
 import ProductCard from "components/ProductCard";
 
+
 function Item(props) {
   const { sx, ...other } = props;
   return (
-    <Box
-      sx={{
-        p: 1,
-        m: 1,
-        borderRadius: 2,
-        fontSize: "0.875rem",
-        fontWeight: "700",
-        ...sx,
-      }}
-      {...other}
-    />
+    <>
+      <Carousel />
+        <Box
+          sx={{
+            p: 1,
+            m: 1,
+            borderRadius: 2,
+            fontSize: "0.875rem",
+            fontWeight: "700",
+            ...sx,
+          }}
+          {...other}
+        />
+    </>
   );
 }
 
