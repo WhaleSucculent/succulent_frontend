@@ -5,24 +5,23 @@ import { useQuery } from "@apollo/client";
 import PropTypes from "prop-types";
 import Box from "@mui/material/Box";
 import ProductCard from "components/ProductCard";
-
+import { Container } from "@mui/system";
 
 function Item(props) {
   const { sx, ...other } = props;
   return (
     <>
-      <Carousel />
-        <Box
-          sx={{
-            p: 1,
-            m: 1,
-            borderRadius: 2,
-            fontSize: "0.875rem",
-            fontWeight: "700",
-            ...sx,
-          }}
-          {...other}
-        />
+      <Box
+        sx={{
+          p: 1,
+          m: 1,
+          borderRadius: 2,
+          fontSize: "0.875rem",
+          fontWeight: "700",
+          ...sx,
+        }}
+        {...other}
+      />
     </>
   );
 }
@@ -48,15 +47,18 @@ const HomePage = () => {
 
   return (
     <div>
-      <Box sx={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)" }}>
-        {!loading &&
-          !error &&
-          data.products.map((product) => (
-            <Item>
-              <ProductCard key={product.id} product={product} />
-            </Item>
-          ))}
-      </Box>
+      <Carousel />
+      <Container>
+        <Box sx={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)" }}>
+          {!loading &&
+            !error &&
+            data.products.map((product) => (
+              <Item>
+                <ProductCard key={product.id} product={product} />
+              </Item>
+            ))}
+        </Box>
+      </Container>
     </div>
   );
 };
