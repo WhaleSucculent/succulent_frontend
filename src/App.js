@@ -20,6 +20,7 @@ import AdminStockPage from "pages/AdminStockPage/AdminStockPage";
 import AdminUserPage from "pages/AdminUserPage/AdminUserPage";
 import CollectionsPage from "pages/CollectionsPage/CollectionsPage";
 import Nav from "components/Nav";
+import Cart from "pages/CheckoutPage/Cart";
 
 function App() {
   return (
@@ -42,7 +43,8 @@ function App() {
               <Route path="rare" element={<CollectionsPage />} />
               <Route path="best" element={<CollectionsPage />} />
             </Route>
-            <Route path="cart" element={<CheckoutPage />} />
+            <Route path="cart" element={<Cart />} />
+            <Route path="checkout" element={<CheckoutPage />} />
             <Route path="payment" element={<PaymentPage />} />
             <Route path="profile" element={<UserProfilePage />} />
           </Route>

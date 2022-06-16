@@ -1,25 +1,28 @@
 import * as React from "react";
-import { styled, alpha } from "@mui/material/styles";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
+import { styled } from "@mui/material/styles";
+import {
+  AppBar,
+  Box,
+  Toolbar,
+  IconButton,
+  Typography,
+  Menu,
+  Container,
+  Avatar,
+  Button,
+  Tooltip,
+  MenuItem,
+  InputBase,
+  Badge,
+  Link,
+} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import SearchIcon from "@mui/icons-material/Search";
-import InputBase from "@mui/material/InputBase";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import Badge from "@mui/material/Badge";
 import { Outlet } from "react-router";
 
-const pages = ["Products", "Sale", "Contact"];
+const pages = ["Products", "Collections", "Contact"];
 const settings = ["Profile", "Account", "Orders", "Logout"];
 
 const ResponsiveAppBar = () => {
@@ -147,7 +150,9 @@ const ResponsiveAppBar = () => {
                     onClick={handleCloseNavMenu}
                     style={{ color: "black" }}
                   >
-                    <Typography textAlign="center">{page}</Typography>
+                    <Link to={`${page}`} underline={"hover"}>
+                      <Typography textAlign="center">{page}</Typography>
+                    </Link>
                   </MenuItem>
                 ))}
               </Menu>
@@ -183,7 +188,9 @@ const ResponsiveAppBar = () => {
                     color: "#000000",
                   }}
                 >
-                  {page}
+                  <Link href={`${page}`} underline={"hover"} color={"black"}>
+                    {page}
+                  </Link>
                 </Button>
               ))}
             </Box>
@@ -209,7 +216,9 @@ const ResponsiveAppBar = () => {
                 }}
               >
                 <Badge badgeContent={4} color="error">
-                  <ShoppingCartOutlinedIcon />
+                  <Link href={"cart"} underline={"hover"} color={"black"}>
+                    <ShoppingCartOutlinedIcon />
+                  </Link>
                 </Badge>
               </Button>
             </Box>
