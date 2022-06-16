@@ -1,12 +1,13 @@
-import React from 'react'
-import Cart from "./Cart.jsx";
+import React from "react";
+
+import CheckoutCart from "./CheckoutCart";
 
 const CheckoutPage = () => {
   return (
     <div>
-      <Cart />
+      <CheckoutCart />
     </div>
-  )
-}
+  );
+};
 
-export default CheckoutPage
+export default CheckoutPage;
