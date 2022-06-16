@@ -1,18 +1,9 @@
 import React from "react";
-import Navbar from "components/Nav";
 import {
-  Stack,
-  Styled,
   TableContainer,
   Container,
-  AppBar,
   Card,
-  CardActions,
   Grid,
-  CardContent,
-  CardMedia,
-  CssBaseline,
-  Toolbar,
   Typography,
   Divider,
   TableHead,
@@ -35,7 +26,6 @@ function CheckoutCart() {
   return (
     <div>
       <div>
-        <Navbar />
         <Container
           maxWidth="sm"
           margin="20px,0px"
