@@ -110,17 +110,14 @@
 // }
 
 // -------------------------------------------------------------------
-import { eventWrapper } from "@testing-library/user-event/dist/utils";
+// import { eventWrapper } from "@testing-library/user-event/dist/utils";
 import React from "react";
-import ReactDOM from "react-dom";
-// import Login from './component/Login';
-// import '../css/style.scss';
+// import ReactDOM from "react-dom";
+import "../../style.scss";
+// import "./style.scss";
+import "../../app.scss";
 
-// import '../css/app.scss';
-import "css/style.scss";
-import "css/app.scss";
-
-import Header from "./Header";
+import Header from "../../components/Header";
 
 class LoginPage extends React.Component {
   msg = "Clicked";
