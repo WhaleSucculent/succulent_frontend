@@ -4,7 +4,7 @@ import React from "react";
 function Footer() {
   return (
     <Box bgcolor="#F5F5F5" color="black">
-      <Container maxWidth="lg">
+      <Container maxWidth="25px">
         <Grid container padding={10}>
           <Grid item xs={12} sm={4}>
             <Box>
@@ -15,6 +15,7 @@ function Footer() {
             <Box>
               <p> 774 Gordon Baker Rd</p>
               <p>North York, ON M2H 3B4</p>
+              <p>info@whalesucculent.ca</p>
             </Box>
           </Grid>
 
@@ -32,15 +33,19 @@ function Footer() {
           <Grid item xs={12} sm={4}>
             <Box>
               <Link href="/" color="inherit" fontWeight="bold" fontSize="25px">
-                Follow Us
+                Our Services
               </Link>
             </Box>
             <Box>
-              <p>Instagram</p>
-              <p>WeChat</p>
+              <p>Shipping & Return</p>
+              <p>Privacy Policy</p>
+              <p>Terms of Condition</p>
             </Box>
           </Grid>
         </Grid>
+        <Box textAlign="center" pt={{ xs: 5, sm: 2 }} pb={{ xs: 5, sm: 5 }}>
+          Whale Succulent &reg; 2022
+        </Box>
       </Container>
     </Box>
   );
