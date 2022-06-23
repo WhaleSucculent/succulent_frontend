@@ -166,7 +166,6 @@ const SummaryPrice = styled.span``;
 function Cart() {
   return (
     <Container>
-      <Nav />
       <Wrapper>
         <Title>Shopping Cart</Title>
         <Top>
@@ -267,7 +266,11 @@ function Cart() {
                 <b>$18.15</b>
               </SummaryPrice>
             </SummaryItem>
-            <Button type="filled">Checkout Now</Button>
+            <Button type="filled">
+              <Link href={"/checkout"} underline="hover" color={"white"}>
+                Checkout Now
+              </Link>
+            </Button>
             <Button>
               <Link href={"/"} underline="none" color={"black"}>
                 Continue Shopping
