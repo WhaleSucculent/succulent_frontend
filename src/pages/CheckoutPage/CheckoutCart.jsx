@@ -29,6 +29,7 @@ function CheckoutCart() {
   console.log(data);
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Something went wrong</p>;
+
   return (
     <div>
       <div>
@@ -67,12 +68,12 @@ function CheckoutCart() {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {itemData.map((item) => (
-                      <TableRow key={item.title}>
+                    {data.products.map((item) => (
+                      <TableRow key={item.name}>
                         <TableCell component="th" scope="row" align="center">
-                          <img src={item.img} width={200} height={200} />
+                          {/* <img src={item.img} width={200} height={200} /> */}
                           <br></br>
-                          <b>{item.title}</b>
+                          <b>{item.name}</b>
                         </TableCell>
                         <TableCell align="center">
                           <Select
@@ -84,7 +85,7 @@ function CheckoutCart() {
                             //     e.target.value
                             //     )
                             // }
-                            value={item.quantity}
+                            // value={item.quantity}
                           >
                             {[...Array(10).keys()].map((x) => (
                               <MenuItem key={x + 1} value={x + 1}>
@@ -93,7 +94,9 @@ function CheckoutCart() {
                             ))}
                           </Select>
                         </TableCell>
-                        <TableCell align="center">{item.price}</TableCell>
+                        <TableCell align="center">
+                          {item.priceList[0].price}
+                        </TableCell>
                         <TableCell align="center">
                           {/* <Button onClick={()=> removeFromCartHandler(item)} */}
                           <Button style={{ color: "red" }}>
