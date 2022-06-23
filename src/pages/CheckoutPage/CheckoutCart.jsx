@@ -21,8 +21,14 @@ import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import { ClassNames } from "@emotion/react";
 import ClearIcon from "@mui/icons-material/Clear";
+import { ORDER_DETAILS } from "../../queries/orderDetails";
+import { useQuery } from "@apollo/client";
 
 function CheckoutCart() {
+  const { loading, error, data } = useQuery(ORDER_DETAILS);
+  console.log(data);
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Something went wrong</p>;
   return (
     <div>
       <div>
