@@ -46,8 +46,7 @@ server.post("/auth/login", (req, res) => {
     return res.status(status).json({ status, message });
   }
 
-  console.log("Login Success ---");
-  return res.status(200).json("Login Success --- ");
+  return res.status(200).json("Login Success");
 });
 
 server.use(router);
