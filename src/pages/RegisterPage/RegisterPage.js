@@ -1,13 +1,6 @@
 import React from "react";
-import "../../style.scss";
-// import "./style.scss";
-import "../../app.scss";
 
 import Header from "../../components/Header";
-
-import { eventWrapper } from "@testing-library/user-event/dist/utils";
-// import React from "react";
-import ReactDOM from "react-dom";
 
 class RegisterPage extends React.Component {
   msg = "Clicked";
