@@ -5,10 +5,12 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { Link } from "@mui/material";
 
-const Container = styled.div``;
+const Container = styled.div`
+  width: 100%;
+`;
 
 const Wrapper = styled.div`
-  padding: 20px;
+  padding: 50px;
 `;
 
 const Title = styled.h1`
@@ -104,8 +106,8 @@ const Details = styled.div`
 `;
 
 const Img = styled.img`
-  width: 200px;
-  height: 270px;
+  width: 30%;
+  height: 50%;
   margin: 50px 50px;
   cursor: pointer;
 `;
@@ -241,7 +243,7 @@ function Cart() {
               </Price>
             </Product>
           </Info>
-          <Summary>
+          {/* <Summary>
             <SummaryTitle>Order Summary</SummaryTitle>
             <SummaryItem>
               <SummaryText>Subtotal</SummaryText>
@@ -274,7 +276,7 @@ function Cart() {
                 Continue Shopping
               </Link>
             </Button>
-          </Summary>
+          </Summary> */}
         </Bottom>
       </Wrapper>
     </Container>

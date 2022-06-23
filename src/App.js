@@ -20,9 +20,10 @@ import AdminStockPage from "pages/AdminStockPage/AdminStockPage";
 import AdminUserPage from "pages/AdminUserPage/AdminUserPage";
 import CollectionsPage from "pages/CollectionsPage/CollectionsPage";
 import Nav from "components/Nav";
-import Cart from "pages/CheckoutPage/Cart";
+// import Cart from "pages/CheckoutPage/Cart";
 
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
+import CheckoutCart from "pages/CheckoutPage/CheckoutCart";
 
 const cache = new InMemoryCache({
   typePolicies: {
@@ -70,7 +71,7 @@ function App() {
                 <Route path="rare" element={<CollectionsPage />} />
                 <Route path="best" element={<CollectionsPage />} />
               </Route>
-              <Route path="cart" element={<Cart />} />
+              <Route path="cart" element={<CheckoutCart />} />
               <Route path="checkout" element={<CheckoutPage />} />
               <Route path="payment" element={<PaymentPage />} />
               <Route path="profile" element={<UserProfilePage />} />
