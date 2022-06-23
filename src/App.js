@@ -19,7 +19,7 @@ import AdminProductPage from "pages/AdminProductPage/AdminProductPage";
 import AdminStockPage from "pages/AdminStockPage/AdminStockPage";
 import AdminUserPage from "pages/AdminUserPage/AdminUserPage";
 import CollectionsPage from "pages/CollectionsPage/CollectionsPage";
-import Nav from "components/Nav";
+import HeaderFooter from "components/HeaderFooter";
 // import Cart from "pages/CheckoutPage/Cart";
 
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
@@ -59,7 +59,7 @@ function App() {
             <Route path="landing" element={<LandingPage />} />
 
             {/* Router for   */}
-            <Route path="/" element={<Nav />}>
+            <Route path="/" element={<HeaderFooter />}>
               <Route index element={<HomePage />} />
               <Route path="login" element={<LoginPage />} />
               <Route path="register" element={<RegisterPage />} />
