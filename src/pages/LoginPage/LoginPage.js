@@ -16,7 +16,6 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useForm } from "react-hook-form";
 import axios from "commons/axios";
 import { toast } from "react-toastify";
-import Header from "../../components/Header";
 
 function Copyright(props) {
   return (
@@ -61,7 +60,6 @@ export default function LoginPage(props) {
 
   return (
     <React.Fragment>
-      <Header />
       <ThemeProvider theme={theme}>
         <Container component="main" maxWidth="xs">
           <CssBaseline />
