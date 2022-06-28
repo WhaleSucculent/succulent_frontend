@@ -13,6 +13,10 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
+import { useForm } from "react-hook-form";
+import axios from "commons/axios";
+import { toast } from "react-toastify";
+
 function Copyright(props) {
   return (
     <Typography
@@ -33,14 +37,28 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function SignUp() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+export default function SignUp(props) {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = async (data) => {
+    try {
+      const { email, password } = data;
+      const res = await axios.post("/auth/register", {
+        email,
+        password,
+        type: 2,
+      });
+      const jwToken = res.data;
+      global.auth.setToken(jwToken);
+      toast.success("Register Success");
+      props.history.push("/HomePage");
+    } catch (error) {
+      const message = error.response.data.message;
+      toast.error(message);
+    }
   };
 
   return (
@@ -65,7 +83,7 @@ export default function SignUp() {
             <Box
               component="form"
               noValidate
-              onSubmit={handleSubmit}
+              onSubmit={handleSubmit(onSubmit)}
               sx={{ mt: 3 }}
             >
               <Grid container spacing={2}>
@@ -101,7 +119,7 @@ export default function SignUp() {
               </Button>
               <Grid container justifyContent="flex-end">
                 <Grid item>
-                  <Link href="#" variant="body2">
+                  <Link href="/LoginPage" variant="body2">
                     Already have an account? Sign in
                   </Link>
                 </Grid>

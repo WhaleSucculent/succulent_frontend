@@ -51,6 +51,7 @@ export default function LoginPage(props) {
       console.log(jwToken);
       localStorage.setItem("store_token_id", jwToken);
       toast.success("Login Success");
+      props.history.push("/HomePage");
     } catch (error) {
       console.log(error.response.data);
       const message = error.response.data.message;
