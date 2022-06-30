@@ -83,6 +83,16 @@ function App() {
               <Route path="order" element={<AdminOrderPage />} />
               <Route path="user" element={<AdminUserPage />} />
             </Route>
+            <Route path="checkout/*" element={<CheckoutPage />} />
+            <Route path="payment" element={<PaymentPage />} />
+            <Route path="profile" element={<UserProfilePage />} />
+            <Route path="/admin" element={<AdminHeader />}>
+              <Route path="home" element={<AdminHomePage />} />
+              <Route path="product" element={<AdminProductPage />} />
+              <Route path="stock" element={<AdminStockPage />} />
+              <Route path="order" element={<AdminOrderPage />} />
+              <Route path="user" element={<AdminUserPage />} />
+            </Route>
             <Route path="*" element={<ErrorPage />} />
           </Routes>
         </BrowserRouter>
