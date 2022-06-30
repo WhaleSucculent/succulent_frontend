@@ -1,14 +1,16 @@
-import React from 'react';
-import styled from 'styled-components';
-import NavbarLogin from 'components/NavbarLogin';
-import AddIcon from '@mui/icons-material/Add';
-import RemoveIcon from '@mui/icons-material/Remove';
-import { Link } from '@mui/material';
+import React from "react";
+import styled from "styled-components";
+import Nav from "components/Nav";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
+import { Link } from "@mui/material";
 
-const Container = styled.div``;
+const Container = styled.div`
+  width: 100%;
+`;
 
 const Wrapper = styled.div`
-  padding: 20px;
+  padding: 50px;
 `;
 
 const Title = styled.h1`
@@ -34,8 +36,8 @@ const TopButtom = styled.button`
   padding: 18px 20px;
   font-size: 15px;
   background-color: white;
-  border-width: ${(props) => (props.type === 'filled' ? '0px' : '1px')};
-  background-color: ${(props) => props.type === 'filled' && '#f9d7b9'};
+  border-width: ${(props) => (props.type === "filled" ? "0px" : "1px")};
+  background-color: ${(props) => props.type === "filled" && "#f9d7b9"};
   font-weight: bolder;
   display: flex;
   align-items: center;
@@ -52,9 +54,9 @@ const Button = styled.button`
   height: 50px;
   padding: 10px;
   background-color: white;
-  border-width: ${(props) => (props.type === 'filled' ? '0px' : '1px')};
-  background-color: ${(props) => props.type === 'filled' && 'black'};
-  color: ${(props) => props.type === 'filled' && 'white'};
+  border-width: ${(props) => (props.type === "filled" ? "0px" : "1px")};
+  background-color: ${(props) => props.type === "filled" && "black"};
+  color: ${(props) => props.type === "filled" && "white"};
   font-weight: bolder;
   font-size: 15px;
   margin: 5px 0px;
@@ -104,8 +106,8 @@ const Details = styled.div`
 `;
 
 const Img = styled.img`
-  width: 200px;
-  height: 270px;
+  width: 30%;
+  height: 50%;
   margin: 50px 50px;
   cursor: pointer;
 `;
@@ -153,8 +155,8 @@ const SummaryItem = styled.div`
   margin: 30px 0px;
   display: flex;
   justify-content: space-between;
-  font-weight: ${(props) => props.type === 'total' && '400'};
-  font-size: ${(props) => (props.type === 'total' ? '20' : '15')};
+  font-weight: ${(props) => props.type === "total" && "400"};
+  font-size: ${(props) => (props.type === "total" ? "20" : "15")};
 `;
 
 const SummaryText = styled.span``;
@@ -164,7 +166,6 @@ const SummaryPrice = styled.span``;
 function Cart() {
   return (
     <Container>
-      {/* <NavbarLogin /> */}
       <Wrapper>
         <Title>Shopping Cart</Title>
         <Top>
@@ -182,7 +183,7 @@ function Cart() {
                 <Img src="https://images.unsplash.com/photo-1509587584298-0f3b3a3a1797?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=713&q=80" />
                 <Details>
                   <Name>
-                    <Link href={'#'} underline="hover" color={'black'}>
+                    <Link href={"#"} underline="hover" color={"black"}>
                       <b>Plant 1</b>
                     </Link>
                   </Name>
@@ -242,7 +243,7 @@ function Cart() {
               </Price>
             </Product>
           </Info>
-          <Summary>
+          {/* <Summary>
             <SummaryTitle>Order Summary</SummaryTitle>
             <SummaryItem>
               <SummaryText>Subtotal</SummaryText>
@@ -265,13 +266,17 @@ function Cart() {
                 <b>$18.15</b>
               </SummaryPrice>
             </SummaryItem>
-            <Button type="filled">Checkout Now</Button>
+            <Button type="filled">
+              <Link href={"/checkout"} underline="hover" color={"white"}>
+                Checkout Now
+              </Link>
+            </Button>
             <Button>
-              <Link href={'/'} underline="none" color={'black'}>
+              <Link href={"/"} underline="none" color={"black"}>
                 Continue Shopping
               </Link>
             </Button>
-          </Summary>
+          </Summary> */}
         </Bottom>
       </Wrapper>
     </Container>
