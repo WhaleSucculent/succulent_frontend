@@ -7,8 +7,8 @@ import { styled } from '@mui/material/styles';
 import { CheckboxWithLabel } from 'formik-mui';
 import { useNavigate } from 'react-router-dom';
 
-import { AddressForm } from './address-form';
-import { CheckoutStepper } from './checkout-stepper';
+import { AddressForm } from '../address/address-form';
+import { CheckoutStepper } from '../checkout-stepper/checkout-stepper';
 
 import { paymentFormSchema } from './payment-form.schema';
 import { initialPaymentFormValues } from './payment-form-values.initial';

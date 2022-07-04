@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { DeliveryFormValues } from './delivery-form-values.interface';
-import { PaymentFormValues } from './payment-form-values.interface';
+import { DeliveryFormValues } from '../components/delivery/delivery-form-values.interface';
+import { PaymentFormValues } from '../components/payment/payment-form-values.interface';
 
 import { CheckoutState } from './checkout-state.interface';
 import { initialCheckoutState } from './checkout-state.intial';

@@ -1,6 +1,6 @@
 import { object } from 'yup';
 import { TFunction } from 'i18next';
-import { addressFormSchema } from './address-form.schema';
+import { addressFormSchema } from '../address/address-form.schema';
 
 export const deliveryFormSchema = (t:TFunction) =>
 object().shape({

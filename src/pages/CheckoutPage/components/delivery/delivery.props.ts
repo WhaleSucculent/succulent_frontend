@@ -1,8 +1,8 @@
 import { Dispatch } from '@reduxjs/toolkit';
 
-import { RootState } from './root-state.interface';
-import { checkoutSelectors } from './checkout.selectors';
-import { checkoutSlice } from './checkout.slice';
+import { RootState } from '../../../../store/root-state.interface';
+import { checkoutSelectors } from '../../store/checkout.selectors';
+import { checkoutSlice } from '../../store/checkout.slice';
 
 import { DeliveryFormValues } from './delivery-form-values.interface';
 

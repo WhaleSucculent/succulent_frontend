@@ -1,4 +1,4 @@
-import { AddressFormValues } from './address-form-values.interface';
+import { AddressFormValues } from '../address/address-form-values.interface';
 
 export interface PaymentFormValues {
     sameAsShipping: boolean;

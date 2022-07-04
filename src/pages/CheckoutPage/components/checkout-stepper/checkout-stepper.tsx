@@ -6,7 +6,7 @@ import { FunctionComponent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
 
-import { CheckoutRoutePath } from './checkout-route-path';
+import { CheckoutRoutePath } from '../../routes/checkout-route-path';
 
 export const CheckoutStepper: FunctionComponent = () => {
   const { t } = useTranslation();

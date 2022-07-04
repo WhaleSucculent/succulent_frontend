@@ -8,8 +8,8 @@ import { useTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { AddressForm } from './address-form';
-import { CheckoutStepper } from './checkout-stepper';
+import { AddressForm } from '../address/address-form';
+import { CheckoutStepper } from '../checkout-stepper/checkout-stepper';
 
 import { DeliveryFormValues } from './delivery-form-values.interface';
 import { deliveryFormSchema } from './delivery-form.schema';
