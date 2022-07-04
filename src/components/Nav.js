@@ -258,7 +258,6 @@ const ResponsiveAppBar = () => {
           </Toolbar>
         </Container>
       </AppBar>
-      <Outlet />
     </>
   );
 };
