@@ -23,6 +23,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useTheme } from "@mui/material/styles";
 import { useMediaQuery } from "@mui/material";
+import Header from "components/Header";
 
 function SlideTransition(props) {
   return <Slide direction="down" {...props} />;
@@ -30,7 +31,7 @@ function SlideTransition(props) {
 
 const ProductDetailWrapper = styled(Box)(({ theme }) => ({
   display: "flex",
-  padding: theme.spacing(4),
+ 
 }));
 
 const ProductDetailInfoWrapper = styled(Box)(() => ({
@@ -44,15 +45,16 @@ export default function ProductDetailPage({open, onClose}) {
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.down("md"));
   return (
+    
     <Dialog
       TransitionComponent={SlideTransition}
       variant="permanant"
-      open={open}
+      open={true}
       fullScreen
     >
       <DialogTitle
         sx={{
-          //background: Colors.secondary,
+          background: Colors.secondary,
         }}
       >
         <Box
@@ -61,8 +63,8 @@ export default function ProductDetailPage({open, onClose}) {
           justifyContent={"space-between"}
         >
           Product title
-          <IconButton onClick={onClose}>
-            <CloseIcon />
+          <IconButton href="/Products">
+            <CloseIcon/>
           </IconButton>
         </Box>
       </DialogTitle>
@@ -72,14 +74,14 @@ export default function ProductDetailPage({open, onClose}) {
             <ProductImage src={itemData[0].img} />
           </Product>
           <ProductDetailInfoWrapper>
-            <Typography variant="subtitle">SKU: 123</Typography>
-            <Typography variant="subtitle">Availability: 5 in stock</Typography>
             <Typography sx={{ lineHeight: 2 }} variant="h4">
-              hELLO
+             Replace with query of fakedata
             </Typography>
             <Typography variant="body">
-             hELLO
+             Product Description
             </Typography>
+            <Typography variant="subtitle">SKU: 12345</Typography>
+            <Typography variant="subtitle">Availability: 5 in stock</Typography>
             <Box
               sx={{ mt: 4 }}
               display="flex"
