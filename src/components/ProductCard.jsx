@@ -9,7 +9,22 @@ import Rating from "@mui/material/Rating";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import PropTypes from "prop-types";
+import {useDispatch} from "react-redux";
+import { addToCart } from "pages/CheckoutPage/features/cartSlice";
+import { useNavigate } from "react-router-dom";
+
 function ProductCard({ product }) {
+
+const dispatch =useDispatch();
+const history = useNavigate();
+
+ const handleAddToCart =(product) =>{
+  dispatch(addToCart(product));
+  history.push("/cart");
+
+ };
+
+
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia component="img" alt="succondese" height="140" image={img1} />
@@ -40,7 +55,7 @@ function ProductCard({ product }) {
       </CardContent>
       <CardActions>
         <Button size="small">Buy</Button>
-        <Button size="small">Add to Cart</Button>
+        <Button size="small" onClick={()=>handleAddToCart(product)}>Add to Cart</Button>
       </CardActions>
     </Card>
   );

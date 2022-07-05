@@ -18,6 +18,7 @@ import InputBase from "@mui/material/InputBase";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import Badge from "@mui/material/Badge";
 import { Outlet } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const pages = ["Products", "Sale", "Contact"];
 const settings = ["Profile", "Account", "Orders", "Logout"];
@@ -25,6 +26,8 @@ const settings = ["Profile", "Account", "Orders", "Logout"];
 const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  const {totalCount} =useSelector((state)=>state.cart);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -213,7 +216,7 @@ const ResponsiveAppBar = () => {
                   color: "#000000",
                 }}
               >
-                <Badge badgeContent={4} color="error">
+                <Badge badgeContent={totalCount} color="error">
                   <ShoppingCartOutlinedIcon />
                 </Badge>
               </Button>

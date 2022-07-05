@@ -21,6 +21,8 @@ import AdminUserPage from "pages/AdminUserPage/AdminUserPage";
 import CollectionsPage from "pages/CollectionsPage/CollectionsPage";
 import HeaderFooter from "components/HeaderFooter";
 // import Cart from "pages/CheckoutPage/Cart";
+import {ToastContainer} from "react-toastify";
+import"react-toastify/dist/ReactToastify.css";
 
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import CheckoutCart from "pages/CheckoutPage/CheckoutCart";
@@ -54,6 +56,7 @@ function App() {
     <div className="App">
       <ApolloProvider client={client}>
         <BrowserRouter>
+        <ToastContainer/>
           <Routes>
             {/* Router for landing page */}
             <Route path="landing" element={<LandingPage />} />

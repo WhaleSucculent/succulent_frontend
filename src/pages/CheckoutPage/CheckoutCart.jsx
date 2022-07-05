@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   TableContainer,
   Container,
@@ -22,13 +22,29 @@ import TableRow from "@mui/material/TableRow";
 import ClearIcon from "@mui/icons-material/Clear";
 import { ORDER_DETAILS } from "../../queries/orderDetails";
 import { useQuery } from "@apollo/client";
+import { useDispatch, useSelector } from "react-redux";
+// import { getCartTotal } from "./features/cartSlice";
 
 function CheckoutCart() {
-  const { loading, error, data } = useQuery(ORDER_DETAILS);
+
+
+  // const{items,totalAmount} = useSelector((state) => state.cart);
+  // const dispatch =useDispatch();
+  // useEffect (()=>{
+  //  dispatch(getCartTotal());
+ 
+ 
+  // },[]);
+  //loading data
+  const { loading, error,data } = useQuery(ORDER_DETAILS);
   console.log(data);
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Something went wrong</p>;
 
+
+ 
+ 
+ 
   return (
     <div>
       <div>
@@ -86,9 +102,9 @@ function CheckoutCart() {
                             // }
                             // value={item.quantity}
                           >
-                            {[...Array(10).keys()].map((x) => (
-                              <MenuItem key={x + 1} value={x + 1}>
-                                {x + 1}
+                            {[...Array(10).keys()].map((amount) => (
+                              <MenuItem key={amount + 1} value={amount + 1}>
+                                {amount + 1}
                               </MenuItem>
                             ))}
                           </Select>
@@ -117,17 +133,18 @@ function CheckoutCart() {
                     <Grid container>
                       <Typography variant="h6">
                         Subtotal:
-                        {/* {cart.data.subtotal.formatted_with_symbol} */}
+                        <Typography>
+$</Typography>
                       </Typography>
                     </Grid>
                   </ListItem>
                   <ListItem>
                     {/* {cart.data.total_items >0 &&( */}
                     <Button
-                    // type="button"
-                    // fullWidth
-                    // variant="contained"
-                    // color="primary"
+                    type="button"
+                    fullWidth
+                    variant="contained"
+                    color="primary"
                     // onClick={processToCheckoutHandler}
                     >
                       Check Out
