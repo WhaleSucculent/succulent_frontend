@@ -49,7 +49,7 @@ export default function LoginPage(props) {
       const res = await axios.post("/auth/login", { email, password });
       const jwToken = res.data;
       console.log(jwToken);
-      localStorage.setItem("store_token_id", jwToken);
+      global.auth.setToken(jwToken);
       toast.success("Login Success");
       props.history.push("/HomePage");
     } catch (error) {
