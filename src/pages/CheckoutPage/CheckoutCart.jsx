@@ -124,6 +124,7 @@ function CheckoutCart() {
                   <ListItem>
                     {/* {cart.data.total_items >0 &&( */}
                     <Button
+                    href="checkout"
                     // type="button"
                     // fullWidth
                     // variant="contained"
