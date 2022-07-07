@@ -35,6 +35,7 @@
     "styled-components": "^5.3.5",
     "toast": "^0.3.47",
     "swiper": "^8.2.4",
+    "typescript": "^4.7.4",
     "web-vitals": "^2.1.4",
     "yup": "^0.32.11"
   },
