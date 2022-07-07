@@ -5,7 +5,6 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import img1 from "../assets/images/1.jpg";
-import Rating from "@mui/material/Rating";
 import Grid from '@mui/material/Grid';
 
 function ProductCard({ product }) {
