@@ -10,18 +10,18 @@ import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import PropTypes from "prop-types";
 import {useDispatch} from "react-redux";
-import { addToCart } from "pages/CheckoutPage/features/cartSlice";
+
 import { useNavigate } from "react-router-dom";
+import { addToMyCart } from "pages/CheckoutPage/features/cartSlice";
 
 function ProductCard({ product }) {
 
 const dispatch =useDispatch();
-const history = useNavigate();
+const navigate = useNavigate();
 
- const handleAddToCart =(product) =>{
-  dispatch(addToCart(product));
-  history.push("/cart");
-
+ const handlerAddToCart =(product) =>{
+  dispatch(addToMyCart(product))
+ navigate("/cart")
  };
 
 
@@ -54,8 +54,8 @@ const history = useNavigate();
         </Box>
       </CardContent>
       <CardActions>
-        <Button size="small">Buy</Button>
-        <Button size="small" onClick={()=>handleAddToCart(product)}>Add to Cart</Button>
+        {/* <Button size="small">Buy</Button> */}
+        <Button size="small" onClick={()=>handlerAddToCart(product)}>Add to Cart</Button>
       </CardActions>
     </Card>
   );

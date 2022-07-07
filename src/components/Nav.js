@@ -22,8 +22,10 @@ import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { useSelector } from "react-redux";
 
+
 const pages = ["Products", "Collections", "Contact"];
 const settings = ["Profile", "Account", "Orders", "Logout"];
+
 
 
 const ResponsiveAppBar = () => {
