@@ -1,10 +1,14 @@
 import { GET_PRODUCTS } from "../../queries/productQueries";
 import { useQuery } from "@apollo/client";
-
+import OnlyInStock from './OnlyInStock';
 import Grid from '@mui/material/Grid';
 import ProductCard from "components/ProductCard";
 import PaginationComp from './PaginationComp';
 import LineStrip from './LineStrip';
+import PriceMinMax from './PriceMinMax';
+import SortBy from "./SortBy";
+
+
 const CollectionsPage = () => {
   const { loading, error, data } = useQuery(GET_PRODUCTS);
   console.log(data);
@@ -12,7 +16,13 @@ const CollectionsPage = () => {
   if (error) return <p>Something went wrong</p>;
   return (
     <div>
-      <LineStrip />
+      <Grid container spacing={3}>
+        <Grid item xs={12}>
+        <LineStrip />
+        </Grid>
+        
+      </Grid>
+      
       <Grid container spacing={3}>
           {!loading &&
             !error &&
@@ -27,7 +37,9 @@ const CollectionsPage = () => {
           <PaginationComp  />
           </Grid>
      </Grid>
-     
+     <PriceMinMax />
+      <OnlyInStock />
+      <SortBy />
     </div>
   );
 };

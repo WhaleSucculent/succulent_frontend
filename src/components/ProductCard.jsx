@@ -10,8 +10,15 @@ import Grid from '@mui/material/Grid';
 
 function ProductCard({ product }) {
    var cardStyle={
-      height:'20vw',
-      padding:'2em 1em'
+      padding:'2em 1em',
+      display:'flex',
+    flexDirection:'column',
+    alignItems:'stretch',
+    margin:'1.5em'
+   }
+   var cardContent={
+    flexBasis:'0',
+    flexGrow:'1',
    }
    console.log(product.priceList[0].price)
   return (
@@ -21,7 +28,7 @@ function ProductCard({ product }) {
             alt="succondese"
             height="140"
             image={img1} />
-            <CardContent>
+            <CardContent style={cardContent} className='cardContent'>
                <Typography align="left" gutterBottom variant="body1" component="div">
                   {product.name}
                   </Typography>
