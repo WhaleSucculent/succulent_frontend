@@ -26,7 +26,6 @@ import { GET_ADMIN_PRODUCTS } from 'queries/productQueries';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 
 
-
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
     return -1;
@@ -58,11 +57,18 @@ function stableSort(array, comparator) {
 }
 
 const headCells = [
+
   {
     id: 'name',
     numeric: false,
     disablePadding: true,
     label: 'Succulent Name',
+  },
+  {
+    id: 'image',
+    numeric: true,
+    disablePadding: false,
+    label: 'Image',
   },
   {
     id: 'price',
@@ -77,17 +83,18 @@ const headCells = [
     label: 'Post Date',
   },
   {
-    id: 'postdate',
-    numeric: true,
-    disablePadding: false,
-    label: 'Post Date',
-  },
-  {
     id: 'stock',
     numeric: true,
     disablePadding: false,
-    label: 'stock',
+    label: 'Stock',
   },
+  {
+    id: 'status',
+    numeric: true,
+    disablePadding: false,
+    label: 'Product Status',
+  }
+
 ];
 
 function EnhancedTableHead(props) {
@@ -329,6 +336,14 @@ const AdminProductPage = () => {
                             padding="none"
                           >
                             {row.name}
+                          </TableCell>
+                          <TableCell align="right">
+                            <Box component="img" sx={{
+                              height: 233,
+                              width: 350,
+                              maxHeight: { xs: 233, md: 167 },
+                              maxWidth: { xs: 350, md: 250 },
+                            }} src={row.image[0].imageLink} alt={row.image[0].name} />
                           </TableCell>
                           <TableCell align="right">{row.priceList[0].price}</TableCell>
                           <TableCell align="right">{row.postDate}</TableCell>
