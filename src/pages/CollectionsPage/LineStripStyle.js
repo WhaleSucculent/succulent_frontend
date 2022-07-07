@@ -1,6 +1,6 @@
-import {makeStyles} from '@material-ui/core/styles';
+import { styled } from '@mui/system';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = styled(theme => ({
    lineStyle:{
       height: '2vw',
       backgroundColor: 'rgba(130, 170, 182, 255)',
@@ -22,7 +22,6 @@ const useStyles = makeStyles(theme => ({
       justifyContent:'space-between',
       alignItems:'center',
       backgroundColor:'#15588c',
-      
       borderRadius:'5px',
       border:'rgba(130,170,182,0.5) solid 1px'
    },
