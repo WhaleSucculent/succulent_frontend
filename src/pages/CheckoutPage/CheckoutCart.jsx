@@ -14,12 +14,11 @@ import {
   List,
   ListItem,
 } from "@mui/material";
-import { itemData } from "../CheckoutPage/fakedata";
+
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
-import { ClassNames } from "@emotion/react";
 import ClearIcon from "@mui/icons-material/Clear";
 import { ORDER_DETAILS } from "../../queries/orderDetails";
 import { useQuery } from "@apollo/client";
@@ -77,8 +76,8 @@ function CheckoutCart() {
                         </TableCell>
                         <TableCell align="center">
                           <Select
-                            labelId="quantity-label"
-                            id="quantity"
+                            // labelId="quantity-label"
+                            // id="quantity"
                             // onChange={(e)=>
                             // quantityChangehandler(
                             //     item,
@@ -98,8 +97,9 @@ function CheckoutCart() {
                           {item.priceList[0].price}
                         </TableCell>
                         <TableCell align="center">
-                          {/* <Button onClick={()=> removeFromCartHandler(item)} */}
-                          <Button style={{ color: "red" }}>
+                          <Button>
+                            {/* <Button onClick={()=> removeFromCartHandler(item)}> */}
+                            {/* // <Button style={{ color: "red" }}> */}
                             <ClearIcon />
                           </Button>
                         </TableCell>
@@ -110,29 +110,30 @@ function CheckoutCart() {
               </TableContainer>
             </Grid>
             <Grid item md={3} xs={12}>
-              <Card className={ClassNames.card}>
+              {/* <Card className={Classes.card}> */}
+              <Card>
                 <List>
                   <ListItem>
                     <Grid container>
                       <Typography variant="h6">
                         Subtotal:
-                        {/* Subtotal:{cart.data.subtotal.formatted+with_symbol} */}
+                        {/* {cart.data.subtotal.formatted_with_symbol} */}
                       </Typography>
                     </Grid>
                   </ListItem>
                   <ListItem>
                     {/* {cart.data.total_items >0 &&( */}
                     <Button
-                      type="button"
-                      fullWidth
-                      variant="contained"
-                      color="primary"
-
-                      // onClick={processToCheckoutHandler}>
+                    href="checkout"
+                    // type="button"
+                    // fullWidth
+                    // variant="contained"
+                    // color="primary"
+                    // onClick={processToCheckoutHandler}
                     >
-                      {" "}
                       Check Out
                     </Button>
+                    {/* )} */}
                   </ListItem>
                   <ListItem>
                     <Button
@@ -186,4 +187,8 @@ function CheckoutCart() {
   );
 }
 
+// export default dynamic(()=>Promise.resolve(Cart),{
+//   ssr:false,
+
+// });
 export default CheckoutCart;
