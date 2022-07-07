@@ -32,6 +32,10 @@ const GET_ADMIN_PRODUCTS = gql`
       stock{
         actionAmount
       }
+      image{
+        name
+        imageLink
+      }
 
     }
   }

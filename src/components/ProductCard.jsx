@@ -27,7 +27,7 @@ const navigate = useNavigate();
 
   return (
     <Card sx={{ maxWidth: 345 }}>
-      <CardMedia component="img" alt="succondese" height="140" image={img1} />
+        <CardMedia component="img" alt="succondese" height="140" image={img1}/>
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {product.name}
