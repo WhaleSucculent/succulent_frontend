@@ -9,15 +9,30 @@ import Rating from "@mui/material/Rating";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import PropTypes from "prop-types";
+import {useDispatch} from "react-redux";
+
+import { useNavigate } from "react-router-dom";
+import { addToMyCart } from "pages/CheckoutPage/features/cartSlice";
+
 function ProductCard({ product }) {
+
+const dispatch =useDispatch();
+const navigate = useNavigate();
+
+ const handlerAddToCart =(product) =>{
+  dispatch(addToMyCart(product))
+//  navigate("/cart")
+ };
+
+
   return (
     <Card sx={{ maxWidth: 345 }}>
-      <CardMedia component="img" alt="succondese" height="140" image={img1} />
+        <CardMedia component="img" alt="succondese" height="140" image={img1}/>
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {product.name}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography noWrap variant="body2" color="text.secondary">
           {product.description}
         </Typography>
       </CardContent>
@@ -39,8 +54,8 @@ function ProductCard({ product }) {
         </Box>
       </CardContent>
       <CardActions>
-        <Button size="small">Buy</Button>
-        <Button size="small">Add to Cart</Button>
+        {/* <Button size="small">Buy</Button> */}
+        <Button size="small" onClick={()=>handlerAddToCart(product)}>Add to Cart</Button>
       </CardActions>
     </Card>
   );
@@ -62,16 +77,4 @@ function Item(props) {
   );
 }
 
-Item.propTypes = {
-  /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
-  sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(
-      PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])
-    ),
-    PropTypes.func,
-    PropTypes.object,
-  ]),
-};
-export default ProductCard;
+export default ProductCard

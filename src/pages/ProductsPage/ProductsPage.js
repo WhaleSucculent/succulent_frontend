@@ -5,13 +5,13 @@ import ProductDetailPage from "pages/ProductDetailPage/ProductDetailPage";
 const ProductsPage = () => {
   return (
     <>
-    <div>ProductsPage</div>
-    <Outlet/>
-          <li>
-            <Link to='ProductDetailPage'>ProductDetailPage</Link>
-          </li>
-          </>
+      <div>ProductsPage</div>
+      <Outlet />
+      <li>
+        <Link to='ProductDetailPage'>ProductDetailPage</Link>
+      </li>
+    </>
   )
 }
 
-export default ProductsPage
+export default ProductsPage;

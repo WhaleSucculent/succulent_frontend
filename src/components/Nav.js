@@ -20,14 +20,18 @@ import MenuIcon from "@mui/icons-material/Menu";
 import AdbIcon from "@mui/icons-material/Adb";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import { Outlet } from "react-router";
+import { useSelector } from "react-redux";
+
 
 const pages = ["Products", "Collections", "Contact"];
 const settings = ["Profile", "Account", "Orders", "Logout"];
 
+
+
 const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const {totalCount} =useSelector((state)=>state.cart);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -121,7 +125,7 @@ const ResponsiveAppBar = () => {
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 onClick={handleOpenNavMenu}
-                //   color="inherit"
+              //   color="inherit"
               >
                 <MenuIcon />
               </IconButton>
@@ -215,7 +219,7 @@ const ResponsiveAppBar = () => {
                   color: "#000000",
                 }}
               >
-                <Badge badgeContent={4} color="error">
+                <Badge badgeContent={totalCount} color="error">
                   <Link href={"cart"} underline={"hover"} color={"black"}>
                     <ShoppingCartOutlinedIcon />
                   </Link>
@@ -224,6 +228,9 @@ const ResponsiveAppBar = () => {
             </Box>
 
             <Box sx={{ flexGrow: 0 }}>
+              <Link href={"login"} underline={"hover"} color={"black"}>
+                Sign In
+              </Link>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Avatar
