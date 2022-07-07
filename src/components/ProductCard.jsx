@@ -32,7 +32,7 @@ const navigate = useNavigate();
         <Typography gutterBottom variant="h5" component="div">
           {product.name}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography noWrap variant="body2" color="text.secondary">
           {product.description}
         </Typography>
       </CardContent>
