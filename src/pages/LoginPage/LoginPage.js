@@ -25,12 +25,7 @@ function Copyright(props) {
       align="center"
       {...props}
     >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
+
     </Typography>
   );
 }
@@ -140,7 +135,7 @@ export default function LoginPage(props) {
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link href="#" variant="body2">
+                  <Link href="register" variant="body2">
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>

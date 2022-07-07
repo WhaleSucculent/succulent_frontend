@@ -16,4 +16,25 @@ const GET_PRODUCTS = gql`
   }
 `;
 
-export { GET_PRODUCTS };
+const GET_ADMIN_PRODUCTS = gql`
+  query getAdminProducts {
+    products{
+      name
+      priceList{
+        price
+      }
+      postDate
+      review{ 
+        stars
+      }
+      description
+      productStatus
+      stock{
+        actionAmount
+      }
+
+    }
+  }
+`;
+
+export { GET_PRODUCTS, GET_ADMIN_PRODUCTS };
