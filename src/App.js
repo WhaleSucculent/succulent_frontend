@@ -26,6 +26,7 @@ import"react-toastify/dist/ReactToastify.css";
 
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import CheckoutCart from "pages/CheckoutPage/CheckoutCart";
+import NotFound from "components/NotFound";
 
 const cache = new InMemoryCache({
   typePolicies: {
@@ -96,7 +97,7 @@ function App() {
               <Route path="order" element={<AdminOrderPage />} />
               <Route path="user" element={<AdminUserPage />} />
             </Route>
-            <Route path="*" element={<ErrorPage />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
       </ApolloProvider>

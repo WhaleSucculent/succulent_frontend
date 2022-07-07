@@ -125,7 +125,7 @@ const ResponsiveAppBar = () => {
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 onClick={handleOpenNavMenu}
-                //   color="inherit"
+              //   color="inherit"
               >
                 <MenuIcon />
               </IconButton>
@@ -228,6 +228,9 @@ const ResponsiveAppBar = () => {
             </Box>
 
             <Box sx={{ flexGrow: 0 }}>
+              <Link href={"login"} underline={"hover"} color={"black"}>
+                Sign In
+              </Link>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Avatar
