@@ -1,37 +1,32 @@
 import * as React from "react";
-import { styled } from "@mui/material/styles";
-import {
-  AppBar,
-  Box,
-  Toolbar,
-  IconButton,
-  Typography,
-  Menu,
-  Container,
-  Avatar,
-  Button,
-  Tooltip,
-  MenuItem,
-  InputBase,
-  Badge,
-  Link,
-} from "@mui/material";
+import { styled, alpha } from "@mui/material/styles";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
+import Container from "@mui/material/Container";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import Tooltip from "@mui/material/Tooltip";
+import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import SearchIcon from "@mui/icons-material/Search";
+import InputBase from "@mui/material/InputBase";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import Badge from "@mui/material/Badge";
+import { Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
-import {logoimg } from "../assets/images/whale.png"
 
-
-const pages = ["Products", "Collections", "Contact"];
+const pages = ["Products", "Sale", "Contact"];
 const settings = ["Profile", "Account", "Orders", "Logout"];
-
-
 
 const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+
   const {totalCount} =useSelector((state)=>state.cart);
 
   const handleOpenNavMenu = (event) => {
@@ -116,10 +111,10 @@ const ResponsiveAppBar = () => {
                 textDecoration: "none",
               }}
             >
-                 <img
-                src="https://cdn-icons-png.flaticon.com/512/1808/1808120.png"
-                width={55}
-                height={55}
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/1170/1170271.png?w=1060"
+                width={40}
+                height={40}
               />
             </Typography>
 
@@ -130,7 +125,7 @@ const ResponsiveAppBar = () => {
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 onClick={handleOpenNavMenu}
-              //   color="inherit"
+                //   color="inherit"
               >
                 <MenuIcon />
               </IconButton>
@@ -159,32 +154,31 @@ const ResponsiveAppBar = () => {
                     onClick={handleCloseNavMenu}
                     style={{ color: "black" }}
                   >
-                    <Link to={`${page}`} underline={"hover"}>
-                      <Typography textAlign="center">{page}</Typography>
-                    </Link>
+                    <Typography textAlign="center">{page}</Typography>
                   </MenuItem>
                 ))}
               </Menu>
             </Box>
-            <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
-            <Typography
-              variant="h5"
-              noWrap
-              component="a"
-              href=""
-              sx={{
-                mr: 2,
-                display: { xs: "flex", md: "none" },
-                flexGrow: 1,
-                fontFamily: "monospace",
-                fontWeight: 700,
-                letterSpacing: ".3rem",
-                color: "inherit",
-                textDecoration: "none",
-              }}
-            >
-              LOGO
-            </Typography>
+            {/* <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+          <Typography
+            // variant="h5"
+            // noWrap
+            // component="a"
+            // href=""
+            // sx={{
+            //   mr: 2,
+            //   display: { xs: "flex", md: "none" },
+            //   flexGrow: 1,
+            //   fontFamily: "monospace",
+            //   fontWeight: 700,
+            //   letterSpacing: ".3rem",
+            //   color: "inherit",
+            //   textDecoration: "none",
+            // }}
+          >
+            Whale
+          </Typography> */}
+
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
               {pages.map((page) => (
                 <Button
@@ -197,9 +191,7 @@ const ResponsiveAppBar = () => {
                     color: "#000000",
                   }}
                 >
-                  <Link href={`${page}`} underline={"hover"} color={"black"}>
-                    {page}
-                  </Link>
+                  {page}
                 </Button>
               ))}
             </Box>
@@ -225,23 +217,15 @@ const ResponsiveAppBar = () => {
                 }}
               >
                 <Badge badgeContent={totalCount} color="error">
-                  <Link href={"cart"} underline={"hover"} color={"black"}>
-                    <ShoppingCartOutlinedIcon />
-                  </Link>
+                  <ShoppingCartOutlinedIcon />
                 </Badge>
               </Button>
             </Box>
 
             <Box sx={{ flexGrow: 0 }}>
-              <Link href={"login"} underline={"hover"} color={"black"}>
-                Sign In
-              </Link>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar
-                    alt="Remy Sharp"
-                    src=""
-                  />
+                  <Avatar alt="Remy Sharp" src="" />
                 </IconButton>
               </Tooltip>
               <Menu
@@ -270,6 +254,7 @@ const ResponsiveAppBar = () => {
           </Toolbar>
         </Container>
       </AppBar>
+      <Outlet />
     </>
   );
 };

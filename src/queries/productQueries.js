@@ -3,6 +3,7 @@ import { gql } from "@apollo/client";
 const GET_PRODUCTS = gql`
   query getProducts {
     products {
+      id
       name
       description
       priceList {
@@ -30,6 +31,10 @@ const GET_ADMIN_PRODUCTS = gql`
       productStatus
       stock{
         actionAmount
+      }
+      image{
+        name
+        imageLink
       }
 
     }
