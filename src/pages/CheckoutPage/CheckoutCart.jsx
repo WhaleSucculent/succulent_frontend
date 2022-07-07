@@ -70,14 +70,23 @@ const handleRemoveFromCart =(cartItem)=>{
 {/*  shopping cart displays here*/}
 <div>              
   {cart.cartItems.length === 0 ?(
+     <Grid container spacing={1}  justifyContent="center"
+     alignItems="center"  padding={30}>
               <div className="cart-empty">
-              <p>Your have nothing in your Cart  <SentimentVeryDissatisfiedIcon/></p>
+              <b>your cart feels Sad and Empty <SentimentVeryDissatisfiedIcon/></b>
+              <div>
               <div className="start-shopping">
+
+           
               <Link href="/" underline="none">
-  Start Shopping Now
+              <Button variant="contained" size="large"> Start Shopping Now</Button>
+ 
 </Link>
+</div>
               </div>
+             
               </div>
+              </Grid>
             ):(
       <React.Fragment>
         <Slide direction="up" in={true}>

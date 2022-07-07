@@ -21,7 +21,7 @@ const navigate = useNavigate();
 
  const handlerAddToCart =(product) =>{
   dispatch(addToMyCart(product))
- navigate("/cart")
+//  navigate("/cart")
  };
 
 
