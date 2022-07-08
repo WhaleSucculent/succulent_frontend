@@ -21,6 +21,7 @@ import {
 
 const DeliveryFormControl = styled(FormControl)(({ theme }) => ({
   display:'block',
+  textAlign:'left',
   marginTop: theme.spacing(2),
 }));
 
