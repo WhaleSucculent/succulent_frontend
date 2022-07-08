@@ -7,11 +7,11 @@ function PriceMinMax() {
           Price
        </Typography>
        <Stack direction="row">
-         <input type="text" name="min" id="min" />
+         <input placeholder="Min" type="text" name="min" id="min" />
          <Typography variant="body" gutterBottom>
           to
        </Typography>
-       <input type="text" name="max" id="max" />
+       <input type="text" placeholder="Max" name="max" id="max" />
        </Stack>
      </div>
    )
