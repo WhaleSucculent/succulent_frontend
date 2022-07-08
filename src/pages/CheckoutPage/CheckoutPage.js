@@ -1,12 +1,15 @@
 import React, { Suspense } from "react";
 import { Container, CircularProgress, Typography } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import Link from "@mui/material/Link";
 import StepRoutes from "./routes/CheckoutRoutes";
 import { Provider } from "react-redux";
 import { rootStore } from "../../store/root.store";
+import { changeLanguage, initI18n } from '../../services/i18n';
 
 const theme = createTheme();
+const defaultLanguage = 'en-GB';
+initI18n(process.env.PUBLIC_URL + '/i18n/{{lng}}.json', defaultLanguage);
+changeLanguage(defaultLanguage);
 
 export default function Checkout() {
   return (

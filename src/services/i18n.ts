@@ -3,7 +3,7 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import HttpApi from 'i18next-http-backend';
 import { initReactI18next } from 'react-i18next';
 
-export function initI18n(loadPath: string, defaultLanguage: string) {
+function initI18n(loadPath: string, defaultLanguage: string) {
   return i18n
     .use(LanguageDetector)
     .use(initReactI18next)
@@ -16,6 +16,16 @@ export function initI18n(loadPath: string, defaultLanguage: string) {
     });
 }
 
-export function changeLanguage(language: string) {
+function getCurrentLanguage(): string {
+  return i18n.language;
+}
+
+function changeLanguage(language: string) {
   return i18n.changeLanguage(language);
 }
+
+function onLanguageChanged(callback: (language: string) => void) {
+  return i18n.on('languageChanged', callback);
+}
+
+export { initI18n, getCurrentLanguage, changeLanguage, onLanguageChanged };
