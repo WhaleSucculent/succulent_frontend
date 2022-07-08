@@ -24,11 +24,11 @@ const navigate = useNavigate();
   dispatch(addToMyCart(product))
 //  navigate("/cart")
  };
-
+console.log(product)
 
   return (
     <Card  sx={{ maxWidth: 345 }}>
-      <CardMedia component="img" alt="succondese" height="260" image={img1} />
+      <CardMedia component="img" alt="succondese" height="260" src={product.image[0].imageLink} />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {product.name}
