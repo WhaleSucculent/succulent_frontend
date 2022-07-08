@@ -12,6 +12,10 @@ const GET_PRODUCTS = gql`
       review {
         stars
       }
+      image{
+        name
+        imageLink
+      }
     }
   }
 `;

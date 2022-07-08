@@ -13,6 +13,7 @@ import {useDispatch} from "react-redux";
 
 import { useNavigate } from "react-router-dom";
 import { addToMyCart } from "pages/CheckoutPage/features/cartSlice";
+import { Grid } from "@mui/material";
 
 function ProductCard({ product }) {
 
@@ -23,11 +24,11 @@ const navigate = useNavigate();
   dispatch(addToMyCart(product))
 //  navigate("/cart")
  };
-
+console.log(product)
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
-        <CardMedia component="img" alt="succondese" height="140" image={img1}/>
+    <Card  sx={{ maxWidth: 345 }}>
+      <CardMedia component="img" alt="succondese" height="260" src={product.image[0].imageLink} />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {product.name}
@@ -35,6 +36,7 @@ const navigate = useNavigate();
         <Typography noWrap variant="body2" color="text.secondary">
           {product.description}
         </Typography>
+       
       </CardContent>
       <CardContent>
         <Box sx={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)" }}>

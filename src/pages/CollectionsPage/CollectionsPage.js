@@ -7,7 +7,7 @@ import PaginationComp from './PaginationComp';
 import LineStrip from './LineStrip';
 import PriceMinMax from './PriceMinMax';
 import SortBy from "./SortBy";
-
+import Stack from '@mui/material/Stack';
 
 const CollectionsPage = () => {
   const { loading, error, data } = useQuery(GET_PRODUCTS);
@@ -24,22 +24,36 @@ const CollectionsPage = () => {
       </Grid>
       
       <Grid container spacing={3}>
+        <Grid item md={3}>
+          <Stack direction="column"justifyContent="center"
+          alignItems="center"
+          spacing={2}>
+            <OnlyInStock />
+            <PriceMinMax />
+            <SortBy />
+          </Stack>
+        </Grid>
+
+          <Grid item md={9}>
+          <Grid container spacing={3}>
           {!loading &&
             !error &&
             data.products.map((product) => (
-              <Grid item xs={12} sm={6} md={3} key={product.id}>
+             <Grid item xs={12} sm={6} md={4} key={product.id}>
                 <ProductCard key={product.id} product={product} />
              </Grid>
 
             ))}
-        
-        <Grid align="center" xs={12} sm={12} md={12} lg={12} item >
-          <PaginationComp  />
+            </Grid>
           </Grid>
+          
      </Grid>
-     <PriceMinMax />
-      <OnlyInStock />
-      <SortBy />
+    <Stack direction="row" justifyContent="space-between"
+  alignItems="center" sx={{marginLeft:'50%', transform:'translateX(-20%)'}}>
+    <PaginationComp />
+    </Stack>
+      
+
     </div>
   );
 };
