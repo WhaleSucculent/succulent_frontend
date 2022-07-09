@@ -16,6 +16,7 @@ import { useTranslation } from 'react-i18next';
 
 const PaymentFormControl = styled(FormControl)(({ theme }) => ({
   display:'block',
+  textAlign:'left',
   marginTop: theme.spacing(2),
 }));
 
