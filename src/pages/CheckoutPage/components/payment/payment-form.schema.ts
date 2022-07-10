@@ -1,6 +1,6 @@
 import { TFunction } from 'i18next';
-import { boolean, object } from 'yup';
-
+import { mixed,boolean, object } from 'yup';
+import { PaymentMethod } from './components/payment-method.enum';
 import { addressFormSchema } from '../address/address-form.schema';
 
 export const paymentFormSchema = (t: TFunction) =>
@@ -10,4 +10,7 @@ export const paymentFormSchema = (t: TFunction) =>
       is: (sameAsShipping: boolean) => !sameAsShipping,
       then: addressFormSchema(t),
     }),
+    paymentMethod: mixed<PaymentMethod>().oneOf(
+      Object.values(PaymentMethod) as PaymentMethod[]
+    ),
   });
