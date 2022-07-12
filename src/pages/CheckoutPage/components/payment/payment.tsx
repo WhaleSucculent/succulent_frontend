@@ -13,7 +13,7 @@ import { PaymentMethod } from './components/payment-method';
 import { CheckoutStepper } from '../checkout-stepper/checkout-stepper';
 
 import { paymentFormSchema } from './payment-form.schema';
-import { initialPaymentFormValues } from './payment-form-values.initial';
+import { CreditCard } from '../credit-card/credit-card';
 import { useTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import {
@@ -89,6 +89,15 @@ export const Payment: FunctionComponent<PaymentFormProps> = ({
             </Typography>
             <PaymentMethod />
           </PaymentFormControl>
+          {(values.paymentMethod == 'creditcard') && (
+            <CreditCard
+              formName="creditCard"
+              errors={errors.creditCard}
+              touched={touched.creditCard}
+              values={values.creditCard}
+              handleChange={handleChange}
+            />
+          )}
           <Box
             textAlign="right"
             display="flex"
