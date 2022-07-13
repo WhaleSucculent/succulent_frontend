@@ -3,27 +3,45 @@ import { Field, Form, Formik } from 'formik';
 import React, { FunctionComponent } from 'react';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ClearIcon from '@mui/icons-material/Clear';
 import { styled } from '@mui/material/styles';
 import { CheckboxWithLabel } from 'formik-mui';
 import { useNavigate } from 'react-router-dom';
 
 import { AddressForm } from '../address/address-form';
+import { PaymentMethod } from './components/payment-method';
 import { CheckoutStepper } from '../checkout-stepper/checkout-stepper';
 
 import { paymentFormSchema } from './payment-form.schema';
-import { initialPaymentFormValues } from './payment-form-values.initial';
+import { CreditCard } from '../credit-card/credit-card';
 import { useTranslation } from 'react-i18next';
+import { connect } from 'react-redux';
+import {
+  mapDispatchToProps,
+  mapStateToProps,
+  PaymentFormProps,
+} from './payment.props';
+import { PaymentFormValues } from './payment-form-values.interface';
 
 const PaymentFormControl = styled(FormControl)(({ theme }) => ({
   display:'block',
+  textAlign:'left',
   marginTop: theme.spacing(2),
 }));
 
-export const Payment: FunctionComponent = () => {
+export const Payment: FunctionComponent<PaymentFormProps> = ({
+  paymentForm,
+  submitPaymentForm,
+  clearPaymentForm,
+}) => {
   const navigate = useNavigate();
   const goBack = () => {
     navigate('/checkout/delivery');
   };
+  const submitForm = (values: PaymentFormValues) => {
+    submitPaymentForm(values);
+    navigate('/checkout/confirmation');
+  }
   const { t } = useTranslation();
 
   return (
@@ -31,20 +49,31 @@ export const Payment: FunctionComponent = () => {
     <CheckoutStepper />
     <Formik
       validationSchema={paymentFormSchema(t)}
-      initialValues={initialPaymentFormValues}
-      onSubmit={(value: any) => console.log(value)}
+      initialValues={paymentForm}
+      onSubmit={submitForm}
     >
-      {({ errors, touched, values }) => (
+      {({ errors, touched, values, handleChange, setFieldTouched }) => (
         <Form>
           <PaymentFormControl>
+              <Button
+                type="reset"
+                variant="contained"
+                endIcon={<ClearIcon />}
+                size="large"
+                onClick={clearPaymentForm}
+              >
+                {t('checkout.clear')}
+              </Button>
+          </PaymentFormControl>
+          <PaymentFormControl>
             <Typography variant="h5" component="legend" gutterBottom>
-              Billing Address
+              {t('checkout.billingAddress')}
             </Typography>
             <Field
               component={CheckboxWithLabel}
               type="checkbox"
               name="sameAsShipping"
-              Label={{ label: 'My billing address is the same as my shipping address' }}
+              Label={{ label: t('checkout.sameAsShipping') }}
             />
             {!values.sameAsShipping && (
               <AddressForm
@@ -54,6 +83,21 @@ export const Payment: FunctionComponent = () => {
               />
             )}
           </PaymentFormControl>
+          <PaymentFormControl>
+            <Typography variant="h5" component="legend" gutterBottom>
+                  {t('checkout.paymentMethod.title')}
+            </Typography>
+            <PaymentMethod />
+          </PaymentFormControl>
+          {(values.paymentMethod == 'creditcard') && (
+            <CreditCard
+              formName="creditCard"
+              errors={errors.creditCard}
+              touched={touched.creditCard}
+              values={values.creditCard}
+              handleChange={handleChange}
+            />
+          )}
           <Box
             textAlign="right"
             display="flex"
@@ -68,7 +112,7 @@ export const Payment: FunctionComponent = () => {
               size="large"
               onClick={goBack}
             >
-              Previous
+              {t('checkout.previous')}
             </Button>
             <Button
               type="submit"
@@ -77,7 +121,7 @@ export const Payment: FunctionComponent = () => {
               endIcon={<ArrowRightAltIcon />}
               size="large"
             >
-              Continue
+              {t('checkout.continue')}
             </Button>
           </Box>
         </Form>
@@ -86,3 +130,5 @@ export const Payment: FunctionComponent = () => {
     </>
   );
 };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Payment);
