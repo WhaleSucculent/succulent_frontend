@@ -16,7 +16,7 @@ import styled from "@emotion/styled";
 import { ProductAddToCart, Product, ProductImage } from "./Product";
 //import { BannerShopButton } from "../../styles/banner";
 //import IncDec from "../ui/incdec";
-import {itemData} from '../CheckoutPage/fakedata';
+// import { itemData } from '../CheckoutPage/fakedata';
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
@@ -24,6 +24,10 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useTheme } from "@mui/material/styles";
 import { useMediaQuery } from "@mui/material";
 import Header from "components/Header";
+import { useQuery } from "@apollo/client";
+import { GET_PRODUCT, GET_PRODUCTS } from "queries/productQueries";
+import { useParams } from "react-router-dom";
+
 
 function SlideTransition(props) {
   return <Slide direction="down" {...props} />;
@@ -31,7 +35,7 @@ function SlideTransition(props) {
 
 const ProductDetailWrapper = styled(Box)(({ theme }) => ({
   display: "flex",
- 
+
 }));
 
 const ProductDetailInfoWrapper = styled(Box)(() => ({
@@ -41,18 +45,30 @@ const ProductDetailInfoWrapper = styled(Box)(() => ({
   lineHeight: 1.5,
 }));
 
-export default function ProductDetailPage({open, onClose}) {
-    const theme = useTheme();
-    const matches = useMediaQuery(theme.breakpoints.down("md"));
+function ProductDetailPage({ open, onClose }) {
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down("md"));
+
+  const { id } = useParams();
+  console.log(id)
+  const { loading, error, data } = useQuery(GET_PRODUCT, { variables: { id } });
+  console.log(data)
+
+
+  if (loading) return <p> Loading... </p>;
+  if (error) return <p>Something Went Wrong</p>;
+  // const { loading, error, data } = useQuery(GET_PRODUCTS);
+  // console.log(data);
+
   return (
-    
+
     <Dialog
       TransitionComponent={SlideTransition}
       variant="permanant"
       open={true}
       fullScreen
     >
-      <DialogTitle
+      {/* <DialogTitle
         sx={{
           background: Colors.secondary,
         }}
@@ -64,37 +80,37 @@ export default function ProductDetailPage({open, onClose}) {
         >
           Product title
           <IconButton href="/Products">
-            <CloseIcon/>
+            <CloseIcon />
           </IconButton>
         </Box>
-      </DialogTitle>
+      </DialogTitle> */}
       <DialogContent>
         <ProductDetailWrapper display={"flex"} flexDirection={matches ? "column" : "row"}>
           <Product sx={{ mr: 4 }}>
-            <ProductImage src={itemData[0].img} />
+            <ProductImage src={data.product.image[0].imageLink} alt={data.product.image.name} />
           </Product>
           <ProductDetailInfoWrapper>
             <Typography sx={{ lineHeight: 2 }} variant="h4">
-             Replace with query of fakedata
+              {data.product.name}
             </Typography>
             <Typography variant="body">
-             Product Description
+              {data.product.description}
             </Typography>
             <Typography variant="subtitle">SKU: 12345</Typography>
-            <Typography variant="subtitle">Availability: 5 in stock</Typography>
+            <Typography variant="subtitle">{`Availability: ${data.product.stock[data.product.stock.length - 1].total} in stock`}</Typography>
             <Box
               sx={{ mt: 4 }}
               display="flex"
               alignItems="center"
               justifyContent="space-between"
             >
-          
+
               <Button variant="contained">Add to Cart</Button>
             </Box>
             <Box
               display="flex"
               alignItems="center"
-              //sx={{ mt: 4, color: Colors.light }}
+            //sx={{ mt: 4, color: Colors.light }}
             >
               <FavoriteIcon sx={{ mr: 2 }} />
               Add to wishlist
@@ -115,3 +131,5 @@ export default function ProductDetailPage({open, onClose}) {
     </Dialog>
   );
 }
+
+export default ProductDetailPage
