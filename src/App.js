@@ -27,7 +27,7 @@ import"react-toastify/dist/ReactToastify.css";
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import CheckoutCart from "pages/CheckoutPage/CheckoutCart";
 import NotFound from "components/NotFound";
-import { ContactPage } from "@mui/icons-material";
+import ContactPage from "pages/ContactPage/ContactPage";
 
 const cache = new InMemoryCache({
   typePolicies: {

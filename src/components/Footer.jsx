@@ -16,6 +16,7 @@ function Footer() {
               <p> 774 Gordon Baker Rd</p>
               <p>North York, ON M2H 3B4</p>
               <p>info@whalesucculent.ca</p>
+              <p>originalmallard5454@gmail.com</p>
             </Box>
           </Grid>
 
