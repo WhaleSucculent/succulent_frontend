@@ -11,16 +11,9 @@ function LineStrip() {
   return (
     <div>
       <div className="container">
-         <Stack className={classes.gridContainer} direction="row" justifyContent="space-between">
+         <Stack className={classes.gridContainer} direction="row" alignItem="center" justifyContent="center">
             
-            <Typography align='center' variant="h4" gutterBottom>Collection Page</Typography>
-           
-            <div align="center" className={classes.searchBar} lg={2}>
-              
-               <input className={classes.searchInput} type="text" name="search" id="search" onChange={(e)=> setSearch(e.target.value)} />
-               <SearchIcon className={classes.searchIcon}/>
-   
-            </div>
+         <Typography align='center' variant="h4" gutterBottom sx={{margin:'1.5em 1em'}}>Collection Page</Typography>
         
          </Stack>
          

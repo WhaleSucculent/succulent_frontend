@@ -23,9 +23,7 @@ export default function SortBy() {
 
   return (
     <div>
-      <Button sx={{ display: 'block', mt: 2 }} onClick={handleOpen}>
-        Open the select
-      </Button>
+
       <FormControl sx={{ m: 1, minWidth: 120 }}>
         <InputLabel id="demo-controlled-open-select-label">Sort By</InputLabel>
         <Select

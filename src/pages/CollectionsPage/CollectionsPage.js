@@ -8,10 +8,10 @@ import LineStrip from './LineStrip';
 import PriceMinMax from './PriceMinMax';
 import SortBy from "./SortBy";
 import Stack from '@mui/material/Stack';
-
+import LineResults from "./LineResults";
+import CollectionSidebar from './CollectionSidebar';
 const CollectionsPage = () => {
   const { loading, error, data } = useQuery(GET_PRODUCTS);
-  console.log(data);
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Something went wrong</p>;
   return (
@@ -24,17 +24,17 @@ const CollectionsPage = () => {
       </Grid>
       
       <Grid container spacing={3}>
-        <Grid item md={3}>
-          <Stack direction="column"justifyContent="center"
-          alignItems="center"
-          spacing={2}>
-            <OnlyInStock />
-            <PriceMinMax />
-            <SortBy />
-          </Stack>
+        <Grid item md={2}>
+          <CollectionSidebar />
         </Grid>
 
-          <Grid item md={9}>
+          <Grid item md={10}>
+          <Grid container spacing={3}>
+        <Grid item xs={12}>
+        <LineResults length={data.products.length}/>
+        </Grid>
+        
+      </Grid>
           <Grid container spacing={3}>
           {!loading &&
             !error &&
