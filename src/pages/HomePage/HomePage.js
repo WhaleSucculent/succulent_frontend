@@ -6,6 +6,9 @@ import PropTypes from "prop-types";
 import Box from "@mui/material/Box";
 import ProductCard from "components/ProductCard";
 import { Container } from "@mui/system";
+import Grid from '@mui/material/Grid';
+import { Height } from "@mui/icons-material";
+import { Typography } from "@mui/material";
 
 function Item(props) {
   const { sx, ...other } = props;
@@ -48,14 +51,19 @@ const HomePage = () => {
   return (
     <div>
       <Carousel />
+      <Typography>
+        Featured Products
+      </Typography>
       <Container>
-        <Box sx={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)" }}>
+        <Box sx={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", Height:"20px"}}>
           {!loading &&
             !error &&
             data.products.map((product) => (
-              <Item>
+              <Grid container spacing={2} columns={12}>
+              <Item xs ={4} lg={3}>
                 <ProductCard key={product.id} product={product} />
               </Item>
+              </Grid>
             ))}
         </Box>
       </Container>
