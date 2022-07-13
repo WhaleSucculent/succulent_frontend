@@ -20,6 +20,29 @@ const GET_PRODUCTS = gql`
   }
 `;
 
+const GET_PRODUCT = gql`
+  query getProduct($id: ID!) {
+    product(id: $id) {
+      id
+      name
+      description
+      priceList {
+        price
+      }
+      review {
+        stars
+      }
+      stock{
+        total
+      }
+      image{
+        name
+        imageLink
+      }
+    }
+  }
+`;
+
 const GET_ADMIN_PRODUCTS = gql`
   query getAdminProducts {
     products{
@@ -33,9 +56,6 @@ const GET_ADMIN_PRODUCTS = gql`
       }
       description
       productStatus
-      stock{
-        actionAmount
-      }
       image{
         name
         imageLink
@@ -45,4 +65,4 @@ const GET_ADMIN_PRODUCTS = gql`
   }
 `;
 
-export { GET_PRODUCTS, GET_ADMIN_PRODUCTS };
+export { GET_PRODUCTS, GET_ADMIN_PRODUCTS, GET_PRODUCT };
