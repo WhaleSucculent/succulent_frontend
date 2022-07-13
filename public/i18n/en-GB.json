@@ -8,6 +8,9 @@
     "continue": "Continue",
     "previous": "Previous",
     "clear": "Clear",
+    "paynow": "Pay Now",
+    "paypal": "PayPal Pay",
+    "wechatpay": "WeChat Pay",
     "sameAsShipping": "My billing address is the same as my shipping address",
     "shippingMethod": {
       "title": "Shipping Method",

@@ -1,7 +1,11 @@
-import { Typography, Divider } from '@mui/material';
+import { Typography, Divider, Box, Button } from '@mui/material';
+import { Field, Form, Formik } from 'formik';
+import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import React, { FunctionComponent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import { AddressFormValues } from '../address/address-form-values.interface';
 import { CheckoutStepper } from '../checkout-stepper/checkout-stepper';
@@ -30,53 +34,91 @@ const Confirmation: FunctionComponent<ConfirmationProps> = ({
   deliveryForm,
   paymentForm,
 }) => {
+  const navigate = useNavigate();
+  const goBack = () => {
+    navigate('/checkout/payment');
+  };
   const { t } = useTranslation();
+
   return (
     <>
       <CheckoutStepper />
-      <Typography variant="h3" gutterBottom textAlign={"left"}>
-        {t('checkout.delivery')}
-      </Typography>
-      <Typography variant="h6" gutterBottom textAlign={"left"}>
-        {t('checkout.shippingAddress')}
-      </Typography>
-      <Typography variant="body1" gutterBottom textAlign={"left"}>
-        <AddressDisplay address={deliveryForm.shippingAddress} />
-      </Typography>
-      <Typography variant="h6" gutterBottom textAlign={"left"}>
-        {t('checkout.shippingCompany.title')}
-      </Typography>
-      <Typography variant="body1" gutterBottom textAlign={"left"}>
-        {t('checkout.shippingCompany.' + deliveryForm.shippingCompany)}
-      </Typography>
-      <Typography variant="h6" gutterBottom textAlign={"left"}>
-        {t('checkout.shippingMethod.title')}
-      </Typography>
-      <Typography variant="body1" gutterBottom textAlign={"left"}>
-        {t('checkout.shippingMethod.' + deliveryForm.shippingMethod)}
-      </Typography>
-      <Divider />
-
-      <Typography variant="h3" gutterBottom textAlign={"left"}>
-        {t('checkout.payment')}
-      </Typography>
-      <Typography variant="h6" gutterBottom textAlign={"left"}>
-        {t('checkout.billingAddress')}
-      </Typography>
-      <Typography variant="body1" gutterBottom textAlign={"left"}>
-        {paymentForm.sameAsShipping && t('checkout.sameAsShipping')}
-      </Typography>
-      {!paymentForm.sameAsShipping && (
-        <Typography variant="body1" gutterBottom textAlign={"left"}>
-          <AddressDisplay address={paymentForm.billingAddress} />
+      <form>
+        <Typography variant="h3" gutterBottom textAlign={"left"}>
+          {t('checkout.delivery')}
         </Typography>
-      )}
-      <Typography variant="h6" gutterBottom textAlign={"left"}>
-        {t('checkout.paymentMethod.title')}
-      </Typography>
-      <Typography variant="body1" gutterBottom textAlign={"left"}>
-        {t('checkout.paymentMethod.' + paymentForm.paymentMethod)}
-      </Typography>
+        <Typography variant="h6" gutterBottom textAlign={"left"}>
+          {t('checkout.shippingAddress')}
+        </Typography>
+        <Typography variant="body1" gutterBottom textAlign={"left"}>
+          <AddressDisplay address={deliveryForm.shippingAddress} />
+        </Typography>
+        <Typography variant="h6" gutterBottom textAlign={"left"}>
+          {t('checkout.shippingCompany.title')}
+        </Typography>
+        <Typography variant="body1" gutterBottom textAlign={"left"}>
+          {t('checkout.shippingCompany.' + deliveryForm.shippingCompany)}
+        </Typography>
+        <Typography variant="h6" gutterBottom textAlign={"left"}>
+          {t('checkout.shippingMethod.title')}
+        </Typography>
+        <Typography variant="body1" gutterBottom textAlign={"left"}>
+          {t('checkout.shippingMethod.' + deliveryForm.shippingMethod)}
+        </Typography>
+        <Divider />
+
+        <Typography variant="h3" gutterBottom textAlign={"left"}>
+          {t('checkout.payment')}
+        </Typography>
+        <Typography variant="h6" gutterBottom textAlign={"left"}>
+          {t('checkout.billingAddress')}
+        </Typography>
+        <Typography variant="body1" gutterBottom textAlign={"left"}>
+          {paymentForm.sameAsShipping && t('checkout.sameAsShipping')}
+        </Typography>
+        {!paymentForm.sameAsShipping && (
+          <Typography variant="body1" gutterBottom textAlign={"left"}>
+            <AddressDisplay address={paymentForm.billingAddress} />
+          </Typography>
+        )}
+        <Typography variant="h6" gutterBottom textAlign={"left"}>
+          {t('checkout.paymentMethod.title')}
+        </Typography>
+        <Typography variant="body1" gutterBottom textAlign={"left"}>
+          {t('checkout.paymentMethod.' + paymentForm.paymentMethod)}
+        </Typography>
+        {(paymentForm.paymentMethod == 'creditcard') && (
+          <Typography variant="body1" gutterBottom textAlign={"left"}>
+            {t('####-####-####-'+paymentForm.creditCard.cardNumber.substring(15,19))}
+          </Typography>
+        )}
+        <Box
+            textAlign="right"
+            display="flex"
+            justifyContent="space-between"
+            mt={2}
+        >
+          <Button
+            type="button"
+            variant="contained"
+            color="secondary"
+            endIcon={<ArrowBackIcon />}
+            size="large"
+            onClick={goBack}
+          >
+            {t('checkout.previous')}
+          </Button>
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            endIcon={<ArrowRightAltIcon />}
+            size="large"
+          >
+            {t('checkout.paynow')}
+          </Button>
+        </Box>
+      </form>
     </>
   );
 };

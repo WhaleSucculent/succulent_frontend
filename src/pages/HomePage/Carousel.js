@@ -10,7 +10,7 @@ import "swiper/css/navigation";
 import { Keyboard } from "swiper";
 import slidesrc from "assets/images/Slide.png";
 import slidesrc2 from "assets/images/Slide2.jpg";
-
+import { Navigation } from "swiper";
 const Carousel = () => {
   return (
     <>
@@ -25,32 +25,12 @@ const Carousel = () => {
         className="mySwiper"
         effect="cards"
       >
+        <Swiper navigation={true} modules={[Navigation]} className="mySwiper"></Swiper>
         <SwiperSlide>
-          <img src={slidesrc} alt="slid" width={2000} height={500} />
+          <img src={slidesrc} alt="slid" width="100%" height="300px" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={slidesrc2} alt="slid" width={2000} height={500} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={slidesrc} alt="slid" width={2000} height={500} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={slidesrc2} alt="slid" width={2000} height={500} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={slidesrc} alt="slid" width={2000} height={500} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={slidesrc2} alt="slid" width={2000} height={500} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={slidesrc} alt="slid" width={2000} height={500} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={slidesrc2} alt="slid" width={2000} height={500} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={slidesrc} alt="slid" width={2000} height={500} />
+          <img src={slidesrc2} alt="slid" width="100%" height="300px" />
         </SwiperSlide>
       </Swiper>
     </>

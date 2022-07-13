@@ -27,17 +27,18 @@ import"react-toastify/dist/ReactToastify.css";
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import CheckoutCart from "pages/CheckoutPage/CheckoutCart";
 import NotFound from "components/NotFound";
+import ContactPage from "pages/ContactPage/ContactPage";
 
 const cache = new InMemoryCache({
   typePolicies: {
     Query: {
       fields: {
-        clients: {
+        products: {
           merge(existing, incoming) {
             return incoming;
           },
         },
-        projects: {
+        order: {
           merge(existing, incoming) {
             return incoming;
           },
@@ -67,8 +68,8 @@ function App() {
               <Route index element={<HomePage />} />
               <Route path="login" element={<LoginPage />} />
               <Route path="register" element={<RegisterPage />} />
-              <Route path="products" element={<ProductsPage />}>
-                <Route path=":productsId" element={<ProductDetailPage />} />
+              <Route path="products">
+                <Route path=":id" element={<ProductDetailPage />} />
               </Route>
               <Route path="collections" element={<CollectionsPage />}>
                 <Route path="new" element={<CollectionsPage />} />
@@ -79,6 +80,7 @@ function App() {
               <Route path="checkout" element={<CheckoutPage />} />
               <Route path="payment" element={<PaymentPage />} />
               <Route path="profile" element={<UserProfilePage />} />
+              <Route path="contact" element={<ContactPage/>}/>
             </Route>
             <Route path="/admin" element={<AdminHeader />}>
               <Route path="home" element={<AdminHomePage />} />

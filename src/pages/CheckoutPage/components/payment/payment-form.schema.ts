@@ -2,6 +2,7 @@ import { TFunction } from 'i18next';
 import { mixed,boolean, object } from 'yup';
 import { PaymentMethod } from './components/payment-method.enum';
 import { addressFormSchema } from '../address/address-form.schema';
+import { creditCardSchema } from '../credit-card/credit-card-form.schema';
 
 export const paymentFormSchema = (t: TFunction) =>
   object().shape({
@@ -13,4 +14,5 @@ export const paymentFormSchema = (t: TFunction) =>
     paymentMethod: mixed<PaymentMethod>().oneOf(
       Object.values(PaymentMethod) as PaymentMethod[]
     ),
+    creditCard: creditCardSchema(t),
   });
