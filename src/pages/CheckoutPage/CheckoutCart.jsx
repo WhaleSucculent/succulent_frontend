@@ -24,7 +24,7 @@ import ClearIcon from "@mui/icons-material/Clear";
 import { ORDER_DETAILS } from "../../queries/orderDetails";
 import { useQuery } from "@apollo/client";
 import {useDispatch, useSelector } from "react-redux";
-import { addToMyCart, decreaseCartQty, getTotals, increaseCartQty, removeFromCart } from "./features/cartSlice";
+import { addToMyCart, decreaseCartQty, getTotals, removeFromCart } from "./features/cartSlice";
 import {} from "react-router-dom";
 
 
