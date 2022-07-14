@@ -24,19 +24,27 @@ import ClearIcon from "@mui/icons-material/Clear";
 import { ORDER_DETAILS } from "../../queries/orderDetails";
 import { useQuery } from "@apollo/client";
 import {useDispatch, useSelector } from "react-redux";
-import { getCartTotal, removeFromCart } from "./features/cartSlice";
-
+import { addToMyCart, decreaseCartQty, getTotals, increaseCartQty, removeFromCart } from "./features/cartSlice";
 import {} from "react-router-dom";
-// import { getCartTotal } from "./features/cartSlice";
+
 
 function CheckoutCart() {
 
 const cart= useSelector((state)=>state.cart);
 const dispatch = useDispatch()
+useEffect(()=>{
+dispatch(getTotals());
+},[cart,dispatch])
+
 const handleRemoveFromCart =(cartItem)=>{
   dispatch(removeFromCart(cartItem));
 }
- 
+const handleDecreaseCartQty  =(cartItem)=>{
+  dispatch(decreaseCartQty(cartItem))
+}
+const handleIncreaseCartQty  =(cartItem)=>{
+  dispatch(addToMyCart(cartItem))
+}
 
   // //loading data from database
   // const { loading, error,data } = useQuery(ORDER_DETAILS);
@@ -47,6 +55,7 @@ const handleRemoveFromCart =(cartItem)=>{
 
   return (
     <div>
+       {/* here is shopping cart titlebar */}
       <div>
         <Container
           maxWidth="sm"
@@ -65,10 +74,10 @@ const handleRemoveFromCart =(cartItem)=>{
         </Container>
       </div>
 
-   
 
-{/*  shopping cart displays here*/}
-<div>              
+{/*  shopping cartitem displays here*/}
+<div>            
+    {/* if cartItem.lendth ==0 display continue shopping page */}
   {cart.cartItems.length === 0 ?(
      <Grid container spacing={1}  justifyContent="center"
      alignItems="center"  padding={30}>
@@ -84,10 +93,10 @@ const handleRemoveFromCart =(cartItem)=>{
 </Link>
 </div>
               </div>
-             
               </div>
               </Grid>
-            ):(
+            ):(  
+              // if cartItem is not ==0, display shopping cart items.
       <React.Fragment>
         <Slide direction="up" in={true}>
           <Grid container spacing={1}>
@@ -116,11 +125,11 @@ const handleRemoveFromCart =(cartItem)=>{
                         <TableCell align="center">
                         
                      
-                        <Button>-</Button>
+                        <Button onClick={()=> handleDecreaseCartQty(cartItem)}>-</Button>
                         <div>
                         <p className="count">{cartItem.cartQty}</p>
                         </div>
-                        <Button>+</Button>
+                        <Button onClick={()=> handleIncreaseCartQty(cartItem)}>+</Button>
                     
                         </TableCell>
                         <TableCell align="center">
@@ -138,33 +147,41 @@ const handleRemoveFromCart =(cartItem)=>{
               </TableContainer>
             </Grid>
             <Grid item md={3} xs={12}>
-              {/* <Card className={Classes.card}> */}
+      {/* here display the Subtotal card on the side */}
               <Card>
                 <List>
                   <ListItem>
                     <Grid container>
                       <Typography variant="h6">
                         Subtotal:
-                        {/* {cart.data.subtotal.formatted_with_symbol} */}
+                        <Typography>
+                        <span>${cart.cartTotalAmount}</span>
+                        </Typography>
+                       
+                        
+                 
                       </Typography>
                     </Grid>
                   </ListItem>
                   <ListItem>
-                    {/* {cart.data.total_items >0 &&( */}
+               
                     <Button
                     href="checkout"
                     type="button"
                     fullWidth
                     variant="contained"
                     color="primary"
+                    size="large"
                   
                     >
                       Check Out
                     </Button>
-                    {/* )} */}
+                
                   </ListItem>
                   <ListItem>
+               
                     <Button
+                      href="/"
                       variant="outlined"
                       fullWidth
                       color="primary"
@@ -172,6 +189,7 @@ const handleRemoveFromCart =(cartItem)=>{
                     >
                       Continue Shopping
                     </Button>
+                 
                   </ListItem>
                 </List>
               </Card>
@@ -185,8 +203,7 @@ const handleRemoveFromCart =(cartItem)=>{
   );
 }
 
-// export default dynamic(()=>Promise.resolve(Cart),{
-//   ssr:false,
 
-// });
+
+
 export default CheckoutCart;

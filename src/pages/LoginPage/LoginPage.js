@@ -41,7 +41,7 @@ export default function LoginPage(props) {
   const onSubmit = async (data) => {
     try {
       const { email, password } = data;
-      const res = await axios.post("/auth/login", { email, password });
+      const res = await axios.post("/login", { email, password });
       const jwToken = res.data;
       console.log(jwToken);
       localStorage.setItem("store_token_id", jwToken);
@@ -125,6 +125,7 @@ export default function LoginPage(props) {
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
+                
               >
                 Login In
               </Button>
