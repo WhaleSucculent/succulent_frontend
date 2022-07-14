@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { parse } from "graphql";
 import {toast} from "react-toastify";
 
  
@@ -7,8 +8,8 @@ const cartSlice = createSlice({
   name: "cart",
   initialState:{
     cartItems: localStorage.getItem("cartItems")? JSON.parse(localStorage.getItem("cartItems")):[],
-    totalAmount:0,
-    totalQty:0
+    cartTotalAmount:0,
+    cartTotalQty:0
   },
   reducers: {
     addToMyCart(state, action) {
@@ -47,10 +48,46 @@ const cartSlice = createSlice({
       });
 
     },
+    decreaseCartQty(state,action){
+      const itemIndex = state.cartItems.findIndex(
+        cartItem =>cartItem.id === action.payload.id
+      )
 
+      if(state.cartItems[itemIndex].cartQty > 1){
+        state.cartItems[itemIndex].cartQty -=1
+
+
+        toast.info(`Decreased ${action.payload.name} cart quantity`,{
+          position: "bottom-left",
+        });
+      }
+      localStorage.setItem("cartItems",JSON.stringify(state.cartItems));
+
+    },
+
+    getTotals(state,action){
+      let {total,quantity}= state.cartItems.reduce(
+        (cartTotal,cartItem)=>{
+        const price = cartItem.priceList[0].price;
+        const {cartQty} = cartItem  
+        const itemTotal = price *cartQty;
+
+        cartTotal.total  += itemTotal;
+        cartTotal.quantity += cartQty
+
+        return cartTotal
+      },{
+        total:0,
+        quantity:0
+      });
+      state.cartTotalQty = quantity;
+      state.cartTotalAmount = total
+      
+    }
+   
  
    },
 });
 
-export const {removeFromCart, addToMyCart} = cartSlice.actions;
+export const {removeFromCart, addToMyCart,decreaseCartQty,getTotals} = cartSlice.actions;
 export default cartSlice.reducer;

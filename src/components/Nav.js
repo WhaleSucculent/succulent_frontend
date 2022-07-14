@@ -32,7 +32,8 @@ const settings = ["Profile", "Account", "Orders", "Logout"];
 const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const {totalCount} =useSelector((state)=>state.cart);
+  const {cartTotalQty} =useSelector(state=>state.cart);
+  
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -224,7 +225,7 @@ const ResponsiveAppBar = () => {
                   color: "#000000",
                 }}
               >
-                <Badge badgeContent={totalCount} color="error">
+                <Badge badgeContent={cartTotalQty} color="error">
                   <Link href={"cart"} underline={"hover"} color={"black"}>
                     <ShoppingCartOutlinedIcon />
                   </Link>
