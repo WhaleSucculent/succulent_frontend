@@ -10,6 +10,7 @@ import SortBy from "./SortBy";
 import Stack from '@mui/material/Stack';
 import LineResults from "./LineResults";
 import CollectionSidebar from './CollectionSidebar';
+import CollectionMain from "./CollectionMain";
 const CollectionsPage = () => {
   const { loading, error, data } = useQuery(GET_PRODUCTS);
   if (loading) return <p>Loading...</p>;
@@ -52,7 +53,7 @@ const CollectionsPage = () => {
   alignItems="center" sx={{marginLeft:'50%', transform:'translateX(-20%)'}}>
     <PaginationComp />
     </Stack>
-      
+      <CollectionMain />
 
     </div>
   );
