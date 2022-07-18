@@ -11,12 +11,8 @@ import {
 } from "@mui/material";
 import { useRef } from "react";
 import CloseIcon from "@mui/icons-material/Close";
-import { Colors } from "./Themes";
 import styled from "@emotion/styled";
 import { ProductAddToCart, Product, ProductImage } from "./Product";
-//import { BannerShopButton } from "../../styles/banner";
-//import IncDec from "../ui/incdec";
-// import { itemData } from '../CheckoutPage/fakedata';
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
@@ -27,11 +23,11 @@ import Header from "components/Header";
 import { useQuery } from "@apollo/client";
 import { GET_PRODUCT, GET_PRODUCTS } from "queries/productQueries";
 import { useParams } from "react-router-dom";
-
+/* 
 
 function SlideTransition(props) {
   return <Slide direction="down" {...props} />;
-}
+} */
 
 const ProductDetailWrapper = styled(Box)(({ theme }) => ({
   display: "flex",
@@ -57,34 +53,17 @@ function ProductDetailPage({ open, onClose }) {
 
   if (loading) return <p> Loading... </p>;
   if (error) return <p>Something Went Wrong</p>;
-  // const { loading, error, data } = useQuery(GET_PRODUCTS);
-  // console.log(data);
-
+  
   return (
 
     <Dialog
-      TransitionComponent={SlideTransition}
+      //TransitionComponent={SlideTransition}
       variant="permanant"
       open={true}
       fullScreen
     >
-      {/* <DialogTitle
-        sx={{
-          background: Colors.secondary,
-        }}
-      >
-        <Box
-          display="flex"
-          alignItems="center"
-          justifyContent={"space-between"}
-        >
-          Product title
-          <IconButton href="/Products">
-            <CloseIcon />
-          </IconButton>
-        </Box>
-      </DialogTitle> */}
-      <DialogContent>
+      
+      {/* <DialogContent> */}
         <ProductDetailWrapper display={"flex"} flexDirection={matches ? "column" : "row"}>
           <Product sx={{ mr: 4 }}>
             <ProductImage src={data.product.image[0].imageLink} alt={data.product.image.name} />
@@ -127,7 +106,7 @@ function ProductDetailPage({ open, onClose }) {
             </Box>
           </ProductDetailInfoWrapper>
         </ProductDetailWrapper>
-      </DialogContent>
+      {/* </DialogContent> */}
     </Dialog>
   );
 }
