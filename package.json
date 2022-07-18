@@ -8,6 +8,8 @@
     "@mui/material": "^5.8.4",
     "@mui/styled-engine-sc": "^5.8.0",
     "@reduxjs/toolkit": "^1.8.2",
+    "@stripe/react-stripe-js": "^1.9.0",
+    "@stripe/stripe-js": "^1.32.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
     "@testing-library/user-event": "^13.5.0",
@@ -76,5 +78,6 @@
     "redux-devtools-extension": "^2.13.9",
     "redux-logger": "^3.0.6"
   },
-  "lint-staged": {}
+  "lint-staged": {},
+  "proxy": "http://0.0.0.0:4242"
 }

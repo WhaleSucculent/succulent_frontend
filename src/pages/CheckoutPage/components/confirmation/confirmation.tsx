@@ -35,6 +35,9 @@ const Confirmation: FunctionComponent<ConfirmationProps> = ({
   paymentForm,
 }) => {
   const navigate = useNavigate();
+  const submitForm = () => {
+    navigate('/payment');
+  }
   const goBack = () => {
     navigate('/checkout/payment');
   };
@@ -43,7 +46,7 @@ const Confirmation: FunctionComponent<ConfirmationProps> = ({
   return (
     <>
       <CheckoutStepper />
-      <form>
+      <form onSubmit={submitForm}>
         <Typography variant="h3" gutterBottom textAlign={"left"}>
           {t('checkout.delivery')}
         </Typography>
