@@ -9,6 +9,8 @@ import { Container } from "@mui/system";
 import Grid from '@mui/material/Grid';
 import { Height } from "@mui/icons-material";
 import { Typography } from "@mui/material";
+import ButtonBase from '@mui/material/ButtonBase';
+ 
 
 function Item(props) {
   const { sx, ...other } = props;
@@ -55,7 +57,7 @@ const HomePage = () => {
         Featured Products
       </Typography>
       <Container>
-        <Box sx={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", Height:"20px"}}>
+        <Box sx={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gridTemplateRows:'repeat(2)', Height:"20px"}}>
           {!loading &&
             !error &&
             data.products.map((product) => (
