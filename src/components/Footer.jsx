@@ -1,9 +1,10 @@
 import { Box, Container, Grid, Link } from "@mui/material";
 import React from "react";
+import {Colors} from '../pages/ProductDetailPage/Themes';
 
 function Footer() {
   return (
-    <Box bgcolor="#F5F5F5" color="black">
+    <Box bgcolor={Colors.primary} color="black">
       <Container maxWidth="25px">
         <Grid container padding={10}>
           <Grid item xs={12} sm={4}>
@@ -16,6 +17,7 @@ function Footer() {
               <p> 774 Gordon Baker Rd</p>
               <p>North York, ON M2H 3B4</p>
               <p>info@whalesucculent.ca</p>
+              <p>originalmallard5454@gmail.com</p>
             </Box>
           </Grid>
 
