@@ -20,6 +20,11 @@ const getPaymentForm = createSelector(
       checkoutState?.paymentForm
 );
 
+const getCartForm = createSelector(
+    getCheckoutState,
+    
+)
+
 export const checkoutSelectors = {
     getCheckoutState,
     getDeliveryForm,
