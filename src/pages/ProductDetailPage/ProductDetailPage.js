@@ -27,7 +27,8 @@ import Header from "components/Header";
 import { useQuery } from "@apollo/client";
 import { GET_PRODUCT, GET_PRODUCTS } from "queries/productQueries";
 import { useParams } from "react-router-dom";
-
+import { useDispatch } from "react-redux";
+import { addToMyCart } from "pages/CheckoutPage/features/cartSlice";
 
 function SlideTransition(props) {
   return <Slide direction="down" {...props} />;
@@ -46,6 +47,16 @@ const ProductDetailInfoWrapper = styled(Box)(() => ({
 }));
 
 function ProductDetailPage({ open, onClose }) {
+
+
+  const dispatch = useDispatch();
+  //const navigate = useNavigate();
+
+  const handlerAddToCart = (product) => {
+    dispatch(addToMyCart(data.product))
+    //  navigate("/cart")
+  };
+ 
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down("md"));
 
@@ -105,7 +116,7 @@ function ProductDetailPage({ open, onClose }) {
               justifyContent="space-between"
             >
 
-              <Button variant="contained">Add to Cart</Button>
+              <Button variant="contained" onClick={() => handlerAddToCart(data.product)}>Add to Cart</Button>
             </Box>
             <Box
               display="flex"
