@@ -6,6 +6,7 @@ const store = configureStore({
     cart: cartSlice,
   },
 });
+
 store.dispatch(getTotals());
 
 export default store; 
