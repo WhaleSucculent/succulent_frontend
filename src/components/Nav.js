@@ -122,6 +122,7 @@ const ResponsiveAppBar = () => {
                 width={55}
                 height={55}
               />
+              <p>Whale Succulent</p>
             </Typography>
 
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>

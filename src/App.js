@@ -28,6 +28,7 @@ import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import CheckoutCart from "pages/CheckoutPage/CheckoutCart";
 import NotFound from "components/NotFound";
 import ContactPage from "pages/ContactPage/ContactPage";
+import Privacy from "pages/ContactPage/Privacy";
 
 const cache = new InMemoryCache({
   typePolicies: {
@@ -100,6 +101,7 @@ function App() {
               <Route path="user" element={<AdminUserPage />} />
             </Route>
             <Route path="*" element={<NotFound />} />
+            <Route path="privacy" element={<Privacy />} />
           </Routes>
         </BrowserRouter>
       </ApolloProvider>
