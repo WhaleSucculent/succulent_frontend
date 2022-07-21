@@ -1,3 +1,4 @@
+import Footer from "../../components/Footer";
 import {
   Dialog,
   DialogTitle,
@@ -9,7 +10,7 @@ import {
   Button,
   Stack,
 } from "@mui/material";
-import { useRef } from "react";
+import { Component, useRef } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import styled from "@emotion/styled";
 import { ProductAddToCart, Product, ProductImage } from "./Product";
@@ -56,7 +57,7 @@ function ProductDetailPage({ open, onClose }) {
   if (error) return <p>Something Went Wrong</p>;
   
   return (
-
+    <>
     <Dialog
       //TransitionComponent={SlideTransition}
       variant="permanant"
@@ -108,9 +109,11 @@ function ProductDetailPage({ open, onClose }) {
             </Box>
           </ProductDetailInfoWrapper>
         </ProductDetailWrapper>
-      {/* </DialogContent> */}
+      
     </Dialog>
+<Footer />
+</>
   );
 }
 
-export default ProductDetailPage
+export default ProductDetailPage;
