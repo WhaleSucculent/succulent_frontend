@@ -24,7 +24,7 @@ import { useSelector } from "react-redux";
 import {logoimg } from "../assets/images/whale.png"
 
 
-const pages = ["Products", "Collections", "Contact"];
+const pages = ["succulents", "growlights", "soil/rocks","pots","information"];
 const settings = ["Profile", "Account", "Orders", "Logout"];
 
 

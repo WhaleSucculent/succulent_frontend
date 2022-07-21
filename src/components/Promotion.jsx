@@ -29,11 +29,13 @@ function Promotion() {
     
   
       return (
-        <Box
+        <Box 
+   
           component="section"
           sx={{ display: 'flex', bgcolor: '#FFF0F5', overflow: 'hidden' }}
         >
           <Container
+         
             sx={{
               mt: 10,
               mb: 15,
@@ -54,7 +56,7 @@ function Promotion() {
                 opacity: 0.7,
               }}
             />
-            <Typography variant="h3" marked="center" component="h2" sx={{ mb: 14 }} fontFamily= "monospace">
+            <Typography variant="h4" marked="center" component="h2" sx={{ mb: 14 }} fontFamily= "monospace">
            Keep Going, Keep Growing
             </Typography>
             <div>
