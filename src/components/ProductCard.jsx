@@ -30,7 +30,7 @@ function ProductCard({ product }) {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <Link to={`products/${product.id}`} underline="none" >
-        <CardMedia component="img" alt="succondese" height="260" src={product.image[0].imageLink} />
+        <CardMedia component="img" alt="succondese" height="200" src={product.image[0].imageLink} />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             {product.name}
@@ -61,11 +61,9 @@ function ProductCard({ product }) {
         <CardActions>
           {/* <Button size="small">Buy</Button> */}
           {/* <Button size="small" onClick={() => handlerAddToCart(product)}>Add to Cart</Button> */} 
-          
-          <Button variant="contained" sx={ { borderRadius: 28, backgroundColor:'#ffb2cc', justifyContent:'center' } } onClick={() => handlerAddToCart(product)}>Add to Cart</Button>
-          
-          </CardActions>
 
+          <Button variant="contained" sx={ { borderRadius: 28, backgroundColor:'#ffb2cc', justifyContent:'center' } } onClick={() => handlerAddToCart(product)}>Add to Cart</Button>
+          </CardActions>
     </Card>
   );
 }

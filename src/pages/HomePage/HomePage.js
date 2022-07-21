@@ -10,7 +10,8 @@ import Grid from '@mui/material/Grid';
 import { Height } from "@mui/icons-material";
 import { Typography } from "@mui/material";
 import ButtonBase from '@mui/material/ButtonBase';
- 
+import img from "assets/images/map.jpg";
+import { Link } from "react-router-dom";
 
 function Item(props) {
   const { sx, ...other } = props;
@@ -89,6 +90,28 @@ const HomePage = () => {
             ))}
         </Box>
       </Container>
+      <Box padding={7}>
+        <div style={{display:'flex', flexDirection:'row', justifyContent:'space-around', alignItems:'flex-start'}}>
+        <img src={img} height={200} width={300}/>
+        <div>
+        <h4>Store Hours</h4>
+        <p>Monday-Friday: 1pm-6pm</p>
+        <p>Saturday: 2pm-6pm</p>
+        <p>Sunday: Closed</p>
+        </div>
+        <div>
+          <h4>Store Location</h4>
+          <p>774 Gordon Baker Rd</p>
+          <p>North York, ON M2H 3B4</p>
+           <Link to='javascript:void(0)' onClick={() => window.location = 'mailto:info@whalesucculent.ca'}>
+          info@whalesucculent.ca
+          </Link> 
+
+        </div>
+          </div>
+        
+        
+      </Box>
     </div>
   );
 };
