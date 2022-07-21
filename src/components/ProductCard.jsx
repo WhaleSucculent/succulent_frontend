@@ -60,8 +60,11 @@ function ProductCard({ product }) {
       </Link>
         <CardActions>
           {/* <Button size="small">Buy</Button> */}
-          <Button size="small" onClick={() => handlerAddToCart(product)}>Add to Cart</Button>
-        </CardActions>
+          {/* <Button size="small" onClick={() => handlerAddToCart(product)}>Add to Cart</Button> */} 
+          
+          <Button variant="contained" sx={ { borderRadius: 28, backgroundColor:'#ffb2cc', justifyContent:'center' } } onClick={() => handlerAddToCart(product)}>Add to Cart</Button>
+          
+          </CardActions>
 
     </Card>
   );
@@ -74,7 +77,7 @@ function Item(props) {
         p: 1,
         m: 1,
         borderRadius: 2,
-        fontSize: "0.875rem",
+        fontSize: "0.1rem",
         fontWeight: "700",
         ...sx,
       }}

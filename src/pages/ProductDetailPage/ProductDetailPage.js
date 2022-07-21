@@ -23,6 +23,7 @@ import Header from "components/Header";
 import { useQuery } from "@apollo/client";
 import { GET_PRODUCT, GET_PRODUCTS } from "queries/productQueries";
 import { useParams } from "react-router-dom";
+
 /* 
 
 function SlideTransition(props) {
@@ -84,7 +85,8 @@ function ProductDetailPage({ open, onClose }) {
               justifyContent="space-between"
             >
 
-              <Button variant="contained">Add to Cart</Button>
+              <Button variant="contained" sx={ { borderRadius: 28, backgroundColor:'#ffb2cc' } }>Add to Cart</Button>
+              
             </Box>
             <Box
               display="flex"

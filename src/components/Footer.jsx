@@ -6,7 +6,7 @@ function Footer() {
   return (
     <Box bgcolor={Colors.primary} color="black">
       <Container maxWidth="25px">
-        <Grid container padding={10}>
+        <Grid container padding={7}>
           <Grid item xs={12} sm={4}>
             <Box>
               <Link href="/" color="inherit" fontWeight="bold" fontSize="25px">
