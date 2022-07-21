@@ -11,7 +11,7 @@ export const Purchase = ({ price, tag, productIds, searchQuery, children }) => {
 			  'Content-Type': 'application/json',
 			},
 			body: JSON.stringify({
-			  totalAmount: price,
+			  totalAmount: parseInt(price),
 			  cancelRoute: window.location.pathname,
 			  productIds: productIds,
 			  searchQuery: searchQuery,
