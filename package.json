@@ -80,5 +80,6 @@
     "redux-devtools-extension": "^2.13.9",
     "redux-logger": "^3.0.6"
   },
-  "lint-staged": {}
+  "lint-staged": {},
+  "proxy": "https://succulentbackend.azurewebsites.net:5000"
 }
