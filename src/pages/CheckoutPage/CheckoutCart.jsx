@@ -14,6 +14,7 @@ import {
   List,
   ListItem,
 } from "@mui/material";
+import Divider from '@mui/material/Divider';
 import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -118,9 +119,9 @@ const handleIncreaseCartQty  =(cartItem)=>{
                   {cart.cartItems?.map((cartItem) => (
                       <TableRow key={cartItem.name}>
                         <TableCell component="th" scope="row" align="center">
-                          {/* <img src={item.img} width={200} height={200} /> */}
+                          <img src={cartItem.image[0].imageLink} width={200} height={200} />
                           <br></br>
-                          <b>{cartItem.name}</b>
+                          <b size='large'>{cartItem.name}</b>
                         </TableCell>
                         <TableCell align="center">
                         
@@ -152,16 +153,47 @@ const handleIncreaseCartQty  =(cartItem)=>{
                 <List>
                   <ListItem>
                     <Grid container>
-                      <Typography variant="h6">
-                        Subtotal:
+                      <Typography variant="h6" fontSize="20px">
+                        <b>Subtotal:</b>
                         <Typography>
                         <span>${cart.cartTotalAmount}</span>
+                        </Typography>
+                       
+                      </Typography>
+                     
+                    </Grid>
+                  </ListItem>
+                  <ListItem>
+                  <Typography variant="h6" fontSize="20px">
+                        <b>Duties & Taxes: </b>
+                        <Typography>
+                        <span>${cart.cartTotalAmount*0.05}</span>
                         </Typography>
                        
                         
                  
                       </Typography>
-                    </Grid>
+                  </ListItem>
+                  <ListItem>
+                  <Typography variant="h6" fontSize="20px">
+                        <b>Shipping:</b>
+                        <Typography>
+                        <p>To be calculated...</p>
+                        </Typography>
+                     
+                      </Typography>
+                  </ListItem>
+                  <Divider />
+                  <ListItem>
+                  <Typography variant="h6" textAlign="left" fontWeight="bold" fontSize="25px">
+                        <b>Total:</b>
+                        <Typography textAlign="right" fontWeight="bold" fontSize="25px">
+                       ${cart.cartTotalAmount*1.05}
+                        </Typography>
+                       
+                        
+                 
+                      </Typography>
                   </ListItem>
                   <ListItem>
                

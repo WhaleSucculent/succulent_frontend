@@ -9,6 +9,7 @@ import { Container } from "@mui/system";
 import Grid from '@mui/material/Grid';
 import { Height } from "@mui/icons-material";
 import { Typography } from "@mui/material";
+import Promotion from "components/Promotion";
 
 function Item(props) {
   const { sx, ...other } = props;
@@ -53,6 +54,7 @@ const HomePage = () => {
       <Carousel />
       <Typography>
         Featured Products
+       
       </Typography>
       <Container>
         <Box sx={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", Height:"20px"}}>
@@ -65,9 +67,13 @@ const HomePage = () => {
               </Item>
               </Grid>
             ))}
+           
         </Box>
+       
       </Container>
+      <Promotion/>
     </div>
+    
   );
 };
 
