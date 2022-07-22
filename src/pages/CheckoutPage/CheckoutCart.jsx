@@ -12,7 +12,6 @@ import {
   Button,
   ButtonGroup,
   List,
-  Link,
   ListItem,
 } from "@mui/material";
 import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
@@ -26,6 +25,7 @@ import { useQuery } from "@apollo/client";
 import {useDispatch, useSelector } from "react-redux";
 import { addToMyCart, decreaseCartQty, getTotals, removeFromCart } from "./features/cartSlice";
 import {} from "react-router-dom";
+import Link from "components/Link";
 
 
 function CheckoutCart() {
@@ -87,7 +87,7 @@ const handleIncreaseCartQty  =(cartItem)=>{
               <div className="start-shopping">
 
            
-              <Link href="/" underline="none">
+              <Link to="/" underline="none">
               <Button variant="contained" size="large"> Start Shopping Now</Button>
  
 </Link>

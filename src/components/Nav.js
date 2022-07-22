@@ -14,7 +14,6 @@ import {
   MenuItem,
   InputBase,
   Badge,
-  Link,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import AdbIcon from "@mui/icons-material/Adb";
@@ -22,6 +21,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { useSelector } from "react-redux";
 import {logoimg } from "../assets/images/whale.png"
+import Link from "./Link";
 
 
 const pages = ["Products", "Collections", "Contact"];
@@ -198,7 +198,7 @@ const ResponsiveAppBar = () => {
                     color: "#000000",
                   }}
                 >
-                  <Link href={`${page}`} underline={"hover"} color={"black"}>
+                  <Link to={`${page}`} underline={"hover"} color={"black"}>
                     {page}
                   </Link>
                 </Button>
@@ -226,7 +226,7 @@ const ResponsiveAppBar = () => {
                 }}
               >
                 <Badge badgeContent={cartTotalQty} color="error">
-                  <Link href={"cart"} underline={"hover"} color={"black"}>
+                  <Link to={"cart"} underline={"hover"} color={"black"}>
                     <ShoppingCartOutlinedIcon />
                   </Link>
                 </Badge>
@@ -234,7 +234,7 @@ const ResponsiveAppBar = () => {
             </Box>
 
             <Box sx={{ flexGrow: 0 }}>
-              <Link href={"login"} underline={"hover"} color={"black"}>
+              <Link to={"login"} underline={"hover"} color={"black"}>
                 Sign In
               </Link>
               <Tooltip title="Open settings">

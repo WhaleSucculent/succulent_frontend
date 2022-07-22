@@ -16,6 +16,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useForm } from "react-hook-form";
 import axios from "commons/axios";
 import { toast } from "react-toastify";
+import { useMutation } from "@apollo/client";
+import { REGISTER_USER } from "mutations/userMutations";
 
 function Copyright(props) {
   return (
@@ -38,6 +40,8 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignUp(props) {
+  // const [registerUser, {data, loading, error}] = useMutation(REGISTER_USER)
+
   const {
     register,
     handleSubmit,
