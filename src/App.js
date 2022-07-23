@@ -27,7 +27,8 @@ import"react-toastify/dist/ReactToastify.css";
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import CheckoutCart from "pages/CheckoutPage/CheckoutCart";
 import NotFound from "components/NotFound";
-import ContactPage from "pages/ContactPage/ContactPage";
+import ContactPage from "pages/ContactPage/Contact";
+import Privacy from "pages/ContactPage/Privacy";
 
 const cache = new InMemoryCache({
   typePolicies: {
@@ -71,7 +72,7 @@ function App() {
               <Route path="products">
                 <Route path=":id" element={<ProductDetailPage />} />
               </Route>
-              <Route path="collections" element={<CollectionsPage />}>
+              <Route path="succulents" element={<CollectionsPage />}>
                 <Route path="new" element={<CollectionsPage />} />
                 <Route path="rare" element={<CollectionsPage />} />
                 <Route path="best" element={<CollectionsPage />} />
@@ -100,6 +101,7 @@ function App() {
               <Route path="user" element={<AdminUserPage />} />
             </Route>
             <Route path="*" element={<NotFound />} />
+            <Route path="privacy" element={<Privacy />} />
           </Routes>
         </BrowserRouter>
       </ApolloProvider>
