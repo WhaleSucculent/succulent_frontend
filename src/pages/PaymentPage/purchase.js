@@ -5,13 +5,13 @@ import { connect } from 'react-redux';
 
 export const Purchase = ({ price, tag, productIds, searchQuery, children }) => {
 	const handleBuy = () => {
-		fetch('https://succulentbackend.azurewebsites.net:5000/payment-api', {
+		fetch('/payment-api', {
 			method: 'POST',
 			headers: {
 			  'Content-Type': 'application/json',
 			},
 			body: JSON.stringify({
-			  totalAmount: parseInt(price),
+			  totalAmount: parseFloat(price).toFixed(2),
 			  cancelRoute: window.location.pathname,
 			  productIds: productIds,
 			  searchQuery: searchQuery,
