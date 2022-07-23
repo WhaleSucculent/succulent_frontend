@@ -83,5 +83,5 @@
     "redux-logger": "^3.0.6"
   },
   "lint-staged": {},
-  "proxy": "http://0.0.0.0:5000"
+  "proxy": "http://succulentbackend.azurewebsites.net:5000"
 }
