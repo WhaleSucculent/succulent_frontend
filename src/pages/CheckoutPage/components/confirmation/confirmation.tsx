@@ -2,13 +2,15 @@ import { Typography, Divider, Box, Button } from '@mui/material';
 import { Field, Form, Formik } from 'formik';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import React, { FunctionComponent } from 'react';
+import React, { useEffect, FunctionComponent } from 'react';
 import { useTranslation } from 'react-i18next';
-import { connect } from 'react-redux';
+import { useDispatch, connect, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { AddressFormValues } from '../address/address-form-values.interface';
 import { CheckoutStepper } from '../checkout-stepper/checkout-stepper';
+import { Purchase } from '../../../PaymentPage/purchase';
+import  getCart  from '../../store/cartStore';
 
 import { ConfirmationProps, mapStateToProps } from './confirmation.props';
 
@@ -35,15 +37,18 @@ const Confirmation: FunctionComponent<ConfirmationProps> = ({
   paymentForm,
 }) => {
   const navigate = useNavigate();
+  const submitForm = () => {
+    navigate('/payment');
+  }
   const goBack = () => {
     navigate('/checkout/payment');
   };
   const { t } = useTranslation();
-
+  
   return (
     <>
       <CheckoutStepper />
-      <form>
+      <form onSubmit={submitForm}>
         <Typography variant="h3" gutterBottom textAlign={"left"}>
           {t('checkout.delivery')}
         </Typography>
@@ -108,15 +113,17 @@ const Confirmation: FunctionComponent<ConfirmationProps> = ({
           >
             {t('checkout.previous')}
           </Button>
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            endIcon={<ArrowRightAltIcon />}
-            size="large"
-          >
-            {t('checkout.paynow')}
-          </Button>
+          <Purchase price={getCart.cart.cartTotalAmount} tag={''}>
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              endIcon={<ArrowRightAltIcon />}
+              size="large"
+            >
+              {t('checkout.paynow')}
+            </Button>
+          </Purchase>
         </Box>
       </form>
     </>

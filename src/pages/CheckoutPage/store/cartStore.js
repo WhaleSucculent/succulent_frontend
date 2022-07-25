@@ -9,4 +9,4 @@ const store = configureStore({
 
 store.dispatch(getTotals());
 
-export default store; 
+export default store.getState(); 
