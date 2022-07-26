@@ -14,7 +14,6 @@ import {
   MenuItem,
   InputBase,
   Badge,
-  Link,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import AdbIcon from "@mui/icons-material/Adb";
@@ -22,9 +21,10 @@ import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { useSelector } from "react-redux";
 import {logoimg } from "../assets/images/whale.png"
+import Link from "./Link";
 
 
-const pages = ["Products", "Collections", "Contact"];
+const pages = ["succulents", "growlights", "soil/rocks","pots","information"];
 const settings = ["Profile", "Account", "Orders", "Logout"];
 
 
@@ -32,7 +32,8 @@ const settings = ["Profile", "Account", "Orders", "Logout"];
 const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const {totalCount} =useSelector((state)=>state.cart);
+  const {cartTotalQty} =useSelector(state=>state.cart);
+  
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -121,6 +122,7 @@ const ResponsiveAppBar = () => {
                 width={55}
                 height={55}
               />
+              <p>Whale Succulent</p>
             </Typography>
 
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -197,7 +199,7 @@ const ResponsiveAppBar = () => {
                     color: "#000000",
                   }}
                 >
-                  <Link href={`${page}`} underline={"hover"} color={"black"}>
+                  <Link to={`${page}`} underline={"hover"} color={"black"}>
                     {page}
                   </Link>
                 </Button>
@@ -224,8 +226,8 @@ const ResponsiveAppBar = () => {
                   color: "#000000",
                 }}
               >
-                <Badge badgeContent={totalCount} color="error">
-                  <Link href={"cart"} underline={"hover"} color={"black"}>
+                <Badge badgeContent={cartTotalQty} color="error">
+                  <Link to={"cart"} underline={"hover"} color={"black"}>
                     <ShoppingCartOutlinedIcon />
                   </Link>
                 </Badge>
@@ -233,7 +235,7 @@ const ResponsiveAppBar = () => {
             </Box>
 
             <Box sx={{ flexGrow: 0 }}>
-              <Link href={"login"} underline={"hover"} color={"black"}>
+              <Link to={"login"} underline={"hover"} color={"black"}>
                 Sign In
               </Link>
               <Tooltip title="Open settings">

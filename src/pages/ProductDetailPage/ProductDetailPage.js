@@ -24,6 +24,8 @@ import Header from "components/Header";
 import { useQuery } from "@apollo/client";
 import { GET_PRODUCT, GET_PRODUCTS } from "queries/productQueries";
 import { useParams } from "react-router-dom";
+import { addToMyCart, decreaseCartQty } from "pages/CheckoutPage/features/cartSlice";
+import { useDispatch } from "react-redux";
 
 /* 
 
@@ -44,6 +46,16 @@ const ProductDetailInfoWrapper = styled(Box)(() => ({
 }));
 
 function ProductDetailPage({ open, onClose }) {
+
+
+  const dispatch = useDispatch();
+  //const navigate = useNavigate();
+
+  const handlerAddToCart = (product) => {
+    dispatch(addToMyCart(data.product))
+    //  navigate("/cart")
+  };
+
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down("md"));
 
@@ -55,17 +67,17 @@ function ProductDetailPage({ open, onClose }) {
 
   if (loading) return <p> Loading... </p>;
   if (error) return <p>Something Went Wrong</p>;
-  
+
   return (
     <>
-    <Dialog
-      //TransitionComponent={SlideTransition}
-      variant="permanant"
-      open={true}
-      fullScreen
-    >
-      
-      {/* <DialogContent> */}
+      <Dialog
+        //TransitionComponent={SlideTransition}
+        variant="permanant"
+        open={true}
+        fullScreen
+      >
+
+        {/* <DialogContent> */}
         <ProductDetailWrapper display={"flex"} flexDirection={matches ? "column" : "row"}>
           <Product sx={{ mr: 4 }}>
             <ProductImage src={data.product.image[0].imageLink} alt={data.product.image.name} />
@@ -85,9 +97,7 @@ function ProductDetailPage({ open, onClose }) {
               alignItems="center"
               justifyContent="space-between"
             >
-
-              <Button variant="contained" sx={ { borderRadius: 28, backgroundColor:'#ffb2cc' } }>Add to Cart</Button>
-              
+              <Button variant="contained" sx={{ borderRadius: 28, backgroundColor: '#ffb2cc' }} onClick={() => handlerAddToCart(data.product)}>Add to Cart</Button>
             </Box>
             <Box
               display="flex"
@@ -109,10 +119,10 @@ function ProductDetailPage({ open, onClose }) {
             </Box>
           </ProductDetailInfoWrapper>
         </ProductDetailWrapper>
-      
-    </Dialog>
-<Footer />
-</>
+
+      </Dialog>
+      <Footer />
+    </>
   );
 }
 

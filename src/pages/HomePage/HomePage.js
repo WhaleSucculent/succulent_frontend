@@ -12,6 +12,7 @@ import { Typography } from "@mui/material";
 import ButtonBase from '@mui/material/ButtonBase';
 import img from "assets/images/map.jpg";
 import { Link } from "react-router-dom";
+import Promotion from "components/Promotion";
 
 function Item(props) {
   const { sx, ...other } = props;
@@ -57,10 +58,11 @@ const HomePage = () => {
       <Box padding={'20px'}>
       <Typography fontWeight={300} variant="h5">
         Featured Products
+       
       </Typography>
       </Box>
       <Container>
-        <Box sx={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gridTemplateRows: "repeat(1, minmax(1, 2))", Height:"20px"}}>
+        <Box sx={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", Height:"20px"}}>
           {!loading &&
             !error &&
             data.products.slice(0,3).map((product) => (
@@ -70,7 +72,9 @@ const HomePage = () => {
               </Item>
               </Grid>
             ))}
+           
         </Box>
+       
       </Container>
       <Box padding={'20px'}>
       <Typography fontWeight={300} variant="h5">
@@ -112,7 +116,9 @@ const HomePage = () => {
         
         
       </Box>
+      <Promotion/>
     </div>
+    
   );
 };
 

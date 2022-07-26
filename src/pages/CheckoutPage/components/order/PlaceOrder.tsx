@@ -8,11 +8,9 @@ import { useDispatch, connect, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { AddressFormValues } from '../address/address-form-values.interface';
-import { CheckoutStepper } from '../checkout-stepper/checkout-stepper';
-import { Purchase } from './components/purchase';
 import  getCart  from '../../store/cartStore';
 
-import { ConfirmationProps, mapStateToProps } from './confirmation.props';
+import { ConfirmationProps, mapStateToProps } from '../confirmation/confirmation.props';
 
 const AddressDisplay: FunctionComponent<{ address: AddressFormValues }> = ({
   address,
@@ -32,13 +30,13 @@ const AddressDisplay: FunctionComponent<{ address: AddressFormValues }> = ({
   );
 };
 
-const Confirmation: FunctionComponent<ConfirmationProps> = ({
+const PlaceOrder: FunctionComponent<ConfirmationProps> = ({
   deliveryForm,
   paymentForm,
 }) => {
   const navigate = useNavigate();
   const submitForm = () => {
-    navigate('/checkout/order');
+    //navigate('/payment');
   }
   const goBack = () => {
     navigate('/checkout/payment');
@@ -47,7 +45,7 @@ const Confirmation: FunctionComponent<ConfirmationProps> = ({
   
   return (
     <>
-      <CheckoutStepper />
+      <form onSubmit={submitForm}>
         <Typography variant="h3" gutterBottom textAlign={"left"}>
           {t('checkout.delivery')}
         </Typography>
@@ -96,7 +94,6 @@ const Confirmation: FunctionComponent<ConfirmationProps> = ({
             {t('####-####-####-'+paymentForm.creditCard.cardNumber.substring(15,19))}
           </Typography>
         )}
-      <form onSubmit={submitForm}>
         <Box
             textAlign="right"
             display="flex"
@@ -104,30 +101,18 @@ const Confirmation: FunctionComponent<ConfirmationProps> = ({
             mt={2}
         >
           <Button
-            type="button"
+            type="submit"
             variant="contained"
-            color="secondary"
-            endIcon={<ArrowBackIcon />}
+            color="primary"
+            endIcon={<ArrowRightAltIcon />}
             size="large"
-            onClick={goBack}
           >
-            {t('checkout.previous')}
+            {t('checkout.confirm')}
           </Button>
-          <Purchase price={getCart.cart.cartTotalAmount} tag={''}>
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              endIcon={<ArrowRightAltIcon />}
-              size="large"
-            >
-              {t('checkout.paynow')}
-            </Button>
-          </Purchase>
         </Box>
       </form>
     </>
   );
 };
 
-export default connect(mapStateToProps)(Confirmation);
+export default connect(mapStateToProps)(PlaceOrder);

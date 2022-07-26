@@ -12,9 +12,9 @@ import {
   Button,
   ButtonGroup,
   List,
-  Link,
   ListItem,
 } from "@mui/material";
+import Divider from '@mui/material/Divider';
 import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -24,19 +24,28 @@ import ClearIcon from "@mui/icons-material/Clear";
 import { ORDER_DETAILS } from "../../queries/orderDetails";
 import { useQuery } from "@apollo/client";
 import {useDispatch, useSelector } from "react-redux";
-import { getCartTotal, removeFromCart } from "./features/cartSlice";
-
+import { addToMyCart, decreaseCartQty, getTotals, removeFromCart } from "./features/cartSlice";
 import {} from "react-router-dom";
-// import { getCartTotal } from "./features/cartSlice";
+import Link from "components/Link";
+
 
 function CheckoutCart() {
 
 const cart= useSelector((state)=>state.cart);
 const dispatch = useDispatch()
+useEffect(()=>{
+dispatch(getTotals());
+},[cart,dispatch])
+
 const handleRemoveFromCart =(cartItem)=>{
   dispatch(removeFromCart(cartItem));
 }
- 
+const handleDecreaseCartQty  =(cartItem)=>{
+  dispatch(decreaseCartQty(cartItem))
+}
+const handleIncreaseCartQty  =(cartItem)=>{
+  dispatch(addToMyCart(cartItem))
+}
 
   // //loading data from database
   // const { loading, error,data } = useQuery(ORDER_DETAILS);
@@ -47,6 +56,7 @@ const handleRemoveFromCart =(cartItem)=>{
 
   return (
     <div>
+       {/* here is shopping cart titlebar */}
       <div>
         <Container
           maxWidth="sm"
@@ -65,10 +75,10 @@ const handleRemoveFromCart =(cartItem)=>{
         </Container>
       </div>
 
-   
 
-{/*  shopping cart displays here*/}
-<div>              
+{/*  shopping cartitem displays here*/}
+<div>            
+    {/* if cartItem.lendth ==0 display continue shopping page */}
   {cart.cartItems.length === 0 ?(
      <Grid container spacing={1}  justifyContent="center"
      alignItems="center"  padding={30}>
@@ -78,16 +88,16 @@ const handleRemoveFromCart =(cartItem)=>{
               <div className="start-shopping">
 
            
-              <Link href="/" underline="none">
+              <Link to="/" underline="none">
               <Button variant="contained" size="large"> Start Shopping Now</Button>
  
 </Link>
 </div>
               </div>
-             
               </div>
               </Grid>
-            ):(
+            ):(  
+              // if cartItem is not ==0, display shopping cart items.
       <React.Fragment>
         <Slide direction="up" in={true}>
           <Grid container spacing={1}>
@@ -109,18 +119,18 @@ const handleRemoveFromCart =(cartItem)=>{
                   {cart.cartItems?.map((cartItem) => (
                       <TableRow key={cartItem.name}>
                         <TableCell component="th" scope="row" align="center">
-                          {/* <img src={item.img} width={200} height={200} /> */}
+                          <img src={cartItem.image[0].imageLink} width={200} height={200} />
                           <br></br>
-                          <b>{cartItem.name}</b>
+                          <b size='large'>{cartItem.name}</b>
                         </TableCell>
                         <TableCell align="center">
                         
                      
-                        <Button>-</Button>
+                        <Button onClick={()=> handleDecreaseCartQty(cartItem)}>-</Button>
                         <div>
                         <p className="count">{cartItem.cartQty}</p>
                         </div>
-                        <Button>+</Button>
+                        <Button onClick={()=> handleIncreaseCartQty(cartItem)}>+</Button>
                     
                         </TableCell>
                         <TableCell align="center">
@@ -138,33 +148,72 @@ const handleRemoveFromCart =(cartItem)=>{
               </TableContainer>
             </Grid>
             <Grid item md={3} xs={12}>
-              {/* <Card className={Classes.card}> */}
+      {/* here display the Subtotal card on the side */}
               <Card>
                 <List>
                   <ListItem>
                     <Grid container>
-                      <Typography variant="h6">
-                        Subtotal:
-                        {/* {cart.data.subtotal.formatted_with_symbol} */}
+                      <Typography variant="h6" fontSize="20px">
+                        <b>Subtotal:</b>
+                        <Typography>
+                        <span>${cart.cartTotalAmount}</span>
+                        </Typography>
+                       
                       </Typography>
+                     
                     </Grid>
                   </ListItem>
                   <ListItem>
-                    {/* {cart.data.total_items >0 &&( */}
+                  <Typography variant="h6" fontSize="20px">
+                        <b>Duties & Taxes: </b>
+                        <Typography>
+                        <span>${cart.cartTotalAmount*0.05}</span>
+                        </Typography>
+                       
+                        
+                 
+                      </Typography>
+                  </ListItem>
+                  <ListItem>
+                  <Typography variant="h6" fontSize="20px">
+                        <b>Shipping:</b>
+                        <Typography>
+                        <p>To be calculated...</p>
+                        </Typography>
+                     
+                      </Typography>
+                  </ListItem>
+                  <Divider />
+                  <ListItem>
+                  <Typography variant="h6" textAlign="left" fontWeight="bold" fontSize="25px">
+                        <b>Total:</b>
+                        <Typography textAlign="right" fontWeight="bold" fontSize="25px">
+                       ${cart.cartTotalAmount*1.05}
+                        </Typography>
+                       
+                        
+                 
+                      </Typography>
+                  </ListItem>
+                  <ListItem>
+               
                     <Button
                     href="checkout"
                     type="button"
                     fullWidth
                     variant="contained"
                     color="primary"
+                    size="large"
                   
                     >
                       Check Out
                     </Button>
-                    {/* )} */}
+                
                   </ListItem>
                   <ListItem>
+               
                     <Button
+                      href="/"
                       variant="outlined"
                       fullWidth
                       color="primary"
@@ -172,6 +221,7 @@ const handleRemoveFromCart =(cartItem)=>{
                     >
                       Continue Shopping
                     </Button>
+                 
                   </ListItem>
                 </List>
               </Card>
@@ -185,8 +235,7 @@ const handleRemoveFromCart =(cartItem)=>{
   );
 }
 
-// export default dynamic(()=>Promise.resolve(Cart),{
-//   ssr:false,
 
-// });
+
+
 export default CheckoutCart;
