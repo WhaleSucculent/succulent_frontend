@@ -11,11 +11,11 @@ export const Purchase = ({ price, tag, productIds, searchQuery, children }) => {
 			  'Content-Type': 'application/json',
 			},
 			body: JSON.stringify({
-			  totalAmount: parseInt(price),
+			  totalAmount: parseFloat(price).toFixed(2),
 			  cancelRoute: window.location.pathname,
 			  productIds: productIds,
 			  searchQuery: searchQuery,
-			  currentRoute: '/payment',//window.location.pathname,
+			  currentRoute: '/checkout/order',//window.location.pathname,
 			}),
 		  })
 		.then((res) => res.json())

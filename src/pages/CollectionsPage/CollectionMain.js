@@ -36,7 +36,7 @@ const Card = styled("div")(({theme}) =>({
 
    overflow:'hidden',
    "&:hover":{
-      transform: 'scale(1.3)',
+      transform: 'scale(1.1)',
    },
    img:{
 	transform: 'scale(1)',
