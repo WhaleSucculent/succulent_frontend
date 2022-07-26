@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 export const Purchase = ({ price, tag, productIds, searchQuery, children }) => {
 	const handleBuy = () => {
-		fetch('/payment-api', {
+		fetch('/api/checkout/payment-api', {
 			method: 'POST',
 			headers: {
 			  'Content-Type': 'application/json',
@@ -15,7 +15,7 @@ export const Purchase = ({ price, tag, productIds, searchQuery, children }) => {
 			  cancelRoute: window.location.pathname,
 			  productIds: productIds,
 			  searchQuery: searchQuery,
-			  currentRoute: '/payment',//window.location.pathname,
+			  currentRoute: '/checkout/order',//window.location.pathname,
 			}),
 		  })
 		.then((res) => res.json())
