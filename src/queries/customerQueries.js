@@ -52,6 +52,9 @@ const GET_CUSTOMER=gql`
               firstName
               lastName
               apartment
+              city
+              country
+              state
             }
             billingAddress{
               firstName
