@@ -57,7 +57,7 @@ const HomePage = () => {
        
       </Typography>
       <Container>
-        <Box sx={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", Height:"20px"}}>
+        <Box sx={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", Height:"20px"}}>
           {!loading &&
             !error &&
             data.products.map((product) => (
