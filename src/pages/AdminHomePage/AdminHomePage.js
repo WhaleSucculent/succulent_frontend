@@ -1,8 +1,13 @@
 import React from 'react'
+import Sidebar from './components/Sidebar'
+import Home from './pages/Home'
 
 const AdminHomePage = () => {
   return (
-    <div>AdminHomePage</div>
+    <div>
+      <Home/>
+      <Sidebar/>
+    </div>
   )
 }
 
