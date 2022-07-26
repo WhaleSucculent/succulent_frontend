@@ -29,6 +29,7 @@ import CheckoutCart from "pages/CheckoutPage/CheckoutCart";
 import NotFound from "components/NotFound";
 import ContactPage from "pages/ContactPage/Contact";
 import Privacy from "pages/ContactPage/Privacy";
+import PlaceOrder from "pages/CheckoutPage/components/order/PlaceOrder";
 
 const cache = new InMemoryCache({
   typePolicies: {
