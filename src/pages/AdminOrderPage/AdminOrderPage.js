@@ -21,22 +21,50 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector';
 import Check from '@mui/icons-material/Check';
 import PropTypes from 'prop-types';
+import img1 from '../../assets/images/1.jpg'
+
+
 const steps=[
   'Order Completed',
   'Ready for Shipping',
   'Shipped',
   'Delivered'
 ];
-const Container = styled("div")(()=>({
+const products=[{
+  id:1,
+  name:'Product 1',
+  price:100,
+  quantity:1,
+  description:"description 1",
+  
+},
+{
+  id:2,
+  name:'Product 2',
+  price:10,
+  quantity:2,
+  description:"description 2",
+  
+}
+]
+const Container = styled("div")(({theme})=>({
   display:'grid',
   gridTemplateRows: '0.2fr 0.3fr 1fr 0.2fr',
   gridTemplateAreas: "'orderDetails orderDetails orderTotal''deliveryDetails deliveryDetails orderTotal''deliveryDetails deliveryDetails info''deliveryDetails deliveryDetails info'",
   gridGap:'1em',
   height:'90vh',
+  [theme.breakpoints.down('md')]:{
+    gridTemplateAreas: "'orderDetails orderDetails''deliveryDetails deliveryDetails''deliveryDetails deliveryDetails''orderTotal orderTotal'",
+    height:'100%',
+ 
+
+ },
   
 }));
-
-const OrderDetails = styled("div")(()=>({
+const TableCont = styled(TableContainer)(({theme})=>({
+  width:'100%',
+}));
+const OrderDetails = styled("div")(({theme})=>({
   gridArea: 'orderDetails',
   padding:'1em',
 }));
@@ -216,7 +244,7 @@ const AdminOrderPage = () => {
     <div>
       <Container>
         <OrderDetails>
-          <TableContainer>
+          <TableCont>
             <Table>
               <TableHead>
                 <TableRow>
@@ -240,7 +268,7 @@ const AdminOrderPage = () => {
                   </TableRow>
                 </TableBody>
             </Table>
-          </TableContainer>
+          </TableCont>
         </OrderDetails>
         <OrderTotal>
         <TableContainer>
@@ -288,6 +316,27 @@ const AdminOrderPage = () => {
                   </Stepper>
                   </TableCell>
                     </TableRow>
+                    <TableRow>
+                    <StyledTableCell>
+                      Orders
+                      </StyledTableCell>
+                    </TableRow>
+                    {products.map((product)=>(
+                      <TableRow>
+                      <TableCell>
+                      <Stack direction={{sm:'column', md:'row'}} spacing={2}>
+                        <img width="20%" height="auto" src={img1} alt=""/>
+                        <Stack direction={{sm:'column'}} spacing={2}>
+                          <p>{product.name}</p>
+                          <p>{product.description}</p>
+                          <p>Price: {product.price}</p>
+                          <p>Quantity: {product.quantity}</p>
+                          </Stack>
+                        </Stack>
+                      </TableCell>
+                    </TableRow>
+                    ))}
+                    
                   </TableBody>
               </Table>
             </TableContainer>
