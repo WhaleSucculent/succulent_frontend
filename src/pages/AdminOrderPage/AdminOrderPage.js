@@ -85,7 +85,7 @@ const Info = styled("div")(()=>({
 }));
 
 const StyledTableCell = styled(TableCell)(()=>({
-  backgroundColor:'#ddd',
+  backgroundColor:'#5e9af2',
 }));
 const QontoConnector = styled(StepConnector)(({ theme }) => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {
@@ -253,9 +253,11 @@ const AdminOrderPage = () => {
                 </TableHead>
                 <TableBody>
                   <TableRow>
-                    <TableCell>
+                    <TableCell size="small">
+                      <Stack spacing={2} direction="row" justifyContent="space-between">
                       <p>Order Date: {data.customer.orders[0].orderDate}</p>
                       <Button variant="outlined">Print Receipt</Button>
+                      </Stack>
                     </TableCell>
                     
                   </TableRow>
@@ -341,7 +343,40 @@ const AdminOrderPage = () => {
               </Table>
             </TableContainer>
         </DeliveryDetails>
-        <Info>Info</Info>
+        <Info>
+          <TableContainer>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <StyledTableCell>Order information</StyledTableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                <TableRow>
+                  <TableCell>
+                  <Stack direction='column' spacing={2}>
+                    <p>Customer Name: {data.customer.firstName +" "+ data.customer.LastName}</p>
+                    </Stack>
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                  <TableCell>
+                    <p>Shipping Address</p>
+
+                  </TableCell>
+                  </TableRow>
+                  <TableRow>
+                  <TableCell>
+                    {data.customer.orders[0].shippingAddress.apartment},
+                     {" "+data.customer.orders[0].shippingAddress.city},
+                     {" "+data.customer.orders[0].shippingAddress.state},
+                     {" "+data.customer.orders[0].shippingAddress.country}
+                  </TableCell>
+                  </TableRow>
+                  </TableBody>
+              </Table>
+            </TableContainer>
+        </Info>
       </Container>
     </div>
   )
