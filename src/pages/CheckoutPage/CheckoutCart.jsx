@@ -116,7 +116,8 @@ const handleIncreaseCartQty  =(cartItem)=>{
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                  {cart.cartItems?.map((cartItem) => (
+                  {console.log(cart)}
+                  {cart.cartItems.length > 0 && cart.cartItems?.map((cartItem) => (
                       <TableRow key={cartItem.name}>
                         <TableCell component="th" scope="row" align="center">
                           <img src={cartItem.image[0].imageLink} width={200} height={200} />
