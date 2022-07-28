@@ -120,7 +120,7 @@ const handleIncreaseCartQty  =(cartItem)=>{
                   {cart.cartItems.length > 0 && cart.cartItems?.map((cartItem) => (
                       <TableRow key={cartItem.name}>
                         <TableCell component="th" scope="row" align="center">
-                          <img src={cartItem.image[0].imageLink} width={200} height={200} />
+                          <img src={cartItem.image[0].imageLink} width={200} height={200} alt={cartItem.name} />
                           <br></br>
                           <b size='large'>{cartItem.name}</b>
                         </TableCell>

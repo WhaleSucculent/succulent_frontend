@@ -24,12 +24,16 @@ import HeaderFooter from "components/HeaderFooter";
 import {ToastContainer} from "react-toastify";
 import"react-toastify/dist/ReactToastify.css";
 
-import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
+import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink, split } from "@apollo/client";
 import CheckoutCart from "pages/CheckoutPage/CheckoutCart";
 import NotFound from "components/NotFound";
 import ContactPage from "pages/ContactPage/Contact";
 import Privacy from "pages/ContactPage/Privacy";
 import PlaceOrder from "pages/CheckoutPage/components/order/PlaceOrder";
+import { AUTH_TOKEN } from "pages/LoginPage/constants";
+import { setContext } from '@apollo/client/link/context';
+import { getMainDefinition } from "@apollo/client/utilities";
+import { WebSocketLink } from '@apollo/client/link/ws';
 
 const cache = new InMemoryCache({
   typePolicies: {
@@ -50,9 +54,24 @@ const cache = new InMemoryCache({
   },
 });
 
+const httpLink = createHttpLink({
+  uri: 'https://succulentbackend.azurewebsites.net/graphql'
+});
+
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem(AUTH_TOKEN);
+  console.log(token)
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : ''
+    }
+  };
+});
+
 const client = new ApolloClient({
-  uri: "https://succulentbackend.azurewebsites.net/graphql",
-  cache,
+  link: authLink.concat(httpLink),
+  cache
 });
 
 function App() {

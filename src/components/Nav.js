@@ -20,11 +20,11 @@ import AdbIcon from "@mui/icons-material/Adb";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { useSelector } from "react-redux";
-import {logoimg } from "../assets/images/whale.png"
+import { logoimg } from "../assets/images/whale.png"
 import Link from "./Link";
 
 
-const pages = ["succulents", "growlights", "soil/rocks","pots","information"];
+const pages = ["succulents", "growlights", "soil/rocks", "pots", "information"];
 const settings = ["Profile", "Account", "Orders", "Logout"];
 
 
@@ -32,8 +32,8 @@ const settings = ["Profile", "Account", "Orders", "Logout"];
 const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const {cartTotalQty} =useSelector(state=>state.cart);
-  
+  const { cartTotalQty } = useSelector(state => state.cart);
+
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -117,10 +117,11 @@ const ResponsiveAppBar = () => {
                 textDecoration: "none",
               }}
             >
-                 <img
+              <img
                 src="https://cdn-icons-png.flaticon.com/512/1808/1808120.png"
                 width={55}
                 height={55}
+                alt={"Whale Succulent Logo"}
               />
               <p>Whale Succulent</p>
             </Typography>
@@ -201,7 +202,7 @@ const ResponsiveAppBar = () => {
                 >
                   <Link to={`${page}`} underline={"hover"} color={"black"}>
                     {page}
-                  </Link>
+                  </Link>``
                 </Button>
               ))}
             </Box>
