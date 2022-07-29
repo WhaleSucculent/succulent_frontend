@@ -10,8 +10,8 @@ const LOGIN_CUSTOMER = gql`
 `
 
 const REGISTER_CUSTOMER = gql`
-  mutation registerCustomer($email: String!, $password: String!){
-    registerCustomer(email: $email, password: $password){
+  mutation registerCustomer($email: String!, $password: String!, $firstName: String!, $lastName: String!){
+    registerCustomer(email: $email, password: $password, firstName: $firstName, lastName: $lastName){
       userId
       token
     }

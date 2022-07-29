@@ -3,7 +3,6 @@ import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Headers from "components/Header";
 import ProductsPage from "pages/ProductsPage/ProductsPage";
-import LoginPage from "pages/LoginPage/LoginPage";
 import ErrorPage from "pages/ErrorPage/ErrorPage";
 import RegisterPage from "pages/RegisterPage/RegisterPage";
 import PaymentPage from "pages/PaymentPage/PaymentPage";
@@ -34,6 +33,7 @@ import { AUTH_TOKEN } from "pages/LoginPage/constants";
 import { setContext } from '@apollo/client/link/context';
 import { getMainDefinition } from "@apollo/client/utilities";
 import { WebSocketLink } from '@apollo/client/link/ws';
+import { LoginPage } from "pages/LoginPage/LoginPage";
 
 const cache = new InMemoryCache({
   typePolicies: {
