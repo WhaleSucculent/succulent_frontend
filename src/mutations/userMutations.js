@@ -17,5 +17,27 @@ const REGISTER_CUSTOMER = gql`
     }
   }    
 `
+// const LOGOUT_CUSTOMER = gql``
 
-export { REGISTER_CUSTOMER, LOGIN_CUSTOMER }
+const GET_CUSTOMER = gql`
+  query getCustomer($userId: ID!){
+    getCustomer(userId: $userId){
+      userId
+      email
+      firstName
+      lastName
+      token
+    }
+  }    
+`
+
+const REQUEST_RESET = gql`
+    mutation requestReset($email: String!){
+    requestReset(email: $email){
+      result
+    }
+  }    
+`
+
+
+export { REGISTER_CUSTOMER, LOGIN_CUSTOMER, REQUEST_RESET }

@@ -4,7 +4,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Headers from "components/Header";
 import ProductsPage from "pages/ProductsPage/ProductsPage";
 import ErrorPage from "pages/ErrorPage/ErrorPage";
-import RegisterPage from "pages/RegisterPage/RegisterPage";
 import PaymentPage from "pages/PaymentPage/PaymentPage";
 import CheckoutPage from "pages/CheckoutPage/CheckoutPage";
 import LandingPage from "pages/LandingPage/LandingPage";
@@ -34,6 +33,10 @@ import { setContext } from '@apollo/client/link/context';
 import { getMainDefinition } from "@apollo/client/utilities";
 import { WebSocketLink } from '@apollo/client/link/ws';
 import { LoginPage } from "pages/LoginPage/LoginPage";
+import ResetPassPage from "pages/ResetPassPage/ResetPassPage";
+import { ForgotPassPage } from "pages/ForgotPassPage/ForgotPassPage";
+import FileUpload from "components/fileUpload";
+import { RegisterPage } from "pages/RegisterPage/RegisterPage";
 
 const cache = new InMemoryCache({
   typePolicies: {
@@ -89,6 +92,11 @@ function App() {
               <Route index element={<HomePage />} />
               <Route path="login" element={<LoginPage />} />
               <Route path="register" element={<RegisterPage />} />
+              <Route path="forgot" element={<ForgotPassPage />} />
+              <Route path="reset">
+                <Route path=":id" element={<ResetPassPage />} />
+              </Route>
+              <Route path="file" element={<FileUpload />} />
               <Route path="products">
                 <Route path=":id" element={<ProductDetailPage />} />
               </Route>

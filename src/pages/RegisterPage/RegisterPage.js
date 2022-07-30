@@ -6,7 +6,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -19,24 +19,30 @@ import Link from 'components/Link';
 
 const theme = createTheme();
 
-export default function SignUp() {
+export const RegisterPage = () => {
   const navigate = useNavigate();
   const [formState, setFormState] = useState({
     email: '',
     password: '',
-    name: ''
+    firstName: '',
+    lastName: '',
   });
 
   const [register, { loading, data, error }] = useMutation(REGISTER_CUSTOMER, {
     variables: {
       email: formState.email,
-      password: formState.password
+      password: formState.password,
+      firstName: formState.firstName,
+      lastName: formState.lastName,
     },
-    onCompleted: ({ registerCustomer }) => {
+    onCompleted: ({ registerCustomer,data }) => {
       console.log(data)
       localStorage.setItem(AUTH_TOKEN, registerCustomer.token);
       console.log("login")
       navigate('/');
+    },
+    onError: (error) => {
+      console.log(error)
     }
   })
 
@@ -53,7 +59,7 @@ export default function SignUp() {
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
+            <PersonAddAltIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign up
@@ -126,10 +132,11 @@ export default function SignUp() {
               </Grid>
             </Grid>
             <Button
-              type="submit"
+              type="button"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              onClick={register}
             >
               Sign Up
             </Button>
