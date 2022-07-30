@@ -66,6 +66,11 @@ const GET_CUSTOMER = gql`
             productsInCart{
               qty
               price
+              product{
+                name
+                description
+                
+              }
             }
          }
 				addresses{

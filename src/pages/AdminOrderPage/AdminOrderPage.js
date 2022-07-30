@@ -323,16 +323,26 @@ const AdminOrderPage = () => {
                       Orders
                       </StyledTableCell>
                     </TableRow>
-                    {products.map((product)=>(
+                    {data.customer.orders.map((order)=>(
                       <TableRow>
                       <TableCell>
-                      <Stack direction={{sm:'column', md:'row'}} spacing={2}>
+                      <Stack direction="row" spacing={2} justifyContent="space-around">
                         <img width="20%" height="auto" src={img1} alt=""/>
                         <Stack direction={{sm:'column'}} spacing={2}>
-                          <p>{product.name}</p>
-                          <p>{product.description}</p>
-                          <p>Price: {product.price}</p>
-                          <p>Quantity: {product.quantity}</p>
+                          {order.productsInCart.map((cart)=>(
+                            <Stack direction="column">
+                            <p>Quantity: {cart.qty}</p>
+                            <p>Price: {cart.price}</p>
+                            {cart.product.map((produc)=>(
+                              <Stack direction="column">
+                              <p>{produc.name}</p>
+                              <p> {produc.description}</p>
+                              </Stack>
+                            ))}
+                            </Stack>
+                          ))}
+                                                
+                          
                           </Stack>
                         </Stack>
                       </TableCell>
