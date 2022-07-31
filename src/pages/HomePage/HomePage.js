@@ -8,11 +8,12 @@ import ProductCard from "components/ProductCard";
 import { Container } from "@mui/system";
 import Grid from '@mui/material/Grid';
 import { Height } from "@mui/icons-material";
-import { Typography } from "@mui/material";
+import { CircularProgress, Typography } from "@mui/material";
 import ButtonBase from '@mui/material/ButtonBase';
 import img from "assets/images/map.jpg";
 import { Link } from "react-router-dom";
 import Promotion from "components/Promotion";
+import Loading from "components/Loading";
 
 function Item(props) {
   const { sx, ...other } = props;
@@ -49,7 +50,7 @@ Item.propTypes = {
 const HomePage = () => {
   const { loading, error, data } = useQuery(GET_PRODUCTS);
   console.log(data);
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Loading />
   if (error) return <p>Something went wrong</p>;
 
   return (
