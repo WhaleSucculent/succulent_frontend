@@ -22,17 +22,23 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { useSelector } from "react-redux";
 import { logoimg } from "../assets/images/whale.png"
 import Link from "./Link";
+import { useMeQuery } from "queries/utilQueries";
+import Loading from "./Loading";
+import { useNavigate } from "react-router-dom";
+import { client } from "graphql/apolloClient";
 
 
 const pages = ["succulents", "growlights", "soil/rocks", "pots", "information"];
-const settings = ["Profile", "Account", "Orders", "Logout"];
+const settings = ["Profile", "Account", "Orders"];
 
 
 
 const ResponsiveAppBar = () => {
+  const { data } = useMeQuery();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const { cartTotalQty } = useSelector(state => state.cart);
+  const navigate = useNavigate();
 
 
   const handleOpenNavMenu = (event) => {
@@ -49,6 +55,13 @@ const ResponsiveAppBar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const handleLogout = () => {
+    localStorage.removeItem("auth-token");
+    client.clearStore();
+    window.location.reload();
+    navigate('/');
+  }
   const Search = styled("div")(({ theme }) => ({
     position: "relative",
     borderRadius: theme.shape.borderRadius,
@@ -95,6 +108,7 @@ const ResponsiveAppBar = () => {
       },
     },
   }));
+
 
   return (
     <>
@@ -236,17 +250,19 @@ const ResponsiveAppBar = () => {
             </Box>
 
             <Box sx={{ flexGrow: 0 }}>
-              <Link to={"login"} underline={"hover"} color={"black"}>
+            {console.log(data)}
+              {console.log(data.email)}
+              {!data.me ? (<Link to={"login"} underline={"hover"} color={"black"}>
                 Sign In
-              </Link>
-              <Tooltip title="Open settings">
+              </Link>) : (<Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Avatar
-                    alt="Remy Sharp"
-                    src=""
+                    alt={`${data.firstname} ${data.lastname}`}
+                    src={data.avatar}
                   />
                 </IconButton>
-              </Tooltip>
+              </Tooltip>)}
+
               <Menu
                 sx={{ mt: "45px" }}
                 id="menu-appbar"
@@ -265,9 +281,14 @@ const ResponsiveAppBar = () => {
               >
                 {settings.map((setting) => (
                   <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center">{setting}</Typography>
+                    <Link to={`${setting}`.toLowerCase()} underline={"hover"}>
+                      <Typography textAlign="center">{setting}</Typography>
+                    </Link>
                   </MenuItem>
                 ))}
+                <MenuItem onClick={handleLogout}>
+                  <Typography textAlign="center">Logout</Typography>
+                </MenuItem>
               </Menu>
             </Box>
           </Toolbar>
