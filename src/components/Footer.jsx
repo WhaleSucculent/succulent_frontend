@@ -1,6 +1,10 @@
 import { Box, Container, Grid, Link } from "@mui/material";
 import React from "react";
-import {Colors} from '../pages/ProductDetailPage/Themes';
+import { Colors } from '../pages/ProductDetailPage/Themes';
+import Typography from "@mui/material/Typography";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import { GraphicEq } from "@mui/icons-material";
+
 
 function Footer() {
   return (
@@ -41,12 +45,14 @@ function Footer() {
             <Box>
               <p>Shipping & Return</p>
               <p>Privacy Policy</p>
-              <p>Terms of Condition</p>
+              <p>Terms and Conditions</p>
             </Box>
           </Grid>
         </Grid>
-        <Box textAlign="center" pt={{ xs: 5, sm: 2 }} pb={{ xs: 5, sm: 5 }}>
-          Whale Succulent &reg; 2022
+        <Box pt={{ xs: 3, sm: 1 }} pb={{ xs: 5, sm: 5 }}>
+          <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'flex-start' }}>
+            Whale Succulent &reg; 2022
+          </div>
         </Box>
       </Container>
     </Box>

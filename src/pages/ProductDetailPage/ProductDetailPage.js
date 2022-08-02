@@ -1,3 +1,4 @@
+import Footer from "../../components/Footer";
 import {
   Dialog,
   DialogTitle,
@@ -9,14 +10,10 @@ import {
   Button,
   Stack,
 } from "@mui/material";
-import { useRef } from "react";
+import { Component, useRef } from "react";
 import CloseIcon from "@mui/icons-material/Close";
-import { Colors } from "./Themes";
 import styled from "@emotion/styled";
 import { ProductAddToCart, Product, ProductImage } from "./Product";
-//import { BannerShopButton } from "../../styles/banner";
-//import IncDec from "../ui/incdec";
-// import { itemData } from '../CheckoutPage/fakedata';
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
@@ -27,12 +24,14 @@ import Header from "components/Header";
 import { useQuery } from "@apollo/client";
 import { GET_PRODUCT, GET_PRODUCTS } from "queries/productQueries";
 import { useParams } from "react-router-dom";
+import { addToMyCart, decreaseCartQty } from "pages/CheckoutPage/features/cartSlice";
 import { useDispatch } from "react-redux";
-import { addToMyCart ,decreaseCartQty} from "pages/CheckoutPage/features/cartSlice";
+
+/* 
 
 function SlideTransition(props) {
   return <Slide direction="down" {...props} />;
-}
+} */
 
 const ProductDetailWrapper = styled(Box)(({ theme }) => ({
   display: "flex",
@@ -68,34 +67,17 @@ function ProductDetailPage({ open, onClose }) {
 
   if (loading) return <p> Loading... </p>;
   if (error) return <p>Something Went Wrong</p>;
-  // const { loading, error, data } = useQuery(GET_PRODUCTS);
-  // console.log(data);
 
   return (
-
-    <Dialog
-      TransitionComponent={SlideTransition}
-      variant="permanant"
-      open={true}
-      fullScreen
-    >
-      {/* <DialogTitle
-        sx={{
-          background: Colors.secondary,
-        }}
+    <>
+      <Dialog
+        //TransitionComponent={SlideTransition}
+        variant="permanant"
+        open={true}
+        fullScreen
       >
-        <Box
-          display="flex"
-          alignItems="center"
-          justifyContent={"space-between"}
-        >
-          Product title
-          <IconButton href="/Products">
-            <CloseIcon />
-          </IconButton>
-        </Box>
-      </DialogTitle> */}
-      <DialogContent>
+
+        {/* <DialogContent> */}
         <ProductDetailWrapper display={"flex"} flexDirection={matches ? "column" : "row"}>
           <Product sx={{ mr: 4 }}>
             <ProductImage src={data.product.image[0].imageLink} alt={data.product.image.name} />
@@ -115,9 +97,7 @@ function ProductDetailPage({ open, onClose }) {
               alignItems="center"
               justifyContent="space-between"
             >
-             
-
-              <Button variant="contained" onClick={() => handlerAddToCart(data.product)}>Add to Cart</Button>
+              <Button variant="contained" sx={{ borderRadius: 28, backgroundColor: '#ffb2cc' }} onClick={() => handlerAddToCart(data.product)}>Add to Cart</Button>
             </Box>
             <Box
               display="flex"
@@ -139,9 +119,11 @@ function ProductDetailPage({ open, onClose }) {
             </Box>
           </ProductDetailInfoWrapper>
         </ProductDetailWrapper>
-      </DialogContent>
-    </Dialog>
+
+      </Dialog>
+      <Footer />
+    </>
   );
 }
 
-export default ProductDetailPage
+export default ProductDetailPage;

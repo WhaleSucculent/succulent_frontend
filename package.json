@@ -4,9 +4,11 @@
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.6.8",
+    "@azure/storage-blob": "^12.11.0",
     "@emailjs/browser": "^3.6.2",
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
+    "@googlemaps/react-wrapper": "^1.1.35",
     "@mui/icons-material": "^5.8.3",
     "@mui/material": "^5.8.4",
     "@mui/styled-engine-sc": "^5.8.0",
@@ -17,8 +19,8 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
     "@testing-library/user-event": "^13.5.0",
-    "antd": "^4.21.2",
     "axios": "^0.27.2",
+    "buffer": "^6.0.3",
     "formik": "^2.2.9",
     "formik-mui": "^4.0.0-alpha.3",
     "graphql": "^16.5.0",
@@ -40,6 +42,7 @@
     "redux-persist": "^6.0.0",
     "stripe": "^9.13.0",
     "styled-components": "^5.3.5",
+    "subscriptions-transport-ws": "^0.11.0",
     "swiper": "^8.2.4",
     "toast": "^0.3.47",
     "typescript": "^4.7.4",
@@ -84,5 +87,5 @@
     "redux-logger": "^3.0.6"
   },
   "lint-staged": {},
-  "proxy": "http://succulentbackend.azurewebsites.net:5000"
+  "proxy": "http://127.0.0.1:5000"
 }
