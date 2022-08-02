@@ -19,6 +19,23 @@ const GET_ORDERS = gql`
       id
       orderDate
       orderStatus
+      customer{
+        id
+        firstName
+        lastName
+        email
+      }
+      shippingAddress{
+        apartment
+        city
+        state
+      }
+      billingAddress{
+        apartment
+        city
+        state
+      }
+      
     }
   }
 `
