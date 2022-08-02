@@ -90,6 +90,8 @@ function Sidebar(props) {
   const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
+    <>
+    
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar
@@ -162,6 +164,7 @@ function Sidebar(props) {
         </Typography>
       </Box>
     </Box>
+    </>
   );
 }
 

@@ -38,6 +38,26 @@ const REQUEST_RESET = gql`
     }
   }    
 `
-
-
-export { REGISTER_CUSTOMER, LOGIN_CUSTOMER, REQUEST_RESET }
+const DELETE_CUSTOMER = gql`
+    mutation deleteCustomer($id:ID!){
+      deleteCustomer(id:$id){
+        id
+        firstName
+        lastName
+        email
+      }
+    }
+`
+const UPDATE_CUSTOMER = gql`
+    mutation updateCustomer($id:ID!, $status:String!, $role:String!){
+      updateCustomer(id:$id, status:$status, role:$role){
+        id
+        firstName
+        lastName
+        status
+        role
+        email
+      }
+    }
+`
+export { REGISTER_CUSTOMER, LOGIN_CUSTOMER, REQUEST_RESET, DELETE_CUSTOMER, UPDATE_CUSTOMER}
