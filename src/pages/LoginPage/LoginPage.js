@@ -40,6 +40,7 @@ export const LoginPage = () => {
       localStorage.setItem(AUTH_TOKEN, loginCustomer.token);
       console.log("login")
       navigate('/');
+      window.location.reload();
     }
   } )
 
