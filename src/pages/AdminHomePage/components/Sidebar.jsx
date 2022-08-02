@@ -26,6 +26,7 @@ import Inventory from '../pages/Inventory';
 import Order from '../pages/Order';
 import { Link } from '@mui/material';
 import UserEdit from '../pages/UserEdit';
+import Home from '../pages/Home';
 const drawerWidth = 240;
 
 function Sidebar(props) {
@@ -155,6 +156,9 @@ function Sidebar(props) {
         sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
       >
         <Toolbar />
+        <Typography paragraph>
+          <Home/>
+        </Typography>
         <Typography paragraph>
           <Users/>
         </Typography>
