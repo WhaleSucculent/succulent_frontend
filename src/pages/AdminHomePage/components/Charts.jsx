@@ -8,53 +8,85 @@ import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 function Charts() {
     const data = [
         {
-          name: 'Page A',
+          name: 'Jan',
           uv: 4000,
           pv: 2400,
           amt: 2400,
         },
         {
-          name: 'Page B',
+          name: 'Feb',
           uv: 3000,
           pv: 1398,
           amt: 2210,
         },
         {
-          name: 'Page C',
+          name: 'Mar',
           uv: 2000,
           pv: 9800,
           amt: 2290,
         },
         {
-          name: 'Page D',
+          name: 'Apr',
           uv: 2780,
           pv: 3908,
           amt: 2000,
         },
         {
-          name: 'Page E',
+          name: 'May',
           uv: 1890,
           pv: 4800,
           amt: 2181,
         },
         {
-          name: 'Page F',
+          name: 'Jun',
           uv: 2390,
           pv: 3800,
           amt: 2500,
         },
         {
-          name: 'Page G',
+          name: 'Jul',
           uv: 3490,
           pv: 4300,
           amt: 2100,
         },
+        {
+          name: 'Aug',
+          uv: 1890,
+          pv: 4800,
+          amt: 2181,
+        },
+        {
+          name: 'Sep',
+          uv: 3490,
+          pv: 2300,
+          amt: 2100,
+        },
+        {
+          name: 'Oct',
+          uv: 2090,
+          pv: 4300,
+          amt: 2100,
+        },
+        {
+          name: 'Nov',
+          uv: 3000,
+          pv: 1398,
+          amt: 1210,
+        },
+        {
+          name: 'Dec',
+          uv: 3000,
+          pv: 8398,
+          amt: 2210,
+        },
       ];
 
   return (
-    <div className='chart'>Charts
-      <Grid container  spacing={2}>
-          <Grid item xs={15}>
+    <div>
+<Grid item xs={15} sm container>
+
+<Grid item xs={12} sm container>
+  <Grid item xs container direction="column" spacing={2}>
           <AreaChart width={1090} height={450} data={data}
   margin={{ top: 10, right: 10, left: 10, bottom: 10 }}>
   <defs>
@@ -76,6 +108,8 @@ function Charts() {
 </AreaChart>
 </Grid>
 </Grid>
+</Grid>
+
     </div>
   )
 }

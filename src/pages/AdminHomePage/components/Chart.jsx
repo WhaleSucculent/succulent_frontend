@@ -7,15 +7,19 @@ import React from 'react'
 function Chart() {
   return (
     <div>Chart
-        <Grid container spacing={3} columns={25} textAlign="center">
-  <Grid item xs={8}>
+
+<Grid item xs={15} sm container>
+          <Grid item xs container direction="column" spacing={20}>
+            <Grid item xs>
     <ListItem>  
     <Grid item xs>
          <Typography gutterBottom variant="h4" component="div" textAlign="center">
        Total Revanue
       </Typography>
+      <Typography >
  
        <CircularProgressbar value={69} text={"69%"}/>
+       </Typography>
      
       <Typography variant="h6" color="text.secondary" textAlign="center">
       Total sales made today
@@ -29,8 +33,10 @@ function Chart() {
       
       </ListItem>
   </Grid>
+  </Grid>
 
-  <Grid item xs={8}>
+  <Grid item xs container direction="column" spacing={20}>
+            <Grid item xs>
     <ListItem>  
           <Grid item xs>
          <Typography gutterBottom variant="h4" component="div" textAlign="center">
@@ -52,14 +58,17 @@ alignItems: "center" }} >
       </Grid>
       </ListItem>
   </Grid>
-  <Grid item xs={8}>
+  </Grid>
+
+ <Grid item xs container direction="column" spacing={20}>
+            <Grid item xs>
     <ListItem>  
     <Grid item xs>
          <Typography gutterBottom variant="h4" component="div" textAlign="center">
        Total Revanue
       </Typography>
  
-       <CircularProgressbar value={69} text={"69%"}/>
+       <CircularProgressbar value={57} text={"57%"}/>
      
       <Typography variant="h6" color="text.secondary" textAlign="center">
       Total sales made today
@@ -72,6 +81,7 @@ alignItems: "center" }} >
       </Grid>
       
       </ListItem>
+  </Grid>
   </Grid>
 
 </Grid>

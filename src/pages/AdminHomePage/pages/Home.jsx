@@ -71,6 +71,9 @@ function Home() {
         </Grid>
       </Grid>
       <Chart/>
+      <br></br>
+      <br></br>
+      <br></br>
       <Charts/>
     </div>
   )
