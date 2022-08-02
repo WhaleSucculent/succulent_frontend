@@ -68,7 +68,7 @@ export const RegisterPage = () => {
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  autoComplete="given-name"
+                  autoComplete="fisrt-name"
                   name="firstName"
                   required
                   fullWidth
@@ -88,7 +88,7 @@ export const RegisterPage = () => {
                   id="lastName"
                   label="Last Name"
                   name="lastName"
-                  autoComplete="family-name"
+                  autoComplete="last-name"
                   onChange={(e) => setFormState({
                     ...formState,
                     lastName: e.target.value
@@ -105,7 +105,7 @@ export const RegisterPage = () => {
                   autoComplete="email"
                   onChange={(e) => setFormState({
                     ...formState,
-                    firstName: e.target.value
+                    email: e.target.value
                   })}
                 />
               </Grid>
@@ -120,7 +120,7 @@ export const RegisterPage = () => {
                   autoComplete="new-password"
                   onChange={(e) => setFormState({
                     ...formState,
-                    firstName: e.target.value
+                    password: e.target.value
                   })}
                 />
               </Grid>

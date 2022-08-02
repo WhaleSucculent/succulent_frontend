@@ -25,8 +25,6 @@ function ProductCard({ product }) {
     dispatch(addToMyCart(product))
     //  navigate("/cart")
   };
-  console.log(product)
-
   return (
     <Card sx={{ maxWidth: 345 }}>
       <Link to={`products/${product.id}`} underline="none" >

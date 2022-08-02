@@ -14,6 +14,7 @@ import {
   MenuItem,
   InputBase,
   Badge,
+  Divider,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import AdbIcon from "@mui/icons-material/Adb";
@@ -24,9 +25,9 @@ import { logoimg } from "../assets/images/whale.png"
 import Link from "./Link";
 import { useMeQuery } from "queries/utilQueries";
 import Loading from "./Loading";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { client } from "graphql/apolloClient";
-
+import ChangeCircleOutlinedIcon from '@mui/icons-material/ChangeCircleOutlined';
 
 const pages = ["succulents", "growlights", "soil/rocks", "pots", "information"];
 const settings = ["Profile", "Account", "Orders"];
@@ -34,11 +35,13 @@ const settings = ["Profile", "Account", "Orders"];
 
 
 const ResponsiveAppBar = () => {
-  const { data } = useMeQuery();
+  const { data, loading, error } = useMeQuery();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const { cartTotalQty } = useSelector(state => state.cart);
+
   const navigate = useNavigate();
+  const location = useLocation();
 
 
   const handleOpenNavMenu = (event) => {
@@ -108,6 +111,9 @@ const ResponsiveAppBar = () => {
       },
     },
   }));
+
+  if (loading) return <div>Lo</div>
+  if (error) return <div>Lo</div>
 
 
   return (
@@ -250,9 +256,9 @@ const ResponsiveAppBar = () => {
             </Box>
 
             <Box sx={{ flexGrow: 0 }}>
-            {console.log(data)}
+              {console.log(data)}
               {console.log(data.email)}
-              {!data.me ? (<Link to={"login"} underline={"hover"} color={"black"}>
+              {!data?.me ? (<Link to={"login"} underline={"hover"} color={"black"}>
                 Sign In
               </Link>) : (<Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -279,6 +285,19 @@ const ResponsiveAppBar = () => {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
+                {console.log(location)}
+                {console.log(data.me)}
+                {data && data?.me?.role === "admin" && (
+                  <>
+                    <MenuItem >
+                      <Link to={"admin/product"} underline={"hover"} color={"black"} sx={{ display: 'flex', alignItems: "center", justifyItems: "center" }} >
+                        <ChangeCircleOutlinedIcon />
+                        <Typography textAlign="center"  >Admin</Typography>
+                      </Link>
+                    </MenuItem>
+                    <Divider />
+                  </>)}
+
                 {settings.map((setting) => (
                   <MenuItem key={setting} onClick={handleCloseUserMenu}>
                     <Link to={`${setting}`.toLowerCase()} underline={"hover"}>
@@ -286,6 +305,7 @@ const ResponsiveAppBar = () => {
                     </Link>
                   </MenuItem>
                 ))}
+                <Divider />
                 <MenuItem onClick={handleLogout}>
                   <Typography textAlign="center">Logout</Typography>
                 </MenuItem>

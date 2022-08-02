@@ -36,7 +36,7 @@ export const LoginPage = () => {
       password: formState.password
     },
     onCompleted: ({ loginCustomer, data }) => {
-      console.log(data)
+      console.log(loginCustomer)
       localStorage.setItem(AUTH_TOKEN, loginCustomer.token);
       console.log("login")
       navigate('/');

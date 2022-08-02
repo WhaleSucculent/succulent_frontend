@@ -72,13 +72,15 @@ function App() {
             </Route>
             <Route path="cart" element={<CheckoutCart />} />
             <Route path="checkout" element={<CheckoutPage />} />
+            <Route path="checkout/*" element={<CheckoutPage />} />
             <Route path="payment" element={<PaymentPage />} />
             <Route path="profile" element={<UserProfilePage />} />
             <Route path="contact" element={<ContactPage />} />
             <Route path="loading" element={<Loading />} />
+            <Route path="privacy" element={<Privacy />} />
           </Route>
-          {data.role === "admin" && (
-            <Route path="/admin" >
+          {data?.me?.role === "admin" && (
+            <Route path="/admin" element={<AdminHeader />}>
               <Route path="home" element={<AdminHomePage />} />
               <Route path="product" element={<AdminProductPage />} />
               <Route path="order" element={<AdminOrderPage />} />
@@ -86,18 +88,9 @@ function App() {
             </Route>
           )}
 
-          <Route path="checkout/*" element={<CheckoutPage />} />
-          <Route path="payment" element={<PaymentPage />} />
-          <Route path="profile" element={<UserProfilePage />} />
-          <Route path="/admin" element={<AdminHeader />}>
-            <Route path="home" element={<AdminHomePage />} />
-            <Route path="product" element={<AdminProductPage />} />
 
-            <Route path="order" element={<AdminOrderPage />} />
-            <Route path="user" element={<AdminUserPage />} />
-          </Route>
-          <Route path="*" element={<NotFound />} />
-          <Route path="privacy" element={<Privacy />} />
+
+
         </Routes>
       </BrowserRouter>
 
