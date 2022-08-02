@@ -55,8 +55,8 @@ function Charts() {
     <div className='chart'>Charts
       <Grid container  spacing={2}>
           <Grid item xs={15}>
-          <AreaChart width={990} height={250} data={data}
-  margin={{ top: 10, right: 10, left: 100, bottom: 10 }}>
+          <AreaChart width={1090} height={450} data={data}
+  margin={{ top: 10, right: 10, left: 10, bottom: 10 }}>
   <defs>
     <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
       <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8}/>
