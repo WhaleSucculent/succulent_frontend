@@ -13,4 +13,13 @@ const ORDER_DETAILS = gql`
   }
 `;
 
-export { ORDER_DETAILS };
+const GET_ORDERS = gql`
+  query getOrders {
+    orders{
+      id
+      orderDate
+      orderStatus
+    }
+  }
+`
+export { ORDER_DETAILS, GET_ORDERS };

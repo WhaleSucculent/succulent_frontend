@@ -3,39 +3,49 @@ import { gql } from "@apollo/client";
 const GET_CUSTOMERS = gql`
    query getCustomers{
       customers{
-         id
-         email
-         firstName
-         lastName
-         orders{
-            id
-            shippingAddress{
-              firstName
-              lastName
-              apartment
-            }
-            billingAddress{
-              firstName
-              lastName
-              city
-            }
-            orderDate
-            orderStatus
-            productsInCart{
-              qty
-              price
-            }
-         }
-				addresses{
-          firstName
-          city
-          lastName
+        id
+        email
+        firstName
+        lastName
+        status
+        role
+        orders{
+           id
+           shippingAddress{
+             firstName
+             lastName
+             apartment
+             city
+             country
+             state
+           }
+           billingAddress{
+             firstName
+             lastName
+             city
+           }
+           orderDate
+           orderStatus
+           productsInCart{
+             qty
+             price
+             product{
+               name
+               description
+               
+             }
+           }
         }
-  creditCards{
-    cardNo
-    holderName
-    expirationDate
-  }
+       addresses{
+         firstName
+         city
+         lastName
+       }
+ creditCards{
+   cardNo
+   holderName
+   expirationDate
+ }
       }
    }
 `

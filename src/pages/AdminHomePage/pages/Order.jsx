@@ -13,6 +13,8 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import { useQuery } from '@apollo/client';
+import { GET_ORDERS } from '../../../queries/orderDetails';
 
 function createData(name, calories, fat, carbs, protein, price) {
   return {
@@ -134,12 +136,18 @@ const rows = [
 ];
 
 export default function Order() {
+  const {loading, error, data} = useQuery(GET_ORDERS);
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error :(</p>;
   return (
-    <TableContainer component={Paper}>
+    <div>
+    {
+        !loading && !error &&(
+          <TableContainer component={Paper}>
           <Typography><b>Oreder History</b></Typography>
       <Table aria-label="collapsible table">
         <TableHead>
-          <TableRow>
+          <TableRow sx={{backgroundColor:'#5e9af2'}}>
             <TableCell />
             <TableCell>Customer</TableCell>
             <TableCell align="right">Calories</TableCell>
@@ -154,6 +162,11 @@ export default function Order() {
           ))}
         </TableBody>
       </Table>
+        
+
     </TableContainer>
+        )
+}
+</div>
   );
 }
