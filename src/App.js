@@ -14,7 +14,7 @@ import AdminHomePage from "pages/AdminHomePage/AdminHomePage";
 import AdminHeader from "pages/AdminHomePage/components/Sidebar";
 import AdminProductPage from "pages/AdminHomePage/pages/Inventory";
 import AdminOrderPage from "pages/AdminHomePage/pages/Order";
-import AdminUserPage from "pages/AdminHomePage/pages/Users";
+import AdminUserListPage from "pages/AdminHomePage/pages/Users";
 import CollectionsPage from "pages/CollectionsPage/CollectionsPage";
 
 import HeaderFooter from "components/HeaderFooter";
@@ -38,14 +38,13 @@ import Loading from "components/Loading";
 
 function App() {
   const { data, loading, error } = useMeQuery()
-  
+
 
   if (loading) return <div></div>
   if (error) return <div>Error!</div>
+
   return (
     <div className="App">
-      {console.log(data)}
-
       <BrowserRouter>
         <ToastContainer />
         <Routes>
@@ -84,7 +83,7 @@ function App() {
               <Route path="home" element={<AdminHomePage />} />
               <Route path="product" element={<AdminProductPage />} />
               <Route path="order" element={<AdminOrderPage />} />
-              <Route path="user" element={<AdminUserPage />} />
+              <Route path="user" element={<AdminUserListPage />} />
             </Route>
           )}
 
@@ -93,9 +92,9 @@ function App() {
 
         </Routes>
       </BrowserRouter>
-
     </div>
-  );
+  )
 }
+
 
 export default App;

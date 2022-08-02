@@ -21,6 +21,7 @@ import Switch from '@mui/material/Switch';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
+import { Button } from '@mui/material';
 
 function createData(name, id, type, qty, price,status) {
   return {
@@ -178,6 +179,11 @@ const EnhancedTableToolbar = (props) => {
   const { numSelected } = props;
 
   return (
+    <div>
+          <Typography align='left'>
+        <Button variant="contained" color="success">Add New Product
+        </Button>
+      </Typography>
     <Toolbar
       sx={{
         pl: { sm: 2 },
@@ -187,7 +193,7 @@ const EnhancedTableToolbar = (props) => {
             alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
         }),
       }}
-    >
+    > 
       {numSelected > 0 ? (
         <Typography
           sx={{ flex: '1 1 100%' }}
@@ -206,6 +212,7 @@ const EnhancedTableToolbar = (props) => {
         >
          Product Inventory
         </Typography>
+       
       )}
 
       {numSelected > 0 ? (
@@ -222,6 +229,7 @@ const EnhancedTableToolbar = (props) => {
         </Tooltip>
       )}
     </Toolbar>
+    </div>
   );
 };
 
