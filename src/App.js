@@ -16,7 +16,7 @@ import AdminHomePage from "pages/AdminHomePage/AdminHomePage";
 import AdminHeader from "pages/AdminHomePage/components/Sidebar";
 import AdminProductPage from "pages/AdminHomePage/pages/Inventory";
 import AdminOrderPage from "pages/AdminHomePage/pages/Order";
-import AdminUserPage from "pages/AdminHomePage/pages/Users";
+import AdminUserListPage from "pages/AdminHomePage/pages/Users";
 import CollectionsPage from "pages/CollectionsPage/CollectionsPage";
 
 import HeaderFooter from "components/HeaderFooter";
@@ -88,19 +88,19 @@ function App() {
               <Route path="product" element={<AdminProductPage />} />
               
               <Route path="order" element={<AdminOrderPage />} />
-              <Route path="user" element={<AdminUserPage />} />
+              <Route path="user" element={<AdminUserListPage />} />
             </Route>
             <Route path="checkout/*" element={<CheckoutPage />} />
             <Route path="payment" element={<PaymentPage />} />
             <Route path="profile" element={<UserProfilePage />} />
-            <Route path="/admin" element={<AdminHeader />}>
+            {/* <Route path="/admin" element={<AdminHeader />}>
               <Route path="home" element={<AdminHomePage />} />
               <Route path="product" element={<AdminProductPage />} />
              
               <Route path="order" element={<AdminOrderPage />} />
               <Route path="user" element={<AdminUserPage />} />
             </Route>
-            <Route path="*" element={<NotFound />} />
+            <Route path="*" element={<NotFound />} /> */}
             <Route path="privacy" element={<Privacy />} />
           </Routes>
         </BrowserRouter>

@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
-import { Typography } from '@mui/material';
-
+import {  Button, Typography } from '@mui/material';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import EditIcon from '@mui/icons-material/Edit';
 const columns = [
   { field: 'id', headerName: 'ID', width: 70 },
   { field: 'firstName', headerName: 'First name', width: 130 },
@@ -26,6 +27,30 @@ const columns = [
     headerName: 'Status',
     width: 160,
   },
+  {
+    field: 'action',
+    headerName: 'Action',
+    width: 190,
+    renderCell:(params)=>{
+      return(
+        <div>
+          <Button variant="contained" className='userListEdit'>Edit</Button>
+          <Button variant="outlined"className='userListDelete'>Delete</Button>
+        </div>
+      )
+    }
+  },
+  {
+    field: 'note',
+    headerName: 'Note',
+    width: 170,
+    renderCell:(params)=>{
+      return(
+        <div>
+        <EditIcon/>
+        </div>
+      )
+  }},
 ];
 
 const rows = [
