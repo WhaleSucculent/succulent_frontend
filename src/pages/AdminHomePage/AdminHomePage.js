@@ -5,7 +5,7 @@ import Home from './pages/Home'
 const AdminHomePage = () => {
   return (
     <div>
-   
+     
       <Sidebar/>
     </div>
   )

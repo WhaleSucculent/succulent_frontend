@@ -24,6 +24,9 @@ import StorefrontIcon from '@mui/icons-material/Storefront';
 import Users from '../pages/Users';
 import Inventory from '../pages/Inventory';
 import Order from '../pages/Order';
+import { Link } from '@mui/material';
+import UserEdit from '../pages/UserEdit';
+import Home from '../pages/Home';
 const drawerWidth = 240;
 
 function Sidebar(props) {
@@ -53,7 +56,9 @@ function Sidebar(props) {
               <ListItemIcon>
                <PersonIcon /> 
               </ListItemIcon>
-              <ListItemText  primary="User"/>
+              <ListItemText  primary="User"><Link href="/admin/user" underline="none">
+  {'underline="none"'}
+</Link></ListItemText>
             </ListItemButton>
           </ListItem>
           <ListItem >
@@ -154,6 +159,9 @@ function Sidebar(props) {
       >
         <Toolbar />
         <Typography paragraph>
+          <Home/>
+        </Typography>
+        <Typography paragraph>
           <Users/>
         </Typography>
         <Typography paragraph>
@@ -161,6 +169,9 @@ function Sidebar(props) {
         </Typography>
         <Typography paragraph>
          <Order/>
+        </Typography>
+        <Typography paragraph>
+         <UserEdit/>
         </Typography>
       </Box>
     </Box>

@@ -98,5 +98,17 @@ const GET_CUSTOMER = gql`
    }
 `;
 
+const GET_ME = gql`
+  query getMe{
+    me {
+      id
+      email
+      firstName
+      lastName
+      role  
+    }
+}`
 
-export { GET_CUSTOMERS, GET_CUSTOMER };
+
+
+export { GET_CUSTOMERS, GET_CUSTOMER, GET_ME };

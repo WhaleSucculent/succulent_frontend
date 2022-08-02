@@ -16,6 +16,8 @@ import { useState } from 'react';
 import { AUTH_TOKEN } from './constants';
 import { useNavigate } from 'react-router-dom';
 import Link from 'components/Link';
+import { useMeQuery } from 'queries/utilQueries';
+import { CircularProgress } from '@mui/material';
 
 
 const theme = createTheme();
@@ -34,12 +36,18 @@ export const LoginPage = () => {
       password: formState.password
     },
     onCompleted: ({ loginCustomer, data }) => {
-      console.log(data)
+      console.log(loginCustomer)
       localStorage.setItem(AUTH_TOKEN, loginCustomer.token);
       console.log("login")
       navigate('/');
+      window.location.reload();
     }
   } )
+
+  const { data: meData, loading: meLoading, error:meError } = useMeQuery();
+
+  if (loading || meLoading) return <Box sx={{display: 'flex', alignItems: 'center'}}><CircularProgress  /></Box>
+  if (error || meError) return <div>Error!</div>
 
 
   return (
