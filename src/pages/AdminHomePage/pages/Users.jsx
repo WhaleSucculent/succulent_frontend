@@ -3,6 +3,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import {  Button, Typography } from '@mui/material';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import EditIcon from '@mui/icons-material/Edit';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 const columns = [
   { field: 'id', headerName: 'ID', width: 70 },
   { field: 'firstName', headerName: 'First name', width: 130 },
@@ -69,6 +70,10 @@ export default function Users() {
   return (
     <div style={{ height: 400, width: '100%' }}>
       <Typography>List of Users</Typography>
+      <Typography align='left'>
+        <Button variant="contained" color="success">Add New User
+        </Button>
+      </Typography>
       <DataGrid
         rows={rows}
         columns={columns}

@@ -25,6 +25,7 @@ import Users from '../pages/Users';
 import Inventory from '../pages/Inventory';
 import Order from '../pages/Order';
 import { Link } from '@mui/material';
+import UserEdit from '../pages/UserEdit';
 const drawerWidth = 240;
 
 function Sidebar(props) {
@@ -162,6 +163,9 @@ function Sidebar(props) {
         </Typography>
         <Typography paragraph>
          <Order/>
+        </Typography>
+        <Typography paragraph>
+         <UserEdit/>
         </Typography>
       </Box>
     </Box>
