@@ -11,6 +11,7 @@ import { AddressFormValues } from '../address/address-form-values.interface';
 import { CheckoutStepper } from '../checkout-stepper/checkout-stepper';
 import { Purchase } from './components/purchase';
 import  getCart  from '../../store/cartStore';
+import createDelivery from './components/post';
 
 import { ConfirmationProps, mapStateToProps } from './confirmation.props';
 
@@ -38,7 +39,15 @@ const Confirmation: FunctionComponent<ConfirmationProps> = ({
 }) => {
   const navigate = useNavigate();
   const submitForm = () => {
-    navigate('/checkout/order');
+    let output;
+    createDelivery('', deliveryForm.shippingMethod, '').then( res => {
+      //console.log(res._id);
+      output = res._id;
+      console.log('output is :'+output);
+      
+    }).then(v);
+    console.log('outside output is: '+output);
+    navigate('/checkout/order?id='+output);
   }
   const goBack = () => {
     navigate('/checkout/payment');
@@ -56,12 +65,6 @@ const Confirmation: FunctionComponent<ConfirmationProps> = ({
         </Typography>
         <Typography variant="body1" gutterBottom textAlign={"left"}>
           <AddressDisplay address={deliveryForm.shippingAddress} />
-        </Typography>
-        <Typography variant="h6" gutterBottom textAlign={"left"}>
-          {t('checkout.shippingCompany.title')}
-        </Typography>
-        <Typography variant="body1" gutterBottom textAlign={"left"}>
-          {t('checkout.shippingCompany.' + deliveryForm.shippingCompany)}
         </Typography>
         <Typography variant="h6" gutterBottom textAlign={"left"}>
           {t('checkout.shippingMethod.title')}
@@ -113,8 +116,7 @@ const Confirmation: FunctionComponent<ConfirmationProps> = ({
           >
             {t('checkout.previous')}
           </Button>
-          <Purchase price={getCart.cart.cartTotalAmount} tag={''}>
-            <Button
+          <Button
               type="submit"
               variant="contained"
               color="primary"
@@ -123,6 +125,8 @@ const Confirmation: FunctionComponent<ConfirmationProps> = ({
             >
               {t('checkout.paynow')}
             </Button>
+          <Purchase price={getCart.cart.cartTotalAmount} tag={''}>
+            
           </Purchase>
         </Box>
       </form>
