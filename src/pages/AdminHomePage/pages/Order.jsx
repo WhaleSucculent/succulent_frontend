@@ -19,7 +19,7 @@ export default function Order() {
   return (
     <div>
       {!loading && !error && (
-        <TableContainer component={Paper}>
+        <TableContainer sx={{marginTop:'5em'}} component={Paper}>
           <Typography>
             <b>Order History</b>
           </Typography>
