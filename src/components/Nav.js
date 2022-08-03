@@ -247,8 +247,8 @@ const ResponsiveAppBar = () => {
                   color: "#000000",
                 }}
               >
-                <Badge badgeContent={cartTotalQty} color="error">
-                  <Link to={"cart"} underline={"hover"} color={"black"}>
+                <Badge badgeContent={cartTotalQty} color="error" >
+                  <Link to={"cart"} underline={"hover"} color={"black"} sx={{ display: 'flex', alignItems: "center", justifyItems: "center" }}>
                     <ShoppingCartOutlinedIcon />
                   </Link>
                 </Badge>
