@@ -1,4 +1,4 @@
 export enum ShippingMethod {
-    standard = 'standard',
-    expedited = 'expedited',
+    standard = 'Standard',
+    expedited = 'Expedited',
   }
