@@ -1,45 +1,55 @@
-import {gql} from "@apollo/client";
+import { gql } from "@apollo/client";
 
-const GET_CUSTOMERS=gql`
+const GET_CUSTOMERS = gql`
    query getCustomers{
       customers{
-         id
-         email
-         firstName
-         lastName
-         orders{
-            id
-            shippingAddress{
-              firstName
-              lastName
-              apartment
-            }
-            billingAddress{
-              firstName
-              lastName
-              city
-            }
-            orderDate
-            orderStatus
-            productsInCart{
-              qty
-              price
-            }
-         }
-				addresses{
-          firstName
-          city
-          lastName
+        id
+        email
+        firstName
+        lastName
+        status
+        role
+        orders{
+           id
+           shippingAddress{
+             firstName
+             lastName
+             apartment
+             city
+             country
+             state
+           }
+           billingAddress{
+             firstName
+             lastName
+             city
+           }
+           orderDate
+           orderStatus
+           productsInCart{
+             qty
+             price
+             product{
+               name
+               description
+               
+             }
+           }
         }
-  creditCards{
-    cardNo
-    holderName
-    expirationDate
-  }
+       addresses{
+         firstName
+         city
+         lastName
+       }
+ creditCards{
+   cardNo
+   holderName
+   expirationDate
+ }
       }
    }
 `
-const GET_CUSTOMER=gql`
+const GET_CUSTOMER = gql`
    query getCustomer($id: ID!){
       customer(id: $id){
          id
@@ -52,6 +62,9 @@ const GET_CUSTOMER=gql`
               firstName
               lastName
               apartment
+              city
+              country
+              state
             }
             billingAddress{
               firstName
@@ -63,6 +76,11 @@ const GET_CUSTOMER=gql`
             productsInCart{
               qty
               price
+              product{
+                name
+                description
+                
+              }
             }
          }
 				addresses{
@@ -79,4 +97,18 @@ const GET_CUSTOMER=gql`
 
    }
 `;
-export {GET_CUSTOMERS,GET_CUSTOMER};
+
+const GET_ME = gql`
+  query getMe{
+    me {
+      id
+      email
+      firstName
+      lastName
+      role  
+    }
+}`
+
+
+
+export { GET_CUSTOMERS, GET_CUSTOMER, GET_ME };

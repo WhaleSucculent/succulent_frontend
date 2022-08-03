@@ -14,26 +14,35 @@ import {
   MenuItem,
   InputBase,
   Badge,
+  Divider,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import AdbIcon from "@mui/icons-material/Adb";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { useSelector } from "react-redux";
-import {logoimg } from "../assets/images/whale.png"
+import { logoimg } from "../assets/images/whale.png"
 import Link from "./Link";
+import { useMeQuery } from "queries/utilQueries";
+import Loading from "./Loading";
+import { useLocation, useNavigate } from "react-router-dom";
+import { client } from "graphql/apolloClient";
+import ChangeCircleOutlinedIcon from '@mui/icons-material/ChangeCircleOutlined';
 
-
-const pages = ["succulents", "growlights", "soil/rocks","pots","information"];
-const settings = ["Profile", "Account", "Orders", "Logout"];
+const pages = ["succulents", "growlights", "soil/rocks", "pots", "information"];
+const settings = ["Profile", "Account", "Orders"];
 
 
 
 const ResponsiveAppBar = () => {
+  const { data, loading, error } = useMeQuery();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const {cartTotalQty} =useSelector(state=>state.cart);
-  
+  const { cartTotalQty } = useSelector(state => state.cart);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -49,6 +58,13 @@ const ResponsiveAppBar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const handleLogout = () => {
+    localStorage.removeItem("auth-token");
+    client.clearStore();
+    window.location.reload();
+    navigate('/');
+  }
   const Search = styled("div")(({ theme }) => ({
     position: "relative",
     borderRadius: theme.shape.borderRadius,
@@ -96,6 +112,10 @@ const ResponsiveAppBar = () => {
     },
   }));
 
+  if (loading) return <div>Lo</div>
+  if (error) return <div>Lo</div>
+
+
   return (
     <>
       <AppBar position="static" style={{ background: "white" }}>
@@ -117,10 +137,11 @@ const ResponsiveAppBar = () => {
                 textDecoration: "none",
               }}
             >
-                 <img
+              <img
                 src="https://cdn-icons-png.flaticon.com/512/1808/1808120.png"
                 width={55}
                 height={55}
+                alt={"Whale Succulent Logo"}
               />
               <p>Whale Succulent</p>
             </Typography>
@@ -201,7 +222,7 @@ const ResponsiveAppBar = () => {
                 >
                   <Link to={`${page}`} underline={"hover"} color={"black"}>
                     {page}
-                  </Link>
+                  </Link>``
                 </Button>
               ))}
             </Box>
@@ -235,17 +256,19 @@ const ResponsiveAppBar = () => {
             </Box>
 
             <Box sx={{ flexGrow: 0 }}>
-              <Link to={"login"} underline={"hover"} color={"black"}>
+              {console.log(data)}
+              {console.log(data.email)}
+              {!data?.me ? (<Link to={"login"} underline={"hover"} color={"black"}>
                 Sign In
-              </Link>
-              <Tooltip title="Open settings">
+              </Link>) : (<Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Avatar
-                    alt="Remy Sharp"
-                    src=""
+                    alt={`${data.firstname} ${data.lastname}`}
+                    src={data.avatar}
                   />
                 </IconButton>
-              </Tooltip>
+              </Tooltip>)}
+
               <Menu
                 sx={{ mt: "45px" }}
                 id="menu-appbar"
@@ -262,11 +285,30 @@ const ResponsiveAppBar = () => {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
+                {console.log(location)}
+                {console.log(data.me)}
+                {data && data?.me?.role === "admin" && (
+                  <>
+                    <MenuItem >
+                      <Link to={"admin/product"} underline={"hover"} color={"black"} sx={{ display: 'flex', alignItems: "center", justifyItems: "center" }} >
+                        <ChangeCircleOutlinedIcon />
+                        <Typography textAlign="center"  >Admin</Typography>
+                      </Link>
+                    </MenuItem>
+                    <Divider />
+                  </>)}
+
                 {settings.map((setting) => (
                   <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center">{setting}</Typography>
+                    <Link to={`${setting}`.toLowerCase()} underline={"hover"}>
+                      <Typography textAlign="center">{setting}</Typography>
+                    </Link>
                   </MenuItem>
                 ))}
+                <Divider />
+                <MenuItem onClick={handleLogout}>
+                  <Typography textAlign="center">Logout</Typography>
+                </MenuItem>
               </Menu>
             </Box>
           </Toolbar>

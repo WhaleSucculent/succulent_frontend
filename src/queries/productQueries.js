@@ -6,6 +6,10 @@ const GET_PRODUCTS = gql`
       id
       name
       description
+      stock{
+        total
+      }
+      productStatus
       priceList {
         price
       }
@@ -64,5 +68,6 @@ const GET_ADMIN_PRODUCTS = gql`
     }
   }
 `;
+
 
 export { GET_PRODUCTS, GET_ADMIN_PRODUCTS, GET_PRODUCT };

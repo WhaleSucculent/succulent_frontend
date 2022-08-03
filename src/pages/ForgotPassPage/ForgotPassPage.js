@@ -6,49 +6,35 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useMutation } from '@apollo/client';
-import { LOGIN_CUSTOMER } from 'mutations/userMutations';
+import { LOGIN_CUSTOMER, REQUEST_RESET } from 'mutations/userMutations';
 import { useState } from 'react';
-import { AUTH_TOKEN } from './constants';
+
 import { useNavigate } from 'react-router-dom';
 import Link from 'components/Link';
-import { useMeQuery } from 'queries/utilQueries';
-import { CircularProgress } from '@mui/material';
-
 
 const theme = createTheme();
 
-export const LoginPage = () => {
+export const ForgotPassPage = () => {
   const navigate = useNavigate();
   const [formState, setFormState] = useState({
     email: '',
-    password: '',
     name: ''
   });
 
-  const [login, {loading, data, error}] = useMutation(LOGIN_CUSTOMER, {
+  const [requestReset, { loading, data, error }] = useMutation(REQUEST_RESET, {
     variables: {
       email: formState.email,
-      password: formState.password
     },
-    onCompleted: ({ loginCustomer, data }) => {
-      console.log(loginCustomer)
-      localStorage.setItem(AUTH_TOKEN, loginCustomer.token);
-      console.log("login")
-      navigate('/');
-      window.location.reload();
+    onCompleted: ({ requestReset, data }) => {
+      console.log(data)
+      // navigate('/');
     }
-  } )
-
-  const { data: meData, loading: meLoading, error:meError } = useMeQuery();
-
-  if (loading || meLoading) return <Box sx={{display: 'flex', alignItems: 'center'}}><CircularProgress  /></Box>
-  if (error || meError) return <div>Error!</div>
-
+  })
 
   return (
     <ThemeProvider theme={theme}>
@@ -63,12 +49,12 @@ export const LoginPage = () => {
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
+            <QuestionMarkIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Lost your password?
           </Typography>
-          <Box component="form"  noValidate sx={{ mt: 1 }}>
+          <Box component="form" noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
@@ -83,39 +69,18 @@ export const LoginPage = () => {
                 email: e.target.value
               })}
             />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-              onChange={(e) => setFormState({
-                ...formState,
-                password: e.target.value
-              })}
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
+
+
             <Button
               type="button"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              onClick={login}
+              onClick={requestReset}
             >
-              Sign In
+              Reset password
             </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link to={"/forgot"} variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
+            <Grid container justifyContent={'center'} >
               <Grid item>
                 <Link to={"/register"} variant="body2">
                   {"Don't have an account? Sign Up"}
@@ -128,3 +93,4 @@ export const LoginPage = () => {
     </ThemeProvider>
   );
 }
+
