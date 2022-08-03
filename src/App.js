@@ -80,15 +80,12 @@ function App() {
           </Route>
           {data?.me?.role === "admin" && (
             <Route path="/admin" element={<AdminHeader />}>
-              <Route path="home" element={<AdminHomePage />} />
+              <Route path="home" element={<AdminHomePage/>} />
               <Route path="product" element={<AdminProductPage />} />
               <Route path="order" element={<AdminOrderPage />} />
               <Route path="user" element={<AdminUserListPage />} />
             </Route>
           )}
-
-
-
 
         </Routes>
       </BrowserRouter>
