@@ -6,6 +6,10 @@ const GET_PRODUCTS = gql`
       id
       name
       description
+      stock{
+        total
+      }
+      productStatus
       priceList {
         price
       }

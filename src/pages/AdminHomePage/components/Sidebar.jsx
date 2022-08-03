@@ -37,7 +37,7 @@ function Sidebar(props) {
       <List>
         <ListItem >
           <Link to={'/admin/home'} color="inherit" underline='hover'>
-            <ListItemButton>
+            <ListItemButton >
               <ListItemIcon>
                 <HomeIcon />
               </ListItemIcon>
