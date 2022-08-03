@@ -27,13 +27,13 @@ export default function Order() {
             <TableHead>
               <TableRow sx={{ backgroundColor: "#5e9af2" }}>
           
-                <TableCell>OrderIds</TableCell>
-                <TableCell align="right">Customer Name</TableCell>
-                <TableCell align="right">Customer Email</TableCell>
-                <TableCell align="right">Order Date</TableCell>
-                <TableCell align="right">Order Status</TableCell>
-                <TableCell align="right">Total Amount</TableCell>
-                <TableCell align="right">Edit</TableCell>
+                <TableCell align="center">OrderIds</TableCell>
+                <TableCell align="center">Customer Name</TableCell>
+                <TableCell align="center">Customer Email</TableCell>
+                <TableCell align="center">Order Date</TableCell>
+                <TableCell align="center">Order Status</TableCell>
+                <TableCell align="center">Total Amount</TableCell>
+                <TableCell align="center">Edit</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
