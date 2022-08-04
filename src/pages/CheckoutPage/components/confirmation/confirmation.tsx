@@ -45,7 +45,7 @@ const Confirmation: FunctionComponent<ConfirmationProps> = ({
       output = res._id;
       console.log('output is :'+output);
       
-    }).then(v);
+    });
     console.log('outside output is: '+output);
     navigate('/checkout/order?id='+output);
   }
