@@ -7,7 +7,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import slidesrc from "assets/images/Slide.png";
-import slidesrc2 from "assets/images/slide2.jpg";
+import slidesrc2 from "assets/images/Slide2.jpg";
 import slidesrc3 from "assets/images/1.jpg";
 import slidesrc4 from "assets/images/2.jpg";
 

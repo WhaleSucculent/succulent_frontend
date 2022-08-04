@@ -9,6 +9,7 @@ const GET_PRODUCTS = gql`
       stock{
         total
       }
+      quantity
       productStatus
       priceList {
         price
@@ -36,6 +37,7 @@ const GET_PRODUCT = gql`
       review {
         stars
       }
+      quantity
       stock{
         total
       }
@@ -58,6 +60,7 @@ const GET_ADMIN_PRODUCTS = gql`
       review{ 
         stars
       }
+      quantity
       description
       productStatus
       image{

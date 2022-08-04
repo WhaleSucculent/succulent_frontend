@@ -25,7 +25,8 @@ import { Button } from '@mui/material';
 import {GET_PRODUCTS} from "../../../queries/productQueries";
 import {useMutation, useQuery} from "@apollo/client";
 import AddProduct from '../../AdminProductPage/AddProduct';
-
+import EditProduct from './EditProduct';
+import DeleteProduct from './DeleteProduct';
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
     return -1;
@@ -92,6 +93,18 @@ const headCells = [
     numeric: true,
     disablePadding: false,
     label: 'Status',
+  },
+  {
+    id: 'edit',
+    numeric: true,
+    disablePadding: false,
+    label: 'Edit',
+  },
+  {
+    id: 'delete',
+    numeric: true,
+    disablePadding: false,
+    label: 'Delete',
   },
 ];
 
@@ -338,9 +351,11 @@ export default function Inventory() {
                       </TableCell>
                       <TableCell align="right">{product.id}</TableCell>
                       <TableCell align="right">{product.description}</TableCell>
-                      <TableCell align="right">{product.stock[0].total}</TableCell>
+                      <TableCell align="right">{product.quantity}</TableCell>
                       <TableCell align="right">$ {product.priceList[0].price}</TableCell>
                       <TableCell align="right">{product.productStatus}</TableCell>
+                      <TableCell align="right"><EditProduct product={product}/></TableCell>
+                      <TableCell align="right"><DeleteProduct product={product}/></TableCell>
                     </TableRow>
                   );
                 })}
