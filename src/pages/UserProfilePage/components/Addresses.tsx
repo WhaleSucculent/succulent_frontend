@@ -25,7 +25,9 @@ export default function Addresses() {
   return (
     <Stack spacing={2}>
       {addresses.map((address, index) => (
-        <Address key={address.id} index={index} />
+        <Address key={address.id} index={index} onRemoveAddress={function (): void {
+              throw new Error("Function not implemented.");
+          } } />
       ))}
       <Button onClick={onAddAddress}>Add address</Button>
     </Stack>

@@ -8,9 +8,9 @@ import { freeze } from "immer";
 
 export interface AddressModel {
   readonly id: string;
-  readonly street: string;
-  readonly streetNumber: string;
-  readonly city: string;
+  street: string;
+  streetNumber: string;
+  city: string;
 }
 
 /**

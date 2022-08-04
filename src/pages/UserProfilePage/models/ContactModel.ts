@@ -9,8 +9,8 @@ import { AddressModel } from "./AddressModel";
  */
 
 interface ContactModel {
-  readonly person: PersonModel;
-  readonly addresses: AddressModel[];
+  person: PersonModel;
+  addresses: AddressModel[];
 }
 
 /**

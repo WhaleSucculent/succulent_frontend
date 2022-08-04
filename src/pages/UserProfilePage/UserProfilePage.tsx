@@ -13,7 +13,8 @@ import React from "react";
 const contact = getNewContactModel({
   person: getNewPersonModel({
     firstName: "John",
-    lastName: "Doe"
+    lastName: "Doe",
+    phone: "123456789"
   }),
   addresses: [
     getNewAddressModel({
@@ -54,11 +55,11 @@ export default function UserProfilePage() {
               return <TextField label="First Name" {...field} />;
             }}
           />
-          {/* <Controller
+          <Controller
             control={formMethods.control}
             name="person.lastName"
             render={({ field }) => <TextField label="Last Name" {...field} />}
-          /> */}
+          />
           <Controller
             control={formMethods.control}
             name="person.phone"
