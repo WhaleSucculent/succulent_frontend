@@ -9,6 +9,15 @@ const LOGIN_CUSTOMER = gql`
   }    
 `
 
+const LOGIN_WITH_GOOGLE = gql`
+  mutation loginWithGoogle($idToken: String!){
+    loginWithGoogle(idToken: $idToken){
+      userId
+      token
+    }
+  }
+`
+
 const REGISTER_CUSTOMER = gql`
   mutation registerCustomer($email: String!, $password: String!, $firstName: String!, $lastName: String!){
     registerCustomer(email: $email, password: $password, firstName: $firstName, lastName: $lastName){
@@ -76,4 +85,4 @@ const RESET_PASSWORD = gql`
     }
 `
 
-export { REGISTER_CUSTOMER, LOGIN_CUSTOMER, REQUEST_RESET, DELETE_CUSTOMER, UPDATE_CUSTOMER, RESET_PASSWORD }
+export { REGISTER_CUSTOMER, LOGIN_CUSTOMER, REQUEST_RESET, DELETE_CUSTOMER, UPDATE_CUSTOMER, RESET_PASSWORD, LOGIN_WITH_GOOGLE }

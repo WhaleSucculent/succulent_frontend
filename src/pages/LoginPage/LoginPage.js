@@ -11,7 +11,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useMutation } from '@apollo/client';
-import { LOGIN_CUSTOMER } from 'mutations/userMutations';
+import { LOGIN_CUSTOMER, LOGIN_WITH_GOOGLE } from 'mutations/userMutations';
 import { useEffect, useState } from 'react';
 import { AUTH_TOKEN } from './constants';
 import { useNavigate } from 'react-router-dom';
@@ -31,27 +31,30 @@ export const LoginPage = () => {
     name: ''
   });
 
-  const handleGoogleLogin = (res) => {
-    console.log("encoded JWT ID token: ", res.credential);
+  const [idToken, setIdToken] = useState('');
 
+  const handleGoogleLogin = (res) => {
+    console.log(res)
+    setIdToken(res.credential);
+    document.getElementById("signInDiv").hidden = true;
   }
 
   useEffect(() => {
     /* global google */
     google.accounts.id.initialize({
-      client_id: "751086376718-igv67ffi0long3cihe520gtea37v8f2c.apps.googleusercontent.com",
+      client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
       callback: handleGoogleLogin
     })
 
     google.accounts.id.renderButton(
       document.getElementById('signInDiv'),
-      {theme: "outline", size: "large"}
+      { theme: "outline", size: "large" }
     )
 
   }, [])
-  
 
-  const [login, {loading, data, error}] = useMutation(LOGIN_CUSTOMER, {
+
+  const [login, { loading, data, error }] = useMutation(LOGIN_CUSTOMER, {
     variables: {
       email: formState.email,
       password: formState.password
@@ -63,11 +66,25 @@ export const LoginPage = () => {
       navigate('/');
       window.location.reload();
     }
-  } )
+  })
 
-  const { data: meData, loading: meLoading, error:meError } = useMeQuery();
+  const [loginWithGoogle, {loading: googleLoading, data: googleData, error: googleError}] = useMutation(LOGIN_WITH_GOOGLE, {
+    variables: {
+      idToken: setIdToken
+    },
+    onCompleted: ({ loginWithGoogle, data }) => {
+      console.log(loginWithGoogle)
+      localStorage.setItem(AUTH_TOKEN, loginWithGoogle.token);
+      console.log("login")
+      navigate('/');
+      window.location.reload();
+    }
+  })
 
-  if (loading || meLoading) return <Box sx={{display: 'flex', alignItems: 'center'}}><CircularProgress  /></Box>
+
+  const { data: meData, loading: meLoading, error: meError } = useMeQuery();
+
+  if (loading || meLoading) return <Box sx={{ display: 'flex', alignItems: 'center' }}><CircularProgress /></Box>
   if (error || meError) return <div>Error!</div>
 
 
@@ -75,6 +92,7 @@ export const LoginPage = () => {
 
   return (
     <ThemeProvider theme={theme}>
+
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -91,7 +109,7 @@ export const LoginPage = () => {
           <Typography component="h1" variant="h5">
             Login
           </Typography>
-          <Box component="form"  noValidate sx={{ mt: 1 }}>
+          <Box component="form" noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
@@ -133,7 +151,9 @@ export const LoginPage = () => {
             >
               Sign In
             </Button>
-            <div id='signInDiv'></div>
+            <div id='signInDiv' ></div>
+            <Button onClick={loginWithGoogle}>google</Button>
+            {console.log(idToken)}
             <Grid container>
               <Grid item xs>
                 <Link to={"/forgot"} variant="body2">

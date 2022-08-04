@@ -223,7 +223,7 @@ const ResponsiveAppBar = () => {
                 >
                   <Link to={`${page}`} underline={"hover"} color={"black"}>
                     {page}
-                  </Link>``
+                  </Link>
                 </Button>
               ))}
             </Box>
