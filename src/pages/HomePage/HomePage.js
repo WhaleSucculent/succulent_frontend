@@ -14,6 +14,8 @@ import img from "assets/images/map.jpg";
 import { Link } from "react-router-dom";
 import Promotion from "components/Promotion";
 import Loading from "components/Loading";
+import SlideShow from "components/SlideShow";
+import Banner from "components/Banner";
 
 function Item(props) {
   const { sx, ...other } = props;
@@ -56,6 +58,8 @@ const HomePage = () => {
   return (
     <div>
       <Carousel />
+     
+      <Banner/>
       <Box padding={'20px'}>
         <Typography fontWeight={300} variant="h5">
           Featured Products
@@ -116,6 +120,7 @@ const HomePage = () => {
 
 
       </Box>
+      <SlideShow/>
       <Promotion />
     </div>
 
