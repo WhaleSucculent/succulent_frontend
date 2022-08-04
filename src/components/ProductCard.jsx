@@ -13,7 +13,7 @@ import { useDispatch } from "react-redux";
 
 import { useNavigate } from "react-router-dom";
 import { addToMyCart } from "pages/CheckoutPage/features/cartSlice";
-import { Grid} from "@mui/material";
+import { Container, Grid} from "@mui/material";
 import Link from "./Link";
 
 function ProductCard({ product }) {
@@ -26,9 +26,12 @@ function ProductCard({ product }) {
     //  navigate("/cart")
   };
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Container>
+    <Grid container spacing={{ xs: 2, md: 3 }} direction="row" >
+      <Grid item xs={15} md={20}>
+    <Card sx={{ maxWidth: 345}}>
       <Link to={`products/${product.id}`} underline="none" >
-        <CardMedia component="img" alt="succondese" height="200" src={product.image[0].imageLink} />
+        <CardMedia component="img" alt="succondese" height="300" src={product.image[0].imageLink} />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             {product.name}
@@ -39,12 +42,16 @@ function ProductCard({ product }) {
 
         </CardContent>
         <CardContent>
-          <Box sx={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)" }}>
+          {/* <Box sx={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)" }}> */}
+          <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+            <Grid item xs={3}>
             <Item>
-              <Typography variant="h5" color="text.secondary">
+              <Typography variant="h6" color="text.secondary">
                 ${product.priceList[0].price}
               </Typography>
             </Item>
+            </Grid>
+            <Grid item xs={3}>
             <Item>
               <Rating
                 name="half-rating-read"
@@ -53,7 +60,9 @@ function ProductCard({ product }) {
                 readOnly
               />
             </Item>
-          </Box>
+            </Grid>
+          </Grid>
+        
         </CardContent>
       </Link>
         <CardActions>
@@ -63,6 +72,10 @@ function ProductCard({ product }) {
           <Button variant="contained" sx={ { borderRadius: 28, backgroundColor:'#ffb2cc', justifyContent:'center' } } onClick={() => handlerAddToCart(product)}>Add to Cart</Button>
           </CardActions>
     </Card>
+    </Grid>
+    </Grid>
+    </Container>
+  
   );
 }
 function Item(props) {
