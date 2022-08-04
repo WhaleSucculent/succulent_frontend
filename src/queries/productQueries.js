@@ -6,14 +6,25 @@ const GET_PRODUCTS = gql`
       id
       name
       description
+      postDate
+      size{
+        length
+        width
+        radius
+        height
+      }
+      priceList{
+        price
+        postDate
+      }
       stock{
         total
       }
+      colors
       quantity
+      rare
+      category
       productStatus
-      priceList {
-        price
-      }
       review {
         stars
       }
@@ -31,15 +42,27 @@ const GET_PRODUCT = gql`
       id
       name
       description
-      priceList {
+      postDate
+      size{
+        length
+        width
+        radius
+        height
+      }
+      priceList{
         price
+        postDate
       }
-      review {
-        stars
-      }
-      quantity
       stock{
         total
+      }
+      colors
+      quantity
+      rare
+      category
+      productStatus
+      review {
+        stars
       }
       image{
         name
