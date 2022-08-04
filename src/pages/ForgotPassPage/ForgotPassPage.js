@@ -2,7 +2,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -11,9 +10,9 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useMutation } from '@apollo/client';
-import { LOGIN_CUSTOMER, REQUEST_RESET } from 'mutations/userMutations';
+import {  REQUEST_RESET } from 'mutations/userMutations';
 import { useState } from 'react';
-
+import Alert from '@mui/material/Alert';
 import { useNavigate } from 'react-router-dom';
 import Link from 'components/Link';
 
@@ -25,6 +24,7 @@ export const ForgotPassPage = () => {
     email: '',
     name: ''
   });
+  const [emailSent, setEmailSent] = useState(false);
 
   const [requestReset, { loading, data, error }] = useMutation(REQUEST_RESET, {
     variables: {
@@ -32,7 +32,8 @@ export const ForgotPassPage = () => {
     },
     onCompleted: ({ requestReset, data }) => {
       console.log(data)
-      // navigate('/');
+      console.log(requestReset)
+      setEmailSent(true);
     }
   })
 
@@ -69,8 +70,6 @@ export const ForgotPassPage = () => {
                 email: e.target.value
               })}
             />
-
-
             <Button
               type="button"
               fullWidth
@@ -87,6 +86,7 @@ export const ForgotPassPage = () => {
                 </Link>
               </Grid>
             </Grid>
+            {emailSent && (<Alert severity="success">Email is Sent! Please check your inbox.<Link to={"/"}>back to home</Link></Alert>)}
           </Box>
         </Box>
       </Container>

@@ -38,7 +38,6 @@ export const RegisterPage = () => {
     onCompleted: ({ registerCustomer,data }) => {
       console.log(data)
       localStorage.setItem(AUTH_TOKEN, registerCustomer.token);
-      console.log("login")
       navigate('/');
     },
     onError: (error) => {

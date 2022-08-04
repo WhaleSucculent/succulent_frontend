@@ -12,12 +12,13 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useMutation } from '@apollo/client';
 import { LOGIN_CUSTOMER } from 'mutations/userMutations';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AUTH_TOKEN } from './constants';
 import { useNavigate } from 'react-router-dom';
 import Link from 'components/Link';
 import { useMeQuery } from 'queries/utilQueries';
 import { CircularProgress } from '@mui/material';
+import { Google } from '@mui/icons-material';
 
 
 const theme = createTheme();
@@ -29,6 +30,26 @@ export const LoginPage = () => {
     password: '',
     name: ''
   });
+
+  const handleGoogleLogin = (res) => {
+    console.log("encoded JWT ID token: ", res.credential);
+
+  }
+
+  useEffect(() => {
+    /* global google */
+    google.accounts.id.initialize({
+      client_id: "751086376718-igv67ffi0long3cihe520gtea37v8f2c.apps.googleusercontent.com",
+      callback: handleGoogleLogin
+    })
+
+    google.accounts.id.renderButton(
+      document.getElementById('signInDiv'),
+      {theme: "outline", size: "large"}
+    )
+
+  }, [])
+  
 
   const [login, {loading, data, error}] = useMutation(LOGIN_CUSTOMER, {
     variables: {
@@ -50,6 +71,8 @@ export const LoginPage = () => {
   if (error || meError) return <div>Error!</div>
 
 
+
+
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
@@ -66,7 +89,7 @@ export const LoginPage = () => {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Login
           </Typography>
           <Box component="form"  noValidate sx={{ mt: 1 }}>
             <TextField
@@ -110,6 +133,7 @@ export const LoginPage = () => {
             >
               Sign In
             </Button>
+            <div id='signInDiv'></div>
             <Grid container>
               <Grid item xs>
                 <Link to={"/forgot"} variant="body2">
