@@ -13,7 +13,7 @@ function Footer() {
         <Grid container padding={10}>
           <Grid item xs={12} sm={4}>
             <Box>
-              <Link href="/" color="inherit" fontWeight="bold" fontSize="25px">
+              <Link href="/contact" color="inherit" fontWeight="bold" fontSize="25px">
                 Contact Us
               </Link>
             </Box>
