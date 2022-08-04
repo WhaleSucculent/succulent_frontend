@@ -61,9 +61,8 @@ function Category() {
           {/* <ImageListItemBar position="below" title={item.title}  /> */}
           <ImageListItemBar
               sx={{
-                background:
-                  'linear-gradient(to bottom, #00000032 0%, ' +
-                  '#00000028 70%, rgba(0,0,0,0) 100%)',
+                backgroundColor:'rgba(0,0,0, 0.6)',
+                  
               }}
               title={item.title}
               position="bottom"
@@ -71,7 +70,7 @@ function Category() {
                 <IconButton
                   sx={{ color: 'white' }}
                   aria-label={`star ${item.title}`}
-                
+                  variant="h6"
                 >
                 </IconButton>
               }

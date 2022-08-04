@@ -159,7 +159,6 @@ const handleIncreaseCartQty  =(cartItem)=>{
                         <Typography>
                         <span>${cart.cartTotalAmount}</span>
                         </Typography>
-                       
                       </Typography>
                      
                     </Grid>

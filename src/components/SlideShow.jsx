@@ -9,7 +9,7 @@ function SlideShow() {
         justifyContent:'center',
         width: '100%',
         height: '100%',
-        padding:'0px 20px',
+        padding:'0px 0px',
         backgroundColor:'	#F0FFFF',
 
     }));
@@ -43,7 +43,7 @@ function SlideShow() {
     }));
     const BannerImg =styled('img')((src)=>({
         src :`url(${src})`,
-       width: '50%',
+       width: '880px',
        
  
        
@@ -55,7 +55,7 @@ function SlideShow() {
         <BannerContainer>
             <BannerImg src='https://images.unsplash.com/photo-1599523444669-d5849add9ebf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80'/>
             <BannerContent>
-                <Typography variant='h6'>News</Typography>
+                <Typography variant='h6'>News header</Typography>
                 <BannerTitle variant='h1'>New Collections</BannerTitle>
                 <BannerDescription variant='subtitle'>Come with a wide range of shapes and colors, succulents and cacti stand out in common houseplants, particularly as low-maintenance types. As long as they get well-drained succulent soil, at least 6 hours of sunlight...</BannerDescription>
             </BannerContent>
