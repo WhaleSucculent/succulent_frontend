@@ -24,6 +24,7 @@ import { visuallyHidden } from '@mui/utils';
 import { Button } from '@mui/material';
 import {GET_PRODUCTS} from "../../../queries/productQueries";
 import {useMutation, useQuery} from "@apollo/client";
+import AddProduct from '../../AdminProductPage/AddProduct';
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -156,8 +157,7 @@ const EnhancedTableToolbar = (props) => {
   return (
     <div>
           <Typography align='left'>
-        <Button variant="contained" color="success">Add New Product
-        </Button>
+        <AddProduct />
       </Typography>
     <Toolbar
       sx={{
