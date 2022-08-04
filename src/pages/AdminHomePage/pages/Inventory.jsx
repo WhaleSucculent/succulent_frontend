@@ -22,33 +22,9 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
 import { Button } from '@mui/material';
-
-function createData(name, id, type, qty, price,status) {
-  return {
-    name,
-    id,
-    type,
-    qty,
-    price,
-    status,
-  };
-}
-
-const rows = [
-  createData('Cupcake', 305, 'succulent', 67, 4.3,'active'),
-  createData('Donut', 452, 'succulent', 51, 4.9,'active'),
-  createData('Eclair', 262, 'succulent', 24, 6.0,'active'),
-  createData('Frozen yoghurt', 159, 'succulent', 24, 4.0,'active'),
-  createData('Gingerbread', 356, 'succulent', 49, 3.9,'active'),
-  createData('Honeycomb', 408, 'succulent', 87, 6.5,'active'),
-  createData('Ice cream sandwich', 237, 'succulent', 37, 4.3,'active'),
-  createData('Jelly Bean', 375, 'succulent', 94, 0.0,'active'),
-  createData('KitKat', 518, 'succulent', 65, 7.0,'active'),
-  createData('Lollipop', 392, 'succulent', 98, 0.0,'active'),
-  createData('Marshmallow', 318, 'succulent', 81, 2.0,'active'),
-  createData('Nougat', 360, 'succulent', 9, 37.0,'active'),
-  createData('Oreo', 437, 'succulent', 63, 4.0,'active'),
-];
+import {GET_PRODUCTS} from "../../../queries/productQueries";
+import {useMutation, useQuery} from "@apollo/client";
+import AddProduct from '../../AdminProductPage/AddProduct';
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -85,7 +61,7 @@ const headCells = [
     id: 'name',
     numeric: false,
     disablePadding: true,
-    label: 'Product',
+    label: 'Product Name',
   },
   {
     id: 'id',
@@ -97,7 +73,7 @@ const headCells = [
     id: 'type',
     numeric: true,
     disablePadding: false,
-    label: 'Product Type',
+    label: 'Product Description',
   },
   {
     id: 'qty',
@@ -136,7 +112,7 @@ function EnhancedTableHead(props) {
             checked={rowCount > 0 && numSelected === rowCount}
             onChange={onSelectAllClick}
             inputProps={{
-              'aria-label': 'select all desserts',
+              'aria-label': 'select all products',
             }}
           />
         </TableCell>
@@ -181,8 +157,7 @@ const EnhancedTableToolbar = (props) => {
   return (
     <div>
           <Typography align='left'>
-        <Button variant="contained" color="success">Add New Product
-        </Button>
+        <AddProduct />
       </Typography>
     <Toolbar
       sx={{
@@ -238,13 +213,20 @@ EnhancedTableToolbar.propTypes = {
 };
 
 export default function Inventory() {
+
+  const {loading, error, data} = useQuery(GET_PRODUCTS);
+
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error :(</p>;
+  
 
+ 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
@@ -253,7 +235,7 @@ export default function Inventory() {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = rows.map((n) => n.name);
+      const newSelecteds = data.products.map((n) => n.name);
       setSelected(newSelecteds);
       return;
     }
@@ -297,11 +279,12 @@ export default function Inventory() {
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - data.products.length) : 0;
 
   return (
-    <Box sx={{ width: '100%' }}>
-      <Paper sx={{ width: '100%', mb: 2 }}>
+    <Box sx={{ width: '100%', marginTop:'5em' }}>
+      {!loading && !error && (
+        <Paper sx={{ width: '100%', mb: 2 }}>
         <EnhancedTableToolbar numSelected={selected.length} />
         <TableContainer>
           <Table
@@ -315,25 +298,25 @@ export default function Inventory() {
               orderBy={orderBy}
               onSelectAllClick={handleSelectAllClick}
               onRequestSort={handleRequestSort}
-              rowCount={rows.length}
+              rowCount={data.products.length}
             />
             <TableBody>
               {/* if you don't need to support IE11, you can replace the `stableSort` call with:
                  rows.slice().sort(getComparator(order, orderBy)) */}
-              {stableSort(rows, getComparator(order, orderBy))
+              {stableSort(data.products, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row, index) => {
-                  const isItemSelected = isSelected(row.name);
+                .map((product, index) => {
+                  const isItemSelected = isSelected(product.name);
                   const labelId = `enhanced-table-checkbox-${index}`;
 
                   return (
                     <TableRow
                       hover
-                      onClick={(event) => handleClick(event, row.name)}
+                      onClick={(event) => handleClick(event, product.name)}
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
-                      key={row.name}
+                      key={product.name}
                       selected={isItemSelected}
                     >
                       <TableCell padding="checkbox">
@@ -351,13 +334,13 @@ export default function Inventory() {
                         scope="row"
                         padding="none"
                       >
-                        {row.name}
+                        {product.name}
                       </TableCell>
-                      <TableCell align="right">{row.id}</TableCell>
-                      <TableCell align="right">{row.type}</TableCell>
-                      <TableCell align="right">{row.qty}</TableCell>
-                      <TableCell align="right">$ {row.price}</TableCell>
-                      <TableCell align="right">{row.status}</TableCell>
+                      <TableCell align="right">{product.id}</TableCell>
+                      <TableCell align="right">{product.description}</TableCell>
+                      <TableCell align="right">{product.stock[0].total}</TableCell>
+                      <TableCell align="right">$ {product.priceList[0].price}</TableCell>
+                      <TableCell align="right">{product.productStatus}</TableCell>
                     </TableRow>
                   );
                 })}
@@ -376,13 +359,15 @@ export default function Inventory() {
         <TablePagination
           rowsPerPageOptions={[5, 10, 25]}
           component="div"
-          count={rows.length}
+          count={data.products.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Paper>
+      )}
+      
       <FormControlLabel
         control={<Switch checked={dense} onChange={handleChangeDense} />}
         label="Dense padding"

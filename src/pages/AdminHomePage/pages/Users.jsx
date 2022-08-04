@@ -24,7 +24,7 @@ export default function Users() {
     <div>
       {
         !loading && !error && (
-          <TableContainer>
+          <TableContainer sx={{marginTop:"5em", display:'flex', justifyContent:"center", alignItems:"center"}}>
             <Table sx={{ minWidth: 650 }}>
 
               <TableHead>

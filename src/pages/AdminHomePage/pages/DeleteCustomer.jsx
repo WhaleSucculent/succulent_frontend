@@ -7,7 +7,7 @@ import { Button } from "@mui/material";
 function DeleteCustomer({customerId}) {
     const [deleteCustomer] = useMutation(DELETE_CUSTOMER, {
         
-        variables: { id: customerId.id },
+        variables: { id: customerId },
         refetchQueries: [{ query: GET_CUSTOMERS }],
       });
 

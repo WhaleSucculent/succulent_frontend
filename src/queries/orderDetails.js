@@ -35,6 +35,9 @@ const GET_ORDERS = gql`
         city
         state
       }
+      productsInCart{
+        price
+      }
       
     }
   }

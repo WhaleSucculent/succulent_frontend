@@ -27,7 +27,8 @@ const style = {
 function UpdateCustomer({ customer }) {
   const [status, setStatus] = useState(customer.status);
   const [role, setRole] = useState(customer.role);
-
+  const [open, setOpen] = useState(false);
+  
   const [editCustomer] = useMutation(UPDATE_CUSTOMER, {
     variables: { id:customer.id, status, role },
     refetchQueries: [{ query: GET_CUSTOMER, variables: {id:customer.id} }],
@@ -41,7 +42,7 @@ function UpdateCustomer({ customer }) {
 
   };
 
-  const [open, setOpen] = useState(false);
+  
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   return (
