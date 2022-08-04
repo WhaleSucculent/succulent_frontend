@@ -19,7 +19,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import AdbIcon from "@mui/icons-material/Adb";
 import SearchIcon from "@mui/icons-material/Search";
-import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { useSelector } from "react-redux";
 import { logoimg } from "../assets/images/whale.png"
 import Link from "./Link";
@@ -28,6 +28,7 @@ import Loading from "./Loading";
 import { useLocation, useNavigate } from "react-router-dom";
 import { client } from "graphql/apolloClient";
 import ChangeCircleOutlinedIcon from '@mui/icons-material/ChangeCircleOutlined';
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
 const pages = ["succulents", "growlights", "soil/rocks", "pots", "information"];
 const settings = ["Profile", "Account", "Orders"];
@@ -222,7 +223,7 @@ const ResponsiveAppBar = () => {
                 >
                   <Link to={`${page}`} underline={"hover"} color={"black"}>
                     {page}
-                  </Link>``
+                  </Link>
                 </Button>
               ))}
             </Box>
@@ -248,8 +249,9 @@ const ResponsiveAppBar = () => {
                 }}
               >
                 <Badge badgeContent={cartTotalQty} color="error">
-                  <Link to={"cart"} underline={"hover"} color={"black"}>
-                    <ShoppingCartOutlinedIcon />
+                  <Link to={"cart"} underline={"hover"} >
+                    <ShoppingCartOutlinedIcon 
+                    fontSize="large"/>
                   </Link>
                 </Badge>
               </Button>
@@ -261,10 +263,12 @@ const ResponsiveAppBar = () => {
               {!data?.me ? (<Link to={"login"} underline={"hover"} color={"black"}>
                 Sign In
               </Link>) : (<Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }} >
                   <Avatar
                     alt={`${data.firstname} ${data.lastname}`}
                     src={data.avatar}
+                    fontSize='large'
+                  
                   />
                 </IconButton>
               </Tooltip>)}
