@@ -1,4 +1,3 @@
-// THIS IS SAMPLE CODE ONLY - NOT MEANT FOR PRODUCTION USE
 import { BlobServiceClient } from '@azure/storage-blob';
 
 const sasToken = process.env.REACT_APP_AZURE_SASTOKEN // Fill string with your SAS token // expiry

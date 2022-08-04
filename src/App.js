@@ -29,12 +29,12 @@ import Privacy from "pages/ContactPage/Privacy";
 import PlaceOrder from "pages/CheckoutPage/components/order/PlaceOrder";
 
 import { LoginPage } from "pages/LoginPage/LoginPage";
-import ResetPassPage from "pages/ResetPassPage/ResetPassPage";
 import { ForgotPassPage } from "pages/ForgotPassPage/ForgotPassPage";
 import FileUpload from "components/fileUpload";
 import { RegisterPage } from "pages/RegisterPage/RegisterPage";
 import { useMeQuery } from "queries/utilQueries";
 import Loading from "components/Loading";
+import { ResetPassPage } from "pages/ResetPassPage/ResetPassPage";
 
 function App() {
   const { data, loading, error } = useMeQuery()

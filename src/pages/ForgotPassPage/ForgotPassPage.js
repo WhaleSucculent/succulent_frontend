@@ -12,7 +12,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useMutation } from '@apollo/client';
 import {  REQUEST_RESET } from 'mutations/userMutations';
 import { useState } from 'react';
-
+import Alert from '@mui/material/Alert';
 import { useNavigate } from 'react-router-dom';
 import Link from 'components/Link';
 
@@ -24,6 +24,7 @@ export const ForgotPassPage = () => {
     email: '',
     name: ''
   });
+  const [emailSent, setEmailSent] = useState(false);
 
   const [requestReset, { loading, data, error }] = useMutation(REQUEST_RESET, {
     variables: {
@@ -31,7 +32,8 @@ export const ForgotPassPage = () => {
     },
     onCompleted: ({ requestReset, data }) => {
       console.log(data)
-      // navigate('/');
+      console.log(requestReset)
+      setEmailSent(true);
     }
   })
 
@@ -68,8 +70,6 @@ export const ForgotPassPage = () => {
                 email: e.target.value
               })}
             />
-
-
             <Button
               type="button"
               fullWidth
@@ -86,6 +86,7 @@ export const ForgotPassPage = () => {
                 </Link>
               </Grid>
             </Grid>
+            {emailSent && (<Alert severity="success">Email is Sent! Please check your inbox.<Link to={"/"}>back to home</Link></Alert>)}
           </Box>
         </Box>
       </Container>
