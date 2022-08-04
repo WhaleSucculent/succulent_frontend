@@ -9,6 +9,7 @@ import { freeze } from "immer";
 export interface PersonModel {
   readonly firstName: string;
   readonly lastName: string;
+//   readonly phone: phone;
 }
 
 /**
@@ -17,7 +18,8 @@ export interface PersonModel {
 
 export const usePersonModelDefaults = (): PersonModel => ({
   firstName: "",
-  lastName: ""
+  lastName: "",
+//   phone: ""
 });
 
 /**

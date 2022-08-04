@@ -40,7 +40,7 @@ export default function UserProfilePage() {
     console.log("on submit called");
   }, []);
 
-  console.log("render App");
+  console.log("render UserProfilePage");
 
   return (
     <FormProvider {...formMethods}>
@@ -54,10 +54,15 @@ export default function UserProfilePage() {
               return <TextField label="First Name" {...field} />;
             }}
           />
-          <Controller
+          {/* <Controller
             control={formMethods.control}
             name="person.lastName"
             render={({ field }) => <TextField label="Last Name" {...field} />}
+          /> */}
+          <Controller
+            control={formMethods.control}
+            name="person.phone"
+            render={({ field }) => <TextField label="Phone" {...field} />}
           />
           <Typography variant="h5">Addresses</Typography>
           <Addresses />
