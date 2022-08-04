@@ -58,12 +58,13 @@ const HomePage = () => {
 
   return (
     <div>
+       <Banner/>
       <Carousel />
      
       
       <Promotion />
       <Category/>
-      <Banner/>
+     
       <Box padding={'20px'}>
         <Typography fontWeight={300} variant="h5">
         Featured Products
