@@ -8,7 +8,7 @@ import ProductCard from "components/ProductCard";
 import { Container } from "@mui/system";
 import Grid from '@mui/material/Grid';
 import { Height } from "@mui/icons-material";
-import { CircularProgress, Typography } from "@mui/material";
+import { CircularProgress, Divider, Typography } from "@mui/material";
 import ButtonBase from '@mui/material/ButtonBase';
 import img from "assets/images/map.jpg";
 import { Link } from "react-router-dom";
@@ -16,6 +16,7 @@ import Promotion from "components/Promotion";
 import Loading from "components/Loading";
 import SlideShow from "components/SlideShow";
 import Banner from "components/Banner";
+import Category from "components/Category";
 
 function Item(props) {
   const { sx, ...other } = props;
@@ -59,10 +60,15 @@ const HomePage = () => {
     <div>
       <Carousel />
      
+      
+      <Promotion />
+      <Category/>
       <Banner/>
       <Box padding={'20px'}>
         <Typography fontWeight={300} variant="h5">
-          Featured Products
+        Featured Products
+          <Divider/>
+         
 
         </Typography>
       </Box>
@@ -81,10 +87,14 @@ const HomePage = () => {
 
       </Container>
       <Box padding={'20px'}>
-        <Typography fontWeight={300} variant="h5">
-          Featured Categories
+        <Typography fontWeight={300} variant="h6">
+        
+        Featured Categories
+          <Divider/>
+       
         </Typography>
       </Box>
+         
       <Container>
         <Box sx={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gridTemplateRows: "repeat(1, minmax(1, 2))", Height: "20px" }}>
           {!loading &&
@@ -98,7 +108,8 @@ const HomePage = () => {
             ))}
         </Box>
       </Container>
-      <Box padding={7}>
+ 
+      {/* <Box padding={7}>
         <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'flex-start' }}>
           <img src={img} height={200} width={300} />
           <div>
@@ -119,9 +130,34 @@ const HomePage = () => {
         </div>
 
 
+      </Box> */}
+       <SlideShow/>
+       <br></br>
+       <Box padding={'20px'}>
+        <Typography fontWeight={300} variant="h6">
+        
+        New Collections
+          <Divider/>
+       
+        </Typography>
       </Box>
-      <SlideShow/>
-      <Promotion />
+       <Container>
+        <Box sx={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", Height: "20px" }}>
+          {!loading &&
+            !error &&
+            data.products.slice(0, 3).map((product) => (
+              <Grid container spacing={2} columns={12} key={product.id}>
+                <Item xs={4} lg={3}>
+                  <ProductCard key={product.id} product={product} />
+                </Item>
+              </Grid> 
+            ))}
+        </Box>
+
+      </Container>
+  
+     
+      
     </div>
 
   );
