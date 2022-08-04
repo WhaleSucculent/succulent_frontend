@@ -69,7 +69,7 @@ function App() {
               <Route index element={<HomePage />} />
               <Route path="login" element={<LoginPage />} />
               <Route path="register" element={<RegisterPage />} />
-              <Route path="products">
+              <Route path="products" >
                 <Route path=":id" element={<ProductDetailPage />} />
               </Route>
               <Route path="collections" element={<CollectionsPage />}>

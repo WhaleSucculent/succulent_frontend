@@ -1,9 +1,12 @@
 import Footer from "../../components/Footer";
 import {
+<<<<<<< Updated upstream
+=======
+  Container,
+>>>>>>> Stashed changes
   Slide,
   Box,
   IconButton,
-  DialogContent,
   Typography,
   Button,
   Stack,
@@ -56,6 +59,12 @@ function ProductDetailPage({ open, onClose }) {
   
   return (
     <>
+<<<<<<< Updated upstream
+=======
+    <Container>
+      
+      
+>>>>>>> Stashed changes
         <ProductDetailWrapper display={"flex"} flexDirection={matches ? "column" : "row"}>
           <Product sx={{ mr: 4 }}>
             <ProductImage src={data.product.image[0].imageLink} alt={data.product.image.name} />
@@ -99,6 +108,12 @@ function ProductDetailPage({ open, onClose }) {
             </Box>
           </ProductDetailInfoWrapper>
         </ProductDetailWrapper>
+<<<<<<< Updated upstream
+=======
+      
+    </Container>
+
+>>>>>>> Stashed changes
 </>
   );
 }
