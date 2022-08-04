@@ -28,7 +28,7 @@ import Loading from "./Loading";
 import { useLocation, useNavigate } from "react-router-dom";
 import { client } from "graphql/apolloClient";
 import ChangeCircleOutlinedIcon from '@mui/icons-material/ChangeCircleOutlined';
-import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
 
 const pages = ["succulents", "growlights", "soil/rocks", "pots", "information"];
 const settings = ["Profile", "Account", "Orders"];
@@ -258,10 +258,21 @@ const ResponsiveAppBar = () => {
             </Box>
 
             <Box sx={{ flexGrow: 0 }}>
+
+            <Button
+                onClick={handleCloseNavMenu}
+                sx={{
+                  my: 2,
+                  color: "white",
+                  display: "block",
+                  color: "#000000",
+                }}
+              >
               {console.log(data)}
               {console.log(data.email)}
               {!data?.me ? (<Link to={"login"} underline={"hover"} color={"black"}>
-                Sign In
+                <LoginOutlinedIcon fontSize="large"/>
+               
               </Link>) : (<Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }} >
                   <Avatar
@@ -272,6 +283,7 @@ const ResponsiveAppBar = () => {
                   />
                 </IconButton>
               </Tooltip>)}
+              </Button>
 
               <Menu
                 sx={{ mt: "45px" }}
