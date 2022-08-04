@@ -15,8 +15,8 @@
     "sameAsShipping": "My billing address is the same as my shipping address",
     "shippingMethod": {
       "title": "Shipping Method",
-      "standard": "Standard (expect to recive in 5-7 days)",
-      "expedited": "Expedited (expect to receive in 3-5 days)"
+      "standard": "Standard (5-7 days)",
+      "expedited": "Expedited (3-5 days)"
     },
     "shippingCompany":{
       "title":"Shipping Company",

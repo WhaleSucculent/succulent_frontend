@@ -75,12 +75,6 @@ const Delivery: FunctionComponent<DeliveryFormProps> = ({
             </DeliveryFormControl>
             <DeliveryFormControl>
               <Typography variant="h5" component="legend" gutterBottom>
-                {t('checkout.shippingCompany.title')}
-              </Typography>
-              <ShippingCompany />
-            </DeliveryFormControl>
-            <DeliveryFormControl>
-              <Typography variant="h5" component="legend" gutterBottom>
                 {t('checkout.shippingMethod.title')}
               </Typography>
               <ShippingMethod />

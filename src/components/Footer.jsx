@@ -8,7 +8,7 @@ import { GraphicEq } from "@mui/icons-material";
 
 function Footer() {
   return (
-    <Box bgcolor={Colors.primary} color="black">
+    <Box bgcolor={'#F0FFFF'} color="black">
       <Container maxWidth="25px">
         <Grid container padding={10}>
           <Grid item xs={12} sm={4}>

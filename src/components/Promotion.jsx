@@ -32,12 +32,12 @@ function Promotion() {
         <Box 
    
           component="section"
-          sx={{ display: 'flex', bgcolor: '#FFF0F5', overflow: 'hidden' }}
+          sx={{ display: 'flex', bgcolor: '#FFFAFA', overflow: 'hidden' }}
         >
           <Container
          
             sx={{
-              mt: 10,
+              mt: 2,
               mb: 15,
               position: 'relative',
               display: 'flex',
