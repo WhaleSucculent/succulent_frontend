@@ -25,7 +25,7 @@ import {logoimg } from "../assets/images/whale.png"
 
 
 const pages = ["Products", "Collections", "Contact"];
-const settings = ["Profile", "Account", "Orders", "Logout"];
+const settings = [<Link to='/profile'>Profile</Link>, "Account", <Link to='myorders'>Orders</Link>, "Logout"];
 
 
 

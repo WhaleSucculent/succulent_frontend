@@ -18,6 +18,7 @@ import AdminHeader from "components/AdminHeader";
 import AdminProductPage from "pages/AdminProductPage/AdminProductPage";
 import AdminStockPage from "pages/AdminStockPage/AdminStockPage";
 import AdminUserPage from "pages/AdminUserPage/AdminUserPage";
+import MyOrdersPage from "pages/MyOrdersPage";
 import CollectionsPage from "pages/CollectionsPage/CollectionsPage";
 import HeaderFooter from "components/HeaderFooter";
 // import Cart from "pages/CheckoutPage/Cart";
@@ -92,6 +93,7 @@ function App() {
             <Route path="checkout/*" element={<CheckoutPage />} />
             <Route path="payment" element={<PaymentPage />} />
             <Route path="profile" element={<UserProfilePage />} />
+            <Route path="myorders" element={<MyOrdersPage />} />
             <Route path="/admin" element={<AdminHeader />}>
               <Route path="home" element={<AdminHomePage />} />
               <Route path="product" element={<AdminProductPage />} />

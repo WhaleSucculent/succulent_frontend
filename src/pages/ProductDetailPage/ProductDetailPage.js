@@ -1,7 +1,5 @@
 import Footer from "../../components/Footer";
 import {
-  Dialog,
-  DialogTitle,
   Slide,
   Box,
   IconButton,
@@ -58,14 +56,6 @@ function ProductDetailPage({ open, onClose }) {
   
   return (
     <>
-    <Dialog
-      //TransitionComponent={SlideTransition}
-      variant="permanant"
-      open={true}
-      fullScreen
-    >
-      
-      {/* <DialogContent> */}
         <ProductDetailWrapper display={"flex"} flexDirection={matches ? "column" : "row"}>
           <Product sx={{ mr: 4 }}>
             <ProductImage src={data.product.image[0].imageLink} alt={data.product.image.name} />
@@ -109,9 +99,6 @@ function ProductDetailPage({ open, onClose }) {
             </Box>
           </ProductDetailInfoWrapper>
         </ProductDetailWrapper>
-      
-    </Dialog>
-<Footer />
 </>
   );
 }
