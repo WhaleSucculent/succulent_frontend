@@ -89,7 +89,7 @@ const PlaceOrder: FunctionComponent<ConfirmationProps> = ({
         <Typography variant="body1" gutterBottom textAlign={"left"}>
           {t('checkout.paymentMethod.' + paymentForm.paymentMethod)}
         </Typography>
-        {(paymentForm.paymentMethod == 'creditcard') && (
+        {(paymentForm.paymentMethod == 'CreditCard') && (
           <Typography variant="body1" gutterBottom textAlign={"left"}>
             {t('####-####-####-'+paymentForm.creditCard.cardNumber.substring(15,19))}
           </Typography>
