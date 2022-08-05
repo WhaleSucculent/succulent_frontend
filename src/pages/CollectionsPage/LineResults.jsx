@@ -68,13 +68,13 @@ function LineResults({length}) {
   return (
    
     <div>
-      <Stack direction="row" alignItem="center" justifyContent="space-between">
+      <Stack direction="row" alignItem="center" sx={{padding:'25px'}} justifyContent="space-between">
       <Center>
       <Typography variant="body" gutterBottom>{length} Results</Typography>
       </Center>
 
                     
-         <Center>
+         {/* <Center>
             <Search>
                 <SearchIconWrapper>
                   <SearchIcon />
@@ -85,7 +85,7 @@ function LineResults({length}) {
                 />
               </Search>
   
-          </Center>
+          </Center> */}
          <Center>
              <span>Sort By:</span>
              <SortBy />

@@ -15,7 +15,7 @@ export const Purchase = ({ price, tag, productIds, searchQuery, children }) => {
 			  cancelRoute: window.location.pathname,
 			  productIds: productIds,
 			  searchQuery: searchQuery,
-			  currentRoute: '/checkout/order',//window.location.pathname,
+			  currentRoute: '/',//window.location.pathname,
 			}),
 		  })
 		.then((res) => res.json())
