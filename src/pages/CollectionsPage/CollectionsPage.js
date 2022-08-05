@@ -53,7 +53,6 @@ const CollectionsPage = () => {
   alignItems="center" sx={{marginLeft:'50%', transform:'translateX(-20%)'}}>
     <PaginationComp />
     </Stack>
-      <CollectionMain />
 
     </div>
   );

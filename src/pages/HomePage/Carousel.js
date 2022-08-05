@@ -24,16 +24,16 @@ export default function App() {
         }} modules={[Navigation, Pagination]} className="mySwiper">
      
         <SwiperSlide>
-        <img src={slidesrc} alt="slid" width="100%" height="300px" />
+        <img src={slidesrc} alt="slid" width="100%" height="550px" />
         </SwiperSlide>
         <SwiperSlide>
-        <img src={slidesrc2} alt="slid" width="100%" height="300px" />
+        <img src={slidesrc2} alt="slid" width="100%" height="550px" />
         </SwiperSlide>
         <SwiperSlide>
-        <img src={slidesrc3} alt="slid" width="100%" height="300px" />
+        <img src={slidesrc3} alt="slid" width="100%" height="550px" />
         </SwiperSlide>
         <SwiperSlide>
-        <img src={slidesrc4} alt="slid" width="100%" height="300px" />
+        <img src={slidesrc4} alt="slid" width="100%" height="550px" />
 
         </SwiperSlide>
 

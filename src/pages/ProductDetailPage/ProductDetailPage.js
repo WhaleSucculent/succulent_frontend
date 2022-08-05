@@ -1,7 +1,6 @@
 import Footer from "../../components/Footer";
 import {
-  Dialog,
-  DialogTitle,
+  Container,
   Slide,
   Box,
   IconButton,
@@ -70,12 +69,7 @@ function ProductDetailPage({ open, onClose }) {
 
   return (
     <>
-      <Dialog
-        //TransitionComponent={SlideTransition}
-        variant="permanant"
-        open={true}
-        fullScreen
-      >
+      <Container>
 
         {/* <DialogContent> */}
         <ProductDetailWrapper display={"flex"} flexDirection={matches ? "column" : "row"}>
@@ -120,8 +114,7 @@ function ProductDetailPage({ open, onClose }) {
           </ProductDetailInfoWrapper>
         </ProductDetailWrapper>
 
-      </Dialog>
-      <Footer />
+      </Container>
     </>
   );
 }

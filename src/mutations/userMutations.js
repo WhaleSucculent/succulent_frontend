@@ -67,4 +67,13 @@ const UPDATE_CUSTOMER = gql`
       }
     }
 `
-export { REGISTER_CUSTOMER, LOGIN_CUSTOMER, REQUEST_RESET, DELETE_CUSTOMER, UPDATE_CUSTOMER}
+
+const RESET_PASSWORD = gql`
+    mutation resetPassword($token:String!, $password:String!){
+      resetPassword(token:$token, password:$password){
+        result
+      }
+    }
+`
+
+export { REGISTER_CUSTOMER, LOGIN_CUSTOMER, REQUEST_RESET, DELETE_CUSTOMER, UPDATE_CUSTOMER, RESET_PASSWORD }

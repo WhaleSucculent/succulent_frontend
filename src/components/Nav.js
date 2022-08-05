@@ -122,29 +122,30 @@ const ResponsiveAppBar = () => {
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
-            <Typography
-              variant="h6"
-              noWrap
-              component="a"
-              href="/"
-              sx={{
-                mr: 2,
-                display: { xs: "none", md: "flex" },
-                fontFamily: "monospace",
-                fontWeight: 700,
-                letterSpacing: ".3rem",
-                color: "black",
-                textDecoration: "none",
-              }}
-            >
-              <img
-                src="https://cdn-icons-png.flaticon.com/512/1808/1808120.png"
-                width={55}
-                height={55}
-                alt={"Whale Succulent Logo"}
-              />
-              <p>Whale Succulent</p>
-            </Typography>
+            <Link to="/">
+              <Typography
+                variant="h6"
+                noWrap
+                component="a"
+                sx={{
+                  mr: 2,
+                  display: { xs: "none", md: "flex" },
+                  fontFamily: "monospace",
+                  fontWeight: 700,
+                  letterSpacing: ".3rem",
+                  color: "black",
+                  textDecoration: "none",
+                }}
+              >
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/1808/1808120.png"
+                  width={55}
+                  height={55}
+                  alt={"Whale Succulent Logo"}
+                />
+                <p>Whale Succulent</p>
+              </Typography>
+            </Link>
 
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
               <IconButton
@@ -222,7 +223,7 @@ const ResponsiveAppBar = () => {
                 >
                   <Link to={`${page}`} underline={"hover"} color={"black"}>
                     {page}
-                  </Link>``
+                  </Link>
                 </Button>
               ))}
             </Box>
@@ -247,27 +248,32 @@ const ResponsiveAppBar = () => {
                   color: "#000000",
                 }}
               >
-                <Badge badgeContent={cartTotalQty} color="error">
-                  <Link to={"cart"} underline={"hover"} color={"black"}>
+                <Badge badgeContent={cartTotalQty} color="error" >
+                  <Link to={"cart"} underline={"hover"} color={"black"} sx={{ display: 'flex', alignItems: "center", justifyItems: "center" }}>
                     <ShoppingCartOutlinedIcon />
                   </Link>
                 </Badge>
               </Button>
             </Box>
 
+
             <Box sx={{ flexGrow: 0 }}>
-              {console.log(data)}
-              {console.log(data.email)}
-              {!data?.me ? (<Link to={"login"} underline={"hover"} color={"black"}>
-                Sign In
-              </Link>) : (<Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar
-                    alt={`${data.firstname} ${data.lastname}`}
-                    src={data.avatar}
-                  />
-                </IconButton>
-              </Tooltip>)}
+
+              {!data?.me ? (
+                <Button>
+                  <Link to={"login"} underline={"none"} color={"black"}>
+                    login
+                  </Link>
+                </Button>
+              ) : (
+                <Tooltip title="Open settings">
+                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    <Avatar
+                      alt={`${data.firstname} ${data.lastname}`}
+                      src={data.avatar}
+                    />
+                  </IconButton>
+                </Tooltip>)}
 
               <Menu
                 sx={{ mt: "45px" }}
