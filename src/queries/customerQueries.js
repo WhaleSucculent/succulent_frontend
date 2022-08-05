@@ -105,7 +105,19 @@ const GET_ME = gql`
       email
       firstName
       lastName
-      role  
+      role
+      phone
+      orders{
+        id
+        shippingAddress{
+          firstName
+          lastName
+          apartment
+          city
+          country
+          state
+        }
+      }
     }
 }`
 
