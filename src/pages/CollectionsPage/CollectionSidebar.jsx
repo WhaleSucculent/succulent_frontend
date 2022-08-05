@@ -10,7 +10,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
 
-function CollectionSidebar() {
+function CollectionSidebar({stockCheck, handleChange}) {
   return (
     <Stack direction = "column" alignItems="center" justifyContent="center" sx={{marginTop:'30px', marginLeft:'15px'}}>
       <TableContainer component={Paper} >
@@ -18,7 +18,7 @@ function CollectionSidebar() {
           <TableHead >
             <TableRow>
               <TableCell>
-                <OnlyInStock />
+                <OnlyInStock stockCheck={stockCheck} handleChange={handleChange}/>
               </TableCell>
             </TableRow>
           <TableRow>
