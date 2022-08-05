@@ -22,3 +22,10 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+
+#temp
+scene.glb
+scene1.glb
+scene2.glb
+scene3.glb
