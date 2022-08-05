@@ -50,7 +50,6 @@ function App() {
         <Routes>
           {/* Router for landing page */}
           <Route path="landing" element={<LandingPage />} />
-
           {/* Router for   */}
           <Route path="/" element={<HeaderFooter />}>
             <Route index element={<HomePage />} />
@@ -75,7 +74,6 @@ function App() {
             <Route path="payment" element={<PaymentPage />} />
             <Route path="profile" element={<UserProfilePage />} />
             <Route path="contact" element={<ContactPage />} />
-            <Route path="loading" element={<Loading />} />
             <Route path="privacy" element={<Privacy />} />
           </Route>
           {data?.me?.role === "admin" && (
@@ -86,6 +84,7 @@ function App() {
               <Route path="user" element={<AdminUserListPage />} />
             </Route>
           )}
+          <Route path="*" element={<ErrorPage />} />
 
         </Routes>
       </BrowserRouter>
