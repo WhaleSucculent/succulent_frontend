@@ -89,7 +89,7 @@ export const Payment: FunctionComponent<PaymentFormProps> = ({
             </Typography>
             <PaymentMethod />
           </PaymentFormControl>
-          {(values.paymentMethod == 'creditcard') && (
+          {(values.paymentMethod == 'CreditCard') && (
             <CreditCard
               formName="creditCard"
               errors={errors.creditCard}
