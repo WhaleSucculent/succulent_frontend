@@ -112,14 +112,6 @@ const GET_ME = gql`
         id
         orderDate
         orderStatus
-        productsInCart{
-          qty
-          price
-          product{
-            name
-            description
-          }
-        }
         shippingAddress{
           firstName
           lastName
@@ -127,6 +119,19 @@ const GET_ME = gql`
           city
           country
           state
+        }
+        billingAddress{
+          firstName
+          lastName
+          city
+        }
+        productsInCart{
+          qty
+          price
+          product{
+            name
+            description
+          }
         }
         
       }
