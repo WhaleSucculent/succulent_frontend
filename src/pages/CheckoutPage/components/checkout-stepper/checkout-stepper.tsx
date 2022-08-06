@@ -14,9 +14,9 @@ export const CheckoutStepper: FunctionComponent = () => {
   const [activeStep, setActiveStep] = useState<number>(0);
 
   useEffect(() => {
-    if (path.pathname==(CheckoutRoutePath.Delivery)) {
+    if (path.pathname=='/checkout' || path.pathname=='/checkout/delivery') {
       setActiveStep(0);
-    } else if (path.pathname==(CheckoutRoutePath.Payment)) {
+    } else if (path.pathname=='/checkout/payment') {
       setActiveStep(1);
     } else {
       setActiveStep(2);

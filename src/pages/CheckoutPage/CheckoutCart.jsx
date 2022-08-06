@@ -1,37 +1,62 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   TableContainer,
   Container,
   Card,
   Grid,
   Typography,
-  Divider,
   TableHead,
   Slide,
   Select,
   MenuItem,
   Button,
+  ButtonGroup,
   List,
   ListItem,
 } from "@mui/material";
-import { itemData } from "../CheckoutPage/fakedata";
+import Divider from '@mui/material/Divider';
+import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
-import { ClassNames } from "@emotion/react";
 import ClearIcon from "@mui/icons-material/Clear";
 import { ORDER_DETAILS } from "../../queries/orderDetails";
 import { useQuery } from "@apollo/client";
+import {useDispatch, useSelector } from "react-redux";
+import { addToMyCart, decreaseCartQty, getTotals, removeFromCart } from "./features/cartSlice";
+import {} from "react-router-dom";
+import Link from "components/Link";
+
 
 function CheckoutCart() {
-  const { loading, error, data } = useQuery(ORDER_DETAILS);
-  console.log(data);
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Something went wrong</p>;
+
+const cart= useSelector((state)=>state.cart);
+const dispatch = useDispatch()
+useEffect(()=>{
+dispatch(getTotals());
+},[cart,dispatch])
+
+const handleRemoveFromCart =(cartItem)=>{
+  dispatch(removeFromCart(cartItem));
+}
+const handleDecreaseCartQty  =(cartItem)=>{
+  dispatch(decreaseCartQty(cartItem))
+}
+const handleIncreaseCartQty  =(cartItem)=>{
+  dispatch(addToMyCart(cartItem))
+}
+
+  // //loading data from database
+  // const { loading, error,data } = useQuery(ORDER_DETAILS);
+  // console.log(data);
+  // if (loading) return <p>Loading...</p>;
+  // if (error) return <p>Something went wrong</p>;
+
 
   return (
     <div>
+       {/* here is shopping cart titlebar */}
       <div>
         <Container
           maxWidth="sm"
@@ -50,6 +75,29 @@ function CheckoutCart() {
         </Container>
       </div>
 
+
+{/*  shopping cartitem displays here*/}
+<div>            
+    {/* if cartItem.lendth ==0 display continue shopping page */}
+  {cart.cartItems.length === 0 ?(
+     <Grid container spacing={1}  justifyContent="center"
+     alignItems="center"  padding={30}>
+              <div className="cart-empty">
+              <b>your cart feels Sad and Empty <SentimentVeryDissatisfiedIcon/></b>
+              <div>
+              <div className="start-shopping">
+
+           
+              <Link to="/" underline="none">
+              <Button variant="contained" size="large"> Start Shopping Now</Button>
+ 
+</Link>
+</div>
+              </div>
+              </div>
+              </Grid>
+            ):(  
+              // if cartItem is not ==0, display shopping cart items.
       <React.Fragment>
         <Slide direction="up" in={true}>
           <Grid container spacing={1}>
@@ -68,38 +116,29 @@ function CheckoutCart() {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {data.products.map((item) => (
-                      <TableRow key={item.name}>
+                  {console.log(cart)}
+                  {cart.cartItems.length > 0 && cart.cartItems?.map((cartItem) => (
+                      <TableRow key={cartItem.name}>
                         <TableCell component="th" scope="row" align="center">
-                          {/* <img src={item.img} width={200} height={200} /> */}
+                          <img src={cartItem.image[0].imageLink} width={200} height={200} alt={cartItem.name} />
                           <br></br>
-                          <b>{item.name}</b>
+                          <b size='large'>{cartItem.name}</b>
                         </TableCell>
                         <TableCell align="center">
-                          <Select
-                            labelId="quantity-label"
-                            id="quantity"
-                            // onChange={(e)=>
-                            // quantityChangehandler(
-                            //     item,
-                            //     e.target.value
-                            //     )
-                            // }
-                            // value={item.quantity}
-                          >
-                            {[...Array(10).keys()].map((x) => (
-                              <MenuItem key={x + 1} value={x + 1}>
-                                {x + 1}
-                              </MenuItem>
-                            ))}
-                          </Select>
+                        
+                     
+                        <Button onClick={()=> handleDecreaseCartQty(cartItem)}>-</Button>
+                        <div>
+                        <p className="count">{cartItem.cartQty}</p>
+                        </div>
+                        <Button onClick={()=> handleIncreaseCartQty(cartItem)}>+</Button>
+                    
                         </TableCell>
                         <TableCell align="center">
-                          {item.priceList[0].price}
+                         $ {cartItem.priceList[0].price}
                         </TableCell>
                         <TableCell align="center">
-                          {/* <Button onClick={()=> removeFromCartHandler(item)} */}
-                          <Button style={{ color: "red" }}>
+                          <Button onClick={()=>handleRemoveFromCart(cartItem)}>
                             <ClearIcon />
                           </Button>
                         </TableCell>
@@ -110,32 +149,71 @@ function CheckoutCart() {
               </TableContainer>
             </Grid>
             <Grid item md={3} xs={12}>
-              <Card className={ClassNames.card}>
+      {/* here display the Subtotal card on the side */}
+              <Card>
                 <List>
                   <ListItem>
                     <Grid container>
-                      <Typography variant="h6">
-                        Subtotal:
-                        {/* Subtotal:{cart.data.subtotal.formatted+with_symbol} */}
+                      <Typography variant="h6" fontSize="20px">
+                        <b>Subtotal:</b>
+                        <Typography>
+                        <span>${cart.cartTotalAmount}</span>
+                        </Typography>
                       </Typography>
+                     
                     </Grid>
                   </ListItem>
                   <ListItem>
-                    {/* {cart.data.total_items >0 &&( */}
-                    <Button
-                      type="button"
-                      fullWidth
-                      variant="contained"
-                      color="primary"
-
-                      // onClick={processToCheckoutHandler}>
-                    >
-                      {" "}
-                      Check Out
-                    </Button>
+                  <Typography variant="h6" fontSize="20px">
+                        <b>Duties & Taxes: </b>
+                        <Typography>
+                        <span>${(cart.cartTotalAmount*0.05).toFixed(2)}</span>
+                        </Typography>
+                       
+                        
+                 
+                      </Typography>
                   </ListItem>
                   <ListItem>
+                  <Typography variant="h6" fontSize="20px">
+                        <b>Shipping:</b>
+                        <Typography>
+                        <p>To be calculated...</p>
+                        </Typography>
+                     
+                      </Typography>
+                  </ListItem>
+                  <Divider />
+                  <ListItem>
+                  <Typography variant="h6" textAlign="left" fontWeight="bold" fontSize="25px">
+                        <b>Total:</b>
+                        <Typography textAlign="right" fontWeight="bold" fontSize="25px">
+                       ${(cart.cartTotalAmount*1.05).toFixed(2)}
+                        </Typography>
+                       
+                        
+                 
+                      </Typography>
+                  </ListItem>
+                  <ListItem>
+               
                     <Button
+                    href="checkout"
+                    type="button"
+                    fullWidth
+                    variant="contained"
+                    color="primary"
+                    size="large"
+                  
+                    >
+                      Check Out
+                    </Button>
+                
+                  </ListItem>
+                  <ListItem>
+               
+                    <Button
+                      href="/"
                       variant="outlined"
                       fullWidth
                       color="primary"
@@ -143,6 +221,7 @@ function CheckoutCart() {
                     >
                       Continue Shopping
                     </Button>
+                 
                   </ListItem>
                 </List>
               </Card>
@@ -150,40 +229,13 @@ function CheckoutCart() {
           </Grid>
         </Slide>
       </React.Fragment>
-
-      {/* <div>
-                <TableContainer>
-                <Table sx={{ minWidth: 10 }} aria-label="custom pagination table">
-                <TableBody>
-               
-      {itemData.map((item) => (
-            <TableRow>
-              <TableCell component="th" scope="row" style={{width:50}} align='right'>
-              <ImageList sx={{ width: '60%', height: "60%" }} cols={1} rowWide={64}>
-              <img
-            src={`${item.img}?w=246&h=146&fit=crop&auto=format`}
-            srcSet={`${item.img}?w=100&h=100&fit=crop&auto=format&dpr=2 2x`}
-            alt={item.title}
-            loading="lazy"
-          />
-              </ImageList>
-              </TableCell>
-              <TableCell style={{ width: 160 }} align="left">
-                {item.title}
-                <br></br>
-                {item.price}
-              </TableCell>
-            </TableRow>
-          ))}
-  
-      
-
-                </TableBody>
-                </Table>
-                </TableContainer>
-             </div> */}
+      )}
+      </div>
     </div>
   );
 }
+
+
+
 
 export default CheckoutCart;

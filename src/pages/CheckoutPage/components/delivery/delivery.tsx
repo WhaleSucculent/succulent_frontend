@@ -11,6 +11,8 @@ import { useNavigate } from 'react-router-dom';
 import { AddressForm } from '../address/address-form';
 import { CheckoutStepper } from '../checkout-stepper/checkout-stepper';
 
+import { ShippingMethod } from '../delivery/components/shipping-method';
+import { SignupForm } from '../signup/signup-form';
 import { DeliveryFormValues } from './delivery-form-values.interface';
 import { deliveryFormSchema } from './delivery-form.schema';
 import {
@@ -18,9 +20,11 @@ import {
   mapDispatchToProps,
   mapStateToProps,
 } from './delivery.props';
+import { ShippingCompany } from './components/shipping-company';
 
 const DeliveryFormControl = styled(FormControl)(({ theme }) => ({
   display:'block',
+  textAlign:'left',
   marginTop: theme.spacing(2),
 }));
 
@@ -46,7 +50,7 @@ const Delivery: FunctionComponent<DeliveryFormProps> = ({
         initialValues={deliveryForm}
         onSubmit={submitForm}
       >
-        {({ errors, touched }) => (
+        {({ errors, touched, values }) => (
           <Form>
             <DeliveryFormControl>
               <Button
@@ -61,12 +65,29 @@ const Delivery: FunctionComponent<DeliveryFormProps> = ({
             </DeliveryFormControl>
             <DeliveryFormControl>
               <Typography variant="h5" component="legend" gutterBottom>
-                Shipping Address
+                {t('checkout.shippingAddress')}
               </Typography>
               <AddressForm
                 formName="shippingAddress"
                 errors={errors.shippingAddress}
                 touched={touched.shippingAddress}
+              />
+            </DeliveryFormControl>
+            <DeliveryFormControl>
+              <Typography variant="h5" component="legend" gutterBottom>
+                {t('checkout.shippingMethod.title')}
+              </Typography>
+              <ShippingMethod />
+            </DeliveryFormControl>
+            <DeliveryFormControl>
+              <Typography variant="h5" component="legend" gutterBottom>
+                {t('checkout.customerInfo')}
+              </Typography>
+              <SignupForm
+                formName="signup"
+                errors={errors.signup}
+                touched={touched.signup}
+                values={values.signup}
               />
             </DeliveryFormControl>
             <Box textAlign="right" mt={2}>

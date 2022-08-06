@@ -1,60 +1,43 @@
 import React, { useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
+
 // Import Swiper styles
 import "swiper/css";
-import "swiper/css/pagination";
 import "swiper/css/navigation";
-
-// import required modules
-import { Keyboard } from "swiper";
+import "swiper/css/pagination";
 import slidesrc from "assets/images/Slide.png";
 import slidesrc2 from "assets/images/Slide2.jpg";
+import slidesrc3 from "assets/images/1.jpg";
+import slidesrc4 from "assets/images/2.jpg";
 
-const Carousel = () => {
+
+// import required modules
+import { Navigation } from "swiper";
+import { Pagination } from "swiper";
+
+export default function App() {
   return (
     <>
-      <Swiper
-        autoplay={true}
-        slidesPerView={1}
-        spaceBetween={30}
-        keyboard={{
-          enabled: true,
-        }}
-        modules={[Keyboard]}
-        className="mySwiper"
-        effect="cards"
-      >
-        <SwiperSlide>
-          <img src={slidesrc} alt="slid" width={2000} height={500} />
+      <Swiper navigation={true} pagination={{
+          dynamicBullets: true,
+        }} modules={[Navigation, Pagination]} className="mySwiper">
+         <SwiperSlide>
+        <img src={slidesrc4} alt="slid" width="100%" height="550px" />
+
         </SwiperSlide>
         <SwiperSlide>
-          <img src={slidesrc2} alt="slid" width={2000} height={500} />
+        <img src={slidesrc} alt="slid" width="100%" height="550px" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={slidesrc} alt="slid" width={2000} height={500} />
+        <img src={slidesrc2} alt="slid" width="100%" height="550px" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={slidesrc2} alt="slid" width={2000} height={500} />
+        <img src={slidesrc3} alt="slid" width="100%" height="550px" />
         </SwiperSlide>
-        <SwiperSlide>
-          <img src={slidesrc} alt="slid" width={2000} height={500} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={slidesrc2} alt="slid" width={2000} height={500} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={slidesrc} alt="slid" width={2000} height={500} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={slidesrc2} alt="slid" width={2000} height={500} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={slidesrc} alt="slid" width={2000} height={500} />
-        </SwiperSlide>
+
+
       </Swiper>
     </>
   );
-};
-
-export default Carousel;
+}
