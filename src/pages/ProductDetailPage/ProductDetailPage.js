@@ -7,7 +7,7 @@ import {
   Button,
 } from "@mui/material";
 import styled from "@emotion/styled";
-import {  Product, ProductImage } from "./Product";
+import { Product, ProductImage } from "./Product";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
@@ -62,13 +62,12 @@ function ProductDetailPage({ open, onClose, setLoading }) {
   return (
     <>
       <Container margin="30px">
-
         {/* <DialogContent> */}
         <ProductDetailWrapper display={"flex"} flexDirection={matches ? "column" : "row"}>
           <Product sx={{ mr: 4 }}>
             <ProductImage src={data?.product.image[0].imageLink} alt={data?.product.image.name} />
           </Product>
-          <ProductImage src={data?.product.image[0].imageLink} sx={{gridTemplateColumns: "repeat(3, 1fr)"}}>
+          <ProductImage src={data?.product.image[0].imageLink} sx={{ gridTemplateColumns: "repeat(3, 1fr)" }}>
           </ProductImage>
           <ProductDetailInfoWrapper>
             <Typography sx={{ lineHeight: 2 }} variant="h4">
@@ -85,9 +84,9 @@ function ProductDetailPage({ open, onClose, setLoading }) {
               alignItems="center"
               justifyContent="space-between"
             >
-              <Box sx={{margin:'0 auto'}}>
-              <Button variant="contained" sx={{ borderRadius: 28, backgroundColor: '#ffb2cc' }} onClick={() => handlerAddToCart(data.product)}>Add to Cart</Button>
-            </Box>
+              <Box sx={{ margin: '0 auto' }}>
+                <Button variant="contained" sx={{ borderRadius: 28, backgroundColor: '#ffb2cc' }} onClick={() => handlerAddToCart(data.product)}>Add to Cart</Button>
+              </Box>
             </Box>
             {/* <Box
               display="flex"
@@ -112,6 +111,7 @@ function ProductDetailPage({ open, onClose, setLoading }) {
 
       </Container>
     </>
+
   );
 }
 
