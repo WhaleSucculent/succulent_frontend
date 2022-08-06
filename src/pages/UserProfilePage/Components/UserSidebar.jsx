@@ -60,6 +60,29 @@ function UserSidebar(props) {
           </Link>
         </ListItem>
         <Divider />
+        <ListItem >
+          <Link to={'/profile/payments'} color="inherit" underline='hover'>
+            <ListItemButton>
+              <ListItemIcon>
+              <BusinessIcon/>
+              </ListItemIcon>
+              <ListItemText primary="Address" />
+            </ListItemButton>
+          </Link>
+        </ListItem>
+        <Divider />
+        <ListItem >
+          <Link to={'/profile/payments'} color="inherit" underline='hover'>
+            <ListItemButton>
+              <ListItemIcon>
+              <PaymentIcon/>
+              </ListItemIcon>
+              <ListItemText primary="Payment" />
+            </ListItemButton>
+          </Link>
+        </ListItem>
+        <Divider />
+        <Divider />
       </List>
     </div>
   );
