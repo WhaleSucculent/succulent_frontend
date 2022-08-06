@@ -21,9 +21,9 @@ function Banner() {
     fontFamily: "monospace",
   }));
   const messages = [
-    "End of sping sale is on",
+    "End of spring sale is on",
     "Take 10% off of select items",
-    "Harry Up! From Aug 01 to Aug 27",
+    "Hurry Up! From Aug 01 to Aug 27",
   ];
 
   const [messageIndex, setMessageIndex] = useState(0);

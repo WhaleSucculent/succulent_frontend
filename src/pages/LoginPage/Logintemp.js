@@ -115,7 +115,7 @@ export default function LoginPage(props) {
                 sx={{ mt: 3, mb: 2 }}
 
               >
-                Login In
+                Login
               </Button>
               <Grid container>
                 <Grid item xs>

@@ -11,6 +11,7 @@ import { AddressFormValues } from '../address/address-form-values.interface';
 import { CheckoutStepper } from '../checkout-stepper/checkout-stepper';
 import { Purchase } from './components/purchase';
 import  getCart  from '../../store/cartStore';
+import  { createOrder, insertNewOrder }  from './components/post';
 
 import { ConfirmationProps, mapStateToProps } from './confirmation.props';
 
@@ -38,7 +39,48 @@ const Confirmation: FunctionComponent<ConfirmationProps> = ({
 }) => {
   const navigate = useNavigate();
   const submitForm = () => {
-    navigate('/checkout/order');
+    const products: string[] = [];
+    for(var i = 0; i < getCart.cart.cartTotalQty; i++) {
+      products[i] = getCart.cart.cartItems[i].id;
+      console.log(products[i]);
+    }
+
+    const tax = (getCart.cart.cartTotalAmount*0.05).toFixed(2);
+    const total = (getCart.cart.cartTotalAmount*1.05).toFixed(2);
+
+    insertNewOrder(
+      '',
+      deliveryForm.signup.email,
+      '',
+      '',
+      new Date(),
+      'unpaid',
+      products,
+      '',
+      '',
+      getCart.cart.cartTotalQty,
+      tax,
+      total,
+      '',
+      deliveryForm.shippingMethod,
+      '',
+      'Shipping',
+      deliveryForm.shippingAddress.firstName,
+      deliveryForm.shippingAddress.lastName,
+      deliveryForm.shippingAddress.addressLine1,
+      deliveryForm.shippingAddress.addressLine2,
+      deliveryForm.shippingAddress.city,
+      deliveryForm.shippingAddress.country,
+      deliveryForm.shippingAddress.provinceState,
+      deliveryForm.shippingAddress.zipPostalCode,
+      '','',paymentForm.paymentMethod,
+      new Date(),
+      getCart.cart.cartTotalAmount,
+      'Success',
+      paymentForm.creditCard.cardNumber
+    );
+    
+    navigate('/');
   }
   const goBack = () => {
     navigate('/checkout/payment');
@@ -56,12 +98,6 @@ const Confirmation: FunctionComponent<ConfirmationProps> = ({
         </Typography>
         <Typography variant="body1" gutterBottom textAlign={"left"}>
           <AddressDisplay address={deliveryForm.shippingAddress} />
-        </Typography>
-        <Typography variant="h6" gutterBottom textAlign={"left"}>
-          {t('checkout.shippingCompany.title')}
-        </Typography>
-        <Typography variant="body1" gutterBottom textAlign={"left"}>
-          {t('checkout.shippingCompany.' + deliveryForm.shippingCompany)}
         </Typography>
         <Typography variant="h6" gutterBottom textAlign={"left"}>
           {t('checkout.shippingMethod.title')}
@@ -91,7 +127,7 @@ const Confirmation: FunctionComponent<ConfirmationProps> = ({
         <Typography variant="body1" gutterBottom textAlign={"left"}>
           {t('checkout.paymentMethod.' + paymentForm.paymentMethod)}
         </Typography>
-        {(paymentForm.paymentMethod == 'creditcard') && (
+        {(paymentForm.paymentMethod == 'CreditCard') && (
           <Typography variant="body1" gutterBottom textAlign={"left"}>
             {t('####-####-####-'+paymentForm.creditCard.cardNumber.substring(15,19))}
           </Typography>
@@ -115,13 +151,13 @@ const Confirmation: FunctionComponent<ConfirmationProps> = ({
           </Button>
           <Purchase price={getCart.cart.cartTotalAmount} tag={''}>
             <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              endIcon={<ArrowRightAltIcon />}
-              size="large"
-            >
-              {t('checkout.paynow')}
+                type="submit"
+                variant="contained"
+                color="primary"
+                endIcon={<ArrowRightAltIcon />}
+                size="large"
+              >
+                {t('checkout.paynow')}
             </Button>
           </Purchase>
         </Box>

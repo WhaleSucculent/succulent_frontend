@@ -15,7 +15,7 @@ const AdminHomePage = () => {
           <Grid item xs container direction="column" spacing={2}>
             <Grid item xs>
               <Typography gutterBottom variant="h4" component="div">
-                Revanue
+                Revenue
               </Typography>
               <Typography variant="body2" gutterBottom>
                 <b>  $2,5562</b>

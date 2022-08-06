@@ -24,7 +24,10 @@ import { visuallyHidden } from '@mui/utils';
 import { Button } from '@mui/material';
 import {GET_PRODUCTS} from "../../../queries/productQueries";
 import {useMutation, useQuery} from "@apollo/client";
-
+import AddProduct from '../../AdminProductPage/AddProduct';
+import EditProduct from './EditProduct';
+import DeleteProduct from './DeleteProduct';
+import Loading from 'components/Loading';
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
     return -1;
@@ -92,6 +95,18 @@ const headCells = [
     disablePadding: false,
     label: 'Status',
   },
+  {
+    id: 'edit',
+    numeric: true,
+    disablePadding: false,
+    label: 'Edit',
+  },
+  {
+    id: 'delete',
+    numeric: true,
+    disablePadding: false,
+    label: 'Delete',
+  },
 ];
 
 function EnhancedTableHead(props) {
@@ -156,8 +171,7 @@ const EnhancedTableToolbar = (props) => {
   return (
     <div>
           <Typography align='left'>
-        <Button variant="contained" color="success">Add New Product
-        </Button>
+        <AddProduct />
       </Typography>
     <Toolbar
       sx={{
@@ -222,8 +236,8 @@ export default function Inventory() {
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :(</p>;
+  if (loading) return <Loading/>;
+  if (error) return <p>Error</p>;
   
 
  
@@ -338,9 +352,11 @@ export default function Inventory() {
                       </TableCell>
                       <TableCell align="right">{product.id}</TableCell>
                       <TableCell align="right">{product.description}</TableCell>
-                      <TableCell align="right">{product.stock[0].total}</TableCell>
+                      <TableCell align="right">{product.quantity}</TableCell>
                       <TableCell align="right">$ {product.priceList[0].price}</TableCell>
                       <TableCell align="right">{product.productStatus}</TableCell>
+                      <TableCell align="right"><EditProduct product={product}/></TableCell>
+                      <TableCell align="right"><DeleteProduct product={product}/></TableCell>
                     </TableRow>
                   );
                 })}
