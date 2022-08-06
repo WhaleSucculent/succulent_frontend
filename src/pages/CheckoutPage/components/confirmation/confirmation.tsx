@@ -150,17 +150,16 @@ const Confirmation: FunctionComponent<ConfirmationProps> = ({
           >
             {t('checkout.previous')}
           </Button>
-          <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              endIcon={<ArrowRightAltIcon />}
-              size="large"
-            >
-              {t('checkout.paynow')}
-          </Button>
           <Purchase price = {+total} tag={''}>
-            
+            <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                endIcon={<ArrowRightAltIcon />}
+                size="large"
+              >
+                {t('checkout.paynow')}
+            </Button>
           </Purchase>
         </Box>
       </form>
