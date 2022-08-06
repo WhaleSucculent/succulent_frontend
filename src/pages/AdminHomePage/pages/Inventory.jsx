@@ -27,6 +27,7 @@ import {useMutation, useQuery} from "@apollo/client";
 import AddProduct from '../../AdminProductPage/AddProduct';
 import EditProduct from './EditProduct';
 import DeleteProduct from './DeleteProduct';
+import Loading from 'components/Loading';
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
     return -1;
@@ -235,8 +236,8 @@ export default function Inventory() {
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :(</p>;
+  if (loading) return <Loading/>;
+  if (error) return <p>Error</p>;
   
 
  

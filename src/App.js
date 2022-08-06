@@ -50,6 +50,7 @@ function App() {
         <Routes>
           {/* Router for landing page */}
           <Route path="landing" element={<LandingPage />} />
+          <Route path="loading" element={<Loading />} />
           {/* Router for   */}
           <Route path="/" element={<HeaderFooter />}>
             <Route index element={<HomePage />} />

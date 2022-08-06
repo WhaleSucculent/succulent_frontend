@@ -1,30 +1,25 @@
+import React, { useEffect } from "react";
 import Footer from "../../components/Footer";
 import {
   Container,
-  Slide,
   Box,
-  IconButton,
-  DialogContent,
   Typography,
   Button,
-  Stack,
 } from "@mui/material";
-import { Component, useRef } from "react";
-import CloseIcon from "@mui/icons-material/Close";
 import styled from "@emotion/styled";
-import { ProductAddToCart, Product, ProductImage } from "./Product";
+import {  Product, ProductImage } from "./Product";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useTheme } from "@mui/material/styles";
 import { useMediaQuery } from "@mui/material";
-import Header from "components/Header";
 import { useQuery } from "@apollo/client";
 import { GET_PRODUCT, GET_PRODUCTS } from "queries/productQueries";
 import { useParams } from "react-router-dom";
 import { addToMyCart, decreaseCartQty } from "pages/CheckoutPage/features/cartSlice";
 import { useDispatch } from "react-redux";
+import IsLoadingHOC from "util/isLoadingHOC";
 
 /* 
 
@@ -44,14 +39,16 @@ const ProductDetailInfoWrapper = styled(Box)(() => ({
   lineHeight: 1.5,
 }));
 
-function ProductDetailPage({ open, onClose }) {
-
+function ProductDetailPage({ open, onClose, setLoading }) {
+  useEffect(() => {
+    setLoading(false);
+  }, [])
 
   const dispatch = useDispatch();
   //const navigate = useNavigate();
 
   const handlerAddToCart = (product) => {
-    dispatch(addToMyCart(data.product))
+    dispatch(addToMyCart(data?.product))
     //  navigate("/cart")
   };
 
@@ -63,8 +60,9 @@ function ProductDetailPage({ open, onClose }) {
   const { loading, error, data } = useQuery(GET_PRODUCT, { variables: { id } });
   console.log(data)
 
+  loading ? setLoading(true) : setLoading(false);
 
-  if (loading) return <p> Loading... </p>;
+
   if (error) return <p>Something Went Wrong</p>;
 
   return (
@@ -74,24 +72,24 @@ function ProductDetailPage({ open, onClose }) {
         {/* <DialogContent> */}
         <ProductDetailWrapper display={"flex"} flexDirection={matches ? "column" : "row"}>
           <Product sx={{ mr: 4 }}>
-            <ProductImage src={data.product.image[0].imageLink} alt={data.product.image.name} />
+            <ProductImage src={data?.product.image[0].imageLink} alt={data?.product.image.name} />
           </Product>
           <ProductDetailInfoWrapper>
             <Typography sx={{ lineHeight: 2 }} variant="h4">
-              {data.product.name}
+              {data?.product.name}
             </Typography>
             <Typography variant="body">
-              {data.product.description}
+              {data?.product.description}
             </Typography>
             <Typography variant="subtitle">SKU: 12345</Typography>
-            <Typography variant="subtitle">{`Availability: ${data.product.stock[data.product.stock.length - 1].total} in stock`}</Typography>
+            <Typography variant="subtitle">{`Availability: ${data?.product.stock[data?.product.stock.length - 1].total} in stock`}</Typography>
             <Box
               sx={{ mt: 4 }}
               display="flex"
               alignItems="center"
               justifyContent="space-between"
             >
-              <Button variant="contained" sx={{ borderRadius: 28, backgroundColor: '#ffb2cc' }} onClick={() => handlerAddToCart(data.product)}>Add to Cart</Button>
+              <Button variant="contained" sx={{ borderRadius: 28, backgroundColor: '#ffb2cc' }} onClick={() => handlerAddToCart(data?.product)}>Add to Cart</Button>
             </Box>
             <Box
               display="flex"
@@ -119,4 +117,4 @@ function ProductDetailPage({ open, onClose }) {
   );
 }
 
-export default ProductDetailPage;
+export default IsLoadingHOC(ProductDetailPage);
