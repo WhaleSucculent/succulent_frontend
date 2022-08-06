@@ -329,6 +329,11 @@ const ResponsiveAppBar = () => {
                     <Typography textAlign="center">Orders</Typography>
                   </Link>
                 </MenuItem>
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Link to={"profile/payments"}>
+                    <Typography textAlign="center">Payment</Typography>
+                  </Link>
+                </MenuItem>
                 <Divider />
                 <MenuItem onClick={handleLogout}>
                   <Typography textAlign="center">Logout</Typography>
