@@ -191,7 +191,6 @@ async function createOrder(
         const result = await response.json();
 
         console.log('result is: ', JSON.stringify(result, null, 4));
-        console.log('id is :'+result._id);
 
         return result;
     } catch (error) {

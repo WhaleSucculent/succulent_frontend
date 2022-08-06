@@ -38,15 +38,16 @@ const Confirmation: FunctionComponent<ConfirmationProps> = ({
   paymentForm,
 }) => {
   const navigate = useNavigate();
-  const submitForm = () => {
-    const products: string[] = [];
-    for(var i = 0; i < getCart.cart.cartTotalQty; i++) {
-      products[i] = getCart.cart.cartItems[i].id;
-      console.log(products[i]);
-    }
+  const products: string[] = [];
+  for(var i = 0; i < getCart.cart.cartTotalQty; i++) {
+    products[i] = getCart.cart.cartItems[i].id;
+  }
 
-    const tax = (getCart.cart.cartTotalAmount*0.05).toFixed(2);
-    const total = (getCart.cart.cartTotalAmount*1.05).toFixed(2);
+  const tax = (getCart.cart.cartTotalAmount*0.05).toFixed(2);
+  const total = (getCart.cart.cartTotalAmount*1.05).toFixed(2);
+
+  const submitForm = () => {
+    
 
     insertNewOrder(
       '',
@@ -75,7 +76,7 @@ const Confirmation: FunctionComponent<ConfirmationProps> = ({
       deliveryForm.shippingAddress.zipPostalCode,
       '','',paymentForm.paymentMethod,
       new Date(),
-      getCart.cart.cartTotalAmount,
+      total,
       'Success',
       paymentForm.creditCard.cardNumber
     );
@@ -149,16 +150,17 @@ const Confirmation: FunctionComponent<ConfirmationProps> = ({
           >
             {t('checkout.previous')}
           </Button>
-          <Purchase price={getCart.cart.cartTotalAmount} tag={''}>
-            <Button
-                type="submit"
-                variant="contained"
-                color="primary"
-                endIcon={<ArrowRightAltIcon />}
-                size="large"
-              >
-                {t('checkout.paynow')}
-            </Button>
+          <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              endIcon={<ArrowRightAltIcon />}
+              size="large"
+            >
+              {t('checkout.paynow')}
+          </Button>
+          <Purchase price = {+total} tag={''}>
+            
           </Purchase>
         </Box>
       </form>
