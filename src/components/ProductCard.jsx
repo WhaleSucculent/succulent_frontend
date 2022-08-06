@@ -89,6 +89,7 @@ function ProductCard({ product }) {
                     borderRadius: 28,
                     backgroundColor: "#ffb2cc",
                     justifyContent: "center",
+                    margin:"0 auto"
                   }}
                   onClick={() => handlerAddToCart(product)}
                 >

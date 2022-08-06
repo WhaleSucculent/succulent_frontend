@@ -17,6 +17,7 @@ import AdminOrderPage from "pages/AdminHomePage/pages/Order";
 import AdminUserListPage from "pages/AdminHomePage/pages/Users";
 import CollectionsPage from "pages/CollectionsPage/CollectionsPage";
 import MyOrdersPage from "pages/UserProfilePage/MyOrdersPage";
+import Payments from "pages/UserProfilePage/Payments";
 import UserSideBar from "pages/UserProfilePage/Components/UserSidebar";
 
 
@@ -79,7 +80,7 @@ function App() {
             <Route path="profile" element={<UserSideBar/>}>
               <Route path="myprofile" element={<UserProfilePage />} />
               <Route path="myorders" element={<MyOrdersPage />} />
-              {/* <Route path="myorders" element={<MyOrdersPage />} /> */}
+              <Route path="payments" element={<Payments />} /> 
             </Route>
             <Route path="contact" element={<ContactPage />} />
             <Route path="privacy" element={<Privacy />} />

@@ -73,6 +73,9 @@ function Contact() {
       </Card>
       <br />
       <Typography gutterBottom variant='h4' style={{ fontFamily: "monospace" }} >Come visit us at our store</Typography>
+      <p style={{ fontFamily: "monospace" ,fontSize:"20px"}}>774 Gordon Baker Rd
+
+North York, ON M2H 3B4</p>
       <div>
         <Card style={{ maxWidth: 750, maxHeight: 750, margin: "30px auto", padding: "20px 5px" }}>
           <CardContent>
