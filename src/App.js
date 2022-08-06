@@ -39,6 +39,7 @@ import { useMeQuery } from "queries/utilQueries";
 import Loading from "components/Loading";
 import { ResetPassPage } from "pages/ResetPassPage/ResetPassPage";
 import { AnimatePresence } from "framer-motion";
+import { CartButton } from "components/CartButton/CartButton";
 
 function App() {
   const { data, loading, error } = useMeQuery()
@@ -57,6 +58,7 @@ function App() {
           {/* Router for landing page */}
           <Route path="landing" element={<LandingPage />} />
           <Route path="loading" element={<Loading />} />
+          <Route path="cartButton" element={<CartButton />} />
           {/* Router for   */}
           <Route path="/" element={<HeaderFooter />}>
             <Route index element={<HomePage />} />

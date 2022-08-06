@@ -10,6 +10,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import UserRow from './UserRow';
 import { setContext } from "@apollo/client/link/context";
+import { motion } from 'framer-motion';
+import { staggerVariants } from 'assets/config/animationVariants';
 
 
 
@@ -39,9 +41,9 @@ export default function Users() {
                 </TableRow>
               </TableHead>
 
-              <TableBody>
+              <TableBody component={motion.div} variants={staggerVariants} whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
                 {data.customers.map((customer, index) => (
-                  <UserRow key = {customer.id} customer = {customer} index={index}/>
+                  <UserRow key = {customer.id} customer = {customer} index={index} />
                 )
                 )}
               </TableBody>

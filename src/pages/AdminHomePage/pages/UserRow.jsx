@@ -8,18 +8,24 @@ import { GET_CUSTOMERS } from "../../../queries/customerQueries";
 import Button from "@mui/material/Button";
 import UpdateCustomer from "./UpdateCustomer";
 import DeleteCustomer from "./DeleteCustomer";
+import { motion } from "framer-motion";
+import { lineSelectedVariants } from "assets/config/animationVariants";
 function UserRow({ customer, index }) {
 
- 
+
   return (
-    <TableRow>
+    <TableRow component={motion.div}
+      variants={lineSelectedVariants}
+      whileHover={{ scale: 1.01 }}
+      whileTap={{ scale: 0.99 }}
+    >
       <TableCell>{index + 1}</TableCell>
       <TableCell>{customer.firstName}</TableCell>
       <TableCell>{customer.lastName}</TableCell>
       <TableCell>{customer.email}</TableCell>
       <TableCell>{customer.status}</TableCell>
       <TableCell>
-       <DeleteCustomer customerId={customer.id} />
+        <DeleteCustomer customerId={customer.id} />
       </TableCell>
       <TableCell>
         <UpdateCustomer customer={customer} />

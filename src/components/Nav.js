@@ -29,6 +29,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { client } from "graphql/apolloClient";
 import ChangeCircleOutlinedIcon from '@mui/icons-material/ChangeCircleOutlined';
 import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
+import { motion } from "framer-motion";
 
 const pages = ["succulents", "growlights", "soil/rocks", "pots", "information"];
 const settings = ["Profile", "Account", "Orders"];
@@ -146,7 +147,7 @@ const ResponsiveAppBar = () => {
               </Typography>
             </Link>
 
-            <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+            <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }} component={motion.div} whileHover={{ scale: 1.2 }}>
               <IconButton
                 size="large"
                 aria-label="account of current user"
@@ -189,6 +190,7 @@ const ResponsiveAppBar = () => {
                 ))}
               </Menu>
             </Box>
+
             <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
             <Typography
               variant="h5"
@@ -208,24 +210,28 @@ const ResponsiveAppBar = () => {
             >
               LOGO
             </Typography>
-            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+
+            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }} >
               {pages.map((page) => (
-                <Button
-                  key={page}
-                  onClick={handleCloseNavMenu}
-                  sx={{
-                    my: 2,
-                    color: "white",
-                    display: "block",
-                    color: "#000000",
-                  }}
-                >
-                  <Link to={`${page}`} color={"black"}>
-                    {page}
-                  </Link>
-                </Button>
+                <Box component={motion.div} whileHover={{ scale: 1.2 }}>
+                  <Button
+                    key={page}
+                    onClick={handleCloseNavMenu}
+                    sx={{
+                      my: 2,
+                      color: "white",
+                      display: "block",
+                      color: "#000000",
+                    }}
+                  >
+                    <Link to={`${page}`} color={"black"}>
+                      {page}
+                    </Link>
+                  </Button>
+                </Box>
               ))}
             </Box>
+
             <Box>
               <Search>
                 <SearchIconWrapper>
@@ -237,7 +243,7 @@ const ResponsiveAppBar = () => {
                 />
               </Search>
             </Box>
-            <Box>
+            <Box component={motion.div} whileHover={{ scale: 1.2 }}>
               <Button
                 onClick={handleCloseNavMenu}
                 sx={{
@@ -256,34 +262,34 @@ const ResponsiveAppBar = () => {
               </Button>
             </Box>
 
-
             <Box sx={{ flexGrow: 0 }}>
+              <Box component={motion.div} whileHover={{ scale: 1.2 }}>
+                <Button
+                  onClick={handleCloseNavMenu}
+                  sx={{
+                    my: 2,
+                    color: "white",
+                    display: "block",
+                    color: "#000000",
+                  }}
+                >
+                  {console.log(data)}
+                  {console.log(data.email)}
+                  {!data?.me ? (<Link to={"login"} color={"black"}>
+                    <LoginOutlinedIcon fontSize="large" />
 
-              <Button
-                onClick={handleCloseNavMenu}
-                sx={{
-                  my: 2,
-                  color: "white",
-                  display: "block",
-                  color: "#000000",
-                }}
-              >
-                {console.log(data)}
-                {console.log(data.email)}
-                {!data?.me ? (<Link to={"login"} color={"black"}>
-                  <LoginOutlinedIcon fontSize="large" />
+                  </Link>) : (<Tooltip title="Open settings">
+                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }} >
+                      <Avatar
+                        alt={`${data.firstname} ${data.lastname}`}
+                        src={data.avatar}
+                        fontSize='large'
 
-                </Link>) : (<Tooltip title="Open settings">
-                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }} >
-                    <Avatar
-                      alt={`${data.firstname} ${data.lastname}`}
-                      src={data.avatar}
-                      fontSize='large'
-
-                    />
-                  </IconButton>
-                </Tooltip>)}
-              </Button>
+                      />
+                    </IconButton>
+                  </Tooltip>)}
+                </Button>
+              </Box>
 
               <Menu
                 sx={{ mt: "45px" }}

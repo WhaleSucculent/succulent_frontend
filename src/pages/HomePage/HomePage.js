@@ -19,6 +19,7 @@ import Banner from "components/Banner";
 import Category from "components/Category";
 import { motion } from "framer-motion";
 import OnScrollAnimationBox from "components/OnScrollAnimationBox";
+import { CartButton } from "components/CartButton/CartButton";
 
 const cardVariants = {
   offscreen: {
@@ -92,11 +93,6 @@ const HomePage = () => {
       <OnScrollAnimationBox>
         <Category />
       </OnScrollAnimationBox>
-      <motion.div 
-        variants={}
-      >
-
-      </motion.div>
 
       <OnScrollAnimationBox>
         <Box padding={'20px'}>
