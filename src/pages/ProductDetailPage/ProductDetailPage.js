@@ -40,10 +40,6 @@ const ProductDetailInfoWrapper = styled(Box)(() => ({
 }));
 
 function ProductDetailPage({ open, onClose, setLoading }) {
-  useEffect(() => {
-    setLoading(false);
-  }, [])
-
   const dispatch = useDispatch();
   //const navigate = useNavigate();
 
@@ -60,8 +56,6 @@ function ProductDetailPage({ open, onClose, setLoading }) {
   const { loading, error, data } = useQuery(GET_PRODUCT, { variables: { id } });
   console.log(data)
 
-  loading ? setLoading(true) : setLoading(false);
-
 
   if (error) return <p>Something Went Wrong</p>;
 
@@ -74,7 +68,7 @@ function ProductDetailPage({ open, onClose, setLoading }) {
           <Product sx={{ mr: 4 }}>
             <ProductImage src={data?.product.image[0].imageLink} alt={data?.product.image.name} />
           </Product>
-          <ProductImage src={data.product.image[0].imageLink} sx={{gridTemplateColumns: "repeat(3, 1fr)"}}>
+          <ProductImage src={data?.product.image[0].imageLink} sx={{gridTemplateColumns: "repeat(3, 1fr)"}}>
           </ProductImage>
           <ProductDetailInfoWrapper>
             <Typography sx={{ lineHeight: 2 }} variant="h4">
@@ -121,4 +115,4 @@ function ProductDetailPage({ open, onClose, setLoading }) {
   );
 }
 
-export default IsLoadingHOC(ProductDetailPage);
+export default ProductDetailPage;
