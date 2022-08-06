@@ -31,7 +31,7 @@ import ChangeCircleOutlinedIcon from '@mui/icons-material/ChangeCircleOutlined';
 import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
 
 const pages = ["succulents", "growlights", "soil/rocks", "pots", "information"];
-const settings = [<Link to='/profile'>Profile</Link>, "Account", <Link to='myorders'>Orders</Link>];
+const settings = ["Profile", "Account", "Orders"];
 
 const ResponsiveAppBar = () => {
   const { data, loading, error } = useMeQuery();
@@ -182,7 +182,7 @@ const ResponsiveAppBar = () => {
                     onClick={handleCloseNavMenu}
                     style={{ color: "black" }}
                   >
-                    <Link to={`${page}`} underline={"hover"}>
+                    <Link to={`${page}`}>
                       <Typography textAlign="center">{page}</Typography>
                     </Link>
                   </MenuItem>
@@ -220,7 +220,7 @@ const ResponsiveAppBar = () => {
                     color: "#000000",
                   }}
                 >
-                  <Link to={`${page}`} underline={"hover"} color={"black"}>
+                  <Link to={`${page}`} color={"black"}>
                     {page}
                   </Link>
                 </Button>
@@ -248,9 +248,9 @@ const ResponsiveAppBar = () => {
                 }}
               >
                 <Badge badgeContent={cartTotalQty} color="error">
-                  <Link to={"cart"} underline={"hover"} >
-                    <ShoppingCartOutlinedIcon 
-                    fontSize="large"/>
+                  <Link to={"cart"} >
+                    <ShoppingCartOutlinedIcon
+                      fontSize="large" />
                   </Link>
                 </Badge>
               </Button>
@@ -259,7 +259,7 @@ const ResponsiveAppBar = () => {
 
             <Box sx={{ flexGrow: 0 }}>
 
-            <Button
+              <Button
                 onClick={handleCloseNavMenu}
                 sx={{
                   my: 2,
@@ -268,21 +268,21 @@ const ResponsiveAppBar = () => {
                   color: "#000000",
                 }}
               >
-              {console.log(data)}
-              {console.log(data.email)}
-              {!data?.me ? (<Link to={"login"} underline={"hover"} color={"black"}>
-                <LoginOutlinedIcon fontSize="large"/>
-               
-              </Link>) : (<Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }} >
-                  <Avatar
-                    alt={`${data.firstname} ${data.lastname}`}
-                    src={data.avatar}
-                    fontSize='large'
-                  
-                  />
-                </IconButton>
-              </Tooltip>)}
+                {console.log(data)}
+                {console.log(data.email)}
+                {!data?.me ? (<Link to={"login"} color={"black"}>
+                  <LoginOutlinedIcon fontSize="large" />
+
+                </Link>) : (<Tooltip title="Open settings">
+                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }} >
+                    <Avatar
+                      alt={`${data.firstname} ${data.lastname}`}
+                      src={data.avatar}
+                      fontSize='large'
+
+                    />
+                  </IconButton>
+                </Tooltip>)}
               </Button>
 
               <Menu
@@ -306,21 +306,23 @@ const ResponsiveAppBar = () => {
                 {data && data?.me?.role === "admin" && (
                   <>
                     <MenuItem >
-                      <Link to={"admin/product"} underline={"hover"} color={"black"} sx={{ display: 'flex', alignItems: "center", justifyItems: "center" }} >
+                      <Link to={"admin/product"} color={"black"} sx={{ display: 'flex', alignItems: "center", justifyItems: "center" }} >
                         <ChangeCircleOutlinedIcon />
                         <Typography textAlign="center"  >Admin</Typography>
                       </Link>
                     </MenuItem>
                     <Divider />
                   </>)}
-
-                {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Link to={`${setting}`.toLowerCase()} underline={"hover"}>
-                      <Typography textAlign="center">{setting}</Typography>
-                    </Link>
-                  </MenuItem>
-                ))}
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Link to={"profile/myprofile"}>
+                    <Typography textAlign="center">Profile</Typography>
+                  </Link>
+                </MenuItem>
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Link to={"profile/myorders"}>
+                    <Typography textAlign="center">Orders</Typography>
+                  </Link>
+                </MenuItem>
                 <Divider />
                 <MenuItem onClick={handleLogout}>
                   <Typography textAlign="center">Logout</Typography>

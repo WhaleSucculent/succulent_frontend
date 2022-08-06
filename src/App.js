@@ -92,14 +92,6 @@ function App() {
               <Route path="user" element={<AdminUserListPage />} />
             </Route>
           )}
-           {(
-            <Route path="/admin" element={<AdminHeader />}>
-              <Route path="home" element={<AdminHomePage/>} />
-              <Route path="product" element={<AdminProductPage />} />
-              <Route path="order" element={<AdminOrderPage />} />
-              <Route path="user" element={<AdminUserListPage />} />
-            </Route>
-          )}
 
           
           <Route path="*" element={<ErrorPage />} />
