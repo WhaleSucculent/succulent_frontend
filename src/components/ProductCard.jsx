@@ -29,8 +29,13 @@ function ProductCard({ product }) {
     if (product.review.length == 0) {
       return 0;
     }
+
     return product.review[0].stars;
   };
+
+  const getImage =() =>{
+      return product.image.length > 0? product.image[0].imageLink : "no image found";
+  }
   return (
     <Container>
       { (
@@ -42,7 +47,7 @@ function ProductCard({ product }) {
                   component="img"
                   alt="succondese"
                   height="300"
-                  src={product.image[0].imageLink}
+                  src={getImage()}
                 />
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="div">
