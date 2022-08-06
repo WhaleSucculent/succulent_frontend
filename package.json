@@ -48,6 +48,7 @@
     "styled-components": "^5.3.5",
     "subscriptions-transport-ws": "^0.11.0",
     "swiper": "^8.2.4",
+    "three": "^0.143.0",
     "toast": "^0.3.47",
     "typescript": "^4.7.4",
     "web-vitals": "^2.1.4",
