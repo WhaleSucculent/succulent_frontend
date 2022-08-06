@@ -1,6 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import Headers from "components/Header";
 import ProductsPage from "pages/ProductsPage/ProductsPage";
 import ErrorPage from "pages/ErrorPage/ErrorPage";
@@ -38,9 +38,11 @@ import { RegisterPage } from "pages/RegisterPage/RegisterPage";
 import { useMeQuery } from "queries/utilQueries";
 import Loading from "components/Loading";
 import { ResetPassPage } from "pages/ResetPassPage/ResetPassPage";
+import { AnimatePresence } from "framer-motion";
 
 function App() {
   const { data, loading, error } = useMeQuery()
+  const location = useLocation();
 
 
   if (loading) return <div></div>
@@ -48,9 +50,10 @@ function App() {
 
   return (
     <div className="App">
-      <BrowserRouter>
-        <ToastContainer />
-        <Routes>
+
+      <ToastContainer />
+      <AnimatePresence exitBeforeEnter>
+        <Routes location={location} key={location.pathname}>
           {/* Router for landing page */}
           <Route path="landing" element={<LandingPage />} />
           <Route path="loading" element={<Loading />} />
@@ -76,7 +79,7 @@ function App() {
             <Route path="checkout" element={<CheckoutPage />} />
             <Route path="checkout/*" element={<CheckoutPage />} />
             <Route path="payment" element={<PaymentPage />} />
-            <Route path="profile" element={<UserSideBar/>}>
+            <Route path="profile" element={<UserSideBar />}>
               <Route path="myprofile" element={<UserProfilePage />} />
               <Route path="myorders" element={<MyOrdersPage />} />
               {/* <Route path="myorders" element={<MyOrdersPage />} /> */}
@@ -86,18 +89,18 @@ function App() {
           </Route>
           {data?.me?.role === "admin" && (
             <Route path="/admin" element={<AdminHeader />}>
-              <Route path="home" element={<AdminHomePage/>} />
+              <Route path="home" element={<AdminHomePage />} />
               <Route path="product" element={<AdminProductPage />} />
               <Route path="order" element={<AdminOrderPage />} />
               <Route path="user" element={<AdminUserListPage />} />
             </Route>
           )}
 
-          
+
           <Route path="*" element={<ErrorPage />} />
 
         </Routes>
-      </BrowserRouter>
+      </AnimatePresence>
     </div>
   )
 }

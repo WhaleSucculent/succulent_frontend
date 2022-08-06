@@ -15,25 +15,31 @@ import slidesrc4 from "assets/images/2.jpg";
 // import required modules
 import { Navigation } from "swiper";
 import { Pagination } from "swiper";
+import { Box, Typography } from "@mui/material";
 
-export default function App() {
+export default function Carousel() {
   return (
     <>
       <Swiper navigation={true} pagination={{
-          dynamicBullets: true,
-        }} modules={[Navigation, Pagination]} className="mySwiper">
-         <SwiperSlide>
-        <img src={slidesrc4} alt="slid" width="100%" height="550px" />
-
+        dynamicBullets: true,
+      }} modules={[Navigation, Pagination]} className="mySwiper" style={{ overflow: "visible" }}>
+        <SwiperSlide >
+          <img src={slidesrc4} alt="slid" width="100%" height="550px" style={{ filter: "blur(2px)" }} />
+          <Box className="swiper-caption" sx={{ position: "absolute", top: "50%", left: "50%", zIndex: 100 }} >
+            <Typography color={"white"} fontSize={"3em"} >Welcome to <span>Whale Succulent</span></Typography>
+            <Typography color={"white"} fontSize={"1.5em"}>
+              We sales the most beautiful succulent plants in the world.
+            </Typography>
+          </Box>
         </SwiperSlide>
         <SwiperSlide>
-        <img src={slidesrc} alt="slid" width="100%" height="550px" />
+          <img src={slidesrc} alt="slid" width="100%" height="550px" />
         </SwiperSlide>
         <SwiperSlide>
-        <img src={slidesrc2} alt="slid" width="100%" height="550px" />
+          <img src={slidesrc2} alt="slid" width="100%" height="550px" />
         </SwiperSlide>
         <SwiperSlide>
-        <img src={slidesrc3} alt="slid" width="100%" height="550px" />
+          <img src={slidesrc3} alt="slid" width="100%" height="550px" />
         </SwiperSlide>
 
 

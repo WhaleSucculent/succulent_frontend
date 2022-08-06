@@ -17,6 +17,22 @@ import Loading from "components/Loading";
 import SlideShow from "components/SlideShow";
 import Banner from "components/Banner";
 import Category from "components/Category";
+import { motion } from "framer-motion";
+import OnScrollAnimationBox from "components/OnScrollAnimationBox";
+
+const cardVariants = {
+  offscreen: {
+    y: 300
+  },
+  onscreen: {
+    y: 0,
+    transition: {
+      type: "spring",
+      bounce: 0.4,
+      duration: 0.8
+    }
+  }
+};
 
 function Item(props) {
   const { sx, ...other } = props;
@@ -49,6 +65,16 @@ Item.propTypes = {
     PropTypes.object,
   ]),
 };
+const transition = { duration: 0.5, ease: [0.43, 0.13, 0.23, 0.96] };
+const thumbnailVariants = {
+  initial: { scale: 0.9, opacity: 0 },
+  enter: { scale: 1, opacity: 1, transition },
+  exit: {
+    scale: 0.5,
+    opacity: 0,
+    transition: { duration: 1.5, ...transition }
+  }
+};
 
 const HomePage = () => {
   const { loading, error, data } = useQuery(GET_PRODUCTS);
@@ -58,58 +84,64 @@ const HomePage = () => {
 
   return (
     <div>
-       <Banner/>
+      <Banner />
       <Carousel />
-     
-      
-      <Promotion />
-      <Category/>
-     
-      <Box padding={'20px'}>
-        <Typography fontWeight={300} variant="h5">
-        Featured Products
-          <Divider/>
-         
+      <OnScrollAnimationBox>
+        <Promotion />
+      </OnScrollAnimationBox>
+      <OnScrollAnimationBox>
+        <Category />
+      </OnScrollAnimationBox>
+      <motion.div 
+        variants={}
+      >
 
-        </Typography>
-      </Box>
-      <Container>
-        <Box sx={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", Height: "20px" }}>
-          {!loading &&
-            !error &&
-            data.products.slice(0, 3).map((product) => (
-              <Grid container spacing={2} columns={12} key={product.id}>
-                <Item xs={4} lg={3}>
-                  <ProductCard key={product.id} product={product} />
-                </Item>
-              </Grid> 
-            ))}
-        </Box>
+      </motion.div>
 
-      </Container>
-      <Box padding={'20px'}>
-        <Typography fontWeight={300} variant="h6">
-        
-        Featured Categories
-          <Divider/>
-       
-        </Typography>
-      </Box>
-         
-      <Container>
-        <Box sx={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gridTemplateRows: "repeat(1, minmax(1, 2))", Height: "20px" }}>
-          {!loading &&
-            !error &&
-            data.products.slice(3, 6).map((product) => (
-              <Grid container spacing={2} columns={12} key={product.id}>
-                <Item xs={4} lg={3}>
-                  <ProductCard key={product.id} product={product} />
-                </Item>
-              </Grid>
-            ))}
+      <OnScrollAnimationBox>
+        <Box padding={'20px'}>
+          <Typography fontWeight={300} variant="h5">
+            Featured Products
+            <Divider />
+          </Typography>
         </Box>
-      </Container>
- 
+        <Container >
+          <Box sx={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", Height: "20px" }}>
+            {!loading &&
+              !error &&
+              data.products.slice(0, 3).map((product) => (
+                <Grid container spacing={2} columns={12} key={product.id} >
+                  <Item xs={4} lg={3} >
+                    <ProductCard key={product.id} product={product} />
+                  </Item>
+                </Grid>
+              ))}
+          </Box>
+        </Container>
+      </OnScrollAnimationBox>
+
+      <OnScrollAnimationBox>
+        <Box padding={'20px'}>
+          <Typography fontWeight={300} variant="h6">
+            Featured Categories
+            <Divider />
+          </Typography>
+        </Box>
+        <Container>
+          <Box component={motion.div} variants={thumbnailVariants} sx={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gridTemplateRows: "repeat(1, minmax(1, 2))", Height: "20px" }}>
+            {!loading &&
+              !error &&
+              data.products.slice(3, 6).map((product) => (
+                <Grid container spacing={2} columns={12} key={product.id} component={motion.div} initial="offscreen" whileInView="onscreen" viewport={{ once: true, amount: 0.8 }}>
+                  <Item xs={4} lg={3} component={motion.div} variants={cardVariants}>
+                    <ProductCard key={product.id} product={product} />
+                  </Item>
+                </Grid>
+              ))}
+          </Box>
+        </Container>
+      </OnScrollAnimationBox>
+
       {/* <Box padding={7}>
         <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'flex-start' }}>
           <img src={img} height={200} width={300} />
@@ -132,27 +164,33 @@ const HomePage = () => {
 
 
       </Box> */}
-       <SlideShow/>
-       <br></br>
-       <Box padding={'20px'}>
-        <Typography fontWeight={300} variant="h6">
-        New Collections
-          <Divider/>
-        </Typography>
-      </Box>
-       <Container>
-        <Box sx={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", Height: "20px" }}>
-          {!loading &&
-            !error &&
-            data.products.slice(0, 3).map((product) => (
-              <Grid container spacing={2} columns={12} key={product.id}>
-                <Item xs={4} lg={3}>
-                  <ProductCard key={product.id} product={product} />
-                </Item>
-              </Grid> 
-            ))}
+      <OnScrollAnimationBox>
+        <Box component={motion.div} initial="offscreen" whileInView="onscreen" viewport={{ once: true, amount: 0.8 }} variants={cardVariants}>
+          <SlideShow />
+          <br></br>
+          <Box padding={'20px'}>
+            <Typography fontWeight={300} variant="h6" >
+              New Collections
+              <Divider />
+            </Typography>
+          </Box>
         </Box>
-      </Container>
+      </OnScrollAnimationBox>
+      <OnScrollAnimationBox>
+        <Container>
+          <Box sx={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", Height: "20px" }}>
+            {!loading &&
+              !error &&
+              data.products.slice(0, 3).map((product) => (
+                <Grid container spacing={2} columns={12} key={product.id}>
+                  <Item xs={4} lg={3}>
+                    <ProductCard key={product.id} product={product} />
+                  </Item>
+                </Grid>
+              ))}
+          </Box>
+        </Container>
+      </OnScrollAnimationBox>
     </div>
 
   );
