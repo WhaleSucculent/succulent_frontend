@@ -16,7 +16,7 @@ import { addToMyCart } from "pages/CheckoutPage/features/cartSlice";
 import { Container, Grid } from "@mui/material";
 import Link from "./Link";
 
-function ProductCard({ product, stockCheck }) {
+function ProductCard({ product }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
