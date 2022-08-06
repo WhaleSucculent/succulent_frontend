@@ -17,7 +17,7 @@ import AdminOrderPage from "pages/AdminHomePage/pages/Order";
 import AdminUserListPage from "pages/AdminHomePage/pages/Users";
 import CollectionsPage from "pages/CollectionsPage/CollectionsPage";
 import MyOrdersPage from "pages/UserProfilePage/MyOrdersPage";
-import UserSideBar from "pages/UserProfilePage/Components/UserSidebar";
+import UserSideBar from "pages/UserProfilePage/components/UserSidebar";
 
 
 import HeaderFooter from "components/HeaderFooter";
@@ -36,6 +36,7 @@ import { ForgotPassPage } from "pages/ForgotPassPage/ForgotPassPage";
 import FileUpload from "components/fileUpload";
 import { RegisterPage } from "pages/RegisterPage/RegisterPage";
 import { useMeQuery } from "queries/utilQueries";
+
 import Loading from "components/Loading";
 import { ResetPassPage } from "pages/ResetPassPage/ResetPassPage";
 
