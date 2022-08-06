@@ -1,5 +1,5 @@
 export enum PaymentMethod{
-    wechat = 'wechat',
-    paypal = 'paypal',
-    creditcard = 'creditcard'
+    wechat = 'WechatPay',
+    paypal = 'PayPal',
+    creditcard = 'CreditCard'
 }

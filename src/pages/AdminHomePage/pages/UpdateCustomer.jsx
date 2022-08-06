@@ -8,7 +8,7 @@ import Fade from "@mui/material/Fade";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { UPDATE_CUSTOMER } from "../../../mutations/userMutations";
 import { GET_CUSTOMER } from "../../../queries/customerQueries";
 

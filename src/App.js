@@ -53,7 +53,6 @@ function App() {
         <Routes>
           {/* Router for landing page */}
           <Route path="landing" element={<LandingPage />} />
-
           {/* Router for   */}
           <Route path="/" element={<HeaderFooter />}>
             <Route index element={<HomePage />} />
@@ -82,7 +81,6 @@ function App() {
               {/* <Route path="myorders" element={<MyOrdersPage />} /> */}
             </Route>
             <Route path="contact" element={<ContactPage />} />
-            <Route path="loading" element={<Loading />} />
             <Route path="privacy" element={<Privacy />} />
           </Route>
           {data?.me?.role === "admin" && (
@@ -103,6 +101,7 @@ function App() {
           )}
 
           
+          <Route path="*" element={<ErrorPage />} />
 
         </Routes>
       </BrowserRouter>
