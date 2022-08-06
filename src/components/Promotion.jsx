@@ -23,7 +23,7 @@ function Promotion() {
     };
     
     const image = {
-      height: 55,
+      height: 75,
       my: 4,
     };
     
@@ -38,7 +38,7 @@ function Promotion() {
          
             sx={{
               mt: 2,
-              mb: 15,
+              mb: 5,
               position: 'relative',
               display: 'flex',
               flexDirection: 'column',
@@ -63,7 +63,7 @@ function Promotion() {
               <Grid container spacing={5}>
                 <Grid item xs={12} md={4}>
                   <Box sx={item}>
-                    <Box sx={number}>1.</Box>
+                    
                     <Box
                       component="img"
                       src="https://cdn-icons-png.flaticon.com/512/1831/1831669.png"
@@ -77,7 +77,7 @@ function Promotion() {
                 </Grid>
                 <Grid item xs={12} md={4}>
                   <Box sx={item}>
-                    <Box sx={number}>2.</Box>
+                  
                     <Box
                       component="img"
                       src="https://cdn-icons-png.flaticon.com/512/1581/1581725.png"
@@ -91,7 +91,7 @@ function Promotion() {
                 </Grid>
                 <Grid item xs={12} md={4}>
                   <Box sx={item}>
-                    <Box sx={number}>3.</Box>
+                    
                     <Box
                       component="img"
                       src="https://cdn-icons.flaticon.com/png/512/2839/premium/2839191.png?token=exp=1658295863~hmac=deb815eac075455d17c320d7318f4319"
@@ -109,10 +109,10 @@ function Promotion() {
             <Button
               color="secondary"
               size="large"
-              variant="contained"
+              variant="outlined"
               component="a"
               href="/premium-themes/onepirate/sign-up/"
-              sx={{ mt: 8 }}
+              sx={{ mt: 4 }}
             >
               Get started
             </Button>

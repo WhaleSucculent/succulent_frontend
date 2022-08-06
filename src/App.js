@@ -16,6 +16,9 @@ import AdminProductPage from "pages/AdminHomePage/pages/Inventory";
 import AdminOrderPage from "pages/AdminHomePage/pages/Order";
 import AdminUserListPage from "pages/AdminHomePage/pages/Users";
 import CollectionsPage from "pages/CollectionsPage/CollectionsPage";
+import MyOrdersPage from "pages/UserProfilePage/MyOrdersPage";
+import UserSideBar from "pages/UserProfilePage/Components/UserSidebar";
+
 
 import HeaderFooter from "components/HeaderFooter";
 // import Cart from "pages/CheckoutPage/Cart";
@@ -50,7 +53,7 @@ function App() {
         <Routes>
           {/* Router for landing page */}
           <Route path="landing" element={<LandingPage />} />
-
+          <Route path="loading" element={<Loading />} />
           {/* Router for   */}
           <Route path="/" element={<HeaderFooter />}>
             <Route index element={<HomePage />} />
@@ -73,9 +76,12 @@ function App() {
             <Route path="checkout" element={<CheckoutPage />} />
             <Route path="checkout/*" element={<CheckoutPage />} />
             <Route path="payment" element={<PaymentPage />} />
-            <Route path="profile" element={<UserProfilePage />} />
+            <Route path="profile" element={<UserSideBar/>}>
+              <Route path="myprofile" element={<UserProfilePage />} />
+              <Route path="myorders" element={<MyOrdersPage />} />
+              {/* <Route path="myorders" element={<MyOrdersPage />} /> */}
+            </Route>
             <Route path="contact" element={<ContactPage />} />
-            <Route path="loading" element={<Loading />} />
             <Route path="privacy" element={<Privacy />} />
           </Route>
           {data?.me?.role === "admin" && (
@@ -86,6 +92,17 @@ function App() {
               <Route path="user" element={<AdminUserListPage />} />
             </Route>
           )}
+           {(
+            <Route path="/admin" element={<AdminHeader />}>
+              <Route path="home" element={<AdminHomePage/>} />
+              <Route path="product" element={<AdminProductPage />} />
+              <Route path="order" element={<AdminOrderPage />} />
+              <Route path="user" element={<AdminUserListPage />} />
+            </Route>
+          )}
+
+          
+          <Route path="*" element={<ErrorPage />} />
 
         </Routes>
       </BrowserRouter>

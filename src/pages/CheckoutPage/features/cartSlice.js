@@ -71,9 +71,10 @@ const cartSlice = createSlice({
         const price = cartItem.priceList[0].price;
         const {cartQty} = cartItem  
         const itemTotal = price *cartQty;
+        
 
         cartTotal.total  += itemTotal;
-        cartTotal.quantity += cartQty
+        cartTotal.quantity += cartQty;
 
         return cartTotal
       },{
@@ -81,7 +82,7 @@ const cartSlice = createSlice({
         quantity:0
       });
       state.cartTotalQty = quantity;
-      state.cartTotalAmount = total
+      state.cartTotalAmount = total;
       
     }
    

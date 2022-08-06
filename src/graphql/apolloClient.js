@@ -25,11 +25,12 @@ const cache = new InMemoryCache({
 
 const httpLink = createHttpLink({
   uri: 'https://succulentbackend.azurewebsites.net/graphql'
+  // uri: 'http://localhost:5000/graphql'
+
 });
 
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem(AUTH_TOKEN);
-  console.log(token)
   return {
     headers: {
       ...headers,

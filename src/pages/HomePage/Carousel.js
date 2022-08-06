@@ -22,7 +22,10 @@ export default function App() {
       <Swiper navigation={true} pagination={{
           dynamicBullets: true,
         }} modules={[Navigation, Pagination]} className="mySwiper">
-     
+         <SwiperSlide>
+        <img src={slidesrc4} alt="slid" width="100%" height="550px" />
+
+        </SwiperSlide>
         <SwiperSlide>
         <img src={slidesrc} alt="slid" width="100%" height="550px" />
         </SwiperSlide>
@@ -32,10 +35,7 @@ export default function App() {
         <SwiperSlide>
         <img src={slidesrc3} alt="slid" width="100%" height="550px" />
         </SwiperSlide>
-        <SwiperSlide>
-        <img src={slidesrc4} alt="slid" width="100%" height="550px" />
 
-        </SwiperSlide>
 
       </Swiper>
     </>

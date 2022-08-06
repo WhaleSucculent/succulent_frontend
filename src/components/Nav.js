@@ -19,7 +19,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import AdbIcon from "@mui/icons-material/Adb";
 import SearchIcon from "@mui/icons-material/Search";
-import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { useSelector } from "react-redux";
 import { logoimg } from "../assets/images/whale.png"
 import Link from "./Link";
@@ -28,11 +28,10 @@ import Loading from "./Loading";
 import { useLocation, useNavigate } from "react-router-dom";
 import { client } from "graphql/apolloClient";
 import ChangeCircleOutlinedIcon from '@mui/icons-material/ChangeCircleOutlined';
+import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
 
 const pages = ["succulents", "growlights", "soil/rocks", "pots", "information"];
-const settings = ["Profile", "Account", "Orders"];
-
-
+const settings = [<Link to='/profile'>Profile</Link>, "Account", <Link to='myorders'>Orders</Link>];
 
 const ResponsiveAppBar = () => {
   const { data, loading, error } = useMeQuery();
@@ -248,9 +247,10 @@ const ResponsiveAppBar = () => {
                   color: "#000000",
                 }}
               >
-                <Badge badgeContent={cartTotalQty} color="error" >
-                  <Link to={"cart"} underline={"hover"} color={"black"} sx={{ display: 'flex', alignItems: "center", justifyItems: "center" }}>
-                    <ShoppingCartOutlinedIcon />
+                <Badge badgeContent={cartTotalQty} color="error">
+                  <Link to={"cart"} underline={"hover"} >
+                    <ShoppingCartOutlinedIcon 
+                    fontSize="large"/>
                   </Link>
                 </Badge>
               </Button>
@@ -259,21 +259,31 @@ const ResponsiveAppBar = () => {
 
             <Box sx={{ flexGrow: 0 }}>
 
-              {!data?.me ? (
-                <Button>
-                  <Link to={"login"} underline={"none"} color={"black"}>
-                    login
-                  </Link>
-                </Button>
-              ) : (
-                <Tooltip title="Open settings">
-                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar
-                      alt={`${data.firstname} ${data.lastname}`}
-                      src={data.avatar}
-                    />
-                  </IconButton>
-                </Tooltip>)}
+            <Button
+                onClick={handleCloseNavMenu}
+                sx={{
+                  my: 2,
+                  color: "white",
+                  display: "block",
+                  color: "#000000",
+                }}
+              >
+              {console.log(data)}
+              {console.log(data.email)}
+              {!data?.me ? (<Link to={"login"} underline={"hover"} color={"black"}>
+                <LoginOutlinedIcon fontSize="large"/>
+               
+              </Link>) : (<Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }} >
+                  <Avatar
+                    alt={`${data.firstname} ${data.lastname}`}
+                    src={data.avatar}
+                    fontSize='large'
+                  
+                  />
+                </IconButton>
+              </Tooltip>)}
+              </Button>
 
               <Menu
                 sx={{ mt: "45px" }}

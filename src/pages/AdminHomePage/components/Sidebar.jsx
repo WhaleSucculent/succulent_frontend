@@ -80,15 +80,7 @@ function Sidebar(props) {
             </ListItemButton>
           </Link>
         </ListItem>
-        <Divider />
-        <ListItem >
-          <ListItemButton>
-            <ListItemIcon>
-              <HomeIcon />
-            </ListItemIcon>
-            <ListItemText primary="Single-line item" />
-          </ListItemButton>
-        </ListItem>
+        
         <Divider />
       </List>
     </div>

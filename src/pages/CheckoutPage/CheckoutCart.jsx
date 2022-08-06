@@ -159,7 +159,6 @@ const handleIncreaseCartQty  =(cartItem)=>{
                         <Typography>
                         <span>${cart.cartTotalAmount}</span>
                         </Typography>
-                       
                       </Typography>
                      
                     </Grid>
@@ -168,7 +167,7 @@ const handleIncreaseCartQty  =(cartItem)=>{
                   <Typography variant="h6" fontSize="20px">
                         <b>Duties & Taxes: </b>
                         <Typography>
-                        <span>${cart.cartTotalAmount*0.05}</span>
+                        <span>${(cart.cartTotalAmount*0.05).toFixed(2)}</span>
                         </Typography>
                        
                         
@@ -189,7 +188,7 @@ const handleIncreaseCartQty  =(cartItem)=>{
                   <Typography variant="h6" textAlign="left" fontWeight="bold" fontSize="25px">
                         <b>Total:</b>
                         <Typography textAlign="right" fontWeight="bold" fontSize="25px">
-                       ${cart.cartTotalAmount*1.05}
+                       ${(cart.cartTotalAmount*1.05).toFixed(2)}
                         </Typography>
                        
                         

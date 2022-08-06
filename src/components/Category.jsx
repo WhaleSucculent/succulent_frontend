@@ -4,6 +4,7 @@ import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 import { IconButton } from '@mui/material';
+import { Opacity } from '@mui/icons-material';
 
 function Category() {
     const itemData = [
@@ -24,11 +25,11 @@ function Category() {
         },
         {
           img: 'https://images.unsplash.com/photo-1559657153-fdea6cd5ddf7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80',
-          title: 'Rocks',
+          title: 'Grow Lights',
           author: 'Christian Mackie',
         }, {
-            img: 'https://images.unsplash.com/photo-1604759280982-6f84e05a27bc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=752&q=80',
-            title: 'Grow Light',
+            img: 'https://images.unsplash.com/photo-1559881231-05b582002145?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+            title: 'Rocks',
             author: 'Douglas Sheppard',
           
       
@@ -60,9 +61,8 @@ function Category() {
           {/* <ImageListItemBar position="below" title={item.title}  /> */}
           <ImageListItemBar
               sx={{
-                background:
-                  'linear-gradient(to bottom, #00000032 0%, ' +
-                  '#00000028 70%, rgba(0,0,0,0) 100%)',
+                backgroundColor:'rgba(0,0,0, 0.6)',
+                  
               }}
               title={item.title}
               position="bottom"
@@ -70,6 +70,7 @@ function Category() {
                 <IconButton
                   sx={{ color: 'white' }}
                   aria-label={`star ${item.title}`}
+                  variant="h6"
                 >
                 </IconButton>
               }
