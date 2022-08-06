@@ -45,7 +45,7 @@ function ProductCard({ product }) {
               <Link to={`products/${product.id}`} underline="none">
                 <CardMedia
                   component="img"
-                  alt="succondese"
+                  alt="Succulent Image"
                   height="300"
                   src={getImage()}
                 />
