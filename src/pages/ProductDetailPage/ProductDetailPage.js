@@ -1,25 +1,19 @@
+import React, { useEffect } from "react";
 import Footer from "../../components/Footer";
 import {
   Container,
-  Slide,
   Box,
-  IconButton,
-  DialogContent,
   Typography,
   Button,
-  Stack,
 } from "@mui/material";
-import { Component, useRef } from "react";
-import CloseIcon from "@mui/icons-material/Close";
 import styled from "@emotion/styled";
-import { ProductAddToCart, Product, ProductImage } from "./Product";
+import { Product, ProductImage } from "./Product";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useTheme } from "@mui/material/styles";
 import { useMediaQuery } from "@mui/material";
-import Header from "components/Header";
 import { useQuery } from "@apollo/client";
 import { GET_PRODUCT, GET_PRODUCTS } from "queries/productQueries";
 import { useParams } from "react-router-dom";
@@ -45,14 +39,12 @@ const ProductDetailInfoWrapper = styled(Box)(() => ({
   lineHeight: 1.5,
 }));
 
-function ProductDetailPage({ open, onClose }) {
-
-
+function ProductDetailPage({ open, onClose, setLoading }) {
   const dispatch = useDispatch();
   //const navigate = useNavigate();
 
   const handlerAddToCart = (product) => {
-    dispatch(addToMyCart(data.product))
+    dispatch(addToMyCart(data?.product))
     //  navigate("/cart")
   };
 
@@ -65,38 +57,36 @@ function ProductDetailPage({ open, onClose }) {
   console.log(data)
 
 
-  if (loading) return <p> Loading... </p>;
   if (error) return <p>Something Went Wrong</p>;
 
   return (
     <>
       <Container margin="30px">
-
         {/* <DialogContent> */}
         <ProductDetailWrapper display={"flex"} flexDirection={matches ? "column" : "row"}>
           <Product sx={{ mr: 4 }}>
-            <ProductImage src={data.product.image[0].imageLink} alt={data.product.image.name} />
+            <ProductImage src={data?.product.image[0].imageLink} alt={data?.product.image.name} />
           </Product>
-          <ProductImage src={data.product.image[0].imageLink} sx={{gridTemplateColumns: "repeat(3, 1fr)"}}>
+          <ProductImage src={data?.product.image[0].imageLink} sx={{ gridTemplateColumns: "repeat(3, 1fr)" }}>
           </ProductImage>
           <ProductDetailInfoWrapper>
             <Typography sx={{ lineHeight: 2 }} variant="h4">
-              {data.product.name}
+              {data?.product.name}
             </Typography>
             <Typography variant="body">
-              {data.product.description}
+              {data?.product.description}
             </Typography>
             <Typography variant="subtitle">SKU: 12345</Typography>
-            <Typography variant="subtitle">{`Availability: ${data.product.stock[data.product.stock.length - 1].total} in stock`}</Typography>
+            <Typography variant="subtitle">{`Availability: ${data?.product.stock[data?.product.stock.length - 1].total} in stock`}</Typography>
             <Box
               sx={{ mt: 4 }}
               display="flex"
               alignItems="center"
               justifyContent="space-between"
             >
-              <Box sx={{margin:'0 auto'}}>
-              <Button variant="contained" sx={{ borderRadius: 28, backgroundColor: '#ffb2cc' }} onClick={() => handlerAddToCart(data.product)}>Add to Cart</Button>
-            </Box>
+              <Box sx={{ margin: '0 auto' }}>
+                <Button variant="contained" sx={{ borderRadius: 28, backgroundColor: '#ffb2cc' }} onClick={() => handlerAddToCart(data.product)}>Add to Cart</Button>
+              </Box>
             </Box>
             {/* <Box
               display="flex"
@@ -121,6 +111,7 @@ function ProductDetailPage({ open, onClose }) {
 
       </Container>
     </>
+
   );
 }
 

@@ -58,12 +58,13 @@ const HomePage = () => {
 
   return (
     <div>
+       <Banner/>
       <Carousel />
      
       
       <Promotion />
       <Category/>
-      <Banner/>
+     
       <Box padding={'20px'}>
         <Typography fontWeight={300} variant="h5">
         Featured Products
@@ -135,10 +136,8 @@ const HomePage = () => {
        <br></br>
        <Box padding={'20px'}>
         <Typography fontWeight={300} variant="h6">
-        
         New Collections
           <Divider/>
-       
         </Typography>
       </Box>
        <Container>
@@ -153,11 +152,7 @@ const HomePage = () => {
               </Grid> 
             ))}
         </Box>
-
       </Container>
-  
-     
-      
     </div>
 
   );

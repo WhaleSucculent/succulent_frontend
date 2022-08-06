@@ -9,21 +9,21 @@ function Banner() {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    padding: "20px,0px,20px,0px",
+    padding: "10px,0px,10px,0px",
     overflow: "hidden",
-    backgroundColor: "#FFFAFA",
-    fontSize: "50px",
+    backgroundColor: "#87d8f4",
+    fontSize: "40px",
   }));
   const PromoText = styled(Typography)(() => ({
-    lineHeight: 2.9,
+    lineHeight: 1.8,
     fontSize: "30px",
     marginBottom: "10px",
     fontFamily: "monospace",
   }));
   const messages = [
-    "End of sping sale is on",
+    "End of spring sale is on",
     "Take 10% off of select items",
-    "Harry Up! From Aug 01 to Aug 27",
+    "Hurry Up! From Aug 01 to Aug 27",
   ];
 
   const [messageIndex, setMessageIndex] = useState(0);

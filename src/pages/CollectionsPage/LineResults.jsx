@@ -70,7 +70,7 @@ function LineResults({length}) {
     <div>
       <Stack direction="row" alignItem="center" sx={{padding:'25px'}} justifyContent="space-between">
       <Center>
-      <Typography variant="body" gutterBottom>{length} Results</Typography>
+      <Typography variant="h6" gutterBottom>{length} Products</Typography>
       </Center>
 
                     
