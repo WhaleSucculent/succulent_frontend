@@ -1,19 +1,21 @@
 import Typography from "@mui/material/Typography";
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-function PriceMinMax() {
+function PriceMinMax({priceMin, priceMax, priceSubmit, priceMaxSet, priceMinSet}) {
    return (
      <div>
        <Typography variant="body" gutterBottom>
           Price
        </Typography>
        <Stack direction="column">
-         <input placeholder="Min" type="text" name="min" id="min" style={{padding:'10px 20px', borderRadius:'5px', borderColor:'#6DC9F7'}}/>
-         <Typography variant="body" gutterBottom margin="normal" sx={{marginTop:'10px', marginBottom:'10px'}}>
-          to
-       </Typography>
-       <input type="text" placeholder="Max" name="max" id="max" style={{padding:'10px 20px', borderRadius:'5px', borderColor:'#6DC9F7'}}/>
-       <Button variant="contained" color="primary" sx={{marginTop:'15px'}}>Filter</Button>
+        <form onSubmit={priceSubmit}>
+          <input placeholder="Min" type="text"  name="min" value={priceMin} onChange={(e) => priceMinSet(e.target.value)}  id="min" style={{padding:'10px 20px', borderRadius:'5px', borderColor:'#6DC9F7'}} />
+          <Typography variant="body" gutterBottom margin="normal" sx={{marginTop:'10px', marginBottom:'10px'}}>
+            to
+          </Typography>
+          <input type="text" placeholder="Max" name="max" id="max" value={priceMax} onChange={(e) => priceMaxSet(e.target.value)} style={{padding:'10px 20px', borderRadius:'5px', borderColor:'#6DC9F7'}} />
+          <Button variant="contained" type="submit"  color="primary" sx={{marginTop:'15px'}}>Filter</Button>
+        </form>
        </Stack>
      </div>
    )

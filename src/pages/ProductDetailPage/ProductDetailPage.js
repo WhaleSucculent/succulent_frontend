@@ -19,7 +19,7 @@ import { GET_PRODUCT, GET_PRODUCTS } from "queries/productQueries";
 import { useParams } from "react-router-dom";
 import { addToMyCart, decreaseCartQty } from "pages/CheckoutPage/features/cartSlice";
 import { useDispatch } from "react-redux";
-import IsLoadingHOC from "util/isLoadingHOC";
+import { Repeat } from "@mui/icons-material";
 
 /* 
 
@@ -67,13 +67,15 @@ function ProductDetailPage({ open, onClose, setLoading }) {
 
   return (
     <>
-      <Container>
+      <Container margin="30px">
 
         {/* <DialogContent> */}
         <ProductDetailWrapper display={"flex"} flexDirection={matches ? "column" : "row"}>
           <Product sx={{ mr: 4 }}>
             <ProductImage src={data?.product.image[0].imageLink} alt={data?.product.image.name} />
           </Product>
+          <ProductImage src={data.product.image[0].imageLink} sx={{gridTemplateColumns: "repeat(3, 1fr)"}}>
+          </ProductImage>
           <ProductDetailInfoWrapper>
             <Typography sx={{ lineHeight: 2 }} variant="h4">
               {data?.product.name}
@@ -89,16 +91,18 @@ function ProductDetailPage({ open, onClose, setLoading }) {
               alignItems="center"
               justifyContent="space-between"
             >
-              <Button variant="contained" sx={{ borderRadius: 28, backgroundColor: '#ffb2cc' }} onClick={() => handlerAddToCart(data?.product)}>Add to Cart</Button>
+              <Box sx={{margin:'0 auto'}}>
+              <Button variant="contained" sx={{ borderRadius: 28, backgroundColor: '#ffb2cc' }} onClick={() => handlerAddToCart(data.product)}>Add to Cart</Button>
             </Box>
-            <Box
+            </Box>
+            {/* <Box
               display="flex"
               alignItems="center"
             //sx={{ mt: 4, color: Colors.light }}
             >
               <FavoriteIcon sx={{ mr: 2 }} />
               Add to wishlist
-            </Box>
+            </Box> */}
             <Box
               sx={{
                 mt: 4,
