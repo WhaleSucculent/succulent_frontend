@@ -9,6 +9,7 @@ import { Typography, Button, Paper} from '@mui/material';
 import {GET_CUSTOMER} from "../../mutations/userMutations";
 import {GET_ME} from '../../queries/customerQueries';
 import { useQuery } from '@apollo/client';
+import EditIcon from '@mui/icons-material/Edit';
 
 // function createData(OrderNumber, Date, ShippingAddress, Total, View) {
 //   return { OrderNumber, Date, ShippingAddress, Total, View};
@@ -22,36 +23,48 @@ import { useQuery } from '@apollo/client';
 // ];
 
 export default function DenseTable() {
+  const {loading, error, data} = useQuery(GET_ME);
+  console.log(data);
   return (
     <TableContainer component={Paper} sx={{maxWidth:'80%', margin:'0 auto'}}>
       <Table sx={{ maxWidth: '80%', margin: '0 auto'}} size="small" aria-label="a dense table">
         <TableHead>
         <Typography variant='h5'>
-        My Orders
+        My Payments
         </Typography>
-          <TableRow>
-            <TableCell>Order Number</TableCell>
-            <TableCell align="right">Date</TableCell>
-            <TableCell align="right">Shipping Address</TableCell>
-            <TableCell align="right">Total</TableCell>
-            <TableCell align="right">View</TableCell>
-          </TableRow>
         </TableHead>
         <TableBody>
-          {/* {rows.map((row) => (
-            <TableRow
-              key={row.OrderNumber}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {row.OrderNumber}
+        <TableRow>
+              <TableCell>
+              Card Number
               </TableCell>
-              <TableCell align="right">{row.Date}</TableCell>
-              <TableCell align="right">{row.ShippingAddress}</TableCell>
-              <TableCell align="right">{row.Total}</TableCell>
-              <TableCell align="right">{row.View}</TableCell>
-            </TableRow>
-          ))} */}
+              <TableCell>
+                {data.me.creditCards[0].cardNo}
+              </TableCell>
+              </TableRow>
+
+              <TableRow>
+              <TableCell>
+              Holder Name
+              </TableCell>
+              <TableCell>
+              {data.me.creditCards[0].holderName}
+              </TableCell>
+              </TableRow>
+
+              <TableRow>
+              <TableCell>
+              Expiration Date
+              </TableCell>
+              <TableCell>
+                {data.me.creditCards[0].expirationDate}
+              </TableCell>
+              <TableCell>
+                <Button>
+                  <EditIcon/>
+              </Button>
+              </TableCell>
+              </TableRow>
         </TableBody>
       </Table>
     </TableContainer>

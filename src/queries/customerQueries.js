@@ -130,7 +130,11 @@ const GET_ME = gql`
         }
         
       }
-      
+      creditCards{
+        cardNo
+        holderName
+        expirationDate
+      }
     }
 }`
 
