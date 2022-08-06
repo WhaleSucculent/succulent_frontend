@@ -11,6 +11,7 @@ import Stack from '@mui/material/Stack';
 import LineResults from "./LineResults";
 import CollectionSidebar from './CollectionSidebar';
 import { useState } from "react";
+import Loading from "../../components/Loading";
 
 const CollectionsPage = () => {
   const [stockCheck, setstockCheck] = useState(false);
@@ -40,7 +41,7 @@ const CollectionsPage = () => {
     console.log(e);
   }
   const { loading, error, data } = useQuery(GET_PRODUCTS);
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Loading />;
   if (error) return <p>Something went wrong</p>;
   return (
     <div>
