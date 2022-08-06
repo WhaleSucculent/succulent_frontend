@@ -14,29 +14,29 @@ import { useState } from "react";
 
 const CollectionsPage = () => {
   const [stockCheck, setstockCheck] = useState(false);
-  const [priceMin, setpriceMin] = useState(0);
-  const[priceMax, setpriceMax] = useState(0);
+  const [priceFilter, setpriceFilter] = useState(false);
+  const [priceMin, setpriceMin] = useState("");
+  const[priceMax, setpriceMax] = useState("");
 
   const handleChange = () => {
     setstockCheck(!stockCheck);
-    
   }
 
   const priceMinSet = (val) => {
+    setpriceFilter(false);
     setpriceMin(val);
-    console.log(priceMin);
   }
   const priceMaxSet = (val1) => {
+    setpriceFilter(false);
     setpriceMax(val1);
-    console.log(val1);
 
   }
   const priceSubmit = (e)=>{
     e.preventDefault();
     setpriceMax(e.target[1].value);
     setpriceMin(e.target[0].value);
+    setpriceFilter(true);
     console.log(priceMin, priceMax);
-    
     console.log(e);
   }
   const { loading, error, data } = useQuery(GET_PRODUCTS);
@@ -67,31 +67,42 @@ const CollectionsPage = () => {
           {!loading &&
             !error &&
              (data.products.filter(product => {
-              if(stockCheck){
-                console.log(stockCheck);
+              if(stockCheck){ 
+                if(priceFilter){
+                  if(priceMin === "" && priceMax === ""){
+                    return product.productStatus === "In Stock";
+                  }if(priceMin === "" && priceMax !== ""){
+                    return product.productStatus === "In Stock" && product.priceList[0].price <= priceMax;
+                  }if(priceMin !== "" && priceMax === ""){
+                    return product.productStatus === "In Stock" && product.priceList[0].price >= priceMin;
+                  }if(priceMin !== "" && priceMax !== ""){
+                    return product.productStatus === "In Stock" && product.priceList[0].price >= priceMin && product.priceList[0].price <= priceMax;
+                  }
+              }else{
                 return product.productStatus === "In Stock";
               }
+              }
               if(!stockCheck){
+                if(priceFilter){
+                  if(priceMin === "" && priceMax === ""){
+                    return product.productStatus;
+                  }if(priceMin === "" && priceMax !== ""){
+                    return product.productStatus  && product.priceList[0].price <= priceMax;
+                  }if(priceMin !== "" && priceMax === ""){
+                    return product.productStatus  && product.priceList[0].price >= priceMin;
+                  }if(priceMin !== "" && priceMax !== ""){
+                    return product.productStatus  && product.priceList[0].price >= priceMin && product.priceList[0].price <= priceMax;
+                  }
+                
+              }else{
                 return product.productStatus;
               }
+            }
             }).map((product) => (
              <Grid item xs={12} sm={6} md={4} key={product.id}>
-              
-               <ProductCard key={product.id} product={product} stockCheck={stockCheck}/>
-              
+              <ProductCard key={product.id} product={product} stockCheck={stockCheck}/>
              </Grid>
             )))}
-
-            {/* {!loading && !error && stockCheck && (
-              data.products.map((product) => (
-                <Grid item xs={12} sm={6} md={4} key={product.id}>
-              
-                <ProductCard key={product.id} product={product}/>
-               
-              </Grid>
-              ))
-            )} */}
-
             </Grid>
           </Grid>
           
