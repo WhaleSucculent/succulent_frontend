@@ -28,7 +28,7 @@ function CollectionSidebar({stockCheck, handleChange, priceMin, priceMax, priceS
           </TableRow>
             <TableRow>
               <TableCell>
-                <JustTesting />
+                {/* <JustTesting /> */}
                 </TableCell>
             </TableRow>
           </TableHead>
