@@ -34,6 +34,7 @@ export const LoginPage = () => {
   const [idToken, setIdToken] = useState('');
 
   const handleGoogleLogin = (res) => {
+    
     console.log(res)
     setIdToken(res.credential);
     document.getElementById("signInDiv").hidden = true;
@@ -54,6 +55,7 @@ export const LoginPage = () => {
   }, [])
 
 
+
   const [login, { loading, data, error }] = useMutation(LOGIN_CUSTOMER, {
     variables: {
       email: formState.email,
@@ -68,9 +70,9 @@ export const LoginPage = () => {
     }
   })
 
-  const [loginWithGoogle, {loading: googleLoading, data: googleData, error: googleError}] = useMutation(LOGIN_WITH_GOOGLE, {
+  const [loginWithGoogle, { loading: googleLoading, data: googleData, error: googleError }] = useMutation(LOGIN_WITH_GOOGLE, {
     variables: {
-      idToken: setIdToken
+      idToken: idToken
     },
     onCompleted: ({ loginWithGoogle, data }) => {
       console.log(loginWithGoogle)
@@ -80,6 +82,11 @@ export const LoginPage = () => {
       window.location.reload();
     }
   })
+
+  // useEffect(() => {
+  //   loginWithGoogle();
+  // }, [idToken, loginWithGoogle])
+
 
 
   const { data: meData, loading: meLoading, error: meError } = useMeQuery();
@@ -151,9 +158,10 @@ export const LoginPage = () => {
             >
               Sign In
             </Button>
-            <div id='signInDiv' ></div>
-            <Button onClick={loginWithGoogle}>google</Button>
-            {console.log(idToken)}
+            <Box width={"100%"}>
+              <div id='signInDiv' onClick={loginWithGoogle} ></div>
+              <Button >google</Button>
+            </Box>
             <Grid container>
               <Grid item xs>
                 <Link to={"/forgot"} variant="body2">

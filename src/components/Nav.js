@@ -30,9 +30,7 @@ import { client } from "graphql/apolloClient";
 import ChangeCircleOutlinedIcon from '@mui/icons-material/ChangeCircleOutlined';
 
 const pages = ["succulents", "growlights", "soil/rocks", "pots", "information"];
-const settings = ["Profile", "Account", "Orders"];
-
-
+const settings = [<Link to='/profile'>Profile</Link>, "Account", <Link to='myorders'>Orders</Link>, "Logout"];
 
 const ResponsiveAppBar = () => {
   const { data, loading, error } = useMeQuery();
