@@ -65,6 +65,7 @@ const GET_CUSTOMER = gql`
               city
               country
               state
+              
             }
             billingAddress{
               firstName
@@ -109,6 +110,16 @@ const GET_ME = gql`
       phone
       orders{
         id
+        orderDate
+        orderStatus
+        productsInCart{
+          qty
+          price
+          product{
+            name
+            description
+          }
+        }
         shippingAddress{
           firstName
           lastName
@@ -117,7 +128,9 @@ const GET_ME = gql`
           country
           state
         }
+        
       }
+      
     }
 }`
 
