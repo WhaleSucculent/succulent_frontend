@@ -61,7 +61,7 @@ function UserSidebar(props) {
         </ListItem>
         <Divider />
         <ListItem >
-          <Link to={'/profile/payments'} color="inherit" underline='hover'>
+          <Link to={'/profile/address'} color="inherit" underline='hover'>
             <ListItemButton>
               <ListItemIcon>
               <BusinessIcon/>
