@@ -44,6 +44,8 @@ import Loading from "components/Loading";
 import { ResetPassPage } from "pages/ResetPassPage/ResetPassPage";
 import { AnimatePresence } from "framer-motion";
 import { CartButton } from "components/CartButton/CartButton";
+import Dashboard from "pages/AdminHomePage/temp/Dashborad";
+import TestingPage from "pages/TestingPage/TestingPage";
 
 function App() {
   const { data, loading, error } = useMeQuery()
@@ -63,6 +65,8 @@ function App() {
           <Route path="landing" element={<LandingPage />} />
           <Route path="loading" element={<Loading />} />
           <Route path="cartButton" element={<CartButton />} />
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="testing" element={<TestingPage />} />
           {/* Router for   */}
           <Route path="/" element={<HeaderFooter />}>
             <Route index element={<HomePage />} />

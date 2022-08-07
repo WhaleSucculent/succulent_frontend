@@ -8,22 +8,22 @@ function OrderRow({order}) {
     return (
      <TableRow>
          <TableCell align="center">
-            {order.id}
+            {order?.id}
          </TableCell>
          <TableCell align="center">
-            {order.customer.firstName + " "+ order.customer.lastName}
+            {order?.customer?.firstName + " "+ order?.customer?.lastName}
          </TableCell>
          <TableCell align="center">
-            {order.customer.email}
+            {order?.customer?.email}
          </TableCell>
          <TableCell align="center">
-            {order.orderDate}
+            {order?.orderDate}
          </TableCell>
          <TableCell align="center">
-            {order.orderStatus}
+            {order?.orderStatus}
          </TableCell>
          <TableCell align="center">
-          ${order.productsInCart[0].price}
+          ${order?.productsInCart[0]?.price}
          </TableCell>
          <TableCell align="center">
             {/* need to make a component */}

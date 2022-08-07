@@ -146,7 +146,7 @@ function DashboardContent() {
           }}
         >
           <Toolbar />
-          <Outlet />
+          <Outlet/>
 
         </Box>
       </Box>

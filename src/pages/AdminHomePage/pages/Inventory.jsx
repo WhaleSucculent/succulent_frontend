@@ -21,7 +21,7 @@ import Switch from '@mui/material/Switch';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
-import { Button } from '@mui/material';
+import { Button, CssBaseline } from '@mui/material';
 import { GET_PRODUCTS } from "../../../queries/productQueries";
 import { useMutation, useQuery } from "@apollo/client";
 import AddProduct from '../../AdminProductPage/AddProduct';
@@ -317,6 +317,7 @@ export default function Inventory() {
 
   return (
     <Box sx={{ width: '100%', marginTop: '5em' }}>
+      <CssBaseline/>
       {!loading && !error && (
         <Paper sx={{ width: '100%', mb: 2 }}>
           <EnhancedTableToolbar numSelected={selected.length} />

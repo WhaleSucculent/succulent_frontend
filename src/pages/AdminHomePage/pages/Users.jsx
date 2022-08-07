@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Typography } from '@mui/material';
+import { CssBaseline, Typography } from '@mui/material';
 import { useQuery } from '@apollo/client';
-import {GET_CUSTOMERS} from '../../../queries/customerQueries';
+import { GET_CUSTOMERS } from '../../../queries/customerQueries';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -17,20 +17,21 @@ import { staggerVariants } from 'assets/config/animationVariants';
 
 export default function Users() {
 
-  const {loading, error, data} = useQuery(GET_CUSTOMERS);
+  const { loading, error, data } = useQuery(GET_CUSTOMERS);
   console.log(data);
 
-  if(loading) return <Typography>Loading...</Typography>
-  if(error) return <Typography>Something went wrong</Typography>
+  if (loading) return <Typography>Loading...</Typography>
+  if (error) return <Typography>Something went wrong</Typography>
   return (
     <div>
+      <CssBaseline />
       {
         !loading && !error && (
-          <TableContainer sx={{marginTop:"5em", display:'flex', justifyContent:"center", alignItems:"center"}}>
+          <TableContainer sx={{ marginTop: "5em", display: 'flex', justifyContent: "center", alignItems: "center", width: "100%" }}>
             <Table sx={{ minWidth: 650 }}>
 
               <TableHead>
-                <TableRow sx={{backgroundColor:'#5e9af2'}}>
+                <TableRow sx={{ backgroundColor: '#5e9af2' }}>
                   <TableCell>ID</TableCell>
                   <TableCell>First Name</TableCell>
                   <TableCell>Last Name</TableCell>
@@ -43,7 +44,7 @@ export default function Users() {
 
               <TableBody component={motion.div} variants={staggerVariants} whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
                 {data.customers.map((customer, index) => (
-                  <UserRow key = {customer.id} customer = {customer} index={index} />
+                  <UserRow key={customer.id} customer={customer} index={index} />
                 )
                 )}
               </TableBody>
