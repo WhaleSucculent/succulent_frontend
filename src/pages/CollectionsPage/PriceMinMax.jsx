@@ -14,7 +14,7 @@ function PriceMinMax({priceMin, priceMax, priceSubmit, priceMaxSet, priceMinSet}
             to
           </Typography>
           <input type="text" placeholder="Max" name="max" id="max" value={priceMax} onChange={(e) => priceMaxSet(e.target.value)} style={{padding:'10px 20px', borderRadius:'5px', borderColor:'#6DC9F7'}} />
-          <Button variant="contained" type="submit"  color="primary" sx={{marginTop:'15px'}}>Filter</Button>
+          <Button sx={{backgroundColor:'#ffb2cc', marginTop:'15px'}} variant="contained" type="submit"  color="primary">Filter</Button>
         </form>
        </Stack>
      </div>
