@@ -34,7 +34,7 @@ import PlaceOrder from "pages/CheckoutPage/components/order/PlaceOrder";
 
 import { LoginPage } from "pages/LoginPage/LoginPage";
 import { ForgotPassPage } from "pages/ForgotPassPage/ForgotPassPage";
-import FileUpload from "components/fileUpload";
+import FileUpload from "components/FileUploader";
 import { RegisterPage } from "pages/RegisterPage/RegisterPage";
 import { useMeQuery } from "queries/utilQueries";
 import Loading from "components/Loading";

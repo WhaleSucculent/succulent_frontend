@@ -31,7 +31,6 @@ import Loading from 'components/Loading';
 import { motion } from 'framer-motion';
 
 
-
 const lineSelectedVariants = {
   open: {
     y: 0,

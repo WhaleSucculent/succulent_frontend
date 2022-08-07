@@ -36,7 +36,10 @@ const createBlobInContainer = async (containerClient, file) => {
 
   // upload file
   await blobClient.uploadBrowserData(file, options);
-  await blobClient.setMetadata({ UserName: 'shubham' });
+  await blobClient.setMetadata({ UserName: 'Jiasheng' });
+
+  // return the url of the uploaded blob
+  return blobClient.url
 };
 
 const uploadFileToBlob = async (file) => {
@@ -50,10 +53,10 @@ const uploadFileToBlob = async (file) => {
   const containerClient = blobService.getContainerClient(containerName);
 
   // upload file
-  await createBlobInContainer(containerClient, file);
+  const url = await createBlobInContainer(containerClient, file);
 
-  // get list of blobs in container
-  return getBlobsInContainer(containerClient);
+  // get the url of the uploaded blob
+  return url
 };
 // </snippet_uploadFileToBlob>
 

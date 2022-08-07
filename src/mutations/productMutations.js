@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client'
 
 const ADD_PRODUCT = gql`
-  mutation addProduct($name: String!, $priceList:[PriceListInput]!, $postDate: String!, $size: SizeInput!, $category:String!, $rare:Boolean!, $description:String!, $productStatus:String!,$colors:[String]!,$imageIds:[ID]!, $quantity:Int!){
-    addProduct(name: $name, priceList: $priceList, postDate: $postDate, size: $size, category: $category, rare: $rare, description: $description, productStatus: $productStatus, colors: $colors, imageIds: $imageIds, quantity: $quantity){
+  mutation addProduct($name: String!, $priceList:[PriceListInput]!, $postDate: String!, $size: SizeInput!, $category:String!, $rare:Boolean!, $description:String!, $productStatus:String!,$colors:[String]!,$imageLinks:[String]!,$images:[ImageInput]!, $quantity:Int!){
+    addProduct(name: $name, priceList: $priceList, postDate: $postDate, size: $size, category: $category, rare: $rare, description: $description, productStatus: $productStatus, colors: $colors, imageLinks: $imageLinks, images: $images, quantity: $quantity){
       id
       name
       postDate
@@ -22,15 +22,17 @@ const ADD_PRODUCT = gql`
       category
       description
       productStatus
+      imageLinks
       image{
         name
+        imageLink
       }
     }
   }
 `
 const UPDATE_PRODUCT = gql`
-mutation updateProduct($id:ID!, $name: String!, $priceLists:[PriceListInput]!, $size: SizeInput!, $category:String!, $rare:Boolean!, $description:String!, $productStatus:String!,$colors:[String]!,$imageIds:[ID]!, $quantity:Int!){
-  updateProduct(id:$id, name: $name, priceLists: $priceLists, size: $size, category: $category, rare: $rare, description: $description, productStatus: $productStatus, colors: $colors, imageIds: $imageIds, quantity: $quantity){
+mutation updateProduct($id:ID!, $name: String!, $priceLists:[PriceListInput]!, $size: SizeInput!, $category:String!, $rare:Boolean!, $description:String!, $productStatus:String!,$colors:[String]!,$images:[ImageInput]!, $quantity:Int!){
+  updateProduct(id:$id, name: $name, priceLists: $priceLists, size: $size, category: $category, rare: $rare, description: $description, productStatus: $productStatus, colors: $colors, images: $images, quantity: $quantity){
     id
     name
     postDate
