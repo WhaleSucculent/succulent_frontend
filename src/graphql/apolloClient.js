@@ -24,8 +24,8 @@ const cache = new InMemoryCache({
 });
 
 const httpLink = createHttpLink({
-  // uri: 'https://succulentbackend.azurewebsites.net/graphql'
-  uri: 'http://localhost:5000/graphql'
+  uri: 'https://succulentbackend.azurewebsites.net/graphql'
+  // uri: 'http://localhost:5000/graphql'
 
 });
 
