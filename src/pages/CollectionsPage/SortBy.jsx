@@ -5,22 +5,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
 
-export default function SortBy() {
-  const [sort, setSort] = React.useState('');
-  const [open, setOpen] = React.useState(false);
-
-  const handleChange = (event) => {
-    setSort(event.target.value);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
+export default function SortBy({sort, sortOpen, handleSortChange, handleSortClose, handleSortOpen}) {
   return (
     <div>
 
@@ -29,12 +14,12 @@ export default function SortBy() {
         <Select
           labelId="demo-controlled-open-select-label"
           id="demo-controlled-open-select"
-          open={open}
-          onClose={handleClose}
-          onOpen={handleOpen}
+          open={sortOpen}
+          onClose={handleSortClose}
+          onOpen={handleSortOpen}
           value={sort}
           label="Age"
-          onChange={handleChange}
+          onChange={handleSortChange}
         >
           <MenuItem value="">
             <em>None</em>

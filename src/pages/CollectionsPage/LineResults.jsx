@@ -8,7 +8,7 @@ import { styled } from "@mui/material/styles";
 import {InputBase} from '@mui/material';
 
 
-function LineResults({length}) {
+function LineResults({length, sort, sortOpen, handleSortChange, handleSortClose, handleSortOpen}) {
 
    const Center = styled("div")(()=>({
       display: 'flex',
@@ -88,7 +88,7 @@ function LineResults({length}) {
           </Center> */}
          <Center>
              <span>Sort By:</span>
-             <SortBy />
+             <SortBy sort={sort} sortOpen={sortOpen} handleSortChange={handleSortChange} handleSortClose={handleSortClose} handleSortOpen={handleSortOpen}/>
          </Center>
 
          

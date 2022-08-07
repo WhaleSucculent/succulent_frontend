@@ -17,8 +17,11 @@ import AdminOrderPage from "pages/AdminHomePage/pages/Order";
 import AdminUserListPage from "pages/AdminHomePage/pages/Users";
 import CollectionsPage from "pages/CollectionsPage/CollectionsPage";
 import MyOrdersPage from "pages/UserProfilePage/MyOrdersPage";
+import Address from "pages/UserProfilePage/Address";
 import Payments from "pages/UserProfilePage/Payments";
 import UserSideBar from "pages/UserProfilePage/Components/UserSidebar";
+import Shipping from "pages/PrivacyPolicies/Shipping";
+
 
 
 import HeaderFooter from "components/HeaderFooter";
@@ -86,9 +89,13 @@ function App() {
               <Route path="myprofile" element={<UserProfilePage />} />
               <Route path="myorders" element={<MyOrdersPage />} />
               <Route path="payments" element={<Payments />} /> 
+              <Route path="address" element={<Address />} /> 
+
             </Route>
             <Route path="contact" element={<ContactPage />} />
             <Route path="privacy" element={<Privacy />} />
+            <Route path="shipping" element={<Shipping />} />
+
           </Route>
           {data?.me?.role === "admin" && (
             <Route path="/admin" element={<AdminHeader />}>

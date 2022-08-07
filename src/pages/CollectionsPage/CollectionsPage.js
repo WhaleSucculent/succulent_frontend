@@ -11,12 +11,26 @@ import Stack from '@mui/material/Stack';
 import LineResults from "./LineResults";
 import CollectionSidebar from './CollectionSidebar';
 import { useState } from "react";
+import Loading from "../../components/Loading";
 
 const CollectionsPage = () => {
   const [stockCheck, setstockCheck] = useState(false);
   const [priceFilter, setpriceFilter] = useState(false);
   const [priceMin, setpriceMin] = useState("");
-  const[priceMax, setpriceMax] = useState("");
+  const [priceMax, setpriceMax] = useState("");
+  const [sort, setSort] = useState("");
+  const [sortOpen, setSortOpen] = useState(false);
+  const handleSortChange = (event) => {
+    setSort(event.target.value);
+  };
+
+  const handleSortClose = () => {
+    setSortOpen(false);
+  };
+
+  const handleSortOpen = () => {
+    setSortOpen(true);
+  };
 
   const handleChange = () => {
     setstockCheck(!stockCheck);
@@ -36,11 +50,10 @@ const CollectionsPage = () => {
     setpriceMax(e.target[1].value);
     setpriceMin(e.target[0].value);
     setpriceFilter(true);
-    console.log(priceMin, priceMax);
-    console.log(e);
+
   }
   const { loading, error, data } = useQuery(GET_PRODUCTS);
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Loading />;
   if (error) return <p>Something went wrong</p>;
   return (
     <div>
@@ -59,7 +72,7 @@ const CollectionsPage = () => {
           <Grid item md={10}>
           <Grid container spacing={3}>
         <Grid item xs={12}>
-        <LineResults length={data.products.length}/>
+        <LineResults sort ={sort} sortOpen={sortOpen} handleSortChange={handleSortChange} handleSortClose={handleSortClose} handleSortOpen={handleSortOpen} length={data.products.length}/>
         </Grid>
         
       </Grid>
@@ -98,6 +111,17 @@ const CollectionsPage = () => {
                 return product.productStatus;
               }
             }
+            }).sort((a,b)=>{
+              if(sort == 1 && sort !== ""){
+                return a.name > b.name ? 1 : -1;
+              }
+              if(sort == 2 && sort !== ""){
+                return a.priceList[0].price - b.priceList[0].price;
+              }
+              if(sort == 3 && sort !== ""){
+                return b.priceList[0].price - a.priceList[0].price;
+              }
+
             }).map((product) => (
              <Grid item xs={12} sm={6} md={4} key={product.id}>
               <ProductCard key={product.id} product={product} stockCheck={stockCheck}/>
