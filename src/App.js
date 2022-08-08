@@ -18,6 +18,7 @@ import AdminUserListPage from "pages/AdminHomePage/pages/Users";
 import CollectionsPage from "pages/CollectionsPage/CollectionsPage";
 import CollectionPageGrowLights from "pages/CollectionsPage/CollectionPageGrowLights";
 import CollectionPageSoil from "pages/CollectionsPage/CollectionPageSoil";
+import CollectionPagePot from "pages/CollectionsPage/CollectionPagePot";
 import MyOrdersPage from "pages/UserProfilePage/MyOrdersPage";
 import Address from "pages/UserProfilePage/Address";
 import Payments from "pages/UserProfilePage/Payments";
@@ -75,6 +76,7 @@ function App() {
             <Route index element={<HomePage />} />
             <Route path="growlights" element={<CollectionPageGrowLights />} />
             <Route path="soil/rocks" element={<CollectionPageSoil />} />
+            <Route path="pots" element={<CollectionPagePot />} />
             
             <Route path="login" element={<LoginPage />} />
             <Route path="register" element={<RegisterPage />} />
