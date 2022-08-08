@@ -32,14 +32,14 @@ function Contact() {
   return (
 
     <div>
-      <Typography variant='h4' align='center' style={{ fontFamily: "monospace" }}>
+      <Typography variant='h4' align='center' style={{ fontFamily: "monospace", paddingTop:"30px" }}>
         Contact Us
       </Typography>
 
       <Card style={{ maxWidth: 550, margin: "0 auto", padding: "20px 5px" }}>
         <CardContent>
           {/* <Typography gutterBottom variant='h5' style={{fontFamily: "monospace"}}>Contact Us</Typography> */}
-          <Typography variant='body1' component="p" style={{ fontFamily: "monospace" }}>Send us an email,we will get back to you within 24 hours.</Typography>
+          <Typography variant='body1' component="p" style={{ fontFamily: "monospace" }}>Send us an email, we will get back to you within 24 hours.</Typography>
           <form ref={form} onSubmit={sendEmail}>
             <Grid container spacing={1} justifyContent="center" alignItems="center">
 
