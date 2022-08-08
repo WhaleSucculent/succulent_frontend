@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Footer from "../../components/Footer";
-import ProductCard from "../../components/ProductCard";
+import ProductCard from "./Card";
 import {
   Container,
   Box,
@@ -22,6 +22,8 @@ import { useParams } from "react-router-dom";
 import { addToMyCart, decreaseCartQty } from "pages/CheckoutPage/features/cartSlice";
 import { useDispatch } from "react-redux";
 import { Repeat } from "@mui/icons-material";
+import Title from 'pages/AdminHomePage/components/Title';
+
 
 /* 
 
@@ -58,12 +60,9 @@ function ProductDetailPage({ open, onClose, setLoading }) {
   const { id } = useParams();
   console.log(id)
 
-  const { loading, error, data } = useQuery(GET_PRODUCT, { variables: { id } }, GET_PRODUCTS);
+  const { loading, error, data } = useQuery(GET_PRODUCT, { variables: { id } });
   console.log(data)
-
-  // const { loading1, error1, data1  } = useQuery(GET_PRODUCTS);
-  // console.log(data1)
-
+ const {  data : productsDetail  } = useQuery(GET_PRODUCTS);
 
   
   const [quantity, setQuantity] = useState(0);
@@ -88,7 +87,7 @@ function ProductDetailPage({ open, onClose, setLoading }) {
           </ProductImage>
         
         <ProductDetailInfoWrapper>    
-            <Typography sx={{ lineHeight: 2 }} variant="h4">
+            <Typography sx={{ lineHeight: 2 }} variant="h6">
               {data?.product.name}
             </Typography>
             <Typography variant="body">
@@ -142,15 +141,22 @@ function ProductDetailPage({ open, onClose, setLoading }) {
           </ProductDetailInfoWrapper>
         </ProductDetailWrapper>
         </Box>
-{/* <Box sx={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", Height: "20px" }}>
+        <Container sx={{height:'35%'}}>
+          <Box sx={{padding:'20px'}}>
+          <Title>
+            Related Products
+          </Title>
+          </Box>
+        <Box sx={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", height: "150px" }}>
             {!loading &&
               !error &&
-        data1.products.slice(0, 3).map((product) => (
+              productsDetail?.products.slice(0, 3).map((product) => (
         <Grid container spacing={2} columns={12} key={product.id} >
-        <ProductCard key={data1.product.id} product={data1.product} />
+        <ProductCard key={product.id} product={product} />
         </Grid>
         ))}
-        </Box> */}
+        </Box>
+        </Container>
       </Container>
     </>
 
