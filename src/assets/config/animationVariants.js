@@ -17,10 +17,10 @@ const lineSelectedVariants = {
 
 const staggerVariants = {
   start: {
-    transition: { staggerChildren: 0.07, delayChildren: 0.05 }
+    transition: { staggerChildren: 0.3, delayChildren: 0.05 }
   },
   end: {
-    transition: { staggerChildren: 0.05, staggerDirection: 1 }
+    transition: { staggerChildren: 0.1, staggerDirection: 1 }
   }
 };
 

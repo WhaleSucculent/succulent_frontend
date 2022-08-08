@@ -15,6 +15,8 @@ import { GET_ME } from '../../queries/customerQueries';
 import { useQuery } from '@apollo/client';
 import EditIcon from '@mui/icons-material/Edit';
 import Title from 'pages/AdminHomePage/components/Title';
+import FramerTableBody from 'components/FramerAnimated/FramerTable/FramerTableBody';
+import FramerTableRow from 'components/FramerAnimated/FramerTable/FramerTableRow';
 
 
 /* function createData(OrderNumber, Date, ShippingAddress, Total, View) {
@@ -45,67 +47,69 @@ export default function DenseTable() {
           Profile
         </Title>
       </Toolbar>
-      <TableContainer component={Paper} sx={{  width: '100%' }}>
-        <Table sx={{  width: '100%' }}  aria-label="a dense table">
+      <TableContainer component={Paper} sx={{ width: '100%' }}>
+        <Table sx={{ width: '100%' }} aria-label="a dense table">
           <TableHead>
           </TableHead>
-          <TableBody>
-            <TableRow>
-              <TableCell>
-                First Name
-              </TableCell>
-              <TableCell>
-                {data.me.firstName}
-              </TableCell>
-              <TableCell>
-                <Button>
-                  <EditIcon />
-                </Button>
-              </TableCell>
-            </TableRow>
+          {data && (
+            <FramerTableBody>
+              <FramerTableRow>
+                <TableCell>
+                  First Name
+                </TableCell>
+                <TableCell>
+                  {data.me.firstName}
+                </TableCell>
+                <TableCell>
+                  <Button>
+                    <EditIcon />
+                  </Button>
+                </TableCell>
+              </FramerTableRow>
 
-            <TableRow>
-              <TableCell>
-                Last Name
-              </TableCell>
-              <TableCell>
-                {data.me.lastName}
-              </TableCell>
-              <TableCell>
-                <Button>
-                  <EditIcon />
-                </Button>
-              </TableCell>
-            </TableRow>
+              <FramerTableRow>
+                <TableCell>
+                  Last Name
+                </TableCell>
+                <TableCell>
+                  {data.me.lastName}
+                </TableCell>
+                <TableCell>
+                  <Button>
+                    <EditIcon />
+                  </Button>
+                </TableCell>
+              </FramerTableRow>
 
-            <TableRow>
-              <TableCell>
-                Email
-              </TableCell>
-              <TableCell>
-                {data.me.email}
-              </TableCell>
-              <TableCell>
-                <Button>
-                  <EditIcon />
-                </Button>
-              </TableCell>
-            </TableRow>
+              <FramerTableRow>
+                <TableCell>
+                  Email
+                </TableCell>
+                <TableCell>
+                  {data.me.email}
+                </TableCell>
+                <TableCell>
+                  <Button>
+                    <EditIcon />
+                  </Button>
+                </TableCell>
+              </FramerTableRow>
 
-            <TableRow>
-              <TableCell>
-                Phone
-              </TableCell>
-              <TableCell>
-                {data.me.phone}
-              </TableCell>
-              <TableCell>
-                <Button>
-                  <EditIcon />
-                </Button>
-              </TableCell>
-            </TableRow>
-          </TableBody>
+              <FramerTableRow>
+                <TableCell>
+                  Phone
+                </TableCell>
+                <TableCell>
+                  {data.me.phone}
+                </TableCell>
+                <TableCell>
+                  <Button>
+                    <EditIcon />
+                  </Button>
+                </TableCell>
+              </FramerTableRow>
+            </FramerTableBody>
+          )}
         </Table>
       </TableContainer>
     </Box>

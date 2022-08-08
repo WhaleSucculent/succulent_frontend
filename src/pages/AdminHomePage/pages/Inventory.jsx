@@ -31,7 +31,6 @@ import Loading from 'components/Loading';
 import { motion } from 'framer-motion';
 import { lineSelectedVariants, staggerVariants } from 'assets/config/animationVariants';
 import Title from '../components/Title';
-import TableHeadCell from '../components/TableHeadCell';
 import _ from 'lodash'
 
 
@@ -91,6 +90,8 @@ function EnhancedTableHead(props) {
   const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } =
     props;
   const createSortHandler = (property) => (event) => {
+    console.log(property)
+    console.log(event)
     onRequestSort(event, property);
   };
 
@@ -104,12 +105,12 @@ function EnhancedTableHead(props) {
             checked={rowCount > 0 && numSelected === rowCount}
             onChange={onSelectAllClick}
             inputProps={{
-              'aria-label': 'select all products',
+              'aria-label': 'select all desserts',
             }}
           />
         </TableCell>
         {headCells.map((headCell) => (
-          <TableHeadCell
+          <TableCell
             key={headCell.id}
             align={headCell.numeric ? 'right' : 'left'}
             padding={headCell.disablePadding ? 'none' : 'normal'}
@@ -127,7 +128,7 @@ function EnhancedTableHead(props) {
                 </Box>
               ) : null}
             </TableSortLabel>
-          </TableHeadCell>
+          </TableCell>
         ))}
       </TableRow>
     </TableHead>
@@ -212,12 +213,11 @@ export default function Inventory() {
   const [dense, setDense] = useState(false);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   if (loading) return <Loading />;
-  if (error) return <p>Error</p>;
-
 
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
+    console.log(isAsc)
     setOrder(isAsc ? 'desc' : 'asc');
     console.log(property)
     setOrderBy(property);

@@ -11,6 +11,10 @@ import { GET_ME } from '../../queries/customerQueries';
 import { useQuery } from '@apollo/client';
 import Title from "pages/AdminHomePage/components/Title";
 import TableHeadCell from 'pages/AdminHomePage/components/TableHeadCell';
+import FramerTableRow from 'components/FramerAnimated/FramerTable/FramerTableRow';
+import FramerTableBody from 'components/FramerAnimated/FramerTable/FramerTableBody';
+import { motion } from 'framer-motion';
+import { lineSelectedVariants, staggerVariants } from 'assets/config/animationVariants';
 
 
 
@@ -54,52 +58,27 @@ export default function DenseTable() {
               <TableHeadCell align="right">View</TableHeadCell>
             </TableRow>
           </TableHead>
-          <TableBody>
-            <TableRow>
-              <TableCell>
-                {data.me.orders[0].id}
-              </TableCell>
-              <TableCell>
-                {data.me.orders[0].orderDate}
-              </TableCell>
-              <TableCell>
-                {data.me.orders[0].shippingAddress.apartment + ' ' + data.me.orders[0].shippingAddress.city}
-              </TableCell>
-              <TableCell>
-                {data.me.orders[0].productsInCart[0].price}
-              </TableCell>
-              <TableCell>
-                <Button variant="contained" sx={{ borderRadius: 28, backgroundColor: '#ffb2cc' }}>View</Button>
-              </TableCell>
-            </TableRow>
-
-            <TableRow>
-              <TableCell>
-                {data.me.orders[1].id}
-              </TableCell>
-              <TableCell>
-                {data.me.orders[1].orderDate}
-              </TableCell>
-              <TableCell>
-                {data.me.orders[1].shippingAddress.apartment + ' ' + data.me.orders[1].shippingAddress.city}
-              </TableCell>
-              <TableCell>
-                {data.me.orders[1].productsInCart[1].price}
-              </TableCell>
-              <TableCell>
-                <Button variant="contained" sx={{ borderRadius: 28, backgroundColor: '#ffb2cc' }}>View</Button>
-              </TableCell>
-            </TableRow>
-            {/* <TableRow            >
-              <TableCell component="th" scope="row">
-                {row.OrderNumber}
-              </TableCell>
-              <TableCell align="right">{row.Date}</TableCell>
-              <TableCell align="right">{row.ShippingAddress}</TableCell>
-              <TableCell align="right">{row.Total}</TableCell>
-              <TableCell align="right">{row.View}</TableCell>
-            </TableRow> */}
-          </TableBody>
+          {data.me.orders.map(order => (
+            <TableBody component={motion.div} variants={staggerVariants} initial="start" animate="end">
+              <TableRow component={motion.div} variants={lineSelectedVariants} whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
+                <TableCell>
+                  {order.id}
+                </TableCell>
+                <TableCell>
+                  {order.orderDate}
+                </TableCell>
+                <TableCell>
+                  {order.shippingAddress.apartment + ' ' + order.shippingAddress.city}
+                </TableCell>
+                <TableCell>
+                  {order.productsInCart[0].price}
+                </TableCell>
+                <TableCell>
+                  <Button variant="contained" sx={{ borderRadius: 28, backgroundColor: '#ffb2cc' }}>View</Button>
+                </TableCell>
+              </TableRow>
+            </TableBody>
+          ))}
         </Table>
       </TableContainer>
     </Box>
