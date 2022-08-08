@@ -10,14 +10,14 @@ import UpdateCustomer from "./UpdateCustomer";
 import DeleteCustomer from "./DeleteCustomer";
 import { motion } from "framer-motion";
 import { lineSelectedVariants } from "assets/config/animationVariants";
+import { staggerVariants } from 'assets/config/animationVariants';
+
+
 function UserRow({ customer, index }) {
 
 
   return (
-    <TableRow component={motion.div}
-      variants={lineSelectedVariants}
-      whileHover={{ scale: 1.01 }}
-      whileTap={{ scale: 0.99 }}
+    <TableRow component={motion.div} variants={lineSelectedVariants} animate="open" whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}
     >
       <TableCell>{index + 1}</TableCell>
       <TableCell>{customer.firstName}</TableCell>
