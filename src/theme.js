@@ -1,4 +1,4 @@
-import { orange, red } from '@mui/material/colors';
+import { grey, orange, red } from '@mui/material/colors';
 import { createTheme } from '@mui/material/styles';
 
 export const theme = createTheme({
@@ -18,6 +18,7 @@ export const theme = createTheme({
   },
   typography: {
     fontFamily: [
+      '"Inter var"',
       'Roboto',
       '"Helvetica Neue"',
       'Arial',
@@ -25,7 +26,7 @@ export const theme = createTheme({
       '"Apple Color Emoji"',
       '"Segoe UI Emoji"',
       '"Segoe UI Symbol"',
-      '"Montserrat"'
+      '"Montserrat"',
     ].join(','),
   },
   shape: {
@@ -41,16 +42,59 @@ export const theme = createTheme({
         }
       }
     },
+    MuiTableHead: {
+      styleOverrides: {
+        root: {
+          backgroundColor: grey[200],
+
+        }
+      }
+    },
+    MuiTableCell: {
+      styleOverrides: {
+        root: {
+          textAlign: 'center',
+          borderBottom: "none"
+        }
+      }
+    },
     MuiTableRow: {
       styleOverrides: {
         root: {
-          "&:hover": {
-            backgroundColor: '#f5f5f5',
-
+          "&:nth-of-type(even)": {
+            backgroundColor: '#fafafa'
           }
         }
       }
-    }
+    },
+    MuiDrawer: {
+      styleOverrides: {
+        paper: {
+          backgroundColor:'#111827',
+        },
+      }
+    },
+    MuiListItemButton: {
+      styleOverrides: {
+        root: {
+          color: "#3A85AB",
+          ":hover": {
+            color: "#8AD8FF"
+          }
+        }
+      }
+    },
+    MuiListItemIcon: {
+      styleOverrides: {
+        root: {
+          color: "#3A85AB",
+          ":hover": {
+            color: "#8AD8FF"
+          }
+        }
+      }
+    },
+
   },
   transitions: {
     easing: {

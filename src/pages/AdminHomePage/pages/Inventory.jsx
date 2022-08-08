@@ -29,6 +29,9 @@ import EditProduct from './EditProduct';
 import DeleteProduct from './DeleteProduct';
 import Loading from 'components/Loading';
 import { motion } from 'framer-motion';
+import { staggerVariants } from 'assets/config/animationVariants';
+import Title from '../components/Title';
+import TableHeadCell from '../components/TableHeadCell';
 
 
 const lineSelectedVariants = {
@@ -101,7 +104,7 @@ const headCells = [
     id: 'qty',
     numeric: true,
     disablePadding: false,
-    label: 'Qty Available',
+    label: 'Qty',
   },
   {
     id: 'price',
@@ -151,7 +154,7 @@ function EnhancedTableHead(props) {
           />
         </TableCell>
         {headCells.map((headCell) => (
-          <TableCell
+          <TableHeadCell
             key={headCell.id}
             align={headCell.numeric ? 'right' : 'left'}
             padding={headCell.disablePadding ? 'none' : 'normal'}
@@ -169,7 +172,7 @@ function EnhancedTableHead(props) {
                 </Box>
               ) : null}
             </TableSortLabel>
-          </TableCell>
+          </TableHeadCell>
         ))}
       </TableRow>
     </TableHead>
@@ -189,7 +192,7 @@ const EnhancedTableToolbar = (props) => {
   const { numSelected } = props;
 
   return (
-    <div>
+    <Box>
       <Typography align='left'>
         <AddProduct />
       </Typography>
@@ -213,14 +216,10 @@ const EnhancedTableToolbar = (props) => {
             {numSelected} selected
           </Typography>
         ) : (
-          <Typography
-            sx={{ flex: '1 1 100%' }}
-            variant="h6"
-            id="tableTitle"
-            component="div"
+          <Title
           >
             Product Inventory
-          </Typography>
+          </Title>
 
         )}
 
@@ -238,7 +237,7 @@ const EnhancedTableToolbar = (props) => {
           </Tooltip>
         )}
       </Toolbar>
-    </div>
+    </Box>
   );
 };
 
@@ -316,7 +315,7 @@ export default function Inventory() {
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - data.products.length) : 0;
 
   return (
-    <Box sx={{ width: '100%', marginTop: '5em' }}>
+    <Box sx={{p: 2}}>
       <CssBaseline/>
       {!loading && !error && (
         <Paper sx={{ width: '100%', mb: 2 }}>
@@ -335,7 +334,8 @@ export default function Inventory() {
                 onRequestSort={handleRequestSort}
                 rowCount={data.products.length}
               />
-              <TableBody>
+              {data && (
+                <TableBody component={motion.div} variants={staggerVariants} initial="start" animate="end">
                 {/* if you don't need to support IE11, you can replace the `stableSort` call with:
                  rows.slice().sort(getComparator(order, orderBy)) */}
                 {stableSort(data.products, getComparator(order, orderBy))
@@ -394,7 +394,8 @@ export default function Inventory() {
                     <TableCell colSpan={6} />
                   </TableRow>
                 )}
-              </TableBody>
+              </TableBody>)}
+
             </Table>
           </TableContainer>
           <TablePagination

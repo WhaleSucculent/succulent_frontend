@@ -115,10 +115,10 @@ function AddProduct() {
 
   return (
       <div style={{ padding: '1.5em' }}>
-        <Button onClick={handleOpen} color="primary">
-          <Stack direction="row" justifyContent="center" alignItems="center">
+        <Button onClick={handleOpen}  >
+          <Stack direction="row" justifyContent="center" alignItems="center" color={"primary.dark"} fontWeight={"600"} fontSize={"1rem"}>
             <AddIcon />
-            <div>Add Product</div>
+            Add Product
           </Stack>
         </Button>
 
