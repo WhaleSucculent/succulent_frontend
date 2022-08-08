@@ -16,6 +16,7 @@ import AdminProductPage from "pages/AdminHomePage/pages/Inventory";
 import AdminOrderPage from "pages/AdminHomePage/pages/Order";
 import AdminUserListPage from "pages/AdminHomePage/pages/Users";
 import CollectionsPage from "pages/CollectionsPage/CollectionsPage";
+import CollectionPageGrowLights from "pages/CollectionsPage/CollectionPageGrowLights";
 import MyOrdersPage from "pages/UserProfilePage/MyOrdersPage";
 import Address from "pages/UserProfilePage/Address";
 import Payments from "pages/UserProfilePage/Payments";
@@ -71,6 +72,7 @@ function App() {
           {/* Router for   */}
           <Route path="/" element={<HeaderFooter />}>
             <Route index element={<HomePage />} />
+            <Route path="growlights" element={<CollectionPageGrowLights />} />
             <Route path="login" element={<LoginPage />} />
             <Route path="register" element={<RegisterPage />} />
             <Route path="forgot" element={<ForgotPassPage />} />
