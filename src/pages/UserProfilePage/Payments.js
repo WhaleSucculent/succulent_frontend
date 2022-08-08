@@ -11,6 +11,8 @@ import { GET_ME } from '../../queries/customerQueries';
 import { useQuery } from '@apollo/client';
 import EditIcon from '@mui/icons-material/Edit';
 import Title from 'pages/AdminHomePage/components/Title';
+import { motion } from 'framer-motion';
+import { lineSelectedVariants, staggerVariants } from 'assets/config/animationVariants';
 
 // function createData(OrderNumber, Date, ShippingAddress, Total, View) {
 //   return { OrderNumber, Date, ShippingAddress, Total, View};
@@ -46,8 +48,8 @@ export default function DenseTable() {
           <TableHead>
 
           </TableHead>
-          <TableBody>
-            <TableRow>
+          <TableBody component={motion.div} variants={staggerVariants} initial="start" animate="end">
+            <TableRow component={motion.div} variants={lineSelectedVariants} whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
               <TableCell>
                 Card Number
               </TableCell>
@@ -56,7 +58,7 @@ export default function DenseTable() {
               </TableCell>
             </TableRow>
 
-            <TableRow>
+            <TableRow component={motion.div} variants={lineSelectedVariants} whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
               <TableCell>
                 Holder Name
               </TableCell>
@@ -65,7 +67,7 @@ export default function DenseTable() {
               </TableCell>
             </TableRow>
 
-            <TableRow>
+            <TableRow component={motion.div} variants={lineSelectedVariants} whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
               <TableCell>
                 Expiration Date
               </TableCell>

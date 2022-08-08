@@ -5,12 +5,14 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import { Typography, Button, Paper, Container} from '@mui/material';
-import {GET_CUSTOMER} from "../../mutations/userMutations";
-import {GET_ME} from '../../queries/customerQueries';
+import { Typography, Button, Paper, Container } from '@mui/material';
+import { GET_CUSTOMER } from "../../mutations/userMutations";
+import { GET_ME } from '../../queries/customerQueries';
 import { useQuery } from '@apollo/client';
 import EditIcon from '@mui/icons-material/Edit';
-
+import Title from 'pages/AdminHomePage/components/Title';
+import { motion } from 'framer-motion';
+import { lineSelectedVariants, staggerVariants } from 'assets/config/animationVariants';
 // function createData(OrderNumber, Date, ShippingAddress, Total, View) {
 //   return { OrderNumber, Date, ShippingAddress, Total, View};
 // }
@@ -23,113 +25,111 @@ import EditIcon from '@mui/icons-material/Edit';
 // ];
 
 export default function DenseTable() {
-  const {loading, error, data} = useQuery(GET_ME);
+  const { loading, error, data } = useQuery(GET_ME);
   console.log(data);
   return (
     <Container>
-                <Typography variant='h5'>
-        My Addresses
-        </Typography>
-    <TableContainer component={Paper} sx={{maxWidth:'80%', margin:'0 auto', marginTop:'30px'}}>
-      <Table sx={{ maxWidth: '80%', margin: '0 auto'}} size="small" aria-label="a dense table">
-        <TableHead>
-        Shipping Address
-        </TableHead>
-        <TableBody>
-        <TableRow>
-              <TableCell>
-              First Name
-              </TableCell>
-              <TableCell>
-                {data.me.orders[0].shippingAddress.firstName} 
-              </TableCell>
-              </TableRow>
+      <Title>
+        Shipping Addresses
+      </Title>
+      <TableContainer component={Paper}>
+        <Table sx={{ maxWidth: '100%', margin: '0 auto' }} size="small" aria-label="a dense table">
 
-              <TableRow>
+          <TableBody component={motion.div} variants={staggerVariants} initial="start" animate="end">
+            <TableRow component={motion.div} variants={lineSelectedVariants} whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
               <TableCell>
-              Last Name
+                First Name
               </TableCell>
               <TableCell>
-                {data.me.orders[0].shippingAddress.lastName} 
+                {data.me.orders[0].shippingAddress.firstName}
               </TableCell>
-              </TableRow>
+            </TableRow>
 
-              <TableRow>
+            <TableRow component={motion.div} variants={lineSelectedVariants} whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
               <TableCell>
-              Address
+                Last Name
               </TableCell>
               <TableCell>
-              {data.me.orders[0].shippingAddress.apartment}
+                {data.me.orders[0].shippingAddress.lastName}
               </TableCell>
-              </TableRow>
+            </TableRow>
 
-              <TableRow>
+            <TableRow component={motion.div} variants={lineSelectedVariants} whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
               <TableCell>
-              City
+                Address
               </TableCell>
               <TableCell>
-              {data.me.orders[0].shippingAddress.city}
+                {data.me.orders[0].shippingAddress.apartment}
               </TableCell>
-              </TableRow>
+            </TableRow>
+
+            <TableRow component={motion.div} variants={lineSelectedVariants} whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
+              <TableCell>
+                City
+              </TableCell>
+              <TableCell>
+                {data.me.orders[0].shippingAddress.city}
+              </TableCell>
+            </TableRow>
 
 
-              <TableRow>
+            <TableRow component={motion.div} variants={lineSelectedVariants} whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
               <TableCell>
-              Province
+                Province
               </TableCell>
               <TableCell>
-              {data.me.orders[0].shippingAddress.state}
+                {data.me.orders[0].shippingAddress.state}
               </TableCell>
               <TableCell>
                 <Button>
-                  <EditIcon/>
-              </Button>
+                  <EditIcon />
+                </Button>
               </TableCell>
-              </TableRow>
-        </TableBody>
-      </Table>
-    </TableContainer>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </TableContainer>
 
-    <TableContainer component={Paper} sx={{maxWidth:'80%', margin:'0 auto', marginTop:'30px'}}>
-      <Table sx={{ maxWidth: '80%', margin: '0 auto'}} size="small" aria-label="a dense table">
-        <TableHead>
+      <Title>
         Billing Address
-        </TableHead>
-        <TableBody>
-        <TableRow>
+      </Title>
+      <TableContainer component={Paper}>
+        <Table size="small" aria-label="a dense table">
+          <TableBody component={motion.div} variants={staggerVariants} initial="start" animate="end">
+            <TableRow component={motion.div} variants={lineSelectedVariants} whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
               <TableCell>
-              First Name
+                First Name
               </TableCell>
               <TableCell>
-                {data.me.orders[0].billingAddress.firstName} 
+                {data.me.orders[0].billingAddress.firstName}
               </TableCell>
-              </TableRow>
+            </TableRow>
 
-              <TableRow>
+            <TableRow component={motion.div} variants={lineSelectedVariants} whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
               <TableCell>
-              Last Name
+                Last Name
               </TableCell>
               <TableCell>
-                {data.me.orders[0].shippingAddress.lastName} 
+                {data.me.orders[0].shippingAddress.lastName}
               </TableCell>
-              </TableRow>
+            </TableRow>
 
-              <TableRow>
+            <TableRow component={motion.div} variants={lineSelectedVariants} whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
               <TableCell>
-              City
+                City
               </TableCell>
               <TableCell>
-              {data.me.orders[0].shippingAddress.city}
+                {data.me.orders[0].shippingAddress.city}
               </TableCell>
               <TableCell>
                 <Button>
-                  <EditIcon/>
-              </Button>
+                  <EditIcon />
+                </Button>
               </TableCell>
-              </TableRow>
-        </TableBody>
-      </Table>
-    </TableContainer>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </TableContainer>
     </Container>
   );
 }

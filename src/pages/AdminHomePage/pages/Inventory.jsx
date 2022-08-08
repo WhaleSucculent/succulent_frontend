@@ -154,9 +154,6 @@ const EnhancedTableToolbar = (props) => {
       </Typography>
       <Toolbar
         sx={{
-          pl: { sm: 2 },
-          pr: { xs: 1, sm: 1 },
-          pb: { xs: 1, sm: 1, xl: 4 },
           ...(numSelected > 0 && {
             bgcolor: (theme) =>
               alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),

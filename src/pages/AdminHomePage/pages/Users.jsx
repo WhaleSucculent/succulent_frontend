@@ -25,16 +25,7 @@ export default function Users() {
       {
         !loading && !error && (
           <TableContainer component={Paper} sx={{ width: "100%", borderRadius: "20px" }} >
-            <Toolbar
-              sx={{
-                pl: { sm: 2 },
-                pr: { xs: 1, sm: 1 },
-                pt: { xs: 1, sm: 1, xl: 4 },
-                pb: { xs: 1, sm: 1, xl: 4 },
-              }}
-            >
               <Title >Customers</Title>
-            </Toolbar>
             <Table sx={{ minWidth: 650 }}>
               <TableHead>
                 <TableRow sx={{

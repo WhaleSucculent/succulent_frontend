@@ -3,14 +3,14 @@ import { ForwardRefComponent, HTMLMotionProps, motion, Variants } from "framer-m
 // After Scroll animation parameter
 const cardVariants: Variants = {
   offscreen: {
-    y: 200,
+    y: 100,
   },
   onscreen: {
     y: 0,
     transition: {
       type: "spring",
-      bounce: 0.4,
-      duration: 0.8,
+      bounce: 0.5,
+      duration: 0.4,
     },
   },
 };
