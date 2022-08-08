@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Footer from "../../components/Footer";
-import ProductCard from "./Card";
+import ProductCard from "../../components/ProductCard";
 import {
   Container,
   Box,
@@ -61,8 +61,8 @@ function ProductDetailPage({ open, onClose, setLoading }) {
   const { loading, error, data } = useQuery(GET_PRODUCT, { variables: { id } }, GET_PRODUCTS);
   console.log(data)
 
-  const { e } = useQuery(GET_PRODUCTS);
-  console.log(e)
+  const { loading1, error1, data1  } = useQuery(GET_PRODUCTS);
+  console.log(data1)
 
 
   
@@ -141,6 +141,15 @@ function ProductDetailPage({ open, onClose, setLoading }) {
             </Box>
           </ProductDetailInfoWrapper>
         </ProductDetailWrapper>
+        </Box>
+<Box sx={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", Height: "20px" }}>
+            {!loading &&
+              !error &&
+        data1.products.slice(0, 3).map((product) => (
+        <Grid container spacing={2} columns={12} key={product.id} >
+        <ProductCard key={data1.product.id} product={data1.product} />
+        </Grid>
+        ))}
         </Box>
       </Container>
     </>
