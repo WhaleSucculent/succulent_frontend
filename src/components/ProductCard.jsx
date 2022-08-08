@@ -10,7 +10,7 @@ import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
-
+import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { addToMyCart } from "pages/CheckoutPage/features/cartSlice";
 import { Container, Grid } from "@mui/material";
@@ -39,7 +39,7 @@ function ProductCard({ product }) {
   return (
     <Container>
       { (
-        <Grid container spacing={{ xs: 2, md: 3 }} direction="row">
+        <Grid component={motion.div} whileHover={{ y:'-15px'}} container spacing={{ xs: 2, md: 3 }}  direction="row">
           <Grid item xs={15} md={20}>
             <Card sx={{ maxWidth: 345 }}>
               <Link to={`products/${product.id}`} underline="none">
