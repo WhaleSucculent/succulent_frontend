@@ -32,7 +32,7 @@ import { AnimateSharedLayout, motion } from "framer-motion";
 import { useState } from "react";
 import './Nav.css';
 
-const pages = ["succulents", "growlights", "soil/rocks", "pots", "information"];
+const pages = ["succulents", "growlights", "soil/rocks", "pots", "contact"];
 const settings = ["Profile", "Account", "Orders"];
 
 const ResponsiveAppBar = () => {
@@ -289,7 +289,7 @@ const ResponsiveAppBar = () => {
                     <LoginOutlinedIcon fontSize="large" />
 
                   </Link>) : (<Tooltip title="Open settings">
-                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, zIndex:6000 }} >
+                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }} >
                       <Avatar
                         alt={`${data?.me.firstname} ${data?.me.lastname}`}
                         src={data?.me.avatar}
