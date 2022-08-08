@@ -20,6 +20,7 @@ import Category from "components/Category";
 import { motion } from "framer-motion";
 import OnScrollAnimationBox from "components/OnScrollAnimationBox";
 import { CartButton } from "components/CartButton/CartButton";
+import Footer from "components/Footer";
 
 const cardVariants = {
   offscreen: {
@@ -189,6 +190,7 @@ const HomePage = () => {
           </Box>
         </Container>
       </OnScrollAnimationBox>
+      <Footer />
     </div>
 
   );

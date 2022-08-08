@@ -9,11 +9,12 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import { Typography, Button, Paper} from '@mui/material';
-import {GET_CUSTOMER} from "../../mutations/userMutations";
-import {GET_ME} from '../../queries/customerQueries';
+import { Typography, Button, Paper, Toolbar } from '@mui/material';
+import { GET_CUSTOMER } from "../../mutations/userMutations";
+import { GET_ME } from '../../queries/customerQueries';
 import { useQuery } from '@apollo/client';
 import EditIcon from '@mui/icons-material/Edit';
+import Title from 'pages/AdminHomePage/components/Title';
 
 
 /* function createData(OrderNumber, Date, ShippingAddress, Total, View) {
@@ -27,75 +28,86 @@ import EditIcon from '@mui/icons-material/Edit';
 ]; */
 
 export default function DenseTable() {
-  const {loading, error, data} = useQuery(GET_ME);
+  const { loading, error, data } = useQuery(GET_ME);
   console.log(data);
 
   return (
-    <TableContainer component={Paper} sx={{maxWidth:'80%', margin:'0 auto'}}>
-      <Table sx={{ maxWidth: '80%', margin: '0 auto'}} size="small" aria-label="a dense table">
-        <TableHead>
-        <Typography variant='h5'>
-        My Profile
-        </Typography>
-        </TableHead>
-        <TableBody>
-              <TableRow>
+    <Box>
+      <Toolbar
+        sx={{
+          pl: { sm: 2 },
+          pr: { xs: 1, sm: 1 },
+          pt: { xs: 1, sm: 1, xl: 4 },
+          pb: { xs: 1, sm: 1, xl: 4 },
+        }}
+      >
+        <Title>
+          Profile
+        </Title>
+      </Toolbar>
+      <TableContainer component={Paper} sx={{  width: '100%' }}>
+        <Table sx={{  width: '100%' }}  aria-label="a dense table">
+          <TableHead>
+          </TableHead>
+          <TableBody>
+            <TableRow>
               <TableCell>
-              First Name
+                First Name
               </TableCell>
               <TableCell>
                 {data.me.firstName}
               </TableCell>
               <TableCell>
                 <Button>
-                  <EditIcon/>
-              </Button>
+                  <EditIcon />
+                </Button>
               </TableCell>
-              </TableRow>
+            </TableRow>
 
-              <TableRow>
+            <TableRow>
               <TableCell>
-              Last Name
+                Last Name
               </TableCell>
               <TableCell>
                 {data.me.lastName}
               </TableCell>
               <TableCell>
                 <Button>
-                  <EditIcon/>
-              </Button>
+                  <EditIcon />
+                </Button>
               </TableCell>
-              </TableRow>
+            </TableRow>
 
-              <TableRow>
+            <TableRow>
               <TableCell>
-              Email
+                Email
               </TableCell>
               <TableCell>
                 {data.me.email}
               </TableCell>
               <TableCell>
                 <Button>
-                  <EditIcon/>
-              </Button>
+                  <EditIcon />
+                </Button>
               </TableCell>
-              </TableRow>
+            </TableRow>
 
-              <TableRow>
+            <TableRow>
               <TableCell>
-              Phone
+                Phone
               </TableCell>
               <TableCell>
                 {data.me.phone}
               </TableCell>
               <TableCell>
                 <Button>
-                  <EditIcon/>
-              </Button>
+                  <EditIcon />
+                </Button>
               </TableCell>
-              </TableRow>
-        </TableBody>
-      </Table>
-    </TableContainer>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Box>
   );
 }

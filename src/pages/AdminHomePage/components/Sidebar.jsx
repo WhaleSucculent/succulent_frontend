@@ -139,7 +139,7 @@ function DashboardContent() {
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }} >
               <Avatar
                 alt={`${data?.firstname} ${data?.lastname}`}
-                src={data?.avatar}
+                src={data?.me.avatar}
                 fontSize='large'
 
               />

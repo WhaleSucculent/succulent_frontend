@@ -5,11 +5,10 @@ import { Box } from '@mui/material';
 
 function Title(props) {
   return (
-    <Box sx={{ borderBottom: 1 }} >
+    <Box sx={{ borderBottom: "0.5rem solid #ffb2cc"  }} >
       <Typography component="h2" variant="h4" color="primary.dark" gutterBottom sx={{fontWeight: 800}} >
         {props.children}
       </Typography>
-
     </Box>
   );
 }

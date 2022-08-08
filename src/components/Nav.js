@@ -285,14 +285,14 @@ const ResponsiveAppBar = () => {
                     color: "#000000",
                   }}
                 >
-                  {!data?.me ? (<Link to={"login"} color={"primary"}>
+                  {!data?.me ? (<Link to={"login"}>
                     <LoginOutlinedIcon fontSize="large" />
 
                   </Link>) : (<Tooltip title="Open settings">
                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }} >
                       <Avatar
-                        alt={`${data.firstname} ${data.lastname}`}
-                        src={data.avatar}
+                        alt={`${data?.me.firstname} ${data?.me.lastname}`}
+                        src={data?.me.avatar}
                         fontSize='large'
 
                       />

@@ -9,6 +9,7 @@ const GET_CUSTOMERS = gql`
         lastName
         status
         role
+        avatar
         orders{
            id
            shippingAddress{
@@ -56,6 +57,7 @@ const GET_CUSTOMER = gql`
          email
          firstName
          lastName
+         avatar
          orders{
             id
             shippingAddress{
@@ -108,6 +110,7 @@ const GET_ME = gql`
       lastName
       role
       phone
+      avatar
       orders{
         id
         orderDate

@@ -9,7 +9,7 @@ import Link from "./Link";
 
 function Footer() {
   return (
-    <Box bgcolor={Colors.primary} color="black">
+    <Box bgcolor={Colors.primary} sx={{ width: "100%"}}>
       <Container>
         <Grid container padding={4}>
           <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)' }}>

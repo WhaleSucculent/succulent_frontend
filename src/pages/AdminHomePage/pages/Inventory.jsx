@@ -200,6 +200,7 @@ const EnhancedTableToolbar = (props) => {
         sx={{
           pl: { sm: 2 },
           pr: { xs: 1, sm: 1 },
+          pb: { xs: 1, sm: 1, xl: 4 },
           ...(numSelected > 0 && {
             bgcolor: (theme) =>
               alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
@@ -315,8 +316,8 @@ export default function Inventory() {
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - data.products.length) : 0;
 
   return (
-    <Box sx={{p: 2}}>
-      <CssBaseline/>
+    <Box sx={{ p: 2 }}>
+      <CssBaseline />
       {!loading && !error && (
         <Paper sx={{ width: '100%', mb: 2 }}>
           <EnhancedTableToolbar numSelected={selected.length} />
@@ -335,66 +336,69 @@ export default function Inventory() {
                 rowCount={data.products.length}
               />
               {data && (
-                <TableBody component={motion.div} variants={staggerVariants} initial="start" animate="end">
-                {/* if you don't need to support IE11, you can replace the `stableSort` call with:
+                <>
+                  {/* if you don't need to support IE11, you can replace the `stableSort` call with:
                  rows.slice().sort(getComparator(order, orderBy)) */}
-                {stableSort(data.products, getComparator(order, orderBy))
-                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((product, index) => {
-                    const isItemSelected = isSelected(product.name);
-                    const labelId = `enhanced-table-checkbox-${index}`;
+                  {stableSort(data.products, getComparator(order, orderBy))
+                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    .map((product, index) => {
+                      const isItemSelected = isSelected(product.name);
+                      const labelId = `enhanced-table-checkbox-${index}`;
 
-                    return (
-                      <TableRow
-                        hover
-                        onClick={(event) => handleClick(event, product.name)}
-                        role="checkbox"
-                        aria-checked={isItemSelected}
-                        tabIndex={-1}
-                        key={product.name}
-                        selected={isItemSelected}
-                        component={motion.div}
-                        variants={lineSelectedVariants}
-                        whileHover={{ scale: 1.01 }}
-                        whileTap={{ scale: 0.99 }}
-                      >
-                        <TableCell padding="checkbox"  >
-                          <Checkbox
-                            color="primary"
-                            checked={isItemSelected}
-                            inputProps={{
-                              'aria-labelledby': labelId,
-                            }}
-                          />
-                        </TableCell>
-                        <TableCell
-                          component="th"
-                          id={labelId}
-                          scope="row"
-                          padding="none"
-                        >
-                          {product.name}
-                        </TableCell>
-                        <TableCell align="right">{product.id}</TableCell>
-                        <TableCell align="right">{product.description}</TableCell>
-                        <TableCell align="right">{product.quantity}</TableCell>
-                        <TableCell align="right">$ {product.priceList[0].price}</TableCell>
-                        <TableCell align="right">{product.productStatus}</TableCell>
-                        <TableCell align="right"><EditProduct product={product} /></TableCell>
-                        <TableCell align="right"><DeleteProduct product={product} /></TableCell>
-                      </TableRow>
-                    );
-                  })}
-                {emptyRows > 0 && (
-                  <TableRow
-                    style={{
-                      height: (dense ? 33 : 53) * emptyRows,
-                    }}
-                  >
-                    <TableCell colSpan={6} />
-                  </TableRow>
-                )}
-              </TableBody>)}
+                      return (
+                        <TableBody component={motion.div} variants={staggerVariants} initial="start" animate="end">
+                          <TableRow
+                            hover
+                            onClick={(event) => handleClick(event, product.name)}
+                            role="checkbox"
+                            aria-checked={isItemSelected}
+                            tabIndex={-1}
+                            key={product.name}
+                            selected={isItemSelected}
+                            component={motion.div}
+                            variants={lineSelectedVariants}
+                            whileHover={{ scale: 1.01 }}
+                            whileTap={{ scale: 0.99 }}
+                          >
+                            <TableCell padding="checkbox"  >
+                              <Checkbox
+                                color="primary"
+                                checked={isItemSelected}
+                                inputProps={{
+                                  'aria-labelledby': labelId,
+                                }}
+                              />
+                            </TableCell>
+                            <TableCell
+                              component="th"
+                              id={labelId}
+                              scope="row"
+                              padding="none"
+                            >
+                              {product.name}
+                            </TableCell>
+                            <TableCell align="right">{product.id}</TableCell>
+                            <TableCell align="right">{product.description}</TableCell>
+                            <TableCell align="right">{product.quantity}</TableCell>
+                            <TableCell align="right">$ {product.priceList[0].price}</TableCell>
+                            <TableCell align="right">{product.productStatus}</TableCell>
+                            <TableCell align="right"><EditProduct product={product} /></TableCell>
+                            <TableCell align="right"><DeleteProduct product={product} /></TableCell>
+                          </TableRow>
+                        </TableBody>
+                      );
+                    })}
+                  {emptyRows > 0 && (
+                    <TableRow
+                      style={{
+                        height: (dense ? 33 : 53) * emptyRows,
+                      }}
+                    >
+                      <TableCell colSpan={6} />
+                    </TableRow>
+                  )}
+                </>
+              )}
 
             </Table>
           </TableContainer>
