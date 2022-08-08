@@ -1,14 +1,14 @@
 const lineSelectedVariants = {
-  open: {
-    y: 0,
-    opacity: 1,
+  start: {
+    y: 200,
+    opacity: 0,
     transition: {
       y: { stiffness: 1000, velocity: -100 }
     }
   },
-  closed: {
-    y: 50,
-    opacity: 0,
+  end: {
+    y: 0,
+    opacity: 1,
     transition: {
       y: { stiffness: 1000 }
     }
@@ -16,11 +16,11 @@ const lineSelectedVariants = {
 };
 
 const staggerVariants = {
-  open: {
-    transition: { staggerChildren: 0.07, delayChildren: 0.2 }
+  start: {
+    transition: { staggerChildren: 0.3, delayChildren: 0.05 }
   },
-  closed: {
-    transition: { staggerChildren: 0.05, staggerDirection: -1 }
+  end: {
+    transition: { staggerChildren: 0.1, staggerDirection: 1 }
   }
 };
 

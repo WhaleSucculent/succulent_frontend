@@ -7,9 +7,9 @@ import { Provider } from 'react-redux';
 import store from 'pages/CheckoutPage/store/store';
 import { client } from 'graphql/apolloClient';
 import { ApolloProvider } from '@apollo/client';
-import { ThemeProvider } from '@mui/material';
-import { theme } from 'theme';
+import { CssBaseline, ThemeProvider } from '@mui/material';
 import { BrowserRouter } from 'react-router-dom';
+import { theme } from 'theme';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -20,6 +20,7 @@ root.render(
       <ApolloProvider client={client}>
         <ThemeProvider theme={theme}>
           <BrowserRouter>
+            <CssBaseline/>          
             <App />
           </BrowserRouter>
         </ThemeProvider>

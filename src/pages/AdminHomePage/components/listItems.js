@@ -15,8 +15,8 @@ import Link from 'components/Link';
 export const mainListItems = (
   <React.Fragment>
     <Link to={"/admin/home"}>
-      <ListItemButton>
-        <ListItemIcon>
+      <ListItemButton >
+        <ListItemIcon >
           <DashboardIcon />
         </ListItemIcon>
         <ListItemText primary="Dashboard" />
@@ -57,7 +57,7 @@ export const mainListItems = (
 
 export const secondaryListItems = (
   <React.Fragment>
-    <ListSubheader component="div" inset>
+    <ListSubheader component="div" inset sx={{ bgcolor: '#111827', color: '#3A85AB'}}>
       Saved reports
     </ListSubheader>
     <ListItemButton>

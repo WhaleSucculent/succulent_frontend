@@ -8,7 +8,7 @@ import ProductCard from "components/ProductCard";
 import { Container } from "@mui/system";
 import Grid from '@mui/material/Grid';
 import { Height } from "@mui/icons-material";
-import { CircularProgress, Divider, Typography } from "@mui/material";
+import { CircularProgress, Divider, Toolbar, Typography } from "@mui/material";
 import ButtonBase from '@mui/material/ButtonBase';
 import img from "assets/images/map.jpg";
 import { Link } from "react-router-dom";
@@ -20,15 +20,19 @@ import Category from "components/Category";
 import { motion } from "framer-motion";
 import OnScrollAnimationBox from "components/OnScrollAnimationBox";
 import { CartButton } from "components/CartButton/CartButton";
+import Footer from "components/Footer";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper";
+import Title from "pages/AdminHomePage/components/Title";
 
 const cardVariants = {
   offscreen: {
     y: 200,
-    opacity:0
+    opacity: 0
   },
   onscreen: {
     y: 0,
-    opacity:1,
+    opacity: 1,
     transition: {
       type: "spring",
       bounce: 0.3,
@@ -96,34 +100,39 @@ const HomePage = () => {
         <Category />
       </OnScrollAnimationBox>
 
-      <OnScrollAnimationBox>
-        <Box padding={'20px'}>
-          <Typography fontWeight={300} variant="h5">
-            Featured Products
-            <Divider />
-          </Typography>
+      {/* <OnScrollAnimationBox> */}
+      <Box sx={{ display: "flex", justifyContent: "center", width: "100%", flex: 1 }}>
+        <Title>
+          Featured Products
+        </Title>
+      </Box>
+      <Swiper slidesPerView={5} modules={[Pagination]} >
+        {data.products.map(product => (
+          <SwiperSlide style={{ paddingBottom: "2px" }}>
+            <ProductCard key={product.id} product={product} />
+          </SwiperSlide>
+        ))}
+      </Swiper>
+      {/* <Container >
+        <Box sx={{ display: "grid", gridTemplateColumns: "repeat(8, 1fr)", Height: "20px" }}>
+          {!loading &&
+            !error &&
+            data.products.slice(0, 8).map((product) => (
+              <Grid container spacing={2} columns={12} key={product.id} >
+                <Item xs={4} lg={3} >
+                  <ProductCard key={product.id} product={product} />
+                </Item>
+              </Grid>
+            ))}
         </Box>
-        <Container >
-          <Box sx={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", Height: "20px" }}>
-            {!loading &&
-              !error &&
-              data.products.slice(0, 3).map((product) => (
-                <Grid container spacing={2} columns={12} key={product.id} >
-                  <Item xs={4} lg={3} >
-                    <ProductCard key={product.id} product={product} />
-                  </Item>
-                </Grid>
-              ))}
-          </Box>
-        </Container>
-      </OnScrollAnimationBox>
+      </Container> */}
+      {/* </OnScrollAnimationBox> */}
 
       <OnScrollAnimationBox>
-        <Box padding={'20px'}>
-          <Typography fontWeight={300} variant="h6">
+        <Box sx={{ display: "flex", justifyContent: "center", width: "100%", flex: 1 }}>
+          <Title>
             Featured Categories
-            <Divider />
-          </Typography>
+          </Title>
         </Box>
         <Container>
           <Box component={motion.div} variants={thumbnailVariants} sx={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gridTemplateRows: "repeat(1, minmax(1, 2))", Height: "20px" }}>
@@ -165,12 +174,10 @@ const HomePage = () => {
       <OnScrollAnimationBox>
         <Box component={motion.div} initial="offscreen" whileInView="onscreen" viewport={{ once: true, amount: 0.8 }} variants={cardVariants}>
           <SlideShow />
-          <br></br>
-          <Box padding={'20px'}>
-            <Typography fontWeight={300} variant="h6" >
+          <Box sx={{ display: "flex", justifyContent: "center", width: "100%", flex: 1 }}>
+            <Title>
               New Collections
-              <Divider />
-            </Typography>
+            </Title>
           </Box>
         </Box>
       </OnScrollAnimationBox>
@@ -189,6 +196,9 @@ const HomePage = () => {
           </Box>
         </Container>
       </OnScrollAnimationBox>
+
+
+      <Footer />
     </div>
 
   );

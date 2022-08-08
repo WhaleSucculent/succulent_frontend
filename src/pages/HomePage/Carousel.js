@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
+
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
@@ -13,16 +14,16 @@ import slidesrc4 from "assets/images/2.jpg";
 
 
 // import required modules
-import { Navigation } from "swiper";
-import { Pagination } from "swiper";
+import { Navigation, Pagination } from "swiper";
 import { Box, Typography } from "@mui/material";
 
 export default function Carousel() {
   return (
     <>
-      <Swiper navigation={true} pagination={{
-        dynamicBullets: true,
-      }} modules={[Navigation, Pagination]} className="mySwiper" style={{ overflow: "visible" }}>
+      <Swiper navigation={true} pagination={{ dynamicBullets: true, }} modules={[Navigation]} className="mySwiper" autoplay={{
+        delay: 2500,
+        disableOnInteraction: false,
+      }}>
         <SwiperSlide >
           <img src={slidesrc4} alt="slid" width="100%" height="550px" style={{ filter: "blur(2px)" }} />
           <Box className="swiper-caption" sx={{ position: "absolute", top: "50%", left: "50%", zIndex: 100 }} >

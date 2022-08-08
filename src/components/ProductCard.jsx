@@ -10,7 +10,7 @@ import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
-
+import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { addToMyCart } from "pages/CheckoutPage/features/cartSlice";
 import { Container, Grid } from "@mui/material";
@@ -33,13 +33,13 @@ function ProductCard({ product }) {
     return product.review[0].stars;
   };
 
-  const getImage =() =>{
-      return product.image.length > 0? product.image[0].imageLink : "no image found";
+  const getImage = () => {
+    return product.image.length > 0 ? product.image[0].imageLink : "no image found";
   }
   return (
     <Container>
-      { (
-        <Grid container spacing={{ xs: 2, md: 3 }} direction="row">
+      {(
+        <Grid component={motion.div} whileHover={{ y: '-15px' }} container spacing={{ xs: 2, md: 3 }} direction="row">
           <Grid item xs={15} md={20}>
             <Card sx={{ maxWidth: 345 }}>
               <Link to={`products/${product.id}`} underline="none">
@@ -61,7 +61,6 @@ function ProductCard({ product }) {
                   {/* <Box sx={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)" }}> */}
                   <Grid
                     container
-                    rowSpacing={1}
                     columnSpacing={{ xs: 1, sm: 2, md: 3 }}
                   >
                     <Grid item xs={3}>
@@ -94,7 +93,7 @@ function ProductCard({ product }) {
                     borderRadius: 28,
                     backgroundColor: "#ffb2cc",
                     justifyContent: "center",
-                    margin:"0 auto"
+                    margin: "0 auto"
                   }}
                   onClick={() => handlerAddToCart(product)}
                 >

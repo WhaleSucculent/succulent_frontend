@@ -1,4 +1,4 @@
-import * as React from 'react';
+import  React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -29,54 +29,11 @@ import EditProduct from './EditProduct';
 import DeleteProduct from './DeleteProduct';
 import Loading from 'components/Loading';
 import { motion } from 'framer-motion';
+import { lineSelectedVariants, staggerVariants } from 'assets/config/animationVariants';
+import Title from '../components/Title';
+import _ from 'lodash'
 
 
-const lineSelectedVariants = {
-  open: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      y: { stiffness: 1000, velocity: -100 }
-    }
-  },
-  closed: {
-    y: 50,
-    opacity: 0,
-    transition: {
-      y: { stiffness: 1000 }
-    }
-  }
-};
-
-function descendingComparator(a, b, orderBy) {
-  if (b[orderBy] < a[orderBy]) {
-    return -1;
-  }
-  if (b[orderBy] > a[orderBy]) {
-    return 1;
-  }
-  return 0;
-}
-
-function getComparator(order, orderBy) {
-  return order === 'desc'
-    ? (a, b) => descendingComparator(a, b, orderBy)
-    : (a, b) => -descendingComparator(a, b, orderBy);
-}
-
-// This method is created for cross-browser compatibility, if you don't
-// need to support IE11, you can use Array.prototype.sort() directly
-function stableSort(array, comparator) {
-  const stabilizedThis = array.map((el, index) => [el, index]);
-  stabilizedThis.sort((a, b) => {
-    const order = comparator(a[0], b[0]);
-    if (order !== 0) {
-      return order;
-    }
-    return a[1] - b[1];
-  });
-  return stabilizedThis.map((el) => el[0]);
-}
 
 const headCells = [
   {
@@ -98,19 +55,19 @@ const headCells = [
     label: 'Product Description',
   },
   {
-    id: 'qty',
+    id: 'quantity',
     numeric: true,
     disablePadding: false,
-    label: 'Qty Available',
+    label: 'Qty',
   },
   {
-    id: 'price',
+    id: 'priceList[0].price',
     numeric: true,
     disablePadding: false,
     label: 'Price',
   },
   {
-    id: 'status',
+    id: 'productStatus',
     numeric: true,
     disablePadding: false,
     label: 'Status',
@@ -133,6 +90,8 @@ function EnhancedTableHead(props) {
   const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } =
     props;
   const createSortHandler = (property) => (event) => {
+    console.log(property)
+    console.log(event)
     onRequestSort(event, property);
   };
 
@@ -146,7 +105,7 @@ function EnhancedTableHead(props) {
             checked={rowCount > 0 && numSelected === rowCount}
             onChange={onSelectAllClick}
             inputProps={{
-              'aria-label': 'select all products',
+              'aria-label': 'select all desserts',
             }}
           />
         </TableCell>
@@ -189,14 +148,12 @@ const EnhancedTableToolbar = (props) => {
   const { numSelected } = props;
 
   return (
-    <div>
+    <Box>
       <Typography align='left'>
         <AddProduct />
       </Typography>
       <Toolbar
         sx={{
-          pl: { sm: 2 },
-          pr: { xs: 1, sm: 1 },
           ...(numSelected > 0 && {
             bgcolor: (theme) =>
               alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
@@ -213,14 +170,10 @@ const EnhancedTableToolbar = (props) => {
             {numSelected} selected
           </Typography>
         ) : (
-          <Typography
-            sx={{ flex: '1 1 100%' }}
-            variant="h6"
-            id="tableTitle"
-            component="div"
+          <Title
           >
             Product Inventory
-          </Typography>
+          </Title>
 
         )}
 
@@ -238,7 +191,7 @@ const EnhancedTableToolbar = (props) => {
           </Tooltip>
         )}
       </Toolbar>
-    </div>
+    </Box>
   );
 };
 
@@ -250,20 +203,20 @@ export default function Inventory() {
 
   const { loading, error, data } = useQuery(GET_PRODUCTS);
 
-  const [order, setOrder] = React.useState('asc');
-  const [orderBy, setOrderBy] = React.useState('calories');
-  const [selected, setSelected] = React.useState([]);
-  const [page, setPage] = React.useState(0);
-  const [dense, setDense] = React.useState(false);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [order, setOrder] = useState('asc');
+  const [orderBy, setOrderBy] = useState('');
+  const [selected, setSelected] = useState([]);
+  const [page, setPage] = useState(0);
+  const [dense, setDense] = useState(false);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
   if (loading) return <Loading />;
-  if (error) return <p>Error</p>;
-
 
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
+    console.log(isAsc)
     setOrder(isAsc ? 'desc' : 'asc');
+    console.log(property)
     setOrderBy(property);
   };
 
@@ -316,8 +269,8 @@ export default function Inventory() {
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - data.products.length) : 0;
 
   return (
-    <Box sx={{ width: '100%', marginTop: '5em' }}>
-      <CssBaseline/>
+    <Box sx={{ p: 2 }}>
+      <CssBaseline />
       {!loading && !error && (
         <Paper sx={{ width: '100%', mb: 2 }}>
           <EnhancedTableToolbar numSelected={selected.length} />
@@ -335,66 +288,72 @@ export default function Inventory() {
                 onRequestSort={handleRequestSort}
                 rowCount={data.products.length}
               />
-              <TableBody>
-                {/* if you don't need to support IE11, you can replace the `stableSort` call with:
+              {data && (
+                <>
+                  {/* if you don't need to support IE11, you can replace the `stableSort` call with:
                  rows.slice().sort(getComparator(order, orderBy)) */}
-                {stableSort(data.products, getComparator(order, orderBy))
-                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((product, index) => {
-                    const isItemSelected = isSelected(product.name);
-                    const labelId = `enhanced-table-checkbox-${index}`;
+                 {console.log(data.products)}
+                  { _.sortBy(data.products, [orderBy])
+                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    .map((product, index) => {
+                      const isItemSelected = isSelected(  product.name);
+                      const labelId = `enhanced-table-checkbox-${index}`;
 
-                    return (
-                      <TableRow
-                        hover
-                        onClick={(event) => handleClick(event, product.name)}
-                        role="checkbox"
-                        aria-checked={isItemSelected}
-                        tabIndex={-1}
-                        key={product.name}
-                        selected={isItemSelected}
-                        component={motion.div}
-                        variants={lineSelectedVariants}
-                        whileHover={{ scale: 1.01 }}
-                        whileTap={{ scale: 0.99 }}
-                      >
-                        <TableCell padding="checkbox"  >
-                          <Checkbox
-                            color="primary"
-                            checked={isItemSelected}
-                            inputProps={{
-                              'aria-labelledby': labelId,
-                            }}
-                          />
-                        </TableCell>
-                        <TableCell
-                          component="th"
-                          id={labelId}
-                          scope="row"
-                          padding="none"
-                        >
-                          {product.name}
-                        </TableCell>
-                        <TableCell align="right">{product.id}</TableCell>
-                        <TableCell align="right">{product.description}</TableCell>
-                        <TableCell align="right">{product.quantity}</TableCell>
-                        <TableCell align="right">$ {product.priceList[0].price}</TableCell>
-                        <TableCell align="right">{product.productStatus}</TableCell>
-                        <TableCell align="right"><EditProduct product={product} /></TableCell>
-                        <TableCell align="right"><DeleteProduct product={product} /></TableCell>
-                      </TableRow>
-                    );
-                  })}
-                {emptyRows > 0 && (
-                  <TableRow
-                    style={{
-                      height: (dense ? 33 : 53) * emptyRows,
-                    }}
-                  >
-                    <TableCell colSpan={6} />
-                  </TableRow>
-                )}
-              </TableBody>
+                      return (
+                        <TableBody component={motion.div} variants={staggerVariants} initial="start" animate="end">
+                          <TableRow
+                            hover
+                            onClick={(event) => handleClick(event, product.name)}
+                            role="checkbox"
+                            aria-checked={isItemSelected}
+                            tabIndex={-1}
+                            key={product.name}
+                            selected={isItemSelected}
+                            component={motion.div}
+                            variants={lineSelectedVariants}
+                            whileHover={{ scale: 1.01 }}
+                            whileTap={{ scale: 0.99 }}
+                          >
+                            <TableCell padding="checkbox"  >
+                              <Checkbox
+                                color="primary"
+                                checked={isItemSelected}
+                                inputProps={{
+                                  'aria-labelledby': labelId,
+                                }}
+                              />
+                            </TableCell>
+                            <TableCell
+                              component="th"
+                              id={labelId}
+                              scope="row"
+                              padding="none"
+                            >
+                              {product.name}
+                            </TableCell>
+                            <TableCell align="right">{product.id}</TableCell>
+                            <TableCell align="right">{product.description}</TableCell>
+                            <TableCell align="right">{product.quantity}</TableCell>
+                            <TableCell align="right">$ {product.priceList[0].price}</TableCell>
+                            <TableCell align="right">{product.productStatus}</TableCell>
+                            <TableCell align="right"><EditProduct product={product} /></TableCell>
+                            <TableCell align="right"><DeleteProduct product={product} /></TableCell>
+                          </TableRow>
+                        </TableBody>
+                      );
+                    })}
+                  {emptyRows > 0 && (
+                    <TableRow
+                      style={{
+                        height: (dense ? 33 : 53) * emptyRows,
+                      }}
+                    >
+                      <TableCell colSpan={6} />
+                    </TableRow>
+                  )}
+                </>
+              )}
+
             </Table>
           </TableContainer>
           <TablePagination

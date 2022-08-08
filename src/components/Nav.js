@@ -1,4 +1,3 @@
-import * as React from "react";
 import { styled } from "@mui/material/styles";
 import {
   AppBar,
@@ -29,16 +28,19 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { client } from "graphql/apolloClient";
 import ChangeCircleOutlinedIcon from '@mui/icons-material/ChangeCircleOutlined';
 import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
-import { motion } from "framer-motion";
+import { AnimateSharedLayout, motion } from "framer-motion";
+import { useState } from "react";
+import './Nav.css';
 
 const pages = ["succulents", "growlights", "soil/rocks", "pots", "information"];
 const settings = ["Profile", "Account", "Orders"];
 
 const ResponsiveAppBar = () => {
   const { data, loading, error } = useMeQuery();
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);
   const { cartTotalQty } = useSelector(state => state.cart);
+  const [selectedMenuItem, setSelectedMenuItem] = useState(0);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -124,17 +126,13 @@ const ResponsiveAppBar = () => {
             {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
             <Link to="/">
               <Typography
-                variant="h6"
                 noWrap
                 component="a"
                 sx={{
                   mr: 2,
-                  display: { xs: "none", md: "flex" },
-                  fontFamily: "monospace",
-                  fontWeight: 700,
-                  letterSpacing: ".3rem",
-                  color: "black",
-                  textDecoration: "none",
+                  pl: 2,
+                  display: { xs: "none", md: "flex", alignItems: "center" },
+                  color: "primary.main",
                 }}
               >
                 <img
@@ -143,7 +141,7 @@ const ResponsiveAppBar = () => {
                   height={55}
                   alt={"Whale Succulent Logo"}
                 />
-                <p>Whale Succulent</p>
+                <Typography variant="h5">WHALE SUCCULENT</Typography>
               </Typography>
             </Link>
 
@@ -177,21 +175,37 @@ const ResponsiveAppBar = () => {
                   display: { xs: "block", md: "none" },
                 }}
               >
-                {pages.map((page) => (
-                  <MenuItem
-                    key={page}
-                    onClick={handleCloseNavMenu}
-                    style={{ color: "black" }}
-                  >
-                    <Link to={`${page}`}>
-                      <Typography textAlign="center">{page}</Typography>
-                    </Link>
-                  </MenuItem>
-                ))}
+                <AnimateSharedLayout>
+                  <Box style={{ transform: "translateZ(0)" }}>
+                    {pages.map((page, i) => (
+                      <MenuItem
+                        key={page}
+                        onClick={handleCloseNavMenu}
+                        style={{ color: "black" }}
+                      >
+                        {/* <motion.div
+                          animate
+                          key={i}
+                          className={`title ${i === selectedMenuItem && "selected"}`}
+                          onClick={() => setSelectedMenuItem(i)}
+                        >
+                          {i === selectedMenuItem && (
+                            <motion.div
+                              layoutId="underline"
+                              className="underline"
+                            />
+                          )} */}
+                          <Link to={`${page}`}>
+                            <Typography textAlign="center" >{page}</Typography>
+                          </Link>
+                        {/* </motion.div> */}
+                      </MenuItem>
+                    ))}
+                  </Box>
+                </AnimateSharedLayout>
               </Menu>
             </Box>
 
-            <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
             <Typography
               variant="h5"
               noWrap
@@ -201,14 +215,13 @@ const ResponsiveAppBar = () => {
                 mr: 2,
                 display: { xs: "flex", md: "none" },
                 flexGrow: 1,
-                fontFamily: "monospace",
+                fontFamily: "Montserrat",
                 fontWeight: 700,
-                letterSpacing: ".3rem",
-                color: "inherit",
+                color: "primary.main",
                 textDecoration: "none",
               }}
             >
-              LOGO
+              Whale
             </Typography>
 
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }} >
@@ -224,7 +237,7 @@ const ResponsiveAppBar = () => {
                       color: "#000000",
                     }}
                   >
-                    <Link to={`${page}`} color={"black"}>
+                    <Link to={`${page}`} color={"text.primary"}>
                       {page}
                     </Link>
                   </Button>
@@ -255,8 +268,7 @@ const ResponsiveAppBar = () => {
               >
                 <Badge badgeContent={cartTotalQty} color="error">
                   <Link to={"cart"} >
-                    <ShoppingCartOutlinedIcon
-                      fontSize="large" />
+                    <ShoppingCartOutlinedIcon fontSize="large" />
                   </Link>
                 </Badge>
               </Button>
@@ -273,16 +285,14 @@ const ResponsiveAppBar = () => {
                     color: "#000000",
                   }}
                 >
-                  {console.log(data)}
-                  {console.log(data.email)}
-                  {!data?.me ? (<Link to={"login"} color={"black"}>
+                  {!data?.me ? (<Link to={"login"}>
                     <LoginOutlinedIcon fontSize="large" />
 
                   </Link>) : (<Tooltip title="Open settings">
                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }} >
                       <Avatar
-                        alt={`${data.firstname} ${data.lastname}`}
-                        src={data.avatar}
+                        alt={`${data?.me.firstname} ${data?.me.lastname}`}
+                        src={data?.me.avatar}
                         fontSize='large'
 
                       />
@@ -307,12 +317,10 @@ const ResponsiveAppBar = () => {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
-                {console.log(location)}
-                {console.log(data.me)}
                 {data && data?.me?.role === "admin" && (
                   <>
                     <MenuItem >
-                      <Link to={"admin/product"} color={"black"} sx={{ display: 'flex', alignItems: "center", justifyItems: "center" }} >
+                      <Link to={"admin/product"} color={"primary"} sx={{ display: 'flex', alignItems: "center", justifyItems: "center" }} >
                         <ChangeCircleOutlinedIcon />
                         <Typography textAlign="center"  >Admin</Typography>
                       </Link>

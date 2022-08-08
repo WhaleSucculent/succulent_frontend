@@ -1,12 +1,14 @@
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
+import { lineSelectedVariants } from "assets/config/animationVariants";
+import { motion } from "framer-motion";
 import EditOrder from "./EditOrder";
 
 
 function OrderRow({order}) {
   
     return (
-     <TableRow>
+      <TableRow component = {motion.div} variants = { lineSelectedVariants } whileHover = {{ scale: 1.01 }} whileTap = {{ scale: 0.99 }} >
          <TableCell align="center">
             {order?.id}
          </TableCell>
