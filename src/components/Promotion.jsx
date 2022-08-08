@@ -94,7 +94,7 @@ function Promotion() {
                     
                     <Box
                       component="img"
-                      src="https://cdn-icons.flaticon.com/png/512/2839/premium/2839191.png?token=exp=1658295863~hmac=deb815eac075455d17c320d7318f4319"
+                      src="https://img.icons8.com/ios/100/000000/clock--v3.png"
                       alt="clock"
                       sx={image}
                     />

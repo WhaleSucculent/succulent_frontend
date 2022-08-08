@@ -56,7 +56,7 @@ const CollectionsPage = () => {
   if (loading) return <Loading />;
   if (error) return <p>Something went wrong</p>;
   return (
-    <div>
+    <div style={{marginBottom:"40px"}}>
       <Grid container spacing={3}>
         <Grid item xs={12}>
         <LineStrip />

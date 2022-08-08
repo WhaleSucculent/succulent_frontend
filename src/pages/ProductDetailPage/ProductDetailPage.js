@@ -1,10 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Footer from "../../components/Footer";
+import ProductCard from "./Card";
 import {
   Container,
   Box,
   Typography,
   Button,
+  TextField, Grid
 } from "@mui/material";
 import styled from "@emotion/styled";
 import { Product, ProductImage } from "./Product";
@@ -27,6 +29,7 @@ function SlideTransition(props) {
   return <Slide direction="down" {...props} />;
 } */
 
+
 const ProductDetailWrapper = styled(Box)(({ theme }) => ({
   display: "flex",
 
@@ -48,28 +51,43 @@ function ProductDetailPage({ open, onClose, setLoading }) {
     //  navigate("/cart")
   };
 
+
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down("md"));
 
   const { id } = useParams();
   console.log(id)
-  const { loading, error, data } = useQuery(GET_PRODUCT, { variables: { id } });
+
+  const { loading, error, data } = useQuery(GET_PRODUCT, { variables: { id } }, GET_PRODUCTS);
   console.log(data)
 
+  const { e } = useQuery(GET_PRODUCTS);
+  console.log(e)
+
+
+  
+  const [quantity, setQuantity] = useState(0);
+
+  const cartHandler = (e)=> {
+    e.preventDefault();
+    handlerAddToCart();
+  }
 
   if (error) return <p>Something Went Wrong</p>;
 
   return (
     <>
-      <Container margin="30px">
+      <Container >
         {/* <DialogContent> */}
-        <ProductDetailWrapper display={"flex"} flexDirection={matches ? "column" : "row"}>
-          <Product sx={{ mr: 4 }}>
-            <ProductImage src={data?.product.image[0].imageLink} alt={data?.product.image.name} />
+        <Box margin="30px">
+        <ProductDetailWrapper flexDirection={matches ? "column" : "row"}>
+          <Product sx={{ height:'80%'}}>
+            <ProductImage src={data?.product.image[0].imageLink} height="80%" alt={data?.product.image.name} />
           </Product>
           <ProductImage src={data?.product.image[0].imageLink} sx={{ gridTemplateColumns: "repeat(3, 1fr)" }}>
           </ProductImage>
-          <ProductDetailInfoWrapper>
+        
+        <ProductDetailInfoWrapper>    
             <Typography sx={{ lineHeight: 2 }} variant="h4">
               {data?.product.name}
             </Typography>
@@ -78,6 +96,20 @@ function ProductDetailPage({ open, onClose, setLoading }) {
             </Typography>
             <Typography variant="subtitle">SKU: 12345</Typography>
             <Typography variant="subtitle">{`Availability: ${data?.product.stock[data?.product.stock.length - 1].total} in stock`}</Typography>
+            <form onSubmit={cartHandler}>
+            <TextField
+            margin="20px"
+          id="outlined-number"
+          label="Quantity"
+          type="number"
+          value={quantity}
+          onChange={(e)=>setQuantity(e.target.value)}
+          InputProps={{
+            inputProps: { 
+              min: 0
+            }
+        }}
+        />
             <Box
               sx={{ mt: 4 }}
               display="flex"
@@ -85,9 +117,10 @@ function ProductDetailPage({ open, onClose, setLoading }) {
               justifyContent="space-between"
             >
               <Box sx={{ margin: '0 auto' }}>
-                <Button variant="contained" sx={{ borderRadius: 28, backgroundColor: '#ffb2cc' }} onClick={() => handlerAddToCart(data.product)}>Add to Cart</Button>
+                <Button variant="contained" sx={{ borderRadius: 28, backgroundColor: '#ffb2cc' }} type='submit'>Add to Cart</Button>
               </Box>
             </Box>
+            </form>
             {/* <Box
               display="flex"
               alignItems="center"
@@ -108,7 +141,7 @@ function ProductDetailPage({ open, onClose, setLoading }) {
             </Box>
           </ProductDetailInfoWrapper>
         </ProductDetailWrapper>
-
+        </Box>
       </Container>
     </>
 
