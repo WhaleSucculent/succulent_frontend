@@ -120,7 +120,7 @@ const ResponsiveAppBar = () => {
 
   return (
     <>
-      <AppBar position="relative" style={{ background: "white", zIndex:999999999 }}>
+      <AppBar position="relative" style={{ background: "white", zIndex:3000 }}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
@@ -289,7 +289,7 @@ const ResponsiveAppBar = () => {
                     <LoginOutlinedIcon fontSize="large" />
 
                   </Link>) : (<Tooltip title="Open settings">
-                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }} >
+                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, zIndex:6000 }} >
                       <Avatar
                         alt={`${data?.me.firstname} ${data?.me.lastname}`}
                         src={data?.me.avatar}

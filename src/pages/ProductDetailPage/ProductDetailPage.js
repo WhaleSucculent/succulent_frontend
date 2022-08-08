@@ -61,8 +61,8 @@ function ProductDetailPage({ open, onClose, setLoading }) {
   const { loading, error, data } = useQuery(GET_PRODUCT, { variables: { id } }, GET_PRODUCTS);
   console.log(data)
 
-  const { loading1, error1, data1  } = useQuery(GET_PRODUCTS);
-  console.log(data1)
+  // const { loading1, error1, data1  } = useQuery(GET_PRODUCTS);
+  // console.log(data1)
 
 
   
@@ -142,7 +142,7 @@ function ProductDetailPage({ open, onClose, setLoading }) {
           </ProductDetailInfoWrapper>
         </ProductDetailWrapper>
         </Box>
-<Box sx={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", Height: "20px" }}>
+{/* <Box sx={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", Height: "20px" }}>
             {!loading &&
               !error &&
         data1.products.slice(0, 3).map((product) => (
@@ -150,7 +150,7 @@ function ProductDetailPage({ open, onClose, setLoading }) {
         <ProductCard key={data1.product.id} product={data1.product} />
         </Grid>
         ))}
-        </Box>
+        </Box> */}
       </Container>
     </>
 
