@@ -52,7 +52,7 @@ const CollectionPageGrowLights = () => {
     <div style={{ marginBottom: "40px" }}>
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <LineStrip />
+          <LineStrip category={"Grow Light"}/>
         </Grid>
       </Grid>
 

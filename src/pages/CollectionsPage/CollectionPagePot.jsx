@@ -2,17 +2,13 @@ import { GET_PRODUCTS } from "../../queries/productQueries";
 import { useQuery } from "@apollo/client";
 import Grid from "@mui/material/Grid";
 import ProductCard from "components/ProductCard";
-import PaginationComp from "./PaginationComp";
 import LineStrip from "./LineStrip";
-import PriceMinMax from "./PriceMinMax";
-import SortBy from "./SortBy";
-import Stack from "@mui/material/Stack";
 import LineResults from "./LineResults";
 import CollectionSidebar from "./CollectionSidebar";
 import { useState } from "react";
 import Loading from "../../components/Loading";
 
-const CollectionsPage = () => {
+const CollectionPagePot = () => {
   const [stockCheck, setstockCheck] = useState(false);
   const [priceFilter, setpriceFilter] = useState(false);
   const [priceMin, setpriceMin] = useState("");
@@ -56,7 +52,7 @@ const CollectionsPage = () => {
     <div style={{ marginBottom: "40px" }}>
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <LineStrip category={"Succulent"}/>
+          <LineStrip category={"Pots"}/>
         </Grid>
       </Grid>
 
@@ -91,7 +87,7 @@ const CollectionsPage = () => {
               !error &&
               data.products
                 .filter((product) => {
-                  if (product.category === "Succulent") {
+                  if (product.category === "Pot") {
                     if (stockCheck) {
                       if (priceFilter) {
                         if (priceMin === "" && priceMax === "") {
@@ -177,4 +173,4 @@ const CollectionsPage = () => {
   );
 };
 
-export default CollectionsPage;
+export default CollectionPagePot;
