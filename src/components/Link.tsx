@@ -7,7 +7,14 @@ import { Link as RouterLink, LinkProps as RouterLinkProps} from "react-router-do
 export type LinkProps = MuiLinkProps & Pick<RouterLinkProps, "to" | "replace">;
 
 const Link = (props: LinkProps) => {
-  return <MuiLink {...props} component={RouterLink} underline='none'/>;
+  return (
+    <MuiLink
+      {...props}
+      component={RouterLink}
+      underline="none"
+      color="text.primary"
+    />
+  );
 };
 
 export default Link

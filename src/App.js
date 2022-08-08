@@ -46,6 +46,7 @@ import { AnimatePresence } from "framer-motion";
 import { CartButton } from "components/CartButton/CartButton";
 import Dashboard from "pages/AdminHomePage/temp/Dashborad";
 import TestingPage from "pages/TestingPage/TestingPage";
+import DashboardHome from "pages/AdminHomePage/temp/DashboardHome";
 
 function App() {
   const { data, loading, error } = useMeQuery()
@@ -103,7 +104,7 @@ function App() {
           </Route>
           {data?.me?.role === "admin" && (
             <Route path="/admin" element={<AdminHeader />}>
-              <Route path="home" element={<AdminHomePage />} />
+              <Route path="home" element={<DashboardHome />} />
               <Route path="product" element={<AdminProductPage />} />
               <Route path="order" element={<AdminOrderPage />} />
               <Route path="user" element={<AdminUserListPage />} />
