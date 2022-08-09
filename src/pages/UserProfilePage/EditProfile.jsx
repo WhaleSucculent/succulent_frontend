@@ -27,18 +27,20 @@ const style = {
 function EditProfile({ customer }) {
 //   const [status, setStatus] = useState(customer.status);
    const [firstName, setFirstName] = useState(customer.firstName);
+   const [lastName, setLastName] = useState(customer.lastName);
+
   const [open, setOpen] = useState(false);
   
   const [editCustomer] = useMutation(EDIT_PROFILE, {
-    variables: { id:customer.id, firstName},
+    variables: { id:customer.id, firstName, lastName},
     refetchQueries: [{ query: GET_CUSTOMER, variables: {id:customer.id} }],
   });
 
    const onSubmit = (e) => {
      e.preventDefault();
-     editCustomer(firstName);
+     editCustomer(firstName, lastName);
      console.log("firstname: " + firstName);
-    // console.log("lastname: " + lastName);
+     console.log("lastname: " + lastName);
    }
 
 
@@ -78,10 +80,17 @@ function EditProfile({ customer }) {
                 <form onSubmit={onSubmit}>
                   <Stack direction="column" sx={{ marginTop: "1.5em" }}>
                     <TextField
-                      id="status"
-                      label="Status"
+                      id="firstName"
+                      label="First Name"
                      value={firstName}
                       onChange={(e) => setFirstName(e.target.value)}
+                      variant="outlined"
+                    />
+                    <TextField
+                      id="lastName"
+                      label="Last Name"
+                     value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
                       variant="outlined"
                     />
 
