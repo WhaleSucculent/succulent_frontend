@@ -1,6 +1,5 @@
 import { styled } from "@mui/material/styles";
 import {
-  AppBar,
   Box,
   Toolbar,
   IconButton,
@@ -14,9 +13,12 @@ import {
   InputBase,
   Badge,
   Divider,
+  Drawer,
+  List,
+  CssBaseline,
+  AppBar,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import AdbIcon from "@mui/icons-material/Adb";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { useSelector } from "react-redux";
@@ -29,26 +31,51 @@ import { client } from "graphql/apolloClient";
 import ChangeCircleOutlinedIcon from '@mui/icons-material/ChangeCircleOutlined';
 import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
 import { AnimateSharedLayout, motion } from "framer-motion";
-import { useState } from "react";
+import React, { useState } from "react";
 import './Nav.css';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+
+
+import LightbulbIcon from '@mui/icons-material/Lightbulb';
+import GrassIcon from '@mui/icons-material/Grass';
+import ContactPageIcon from '@mui/icons-material/ContactPage';
+import LandscapeIcon from '@mui/icons-material/Landscape';
+import RiceBowlIcon from '@mui/icons-material/RiceBowl';
+import { useTheme } from "@emotion/react";
 
 const pages = ["succulents", "growlights", "soil/rocks", "pots", "contact"];
+const pageIcons = [GrassIcon, LightbulbIcon, LandscapeIcon, RiceBowlIcon, ContactPageIcon];
 const settings = ["Profile", "Account", "Orders"];
+const drawerWidth = 240;
 
-const ResponsiveAppBar = () => {
+
+const DrawerHeader = styled('div')(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  padding: theme.spacing(0, 1),
+  // necessary for content to be below app bar
+  ...theme.mixins.toolbar,
+  justifyContent: 'flex-end',
+}));
+
+const ResponsiveAppBar = (props) => {
   const { data, loading, error } = useMeQuery();
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
   const { cartTotalQty } = useSelector(state => state.cart);
   const [selectedMenuItem, setSelectedMenuItem] = useState(0);
+  const { window } = props;
+  const theme = useTheme();
+  const [open, setOpen] = useState(false);
 
   const navigate = useNavigate();
-  const location = useLocation();
 
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -114,13 +141,23 @@ const ResponsiveAppBar = () => {
     },
   }));
 
+
   if (loading) return <div>Lo</div>
   if (error) return <div>Lo</div>
 
 
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
+
   return (
-    <>
-      <AppBar position="relative" style={{ background: "white", zIndex:3000 }}>
+    <Box sx={{ display: 'flex' }}>
+      <CssBaseline />
+      <AppBar position="relative" style={{ background: "white", zIndex: 90 }}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
@@ -141,79 +178,32 @@ const ResponsiveAppBar = () => {
                   height={55}
                   alt={"Whale Succulent Logo"}
                 />
-                <Typography variant="h5">WHALE SUCCULENT</Typography>
+                <Typography variant={{ md: "h5" }}>WHALE SUCCULENT</Typography>
               </Typography>
             </Link>
 
+            {/* Hambuger Menu show when < md */}
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }} component={motion.div} whileHover={{ scale: 1.2 }}>
               <IconButton
                 size="large"
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
-                onClick={handleOpenNavMenu}
+                onClick={handleDrawerOpen}
               //   color="inherit"
               >
                 <MenuIcon />
               </IconButton>
-              <Menu
-                id="menu-appbar"
-                color="black"
-                anchorEl={anchorElNav}
-                anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "left",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "left",
-                }}
-                open={Boolean(anchorElNav)}
-                onClose={handleCloseNavMenu}
-                sx={{
-                  display: { xs: "block", md: "none" },
-                }}
-              >
-                <AnimateSharedLayout>
-                  <Box style={{ transform: "translateZ(0)" }}>
-                    {pages.map((page, i) => (
-                      <MenuItem
-                        key={page}
-                        onClick={handleCloseNavMenu}
-                        style={{ color: "black" }}
-                      >
-                        {/* <motion.div
-                          animate
-                          key={i}
-                          className={`title ${i === selectedMenuItem && "selected"}`}
-                          onClick={() => setSelectedMenuItem(i)}
-                        >
-                          {i === selectedMenuItem && (
-                            <motion.div
-                              layoutId="underline"
-                              className="underline"
-                            />
-                          )} */}
-                          <Link to={`${page}`}>
-                            <Typography textAlign="center" >{page}</Typography>
-                          </Link>
-                        {/* </motion.div> */}
-                      </MenuItem>
-                    ))}
-                  </Box>
-                </AnimateSharedLayout>
-              </Menu>
             </Box>
 
             <Typography
-              variant="h5"
+              variant={{ md: "h5" }}
               noWrap
               component="a"
               href=""
               sx={{
                 mr: 2,
-                display: { xs: "flex", md: "none" },
+                display: { xs: "none", sm: "flex", md: "none" },
                 flexGrow: 1,
                 fontFamily: "Montserrat",
                 fontWeight: 700,
@@ -224,6 +214,7 @@ const ResponsiveAppBar = () => {
               Whale
             </Typography>
 
+            {/* Top Menu when md */}
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }} >
               {pages.map((page) => (
                 <Box component={motion.div} whileHover={{ scale: 1.2 }}>
@@ -245,6 +236,7 @@ const ResponsiveAppBar = () => {
               ))}
             </Box>
 
+            {/* Seach Box */}
             <Box>
               <Search>
                 <SearchIconWrapper>
@@ -256,6 +248,8 @@ const ResponsiveAppBar = () => {
                 />
               </Search>
             </Box>
+
+            {/* Shopping Cart button */}
             <Box component={motion.div} whileHover={{ scale: 1.2 }}>
               <Button
                 onClick={handleCloseNavMenu}
@@ -274,6 +268,7 @@ const ResponsiveAppBar = () => {
               </Button>
             </Box>
 
+            {/* Avatar and The Menu under it */}
             <Box sx={{ flexGrow: 0 }}>
               <Box component={motion.div} whileHover={{ scale: 1.2 }}>
                 <Button
@@ -301,57 +296,124 @@ const ResponsiveAppBar = () => {
                 </Button>
               </Box>
 
-              <Menu
-                sx={{ mt: "45px" }}
-                id="menu-appbar"
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
-              >
-                {data && data?.me?.role === "admin" && (
-                  <>
-                    <MenuItem >
-                      <Link to={"admin/product"} color={"primary"} sx={{ display: 'flex', alignItems: "center", justifyItems: "center" }} >
-                        <ChangeCircleOutlinedIcon />
-                        <Typography textAlign="center"  >Admin</Typography>
-                      </Link>
-                    </MenuItem>
-                    <Divider />
-                  </>)}
-                <MenuItem onClick={handleCloseUserMenu}>
-                  <Link to={"profile/myprofile"}>
-                    <Typography textAlign="center">Profile</Typography>
-                  </Link>
-                </MenuItem>
-                <MenuItem onClick={handleCloseUserMenu}>
-                  <Link to={"profile/myorders"}>
-                    <Typography textAlign="center">Orders</Typography>
-                  </Link>
-                </MenuItem>
-                <MenuItem onClick={handleCloseUserMenu}>
-                  <Link to={"profile/payments"}>
-                    <Typography textAlign="center">Payment</Typography>
-                  </Link>
-                </MenuItem>
-                <Divider />
-                <MenuItem onClick={handleLogout}>
-                  <Typography textAlign="center">Logout</Typography>
-                </MenuItem>
-              </Menu>
+              <Box sx={{ flexGrow: 0 }}>
+
+                <Menu
+                  sx={{ mt: "50px" }}
+                  id="menu-appbar"
+                  anchorEl={anchorElUser}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  open={Boolean(anchorElUser)}
+                  onClose={handleCloseUserMenu}
+
+                >
+                  {data && data?.me?.role === "admin" && (
+                    <>
+                      <MenuItem >
+                        <Link to={"admin/product"} color={"primary"} sx={{ display: 'flex', alignItems: "center", justifyItems: "center" }} >
+                          <ChangeCircleOutlinedIcon />
+                          <Typography textAlign="center"  >Admin</Typography>
+                        </Link>
+                      </MenuItem>
+                      <Divider />
+                    </>)}
+                  <MenuItem onClick={handleCloseUserMenu}>
+                    <Link to={"profile/myprofile"}>
+                      <Typography textAlign="center">Profile</Typography>
+                    </Link>
+                  </MenuItem>
+                  <MenuItem onClick={handleCloseUserMenu}>
+                    <Link to={"profile/myorders"}>
+                      <Typography textAlign="center">Orders</Typography>
+                    </Link>
+                  </MenuItem>
+                  <MenuItem onClick={handleCloseUserMenu}>
+                    <Link to={"profile/payments"}>
+                      <Typography textAlign="center">Payment</Typography>
+                    </Link>
+                  </MenuItem>
+                  <Divider />
+                  <MenuItem onClick={handleLogout}>
+                    <Typography textAlign="center">Logout</Typography>
+                  </MenuItem>
+                </Menu>
+              </Box>
             </Box>
           </Toolbar>
         </Container>
       </AppBar>
-    </>
+      <Drawer
+        sx={{
+          width: drawerWidth,
+          flexShrink: 0,
+          '& .MuiDrawer-paper': {
+            width: drawerWidth,
+            boxSizing: 'border-box',
+          },
+          zIndex: 1000,
+        }}
+        variant="persistent"
+        anchor="left"
+        open={open}
+      >
+        <DrawerHeader>
+          <IconButton onClick={handleDrawerClose}>
+            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+          </IconButton>
+        </DrawerHeader>
+        <Divider />
+        <List>
+          <ListItem key={"succulents"} disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <GrassIcon />
+              </ListItemIcon>
+              <ListItemText primary={"succulents"} />
+            </ListItemButton>
+          </ListItem>
+          <ListItem key={"growlights"} disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <LightbulbIcon />
+              </ListItemIcon>
+              <ListItemText primary={"growlights"} />
+            </ListItemButton>
+          </ListItem>
+          <ListItem key={"soil/rocks"} disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <GrassIcon />
+              </ListItemIcon>
+              <ListItemText primary={"soil/rocks"} />
+            </ListItemButton>
+          </ListItem>
+          <ListItem key={"pots"} disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <LandscapeIcon />
+              </ListItemIcon>
+              <ListItemText primary={"pots"} />
+            </ListItemButton>
+          </ListItem>
+          <ListItem key={"succulents"} disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <GrassIcon />
+              </ListItemIcon>
+              <ListItemText primary={"succulents"} />
+            </ListItemButton>
+          </ListItem>
+        </List>
+      </Drawer>
+    </Box>
   );
 };
 export default ResponsiveAppBar;
