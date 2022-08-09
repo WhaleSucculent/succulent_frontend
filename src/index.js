@@ -10,8 +10,15 @@ import { ApolloProvider } from '@apollo/client';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { BrowserRouter } from 'react-router-dom';
 import { theme } from 'theme';
+import { changeLanguage, initI18n } from './services/i18n';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+
+const defaultLanguage = 'en-GB';
+initI18n(process.env.PUBLIC_URL + '/i18n/{{lng}}.json', defaultLanguage);
+changeLanguage(defaultLanguage);
+
 
 
 root.render(

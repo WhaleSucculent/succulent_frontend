@@ -9,7 +9,6 @@ import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import Badge from '@mui/material/Badge';
 import { client } from "graphql/apolloClient";
 
 import MenuIcon from '@mui/icons-material/Menu';

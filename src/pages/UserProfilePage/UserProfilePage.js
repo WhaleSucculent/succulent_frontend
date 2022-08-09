@@ -1,16 +1,5 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
-import Collapse from '@mui/material/Collapse';
-import IconButton from '@mui/material/IconButton';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import { Typography, Button, Paper, Toolbar } from '@mui/material';
-import { GET_CUSTOMER } from "../../mutations/userMutations";
+
 import { GET_ME } from '../../queries/customerQueries';
 import { useQuery } from '@apollo/client';
 import EditIcon from '@mui/icons-material/Edit';
@@ -19,7 +8,11 @@ import { motion } from 'framer-motion';
 import { lineSelectedVariants, staggerVariants } from 'assets/config/animationVariants';
 import { EditAttributesRounded } from '@mui/icons-material';
 import EditProfile from './EditProfile';
+import MUITab from './Components/MUITab';
 
+
+import AvatarUpload from 'components/AvatarUpload'
+import ImageEditor from 'components/ImageEditor'
 /* function createData(OrderNumber, Date, ShippingAddress, Total, View) {
   return { OrderNumber, Date, ShippingAddress, Total, View};
 } */
@@ -30,11 +23,12 @@ import EditProfile from './EditProfile';
 
 ]; */
 
-export default function DenseTable() {
+export default function UserProfilePage() {
   const { loading, error, data } = useQuery(GET_ME);
   console.log(data);
 
   return (
+
     <Box>
       <Toolbar
         sx={{
@@ -100,6 +94,9 @@ export default function DenseTable() {
 
         </Table>
       </TableContainer>
+      <AvatarUpload />
+      <ImageEditor />
+      <MUITab />
     </Box>
   );
 }
