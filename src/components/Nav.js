@@ -167,6 +167,7 @@ const ResponsiveAppBar = (props) => {
                 component="a"
                 sx={{
                   mr: 2,
+                  ml: 2,
                   pl: 2,
                   display: { xs: "none", md: "flex", alignItems: "center" },
                   color: "primary.main",

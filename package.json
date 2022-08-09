@@ -15,6 +15,7 @@
     "@mui/styled-engine-sc": "^5.8.0",
     "@mui/x-data-grid": "^5.14.0",
     "@reduxjs/toolkit": "^1.8.2",
+    "@storybook/react": "^6.5.10",
     "@stripe/react-stripe-js": "^1.9.0",
     "@stripe/stripe-js": "^1.32.0",
     "@testing-library/jest-dom": "^5.16.4",
@@ -34,6 +35,8 @@
     "react-chartjs-2": "^4.3.1",
     "react-circular-progressbar": "^2.1.0",
     "react-dom": "^18.1.0",
+    "react-dropzone": "^14.2.2",
+    "react-filerobot-image-editor": "^4.3.1",
     "react-hook-form": "^7.32.2",
     "react-i18next": "^11.17.2",
     "react-input-mask": "^3.0.0-alpha.2",
@@ -62,12 +65,32 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
       "prettier"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      },
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      }
     ]
   },
   "browserslist": {
@@ -83,15 +106,27 @@
     ]
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^6.5.10",
+    "@storybook/addon-essentials": "^6.5.10",
+    "@storybook/addon-interactions": "^6.5.10",
+    "@storybook/addon-links": "^6.5.10",
+    "@storybook/builder-webpack5": "^6.5.10",
+    "@storybook/manager-webpack5": "^6.5.10",
+    "@storybook/node-logger": "^6.5.10",
+    "@storybook/preset-create-react-app": "^4.1.2",
+    "@storybook/testing-library": "^0.0.13",
     "@types/react-input-mask": "^3.0.1",
     "@types/redux-logger": "^3.0.9",
     "@types/yup": "^0.29.14",
+    "babel-plugin-named-exports-order": "^0.0.2",
     "eslint-config-prettier": "^8.5.0",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.0",
     "prettier": "2.6.2",
+    "prop-types": "^15.8.1",
     "redux-devtools-extension": "^2.13.9",
-    "redux-logger": "^3.0.6"
+    "redux-logger": "^3.0.6",
+    "webpack": "^5.74.0"
   },
   "lint-staged": {},
   "proxy": "http://127.0.0.1:5000"

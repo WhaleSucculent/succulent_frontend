@@ -138,7 +138,6 @@ const GET_ME = gql`
             description
           }
         }
-        
       }
       creditCards{
         cardNo
