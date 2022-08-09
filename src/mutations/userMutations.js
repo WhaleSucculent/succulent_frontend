@@ -78,8 +78,8 @@ const UPDATE_CUSTOMER = gql`
 `
 
 const EDIT_PROFILE = gql`
-    mutation editProfile($id:ID!, $firstName:String!, $lastName:String!){
-      editCustomer(id:$id, firstName:$firstName, lastName:$lastName){
+    mutation editProfile($id:ID!, $firstName:String!, $lastName:String!, $email:String!){
+      updateCustomer(id:$id, firstName:$firstName, lastName:$lastName, email:$email){
         id
         firstName
         lastName

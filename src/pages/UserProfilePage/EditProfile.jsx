@@ -28,19 +28,22 @@ function EditProfile({ customer }) {
 //   const [status, setStatus] = useState(customer.status);
    const [firstName, setFirstName] = useState(customer.firstName);
    const [lastName, setLastName] = useState(customer.lastName);
+   const [email, setEmail] = useState(customer.email);
 
   const [open, setOpen] = useState(false);
   
   const [editCustomer] = useMutation(EDIT_PROFILE, {
-    variables: { id:customer.id, firstName, lastName},
+    variables: { id:customer.id, firstName, lastName, email},
     refetchQueries: [{ query: GET_CUSTOMER, variables: {id:customer.id} }],
   });
 
    const onSubmit = (e) => {
      e.preventDefault();
-     editCustomer(firstName, lastName);
+     editCustomer(firstName, lastName, email);
      console.log("firstname: " + firstName);
      console.log("lastname: " + lastName);
+     console.log("email: " + email);
+
    }
 
 
@@ -93,6 +96,14 @@ function EditProfile({ customer }) {
                       onChange={(e) => setLastName(e.target.value)}
                       variant="outlined"
                     />
+                    <TextField
+                      id="email"
+                      label="Email"
+                     value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      variant="outlined"
+                    />
+
 
                     <Button color="success" type="submit">
                       Update
