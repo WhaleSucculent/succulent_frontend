@@ -28,7 +28,7 @@ export const theme = createTheme({
       '"Segoe UI Symbol"',
       '"Montserrat"',
     ].join(','),
-    
+
   },
   shape: {
     borderRadius: 20,
