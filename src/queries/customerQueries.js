@@ -122,6 +122,8 @@ const GET_ME = gql`
           city
           country
           state
+          zipcode
+          address
         }
         billingAddress{
           firstName

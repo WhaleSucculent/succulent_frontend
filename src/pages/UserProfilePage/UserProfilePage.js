@@ -17,6 +17,11 @@ import EditIcon from '@mui/icons-material/Edit';
 import Title from 'pages/AdminHomePage/components/Title';
 import { motion } from 'framer-motion';
 import { lineSelectedVariants, staggerVariants } from 'assets/config/animationVariants';
+import MUITab from './Components/MUITab';
+import Delivery from 'pages/CheckoutPage/components/delivery/delivery';
+import { Provider } from 'react-redux';
+import store from 'pages/CheckoutPage/store/store';
+import Checkout from 'pages/CheckoutPage/CheckoutPage';
 
 
 /* function createData(OrderNumber, Date, ShippingAddress, Total, View) {
@@ -34,8 +39,13 @@ export default function DenseTable() {
   console.log(data);
 
   return (
+
     <Box>
-      <Toolbar
+      <MUITab />
+
+
+      
+      {/* <Toolbar
         sx={{
           pl: { sm: 2 },
           pr: { xs: 1, sm: 1 },
@@ -53,66 +63,66 @@ export default function DenseTable() {
           </TableHead>
           {data && (
             <TableBody component={motion.div} variants={staggerVariants} initial="start" animate="end">
-            <TableRow component={motion.div} variants={lineSelectedVariants} whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
-              <TableCell>
-                First Name
-              </TableCell>
-              <TableCell>
-                {data.me.firstName}
-              </TableCell>
-              <TableCell>
-                <Button>
-                  <EditIcon />
-                </Button>
-              </TableCell>
-            </TableRow>
+              <TableRow component={motion.div} variants={lineSelectedVariants} whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
+                <TableCell>
+                  First Name
+                </TableCell>
+                <TableCell>
+                  {data.me.firstName}
+                </TableCell>
+                <TableCell>
+                  <Button>
+                    <EditIcon />
+                  </Button>
+                </TableCell>
+              </TableRow>
 
-            <TableRow component={motion.div} variants={lineSelectedVariants} whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
-              <TableCell>
-                Last Name
-              </TableCell>
-              <TableCell>
-                {data.me.lastName}
-              </TableCell>
-              <TableCell>
-                <Button>
-                  <EditIcon />
-                </Button>
-              </TableCell>
-            </TableRow>
+              <TableRow component={motion.div} variants={lineSelectedVariants} whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
+                <TableCell>
+                  Last Name
+                </TableCell>
+                <TableCell>
+                  {data.me.lastName}
+                </TableCell>
+                <TableCell>
+                  <Button>
+                    <EditIcon />
+                  </Button>
+                </TableCell>
+              </TableRow>
 
-            <TableRow component={motion.div} variants={lineSelectedVariants} whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
-              <TableCell>
-                Email
-              </TableCell>
-              <TableCell>
-                {data.me.email}
-              </TableCell>
-              <TableCell>
-                <Button>
-                  <EditIcon />
-                </Button>
-              </TableCell>
-            </TableRow>
+              <TableRow component={motion.div} variants={lineSelectedVariants} whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
+                <TableCell>
+                  Email
+                </TableCell>
+                <TableCell>
+                  {data.me.email}
+                </TableCell>
+                <TableCell>
+                  <Button>
+                    <EditIcon />
+                  </Button>
+                </TableCell>
+              </TableRow>
 
-            <TableRow component={motion.div} variants={lineSelectedVariants} whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
-              <TableCell>
-                Phone
-              </TableCell>
-              <TableCell>
-                {data.me.phone}
-              </TableCell>
-              <TableCell>
-                <Button>
-                  <EditIcon />
-                </Button>
-              </TableCell>
-            </TableRow>
-          </TableBody>
+              <TableRow component={motion.div} variants={lineSelectedVariants} whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
+                <TableCell>
+                  Phone
+                </TableCell>
+                <TableCell>
+                  {data.me.phone}
+                </TableCell>
+                <TableCell>
+                  <Button>
+                    <EditIcon />
+                  </Button>
+                </TableCell>
+              </TableRow>
+            </TableBody>
           )}
 
         </Table>
-      </TableContainer>
+      </TableContainer> */}
     </Box>
   );
 }
