@@ -49,7 +49,7 @@ import RiceBowlIcon from '@mui/icons-material/RiceBowl';
 import { useTheme } from "@emotion/react";
 
 const pages = ["succulents", "growlights", "soil/rocks", "pots", "contact"];
-const pageIcons = [GrassIcon, LightbulbIcon, LandscapeIcon, RiceBowlIcon, ContactPageIcon];
+const pageIcons = [<GrassIcon />, <LightbulbIcon />, <LandscapeIcon />, <RiceBowlIcon />, <ContactPageIcon />];
 const settings = ["Profile", "Account", "Orders"];
 const drawerWidth = 240;
 
@@ -357,8 +357,9 @@ const ResponsiveAppBar = (props) => {
           '& .MuiDrawer-paper': {
             width: drawerWidth,
             boxSizing: 'border-box',
+            backgroundColor: 'background.paper',
           },
-          zIndex: 1000,
+          zIndex: 99,
         }}
         variant="persistent"
         anchor="left"
@@ -371,46 +372,28 @@ const ResponsiveAppBar = (props) => {
         </DrawerHeader>
         <Divider />
         <List>
-          <ListItem key={"succulents"} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <GrassIcon />
-              </ListItemIcon>
-              <ListItemText primary={"succulents"} />
-            </ListItemButton>
-          </ListItem>
-          <ListItem key={"growlights"} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <LightbulbIcon />
-              </ListItemIcon>
-              <ListItemText primary={"growlights"} />
-            </ListItemButton>
-          </ListItem>
-          <ListItem key={"soil/rocks"} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <GrassIcon />
-              </ListItemIcon>
-              <ListItemText primary={"soil/rocks"} />
-            </ListItemButton>
-          </ListItem>
-          <ListItem key={"pots"} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <LandscapeIcon />
-              </ListItemIcon>
-              <ListItemText primary={"pots"} />
-            </ListItemButton>
-          </ListItem>
-          <ListItem key={"succulents"} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <GrassIcon />
-              </ListItemIcon>
-              <ListItemText primary={"succulents"} />
-            </ListItemButton>
-          </ListItem>
+          {pages.map((text, index) => (
+            <Link to={`${text}`}>
+              <ListItem key={text} disablePadding>
+                <ListItemButton sx={{
+                  '& .MuiListItemIcon-root': {
+                    color: "black",
+                    ":hover": {
+                      color: "#3A85AB",
+                    }
+                  
+                  }
+                }}>
+                  <ListItemIcon>
+                    {pageIcons[index]}
+                  </ListItemIcon>
+                  <ListItemText primary={text} sx={{
+                    color: "black", ':hover' : { color: "#3A85AB" }
+                  }} />
+                </ListItemButton>
+              </ListItem>
+            </Link>
+          ))}
         </List>
       </Drawer>
     </Box>
