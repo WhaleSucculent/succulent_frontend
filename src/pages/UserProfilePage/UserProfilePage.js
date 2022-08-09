@@ -17,7 +17,8 @@ import EditIcon from '@mui/icons-material/Edit';
 import Title from 'pages/AdminHomePage/components/Title';
 import { motion } from 'framer-motion';
 import { lineSelectedVariants, staggerVariants } from 'assets/config/animationVariants';
-
+import { EditAttributesRounded } from '@mui/icons-material';
+import EditProfile from './EditProfile';
 
 /* function createData(OrderNumber, Date, ShippingAddress, Total, View) {
   return { OrderNumber, Date, ShippingAddress, Total, View};
@@ -60,11 +61,6 @@ export default function DenseTable() {
               <TableCell>
                 {data.me.firstName}
               </TableCell>
-              <TableCell>
-                <Button>
-                  <EditIcon />
-                </Button>
-              </TableCell>
             </TableRow>
 
             <TableRow component={motion.div} variants={lineSelectedVariants} whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
@@ -74,11 +70,6 @@ export default function DenseTable() {
               <TableCell>
                 {data.me.lastName}
               </TableCell>
-              <TableCell>
-                <Button>
-                  <EditIcon />
-                </Button>
-              </TableCell>
             </TableRow>
 
             <TableRow component={motion.div} variants={lineSelectedVariants} whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
@@ -87,11 +78,6 @@ export default function DenseTable() {
               </TableCell>
               <TableCell>
                 {data.me.email}
-              </TableCell>
-              <TableCell>
-                <Button>
-                  <EditIcon />
-                </Button>
               </TableCell>
             </TableRow>
 
@@ -104,7 +90,8 @@ export default function DenseTable() {
               </TableCell>
               <TableCell>
                 <Button>
-                  <EditIcon />
+                  <EditProfile customer={data.me}/>
+                  {/* <EditIcon /> */}
                 </Button>
               </TableCell>
             </TableRow>

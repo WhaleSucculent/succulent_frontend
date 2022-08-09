@@ -77,6 +77,19 @@ const UPDATE_CUSTOMER = gql`
     }
 `
 
+const EDIT_PROFILE = gql`
+    mutation editProfile($id:ID!, $firstName:String!){
+      updateCustomer(id:$id, firstName:$firstName){
+        id
+        firstName
+        lastName
+        status
+        role
+        email
+      }
+    }
+`
+
 const RESET_PASSWORD = gql`
     mutation resetPassword($token:String!, $password:String!){
       resetPassword(token:$token, password:$password){
@@ -85,4 +98,13 @@ const RESET_PASSWORD = gql`
     }
 `
 
-export { REGISTER_CUSTOMER, LOGIN_CUSTOMER, REQUEST_RESET, DELETE_CUSTOMER, UPDATE_CUSTOMER, RESET_PASSWORD, LOGIN_WITH_GOOGLE }
+const EDIT_PAYMENT = gql`
+    mutation updatePayment($id:ID!, $password:String!){
+      resetPassword(token:$token, password:$password){
+        result
+      }
+    }
+`
+
+
+export {EDIT_PROFILE, REGISTER_CUSTOMER, LOGIN_CUSTOMER, REQUEST_RESET, DELETE_CUSTOMER, UPDATE_CUSTOMER, RESET_PASSWORD, LOGIN_WITH_GOOGLE }

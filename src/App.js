@@ -11,6 +11,7 @@ import ProductDetailPage from "pages/ProductDetailPage/ProductDetailPage";
 import HomePage from "pages/HomePage/HomePage";
 import UserProfilePage from "pages/UserProfilePage/UserProfilePage";
 import AdminHomePage from "pages/AdminHomePage/AdminHomePage";
+import OrderPage from "pages/AdminOrderPage/AdminOrderPage";
 import AdminHeader from "pages/AdminHomePage/components/Sidebar";
 import AdminProductPage from "pages/AdminHomePage/pages/Inventory";
 import AdminOrderPage from "pages/AdminHomePage/pages/Order";
@@ -100,6 +101,7 @@ function App() {
             <Route path="profile" element={<UserSideBar />}>
               <Route path="myprofile" element={<UserProfilePage />} />
               <Route path="myorders" element={<MyOrdersPage />} />
+              <Route path="myplacedorders" element={<OrderPage />} />
               <Route path="payments" element={<Payments />} /> 
               <Route path="address" element={<Address />} /> 
 
