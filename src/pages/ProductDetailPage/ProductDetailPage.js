@@ -23,8 +23,8 @@ import { addToMyCart, decreaseCartQty } from "pages/CheckoutPage/features/cartSl
 import { useDispatch } from "react-redux";
 import { Repeat } from "@mui/icons-material";
 import Title from 'pages/AdminHomePage/components/Title';
-
-
+//import ReactImageMagnify from 'react-image-magnify';
+import Loading from '../../components/Loading';
 /* 
 
 function SlideTransition(props) {
@@ -71,7 +71,7 @@ function ProductDetailPage({ open, onClose, setLoading }) {
     e.preventDefault();
     handlerAddToCart();
   }
-
+  if (loading) return <Loading />;
   if (error) return <p>Something Went Wrong</p>;
 
   return (
@@ -81,20 +81,33 @@ function ProductDetailPage({ open, onClose, setLoading }) {
         <Box margin="30px">
         <ProductDetailWrapper flexDirection={matches ? "column" : "row"}>
           <Product sx={{ height:'80%'}}>
+              {/* <ReactImageMagnify {...{
+        smallImage: {
+            alt: 'Wristwatch by Ted Baker London',
+            isFluidWidth: true,
+            src: `{data?.product.image[0].imageLink}`,
+            srcSet: `{data?.product.image[0].imageLink} 481w`,
+            sizes:
+                  "(min-width: 800px) 33.5vw, (min-width: 415px) 50vw, 100vw"
+        },
+        largeImage: {
+            src: `{data?.product.image[0].imageLink}`,
+            width: 1200,
+            height: 1800
+        }
+    }} /> */}
             <ProductImage src={data?.product.image[0].imageLink} height="80%" alt={data?.product.image.name} />
           </Product>
-          <ProductImage src={data?.product.image[0].imageLink} sx={{ gridTemplateColumns: "repeat(3, 1fr)" }}>
-          </ProductImage>
-        
+          
         <ProductDetailInfoWrapper>    
-            <Typography sx={{ lineHeight: 2 }} variant="h6">
+            <Typography sx={{ lineHeight: 2 }} variant="h6" align="left">
               {data?.product.name}
             </Typography>
-            <Typography variant="body">
+            <Typography variant="body" align="left">
               {data?.product.description}
             </Typography>
-            <Typography variant="subtitle">SKU: 12345</Typography>
-            <Typography variant="subtitle">{`Availability: ${data?.product.stock[data?.product.stock.length - 1].total} in stock`}</Typography>
+            <Typography variant="subtitle" align="left">Product Id:{data.product.id}</Typography>
+            <Typography variant="subtitle" align="left">{`Availability: ${data?.product.stock[data?.product.stock.length - 1].total} in stock`}</Typography>
             <form onSubmit={cartHandler}>
             <TextField
             margin="20px"
@@ -105,7 +118,8 @@ function ProductDetailPage({ open, onClose, setLoading }) {
           onChange={(e)=>setQuantity(e.target.value)}
           InputProps={{
             inputProps: { 
-              min: 0
+              min: 0,
+              max:{quantity}
             }
         }}
         />
