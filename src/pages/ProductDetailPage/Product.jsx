@@ -3,6 +3,7 @@ import { Button, IconButton } from "@mui/material";
 import { Box } from "@mui/system";
 import { slideInBottom, slideInRight } from "./Animation";
 import { Colors } from "./Themes";
+import theme from '../../theme';
 
 export const Product = styled(Box)(({ theme }) => ({
   display: "flex",
@@ -14,9 +15,10 @@ export const Product = styled(Box)(({ theme }) => ({
 
 export const ProductImage = styled("img")(({ src, theme }) => ({
   src: `url(${src})`,
-  width: "50%",
-  background: Colors.light_gray,
-  padding: '10px',
+  width: "70%",
+  background: "#FFB2CC",
+  padding: '5px',
+  borderRadius: '11px',
 
 }));
 
