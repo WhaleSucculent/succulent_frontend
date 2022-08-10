@@ -134,11 +134,17 @@ function ProductDetailPage({ open, onClose, setLoading }) {
                   label="Quantity"
                   type="number"
                   value={quantity}
-                  onChange={(e) => setQuantity(e.target.value)}
+                  onChange={(e) => {
+                    if(e.target.value > data.product.quantity){
+                      e.target.value = 10;
+                    }else{
+                      setQuantity(e.target.value);
+                    }
+                  }}
                   InputProps={{
                     inputProps: {
-                      min: 0,
-                      max: { quantity },
+                      min: 1,
+                     
                     },
                   }}
                 />
