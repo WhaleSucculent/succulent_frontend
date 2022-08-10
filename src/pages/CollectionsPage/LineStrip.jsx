@@ -88,9 +88,14 @@ function LineStrip({category}) {
                   height:'100%',
                   fontSize:'3em',
                   fontWeight:'bolder',
-                  backdropFilter: "blur(2.5px)"
+                  backdropFilter: "blur(2.5px)",
+                  ".MuiImageListItemBar-title":{
+                   fontSize:'0.45em',
+                   wordWwrap: 'break-word',
+                   height:'100%',
+                  }
                 }}
-                title={itemData[getIndex()].title}
+                title ={itemData[getIndex()].title}
                 position="bottom"
                 actionPosition="bottom"
               />
