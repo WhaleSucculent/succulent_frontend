@@ -1,4 +1,4 @@
-import { FormControl } from "@mui/material";
+import { Box, Button, FormControl } from "@mui/material";
 import { Form, Formik } from "formik";
 import React, { FunctionComponent } from "react";
 
@@ -9,13 +9,13 @@ import { paymentFormSchema } from "pages/CheckoutPage/components/payment/payment
 import { useTranslation } from "react-i18next";
 import { connect } from "react-redux";
 import {
-  mapDispatchToProps,
-  mapStateToProps,
   PaymentFormProps,
 } from "pages/CheckoutPage/components/payment/payment.props";
 import { PaymentFormValues } from "pages/CheckoutPage/components/payment/payment-form-values.interface";
 import { CreditCard } from "./profilecredit-form";
 import { useMeQuery } from "queries/utilQueries";
+
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const PaymentFormControl = styled(FormControl)(({ theme }) => ({
   display: "block",
@@ -23,16 +23,10 @@ const PaymentFormControl = styled(FormControl)(({ theme }) => ({
   marginTop: theme.spacing(2),
 }));
 
-export const ProfilePaymentForm: FunctionComponent<PaymentFormProps> = ({
-  paymentForm,
-  submitPaymentForm,
-  clearPaymentForm,
-}) => {
-  const navigate = useNavigate();
+export const ProfilePaymentForm: FunctionComponent<PaymentFormProps> = () => {
 
   const submitForm = (values: PaymentFormValues) => {
-    submitPaymentForm(values);
-    navigate("/checkout/confirmation");
+
   };
 
   const { t } = useTranslation();
@@ -57,6 +51,18 @@ export const ProfilePaymentForm: FunctionComponent<PaymentFormProps> = ({
               values={values}
               handleChange={handleChange}
             />
+
+            <Box textAlign="right" mt={2}>
+              <Button
+                type="submit"
+                variant="contained"
+                color="error"
+                endIcon={<DeleteIcon />}
+                size="large"
+              >
+                Delete
+              </Button>
+            </Box>
           </Form>
         )}
       </Formik>
@@ -64,4 +70,4 @@ export const ProfilePaymentForm: FunctionComponent<PaymentFormProps> = ({
   );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProfilePaymentForm);
+export default ProfilePaymentForm;

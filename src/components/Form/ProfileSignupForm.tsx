@@ -1,22 +1,22 @@
 import { Box, Button, FormControl, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import { Form, Formik } from "formik";
 import React, { FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
-import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { DeliveryFormValues } from "../../pages/CheckoutPage/components/delivery/delivery-form-values.interface";
 import { deliveryFormSchema } from "../../pages/CheckoutPage/components/delivery/delivery-form.schema";
 import {
   DeliveryFormProps,
-  mapDispatchToProps,
-  mapStateToProps,
 } from "../../pages/CheckoutPage/components/delivery/delivery.props";
 import { useMeQuery } from "queries/utilQueries";
-import { ProfileAddressForm } from "./profileaddress-form";
 import { SignupForm } from "./profilesignup-form";
+import { useMutation } from "@apollo/client";
+import { UPDATE_MY_EMAIL_PASSWORD } from "mutations/userMutations";
+import { SignupFormValues } from "pages/CheckoutPage/components/signup/signup-form-values.interface";
+import { DeliveryFormValues, ProfileDeliveryFormValues } from "pages/CheckoutPage/components/delivery/delivery-form-values.interface";
+
+import UploadIcon from "@mui/icons-material/Upload";
 
 const DeliveryFormControl = styled(FormControl)(({ theme }) => ({
   display: "block",
@@ -24,20 +24,19 @@ const DeliveryFormControl = styled(FormControl)(({ theme }) => ({
   marginTop: theme.spacing(2),
 }));
 
-const ProfileSignupForm: FunctionComponent<DeliveryFormProps> = ({
-  deliveryForm,
-  submitDeliveryForm,
-  clearDeliveryForm,
-}) => {
+const ProfileSignupForm: FunctionComponent<DeliveryFormProps> = () => {
   const navigate = useNavigate();
+
+  const [updateMyEmailPassword]  = useMutation(UPDATE_MY_EMAIL_PASSWORD)
   const submitForm = (values: DeliveryFormValues) => {
-    submitDeliveryForm(values);
-    // logic redirect
-    navigate("/checkout/payment");
+    console.log(values);
+    // updateMyEmailPassword(values);
   };
   const { t } = useTranslation();
 
   const { data, loading, error } = useMeQuery();
+
+
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error...</div>;
 
@@ -52,9 +51,6 @@ const ProfileSignupForm: FunctionComponent<DeliveryFormProps> = ({
         {({ errors, touched, values }) => (
           <Form>
             <DeliveryFormControl>
-              <Typography variant="h5" component="legend" gutterBottom>
-                {t("checkout.customerInfo")}
-              </Typography>
               <SignupForm
                 formName="signup"
                 errors={errors.signup}
@@ -68,10 +64,10 @@ const ProfileSignupForm: FunctionComponent<DeliveryFormProps> = ({
                 type="submit"
                 variant="contained"
                 color="primary"
-                endIcon={<ArrowRightAltIcon />}
+                endIcon={<UploadIcon />}
                 size="large"
               >
-                Continue
+                Update
               </Button>
             </Box>
           </Form>
@@ -81,7 +77,4 @@ const ProfileSignupForm: FunctionComponent<DeliveryFormProps> = ({
   );
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ProfileSignupForm);
+export default ProfileSignupForm

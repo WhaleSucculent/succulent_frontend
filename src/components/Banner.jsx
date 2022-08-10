@@ -1,25 +1,9 @@
-import { Message } from "@mui/icons-material";
 import { Box, Slide, styled, Typography } from "@mui/material";
-import { fontSize } from "@mui/system";
 import React, { useEffect, useState } from "react";
 
 
 function Banner() {
-  const PromoContainer = styled(Box)(() => ({
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    padding: "10px,0px,10px,0px",
-    overflow: "hidden",
-    backgroundColor: "#87d8f4",
-    fontSize: "40px",
-  }));
-  const PromoText = styled(Typography)(() => ({
-    lineHeight: 1.8,
-    fontSize: "30px",
-    marginBottom: "10px",
-    fontFamily: "monospace",
-  }));
+
   const messages = [
     "End of spring sale is on",
     "Take 10% off of select items",
@@ -50,13 +34,29 @@ function Banner() {
 
   return (
     <div>
-      <PromoContainer>
+      <Box sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        padding: "10px,0px,10px,0px",
+        overflow: "hidden",
+        backgroundColor: "#87d8f4",
+        fontSize: { xs: "20px", md: "25px" },
+      }}>
         <Slide direction="left" in={show}>
-          <Box>
-            <PromoText>{messages[messageIndex]}</PromoText>
+          <Box sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}>
+            <Typography sx={{
+              lineHeight: 1.8,
+              fontSize: { xs: "20px", md: "30px", xl: "40px" },
+              fontFamily: "monospace",
+            }}>{messages[messageIndex]}</Typography>
           </Box>
-        </Slide>{" "}
-      </PromoContainer>
+        </Slide>
+      </Box>
     </div>
   );
 }
