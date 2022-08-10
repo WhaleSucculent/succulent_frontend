@@ -61,7 +61,7 @@ const CollectionsPage = () => {
       </Grid>
 
       <Grid container spacing={3}>
-        <Grid item md={2}>
+        <Grid item md={12} xs={12} lg={2}>
           <CollectionSidebar
             priceMin={priceMin}
             priceMax={priceMax}
@@ -86,7 +86,7 @@ const CollectionsPage = () => {
               />
             </Grid>
           </Grid>
-          <Grid container spacing={3}>
+          <Grid justifyContent="center" alignItems="center"  container spacing={3}>
             {!loading &&
               !error &&
               data.products
@@ -162,13 +162,16 @@ const CollectionsPage = () => {
                   }
                 })
                 .map((product) => (
-                  <Grid item xs={12} sm={6} md={4} key={product.id}>
+                  <Stack direction={{ xs: 'column', sm: 'column', md:'row' }}
+                  justifyContent="center"
+                  alignItems="center"
+                  spacing={3} item xs={12} sm={6} md={4} key={product.id} sx={{marginTop:"25px"}}>
                     <ProductCard
                       key={product.id}
                       product={product}
                       stockCheck={stockCheck}
                     />
-                  </Grid>
+                  </Stack>
                 ))}
           </Grid>
         </Grid>

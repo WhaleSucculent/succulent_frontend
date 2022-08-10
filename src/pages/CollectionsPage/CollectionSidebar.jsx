@@ -12,7 +12,7 @@ import Paper from '@mui/material/Paper';
 
 function CollectionSidebar({ stockCheck, handleChange, priceMin, priceMax, priceSubmit, priceMinSet, priceMaxSet }) {
   return (
-    <Stack direction="column" alignItems="center" justifyContent="center" sx={{ marginTop: '30px', marginLeft: '15px' }}>
+    <Stack direction={{ xs: 'column', sm: 'row', md:'row' }} spacing={2} alignItems="center" justifyContent="center" sx={{ marginTop: '30px', marginLeft: '15px' }}>
       <TableContainer component={Paper} >
         <Table>
           <TableHead >

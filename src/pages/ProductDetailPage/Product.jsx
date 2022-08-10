@@ -15,7 +15,7 @@ export const Product = styled(Box)(({ theme }) => ({
 
 export const ProductImage = styled("img")(({ src, theme }) => ({
   src: `url(${src})`,
-  width: "70%",
+  width: "90%",
   background: "#FFB2CC",
   padding: '5px',
   borderRadius: '11px',
