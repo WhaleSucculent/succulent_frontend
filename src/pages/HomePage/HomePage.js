@@ -100,14 +100,16 @@ const HomePage = () => {
 
   return (
     <div>
+    <Banner />
+      <Carousel />
       <Promotion />
-      <Banner />
-
+      <br></br>
       <OnScrollAnimationBox>
-        <Carousel />
+     
+       
       </OnScrollAnimationBox>
       <OnScrollAnimationBox>
-        <Category />
+     
       </OnScrollAnimationBox>
 
       {/* <OnScrollAnimationBox> */}
@@ -123,6 +125,7 @@ const HomePage = () => {
           </SwiperSlide>
         ))}
       </Swiper>
+      <Category />
       {/* <Container >
         <Box sx={{ display: "grid", gridTemplateColumns: "repeat(8, 1fr)", Height: "20px" }}>
           {!loading &&

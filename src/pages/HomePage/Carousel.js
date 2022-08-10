@@ -26,7 +26,7 @@ export default function Carousel() {
       }}>
         <SwiperSlide style={{ overflow: "visible" }}>
           <img src={slidesrc4} alt="slid" height="580px" style={{ filter: "opacity(60%)" }} />
-          <Box className="swiper-caption" sx={{ position: "absolute", top: "50%", left: "50%", marginTop: {xs: "-75px", md: "-100px", lg: "0px" }, marginLeft: {xs: "-150px", md: "-100px", lg: "-50px" }, width: {xs: "300px", md: "200px", lg: "1000px" }, height: {xs: "300px", md: "200px", lg: "1000px" }, zIndex: 50 }} >
+          <Box className="swiper-caption" sx={{ position: "absolute", top: "100%", left: "100%", marginTop: {xs: "-75px", md: "-100px", lg: "0px" }, marginLeft: {xs: "-150px", md: "-100px", lg: "-50px" }, width: {xs: "300px", md: "200px", lg: "1000px" }, height: {xs: "300px", md: "200px", lg: "1000px" }, zIndex: 50 }} >
             <Typography sx={{ color: "black",mb: {xs:5, md:2}, fontSize: {xs:"2rem",md: "3rem",lg:"4em"}, fontFamily:"Alumni Sans Inline One", fontStyle: "italic"}} >Welcome to <span>Whale Succulent</span></Typography>
             <Typography sx={{color: "black" ,fontSize: {xs: "1rem", md: "1.5rem",lg:"2em"}}}>
               We sales the most beautiful succulent plants in the world.
