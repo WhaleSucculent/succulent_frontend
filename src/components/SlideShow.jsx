@@ -8,8 +8,8 @@ function SlideShow() {
         display: 'flex',
         justifyContent: 'center',
         width: '100%',
-        height: '100%',
-        padding: '0px 0px',
+        height: '1300px',
+        padding: '10px 0px',
         backgroundColor: '	#F0FFFF',
 
     }));
@@ -18,9 +18,9 @@ function SlideShow() {
         justifyContent: 'center',
         flexDirection: 'column',
         alignItems: 'center',
-        maxWidth: 600,
+        maxWidth: 500,
         height: '100%',
-        padding: '30px',
+        padding: '10px',
         fontFamily: "monospace"
 
 
@@ -36,6 +36,7 @@ function SlideShow() {
     const BannerDescription = styled(Typography)(() => ({
         lineHeight: 1.25,
         letterSpacing: 1.25,
+        width: '900px',
         fontSize: '20px',
         marginBottom: '5em',
         fontFamily: "monospace"
@@ -43,7 +44,8 @@ function SlideShow() {
     }));
     const BannerImg = styled('img')((src) => ({
         src: `url(${src})`,
-        width: '880px',
+        width: '1000px',
+        marginTop:'100px'
 
 
 
@@ -57,7 +59,7 @@ function SlideShow() {
                     <BannerImg src='https://images.unsplash.com/photo-1599523444669-d5849add9ebf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80' sx={{ width: "100%" }} />
                     {/* <Typography variant='h6'>News header</Typography> */}
                     <BannerTitle variant='h4' sx={{ xs: { position: "fixed" } }}>New Collections</BannerTitle>
-                    <BannerDescription variant='subtitle'>Come with a wide range of shapes and colors, succulents and cacti stand out in common houseplants, particularly as low-maintenance types. As long as they get well-drained succulent soil, at least 6 hours of sunlight...</BannerDescription>
+                    <BannerDescription variant='subtitle'>Come with a wide range of shapes and colors, succulents and cacti stand out in common houseplants, particularly as low-maintenance types. ...</BannerDescription>
                 </BannerContent>
             </BannerContainer>
         </div>
