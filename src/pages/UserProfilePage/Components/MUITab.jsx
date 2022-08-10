@@ -33,7 +33,7 @@ export default function LabTabs() {
               <Tab label="Payment" value="3" />
             </TabList>
           </Box>
-          {/* <TabPanel value="1">
+          <TabPanel value="1">
             <ProfileSignupForm />
           </TabPanel>
           <TabPanel value="2">
@@ -41,7 +41,7 @@ export default function LabTabs() {
           </TabPanel>
           <TabPanel value="3">
             <ProfilePaymentForm />
-          </TabPanel> */}
+          </TabPanel>
         </TabContext>
       </Provider>
     </Box>

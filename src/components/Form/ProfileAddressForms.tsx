@@ -1,18 +1,15 @@
-import { Box, Button, FormControl, Typography } from "@mui/material";
+import { Box, Button, FormControl } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import { Form, Formik } from "formik";
 import React, { FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
-import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { DeliveryFormValues } from "../../pages/CheckoutPage/components/delivery/delivery-form-values.interface";
 import { deliveryFormSchema } from "../../pages/CheckoutPage/components/delivery/delivery-form.schema";
 import {
-  DeliveryFormProps,
-  mapDispatchToProps,
-  mapStateToProps,
+  DeliveryFormProps
 } from "../../pages/CheckoutPage/components/delivery/delivery.props";
 import { useMeQuery } from "queries/utilQueries";
 import { ProfileAddressForm } from "./profileaddress-form";
@@ -25,16 +22,9 @@ const DeliveryFormControl = styled(FormControl)(({ theme }) => ({
 
 
 
-const ProfileAddressForms: FunctionComponent<DeliveryFormProps> = ({
-  deliveryForm,
-  submitDeliveryForm,
-  clearDeliveryForm,
-}) => {
-  const navigate = useNavigate();
+const ProfileAddressForms: FunctionComponent<DeliveryFormProps> = () => {
   const submitForm = (values: DeliveryFormValues) => {
-    submitDeliveryForm(values);
-    // logic redirect
-    navigate("/checkout/payment");
+
   };
   const { t } = useTranslation();
 
@@ -53,14 +43,10 @@ const ProfileAddressForms: FunctionComponent<DeliveryFormProps> = ({
         {({ errors, touched, values }) => (
           <Form>
             <DeliveryFormControl>
-              <Typography variant="h5" component="legend" gutterBottom>
-                {t("checkout.shippingAddress")}
-              </Typography>
               <ProfileAddressForm
                 formName="shippingAddress"
                 errors={errors.shippingAddress}
                 touched={touched.shippingAddress}
-                
               />
             </DeliveryFormControl>
 
@@ -82,4 +68,4 @@ const ProfileAddressForms: FunctionComponent<DeliveryFormProps> = ({
   );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileAddressForms);
+export default ProfileAddressForms;
