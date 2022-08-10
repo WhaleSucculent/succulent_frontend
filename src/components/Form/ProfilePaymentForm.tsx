@@ -9,8 +9,6 @@ import { paymentFormSchema } from "pages/CheckoutPage/components/payment/payment
 import { useTranslation } from "react-i18next";
 import { connect } from "react-redux";
 import {
-  mapDispatchToProps,
-  mapStateToProps,
   PaymentFormProps,
 } from "pages/CheckoutPage/components/payment/payment.props";
 import { PaymentFormValues } from "pages/CheckoutPage/components/payment/payment-form-values.interface";
@@ -23,16 +21,10 @@ const PaymentFormControl = styled(FormControl)(({ theme }) => ({
   marginTop: theme.spacing(2),
 }));
 
-export const ProfilePaymentForm: FunctionComponent<PaymentFormProps> = ({
-  paymentForm,
-  submitPaymentForm,
-  clearPaymentForm,
-}) => {
-  const navigate = useNavigate();
+export const ProfilePaymentForm: FunctionComponent<PaymentFormProps> = () => {
 
   const submitForm = (values: PaymentFormValues) => {
-    submitPaymentForm(values);
-    navigate("/checkout/confirmation");
+
   };
 
   const { t } = useTranslation();
@@ -64,4 +56,4 @@ export const ProfilePaymentForm: FunctionComponent<PaymentFormProps> = ({
   );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProfilePaymentForm);
+export default ProfilePaymentForm;
