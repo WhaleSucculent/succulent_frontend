@@ -85,7 +85,7 @@ function ProductCard({ product }) {
                 </CardContent>
               </Link>
               <CardActions>
-                {/* <Button size="small">Buy</Button> */}
+                {/* <Button size={{xs: "small", lg: "large"}}>Buy</Button> */}
                 {/* <Button size="small" onClick={() => handlerAddToCart(product)}>Add to Cart</Button> */}
 
                 <Button
