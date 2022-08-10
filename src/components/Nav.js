@@ -353,11 +353,13 @@ const ResponsiveAppBar = (props) => {
       </AppBar>
       <Drawer
         sx={{
-          width: drawerWidth,
+          width: 0,
           flexShrink: 0,
+          overflow: "hidden",
           '& .MuiDrawer-paper': {
             width: drawerWidth,
             boxSizing: 'border-box',
+            
             backgroundColor: 'background.paper',
           },
           zIndex: 99,

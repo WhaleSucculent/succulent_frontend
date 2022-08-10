@@ -28,7 +28,7 @@ root.render(
         <ThemeProvider theme={theme}>
           <BrowserRouter>
             <CssBaseline/>          
-            <App />
+            <App style={{width:'100vw', overflowX:'hidden'}}/>
           </BrowserRouter>
         </ThemeProvider>
       </ApolloProvider>
