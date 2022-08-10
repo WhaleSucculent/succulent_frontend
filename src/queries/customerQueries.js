@@ -43,6 +43,7 @@ const GET_CUSTOMERS = gql`
          lastName
        }
  creditCards{
+   id
    cardNo
    holderName
    expirationDate
@@ -140,6 +141,7 @@ const GET_ME = gql`
         }
       }
       creditCards{
+        id
         cardNo
         holderName
         expirationDate

@@ -25,7 +25,6 @@ function ProductCard({ product }) {
     //  navigate("/cart")
   };
   const getReview = () => {
-    console.log(product.productStatus);
     if (product.review.length == 0) {
       return 0;
     }
@@ -39,8 +38,8 @@ function ProductCard({ product }) {
   return (
     <Container>
       {(
-        <Grid component={motion.div} whileHover={{ y: '-15px' }} container spacing={{ xs: 2, md: 3 }} direction="row">
-          <Grid item xs={15} md={20}>
+        <Grid component={motion.div} whileHover={{ y: '-15px' }} container spacing={{ xs: 0, md: 1 }} direction="row">
+          <Grid item>
             <Card sx={{ maxWidth: 345 }}>
               <Link to={`products/${product.id}`} underline="none">
                 <CardMedia
@@ -50,10 +49,10 @@ function ProductCard({ product }) {
                   src={getImage()}
                 />
                 <CardContent>
-                  <Typography gutterBottom variant="h5" component="div">
+                  <Typography gutterBottom variant="h5" component="div" sx={{ fontSize: { xs: "1.2rem" }}}>
                     {product.name}
                   </Typography>
-                  <Typography noWrap variant="body2" color="text.secondary">
+                  <Typography noWrap variant="body2" color="text.secondary" sx={{ px:1, fontSize: { xs: "1rem" } }} >
                     {product.description}
                   </Typography>
                 </CardContent>
@@ -61,11 +60,12 @@ function ProductCard({ product }) {
                   {/* <Box sx={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)" }}> */}
                   <Grid
                     container
-                    columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+                    columnSpacing={{ xs: 0, sm: 1, md: 2 }}
                   >
+                  <Grid item xs={1.5}></Grid>
                     <Grid item xs={3}>
                       <Item>
-                        <Typography variant="h6" color="text.secondary">
+                        <Typography variant="h6" color="text.secondary" sx={{ fontSize: { xs: "1.2rem" } }}>
                           ${product.priceList[0].price}
                         </Typography>
                       </Item>
@@ -77,6 +77,7 @@ function ProductCard({ product }) {
                           defaultValue={getReview}
                           precision={0.5}
                           readOnly
+                          sx={{padding:0}}
                         />
                       </Item>
                     </Grid>

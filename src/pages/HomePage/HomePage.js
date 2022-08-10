@@ -8,7 +8,7 @@ import ProductCard from "components/ProductCard";
 import { Container } from "@mui/system";
 import Grid from '@mui/material/Grid';
 import { Height } from "@mui/icons-material";
-import { CircularProgress, Divider, Toolbar, Typography } from "@mui/material";
+import { CircularProgress, Divider, Toolbar, Typography, useMediaQuery } from "@mui/material";
 import ButtonBase from '@mui/material/ButtonBase';
 import img from "assets/images/map.jpg";
 import { Link } from "react-router-dom";
@@ -22,8 +22,9 @@ import OnScrollAnimationBox from "components/OnScrollAnimationBox";
 import { CartButton } from "components/CartButton/CartButton";
 import Footer from "components/Footer";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper";
+import { Autoplay, Pagination } from "swiper";
 import Title from "pages/AdminHomePage/components/Title";
+import { useTheme } from "@emotion/react";
 
 const cardVariants = {
   offscreen: {
@@ -84,6 +85,14 @@ const thumbnailVariants = {
 };
 
 const HomePage = () => {
+  const theme = useTheme();
+  const downsm = useMediaQuery(theme.breakpoints.down('sm'));
+  const betweensmandmd = useMediaQuery(theme.breakpoints.between('sm', 'md'));
+  const betweenmdandlg = useMediaQuery(theme.breakpoints.between('md', 'lg'));
+  const betweenlgandxl = useMediaQuery(theme.breakpoints.between('lg', 'xl'));
+  const upxl = useMediaQuery(theme.breakpoints.up('xl'));
+
+
   const { loading, error, data } = useQuery(GET_PRODUCTS);
   console.log(data);
   if (loading) return <Loading />
@@ -91,10 +100,11 @@ const HomePage = () => {
 
   return (
     <div>
+      <Promotion />
       <Banner />
-      <Carousel />
+
       <OnScrollAnimationBox>
-        <Promotion />
+        <Carousel />
       </OnScrollAnimationBox>
       <OnScrollAnimationBox>
         <Category />
@@ -106,8 +116,8 @@ const HomePage = () => {
           Featured Products
         </Title>
       </Box>
-      <Swiper slidesPerView={5} modules={[Pagination]} >
-        {data.products.map(product => (
+      <Swiper slidesPerView={downsm ? 1 : betweensmandmd ? 2: betweenmdandlg ? 3: betweenlgandxl ? 4:  5} modules={[Pagination,Autoplay]} >
+        {data.products.slice(1,7).map(product => (
           <SwiperSlide style={{ paddingBottom: "2px" }}>
             <ProductCard key={product.id} product={product} />
           </SwiperSlide>
@@ -134,19 +144,13 @@ const HomePage = () => {
             Featured Categories
           </Title>
         </Box>
-        <Container>
-          <Box component={motion.div} variants={thumbnailVariants} sx={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gridTemplateRows: "repeat(1, minmax(1, 2))", Height: "20px" }}>
-            {!loading &&
-              !error &&
-              data.products.slice(3, 6).map((product) => (
-                <Grid container spacing={2} columns={12} key={product.id} component={motion.div} initial="offscreen" whileInView="onscreen" viewport={{ once: true, amount: 0.8 }}>
-                  <Item xs={4} lg={3} component={motion.div} variants={cardVariants}>
-                    <ProductCard key={product.id} product={product} />
-                  </Item>
-                </Grid>
-              ))}
-          </Box>
-        </Container>
+        <Swiper slidesPerView={downsm ? 1 : betweensmandmd ? 2 : betweenmdandlg ? 3 : betweenlgandxl ? 4 : 5} modules={[Pagination, Autoplay]} >
+          {data.products.slice(3,8).map(product => (
+            <SwiperSlide style={{ paddingBottom: "2px" }}>
+              <ProductCard key={product.id} product={product} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </OnScrollAnimationBox>
 
       {/* <Box padding={7}>
@@ -182,24 +186,18 @@ const HomePage = () => {
         </Box>
       </OnScrollAnimationBox>
       <OnScrollAnimationBox>
-        <Container>
-          <Box sx={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", Height: "20px" }}>
-            {!loading &&
-              !error &&
-              data.products.slice(0, 3).map((product) => (
-                <Grid container spacing={2} columns={12} key={product.id}>
-                  <Item xs={4} lg={3}>
-                    <ProductCard key={product.id} product={product} />
-                  </Item>
-                </Grid>
-              ))}
-          </Box>
-        </Container>
+        <Swiper slidesPerView={downsm ? 1 : betweensmandmd ? 2 : betweenmdandlg ? 3 : betweenlgandxl ? 4 : 5} modules={[Pagination, Autoplay]} >
+          {data.products.slice(2, 7).map(product => (
+            <SwiperSlide style={{ paddingBottom: "2px" }}>
+              <ProductCard key={product.id} product={product} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </OnScrollAnimationBox>
 
 
       <Footer />
-    </div>
+    </div >
 
   );
 };

@@ -1,5 +1,8 @@
 import { grey, orange, red } from '@mui/material/colors';
 import { createTheme } from '@mui/material/styles';
+import createBreakpoints from "@mui/system/createTheme/createBreakpoints"
+
+const breakpoints = createBreakpoints({})
 
 export const theme = createTheme({
   palette: {
@@ -16,6 +19,7 @@ export const theme = createTheme({
       dark: '#A26999'
     },
   },
+
   typography: {
     fontFamily: [
       '"Inter var"',
@@ -27,12 +31,38 @@ export const theme = createTheme({
       '"Segoe UI Emoji"',
       '"Segoe UI Symbol"',
       '"Montserrat"',
+      '"Alumni Sans Inline One"'
     ].join(','),
+    h4: {
+      [breakpoints.up('xs')]: {
+        fontSize: '1.5rem',
+      },
+      [breakpoints.up('sm')]: {
+        fontSize: '2rem',
+      },
+
+      [breakpoints.up('lg')]: {
+        fontSize: '2.5rem',
+      },
+    },
+    h5: {
+      [breakpoints.up('xs')]: {
+        fontSize: '1.2rem',
+      },
+      [breakpoints.up('sm')]: {
+        fontSize: '1.3rem',
+      },
+      [breakpoints.up('lg')]: {
+        fontSize: '1.5rem',
+      },
+    }
 
   },
+
   shape: {
     borderRadius: 20,
   },
+
   components: {
     MuiLink: {
       styleOverrides: {
@@ -71,7 +101,7 @@ export const theme = createTheme({
     MuiDrawer: {
       styleOverrides: {
         paper: {
-          backgroundColor:'#111827',
+          backgroundColor: '#111827',
         },
       }
     },
@@ -95,8 +125,74 @@ export const theme = createTheme({
         }
       }
     },
+    MuiTooltip: {
+      styleOverrides: {
+        arrow: true
+      }
+    },
+    MuiButton: {
+      variants: [
+        {
+          props: { variant: 'gradient' },
+          style: {
+            background: 'linear-gradient(45deg, #ffb2cc 30%, #8AD8FF 90%)',
+            border: 0,
+            boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+            color: 'white',
+            height: 40,
+            padding: '0 30px',
+            borderRadius: 20,
+
+          },
+          [breakpoints.up('xs')]: {
+            fontSize: '0.8rem',
+            height: 32,
+          },
+          [breakpoints.up('sm')]: {
+            fontSize: '0.9rem',
+            height: 40,
+          },
+
+          [breakpoints.up('lg')]: {
+            fontSize: '1rem',
+          },
+        }
+      ],
+      styleOverrides: {
+        root: {
+          "&:hover": {
+            background: 'linear-gradient(45deg, #ffb2cc 30%, #8AD8FF 90%)',
+            boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+          },
+          "&:active": {
+            boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+          },
+          [breakpoints.up('xs')]: {
+            fontSize: '0.8rem'
+          },
+          [breakpoints.up('sm')]: {
+            fontSize: '0.9rem',
+          },
+
+          [breakpoints.up('lg')]: {
+            fontSize: '1rem',
+          },
+        }
+      }
+    },
+    MuiCardContent:{
+      styleOverrides:{
+        root:{
+          padding: 3,
+          ":last-child":{
+            paddingBottom: 0
+          }
+        }
+      }
+    }
 
   },
+
   transitions: {
     easing: {
       easeInOut: 'cubic-bezier(0.4, 0, 0.2, 1)',

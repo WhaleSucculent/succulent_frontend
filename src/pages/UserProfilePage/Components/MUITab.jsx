@@ -14,6 +14,8 @@ import ProfileAddressForms from 'components/Form/ProfileAddressForms';
 import { ProfileAddressForm } from 'components/Form/profileaddress-form';
 import ProfileSignupForm from 'components/Form/ProfileSignupForm';
 import ProfilePaymentForm from 'components/Form/ProfilePaymentForm';
+import Payments from "pages/UserProfilePage/Payments";
+
 
 export default function LabTabs() {
   const [value, setValue] = React.useState('1');
@@ -40,7 +42,7 @@ export default function LabTabs() {
             <ProfileAddressForms />
           </TabPanel>
           <TabPanel value="3">
-            <ProfilePaymentForm />
+            <Payments/>
           </TabPanel>
         </TabContext>
       </Provider>

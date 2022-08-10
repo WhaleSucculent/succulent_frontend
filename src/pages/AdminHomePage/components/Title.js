@@ -15,9 +15,9 @@ function Title(props) {
       <Typography component="h2" variant="h4" color="primary.dark" gutterBottom
         sx={{
           width: "fit-content",
-          fontWeight: {xs: 300, md: 500, xl: 800}, 
+          fontWeight: {xs: 500, xl: 800}, 
           pt: { xs: 1, sm: 1, xl: 3 },
-          fontSize: {xs: '1rem', md: '1.5rem', xl: '2rem'},
+          fontSize: {xs: '1.3rem', md: '1.5rem', xl: '2rem'},
         }} >
         {props.children}
       </Typography>

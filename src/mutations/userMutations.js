@@ -85,8 +85,27 @@ const RESET_PASSWORD = gql`
     }
 `
 
-// const UPDATE_ME_EMAIL_PASSWORD = gql`
-//      mu
-// `
+const UPDATE_MY_EMAIL_PASSWORD = gql`
+     mutation updateMyEmailPassword($id: String!, $email:String!, $password:String!){
+      updateMyEmailPassword(id:$id, email:$email, password:$password){
+        result
+      }
+     }
+`
 
-export { REGISTER_CUSTOMER, LOGIN_CUSTOMER, REQUEST_RESET, DELETE_CUSTOMER, UPDATE_CUSTOMER, RESET_PASSWORD, LOGIN_WITH_GOOGLE }
+const UPDATE_MY_ADDRESS = gql`
+    mutation updateMyAddress($id: String!, $firstName: String!, $lastName: String!, $address:String!, $apartment: String, $city:String!, $country: String!, $state:String!, $zipcode:String!){
+      updateMyAddress( id:$id, firstName:$firstName, lastName:$lastName, address:$address, apartment: $apartment, city:$city, country: $country, state:$state, zipcode:$zipcode){
+        result
+      }
+    }
+`
+const DELETE_MY_PAYMENT = gql`
+    mutation deleteMyPayment($id: String!){
+      deleteMyPayment(id:$id){
+        result
+      }
+    }
+`
+
+export { UPDATE_MY_EMAIL_PASSWORD, UPDATE_MY_ADDRESS, DELETE_MY_PAYMENT, REGISTER_CUSTOMER, LOGIN_CUSTOMER, REQUEST_RESET, DELETE_CUSTOMER, UPDATE_CUSTOMER, RESET_PASSWORD, LOGIN_WITH_GOOGLE }

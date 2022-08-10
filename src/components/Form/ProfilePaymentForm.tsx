@@ -1,4 +1,4 @@
-import { FormControl } from "@mui/material";
+import { Box, Button, FormControl } from "@mui/material";
 import { Form, Formik } from "formik";
 import React, { FunctionComponent } from "react";
 
@@ -14,6 +14,8 @@ import {
 import { PaymentFormValues } from "pages/CheckoutPage/components/payment/payment-form-values.interface";
 import { CreditCard } from "./profilecredit-form";
 import { useMeQuery } from "queries/utilQueries";
+
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const PaymentFormControl = styled(FormControl)(({ theme }) => ({
   display: "block",
@@ -49,6 +51,18 @@ export const ProfilePaymentForm: FunctionComponent<PaymentFormProps> = () => {
               values={values}
               handleChange={handleChange}
             />
+
+            <Box textAlign="right" mt={2}>
+              <Button
+                type="submit"
+                variant="contained"
+                color="error"
+                endIcon={<DeleteIcon />}
+                size="large"
+              >
+                Delete
+              </Button>
+            </Box>
           </Form>
         )}
       </Formik>

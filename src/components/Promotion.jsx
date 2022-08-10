@@ -8,7 +8,6 @@ import Link from './Link';
 
 function Promotion() {
 
-
   const item = {
     display: 'flex',
     flexDirection: 'column',
@@ -16,16 +15,11 @@ function Promotion() {
     px: 5,
   };
 
-  const number = {
-    fontSize: 24,
-    fontFamily: 'default',
-    color: 'secondary.main',
-    fontWeight: 'medium',
-  };
+
 
   const image = {
-    height: 75,
-    my: 4,
+    height: {xs: 40, md: 50, xl: 70},
+    my: {xs: 2, md: 3, xl:4},
   };
 
 
@@ -33,8 +27,9 @@ function Promotion() {
     <Box
 
       component="section"
-      sx={{ display: 'flex', bgcolor: '#FFFAFA', overflow: 'hidden' }}
+      sx={{ display: 'flex', overflow: 'hidden', filter: "opacity(90%)" }}
     >
+
       <Container
 
         sx={{
@@ -46,6 +41,26 @@ function Promotion() {
           alignItems: 'center',
         }}
       >
+        <Box sx={{
+
+          width: "100%",
+          height: "100%",
+          zIndex: "-1",
+          pointerEvents: "none",
+          overflow: "hidden",
+
+        }}>
+          <iframe title="vimeo" id="vimeoplayer" src="https://player.vimeo.com/video/130332226?api=1&background=1" className="background-video ready" style={{
+            width: "100vw",
+            height: "56.25vw", /* Given a 16:9 aspect ratio, 9/16*100 = 56.25 */
+            minHeight: "100vh",
+            minWidth: "177.77vh", /* Given a 16:9 aspect ratio, 16/9*100 = 177.77 */
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)"
+          }} />
+        </Box>
         <Box
           component="img"
           //src="https://images.unsplash.com/photo-1511184150666-9bb7d41a88f4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1738&q=80"
@@ -57,7 +72,8 @@ function Promotion() {
             opacity: 0.7,
           }}
         />
-        <Typography variant="h4" marked="center" component="h2" sx={{ mb: 14 }} fontFamily="monospace">
+        <Typography variant="h4" marked="center" component="h2" sx={{ mb: { xs: 2, md: 6, lg: 12 }, fontWeight: 500}} fontFamily="monospace">
+        {/* fontSize:{xs: "1.5rem", lg: "2rem" } */}
           Keep Going, Keep Growing
         </Typography>
         <div>
@@ -71,7 +87,7 @@ function Promotion() {
                   alt="suitcase"
                   sx={image}
                 />
-                <Typography variant="h5" align="center" fontFamily="monospace">
+                <Typography variant="h5" align="center" fontFamily="monospace" sx={{fontWeight: 500}}>
                   Over 20 products at our best value.
                 </Typography>
               </Box>
@@ -109,9 +125,9 @@ function Promotion() {
         </div>
         <Link to="/register">
           <Button
-            color="secondary"
-            size="large"
-            variant="outlined"
+            color= "secondary"
+            size='medium'
+            variant="gradient"
             component="a"
             type='button'
             sx={{ mt: 4, fontWeight: 600}}

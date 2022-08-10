@@ -9,3 +9,7 @@ export interface DeliveryFormValues {
   shippingCompany?: ShippingCompany;
   signup: SignupFormValues;
 }
+
+export interface ProfileDeliveryFormValues {
+  signup: SignupFormValues;
+}

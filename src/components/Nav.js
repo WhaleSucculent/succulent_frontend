@@ -159,7 +159,7 @@ const ResponsiveAppBar = (props) => {
       <CssBaseline />
       <AppBar position="relative" style={{ background: "white", zIndex: 90 }}>
         <Container maxWidth="xl">
-          <Toolbar disableGutters>
+          <Toolbar disableGuters>
             {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
             <Link to="/">
               <Typography
@@ -179,7 +179,7 @@ const ResponsiveAppBar = (props) => {
                   height={55}
                   alt={"Whale Succulent Logo"}
                 />
-                <Typography variant={{ md: "h5" }}>WHALE SUCCULENT</Typography>
+                <Typography sx={{fontSize: "1.5rem"}}>WHALE SUCCULENT</Typography>
               </Typography>
             </Link>
 
