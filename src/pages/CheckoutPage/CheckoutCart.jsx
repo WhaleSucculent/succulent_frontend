@@ -32,6 +32,7 @@ import { } from "react-router-dom";
 import Link from "components/Link";
 import Title from "pages/AdminHomePage/components/Title";
 import TableHeadCell from "pages/AdminHomePage/components/TableHeadCell";
+import Footer from "../../components/Footer";
 
 
 function CheckoutCart() {
@@ -89,9 +90,11 @@ function CheckoutCart() {
                 </div>
               </div>
             </div>
+              <Footer/>
           </Grid>
         ) : (
           // if cartItem is not ==0, display shopping cart items.
+          <div>
           <Box >
             <Slide direction="up" in={true}>
               <Grid container spacing={4} >
@@ -222,9 +225,12 @@ function CheckoutCart() {
               </Grid>
             </Slide>
           </Box>
-        )}
+         
+       </div> )}
       </div>
+      
     </Box>
+    
   );
 }
 
