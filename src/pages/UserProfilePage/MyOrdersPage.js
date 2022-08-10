@@ -15,6 +15,7 @@ import FramerTableRow from 'components/FramerAnimated/FramerTable/FramerTableRow
 import FramerTableBody from 'components/FramerAnimated/FramerTable/FramerTableBody';
 import { motion } from 'framer-motion';
 import { lineSelectedVariants, staggerVariants } from 'assets/config/animationVariants';
+import Link from 'components/Link';
 
 
 
@@ -74,7 +75,9 @@ export default function DenseTable() {
                   {order.productsInCart[0].price}
                 </TableCell>
                 <TableCell>
+                  <Link to={'/profile/myplacedorders'} color="inherit" underline='hover'>
                   <Button variant="contained" sx={{ borderRadius: 28, backgroundColor: '#ffb2cc' }}>View</Button>
+                </Link>
                 </TableCell>
               </TableRow>
             </TableBody>
