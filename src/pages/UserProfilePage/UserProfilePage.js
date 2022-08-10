@@ -7,6 +7,7 @@ import MUITab from './Components/MUITab';
 
 import AvatarUpload from 'components/AvatarUpload'
 import ImageEditor from 'components/ImageEditor'
+import { CssBaseline, Grid } from '@mui/material';
 /* function createData(OrderNumber, Date, ShippingAddress, Total, View) {
   return { OrderNumber, Date, ShippingAddress, Total, View};
 } */
@@ -22,11 +23,11 @@ export default function UserProfilePage() {
   console.log(data);
 
   return (
-
     <Box>
+
       <AvatarUpload />
       <ImageEditor />
       <MUITab />
-    </Box>
+    </Box >
   );
 }

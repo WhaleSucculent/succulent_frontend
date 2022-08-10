@@ -1,6 +1,5 @@
 import { Box, Button, FormControl } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import { Form, Formik } from "formik";
 import React, { FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
@@ -13,6 +12,9 @@ import {
 } from "../../pages/CheckoutPage/components/delivery/delivery.props";
 import { useMeQuery } from "queries/utilQueries";
 import { ProfileAddressForm } from "./profileaddress-form";
+
+import UploadIcon from "@mui/icons-material/Upload";
+
 
 const DeliveryFormControl = styled(FormControl)(({ theme }) => ({
   display: "block",
@@ -55,10 +57,10 @@ const ProfileAddressForms: FunctionComponent<DeliveryFormProps> = () => {
                 type="submit"
                 variant="contained"
                 color="primary"
-                endIcon={<ArrowRightAltIcon />}
+                endIcon={<UploadIcon />}
                 size="large"
               >
-                Continue
+                Update
               </Button>
             </Box>
           </Form>
