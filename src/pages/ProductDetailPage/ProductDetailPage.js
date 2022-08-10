@@ -210,7 +210,7 @@ function ProductDetailPage({ open, onClose, setLoading }) {
             {!loading && !error && (
               <Swiper
                 slidesPerView={3}
-                spaceBetween={30}
+                spaceBetween={20}
                 slidesPerGroup={3}
                 loop={true}
                 loopFillGroupWithBlank={true}
@@ -220,9 +220,9 @@ function ProductDetailPage({ open, onClose, setLoading }) {
                 navigation={true}
                 modules={[Pagination, Navigation]}
                 className="mySwiper"
-                style={{width:'100%', height:'100%'}}
+                style={{width:'100%', height:'100%', padding:'2em'}}
               >
-                {productsDetail?.products.slice(0, 3).map((product) => (
+                {productsDetail?.products.slice(0, 6).map((product) => (
                 <SwiperSlide key={product.id} style={{width:'100%', height:'100%'}}>
                   
                   <ProductCard key={product.id} product={product} />
