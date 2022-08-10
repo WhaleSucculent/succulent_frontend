@@ -100,14 +100,16 @@ const RESET_PASSWORD = gql`
 
 const EDIT_PAYMENT = gql`
     mutation updatePayment($id:ID!, $password:String!){
-      resetPassword(token:$token, password:$password){
-const UPDATE_MY_EMAIL_PASSWORD = gql`
+      resetPassword(token:$token, password:$password)
+      `
+      const UPDATE_MY_EMAIL_PASSWORD = gql`
      mutation updateMyEmailPassword($id: String!, $email:String!, $password:String!){
       updateMyEmailPassword(id:$id, email:$email, password:$password){
         result
       }
      }
 `
+
 
 const UPDATE_MY_ADDRESS = gql`
     mutation updateMyAddress($id: String!, $firstName: String!, $lastName: String!, $address:String!, $apartment: String, $city:String!, $country: String!, $state:String!, $zipcode:String!){
@@ -126,4 +128,4 @@ const DELETE_MY_PAYMENT = gql`
 
 
 export {EDIT_PROFILE, REGISTER_CUSTOMER, LOGIN_CUSTOMER, REQUEST_RESET, DELETE_CUSTOMER, UPDATE_CUSTOMER, RESET_PASSWORD, LOGIN_WITH_GOOGLE }
-export { UPDATE_MY_EMAIL_PASSWORD, UPDATE_MY_ADDRESS, DELETE_MY_PAYMENT, REGISTER_CUSTOMER, LOGIN_CUSTOMER, REQUEST_RESET, DELETE_CUSTOMER, UPDATE_CUSTOMER, RESET_PASSWORD, LOGIN_WITH_GOOGLE }
+export { UPDATE_MY_EMAIL_PASSWORD, UPDATE_MY_ADDRESS, DELETE_MY_PAYMENT }
