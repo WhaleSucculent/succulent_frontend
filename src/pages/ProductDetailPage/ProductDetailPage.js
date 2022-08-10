@@ -21,11 +21,10 @@ import { useQuery } from "@apollo/client";
 import { GET_PRODUCT, GET_PRODUCTS } from "queries/productQueries";
 import { useParams } from "react-router-dom";
 import {
-  addToMyCart,
+  addToMyCartAmount,
   decreaseCartQty,
 } from "pages/CheckoutPage/features/cartSlice";
 import { useDispatch } from "react-redux";
-import { Repeat } from "@mui/icons-material";
 import Title from "pages/AdminHomePage/components/Title";
 import Loading from "../../components/Loading";
 import Rating from "@mui/material/Rating";
@@ -51,9 +50,10 @@ const ProductDetailInfoWrapper = styled(Box)(() => ({
 function ProductDetailPage({ open, onClose, setLoading }) {
   const dispatch = useDispatch();
   //const navigate = useNavigate();
-
+  const [quantity, setQuantity] = useState(1);
   const handlerAddToCart = (product) => {
-    dispatch(addToMyCart(data?.product));
+    console.log("Data in cart Handler "+ quantity)
+    dispatch(addToMyCartAmount({product:data?.product,quantity:quantity}));
     //  navigate("/cart")
   };
 
@@ -67,11 +67,12 @@ function ProductDetailPage({ open, onClose, setLoading }) {
   console.log(data);
   const { data: productsDetail } = useQuery(GET_PRODUCTS);
 
-  const [quantity, setQuantity] = useState(1);
-
+  
+  
   const cartHandler = (e) => {
     e.preventDefault();
-    handlerAddToCart();
+    console.log("form submitted: "+ quantity);
+    handlerAddToCart(quantity);
   };
   if (loading) return <Loading />;
   if (error) return <p>Something Went Wrong</p>;
@@ -84,13 +85,15 @@ function ProductDetailPage({ open, onClose, setLoading }) {
         {/* <DialogContent> */}
         <Box margin="30px">
           <ProductDetailWrapper flexDirection={matches ? "column" : "row"}>
-            <Product sx={{ height: "80%" }}>
+            
+          <Product sx={{ height: "80%" }}>
               <ProductImage
                 src={data?.product.image[0].imageLink}
                 height="auto"
                 alt={data?.product.image.name}
               />
             </Product>
+              {/* <ReactImageZoom {...props} /> */}
 
             <ProductDetailInfoWrapper>
               <Typography sx={{ lineHeight: 2 }} variant="h4" align="left">
@@ -149,12 +152,14 @@ function ProductDetailPage({ open, onClose, setLoading }) {
                     label="Quantity"
                     type="number"
                     value={quantity}
-                    onChange={(e) => {
-                      if (e.target.value > data.product.quantity) {
+                    onInput={(e) => {
+                      if (parseInt(e.target.value) > data.product.quantity) {
                         e.target.value = data.product.quantity;
-                      } else {
-                        setQuantity(e.target.value);
-                      }
+                      } 
+                      console.log("Value is: "+e.target.value);
+                      setQuantity(parseInt(e.target.value));
+                      console.log("Quantity is "+ quantity)
+                      
                     }}
                     InputProps={{
                       inputProps: {
