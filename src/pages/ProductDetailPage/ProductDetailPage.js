@@ -239,6 +239,7 @@ function ProductDetailPage({ open, onClose, setLoading }) {
      
         </Container>
       </Container>
+      <Footer/>
     </>
   );
 }

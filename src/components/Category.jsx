@@ -49,6 +49,8 @@ function Category() {
         variant="quilted"
         cols={5}
         rowHeight={480}
+        padding={20}
+      
       >
         {itemData.map((item) => (
           <ImageListItem key={item.img} cols={item.cols || 1} rows={item.rows || 1}>

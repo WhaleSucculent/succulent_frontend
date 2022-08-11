@@ -7,7 +7,7 @@ import Box from "@mui/material/Box";
 import ProductCard from "components/ProductCard";
 import { Container } from "@mui/system";
 import Grid from '@mui/material/Grid';
-import { Height } from "@mui/icons-material";
+import { Height, Margin } from "@mui/icons-material";
 import { CircularProgress, Divider, Toolbar, Typography, useMediaQuery } from "@mui/material";
 import ButtonBase from '@mui/material/ButtonBase';
 import img from "assets/images/map.jpg";
@@ -100,19 +100,23 @@ const HomePage = () => {
 
   return (
     <div>
-      <Promotion />
-      <Banner />
+    <Banner />
 
+      <Carousel />
+      
+     
+      <br></br>
       <OnScrollAnimationBox>
-        <Carousel />
+     
+       
       </OnScrollAnimationBox>
       <OnScrollAnimationBox>
-        <Category />
+     
       </OnScrollAnimationBox>
 
       {/* <OnScrollAnimationBox> */}
       <Box sx={{ display: "flex", justifyContent: "center", width: "100%", flex: 1 }}>
-        <Title>
+        <Title style>
           Featured Products
         </Title>
       </Box>
@@ -123,6 +127,8 @@ const HomePage = () => {
           </SwiperSlide>
         ))}
       </Swiper>
+      <SlideShow />
+      <Category />
       {/* <Container >
         <Box sx={{ display: "grid", gridTemplateColumns: "repeat(8, 1fr)", Height: "20px" }}>
           {!loading &&
@@ -175,9 +181,15 @@ const HomePage = () => {
 
 
       </Box> */}
+ 
+ 
+   
       <OnScrollAnimationBox>
+      
         <Box component={motion.div} initial="offscreen" whileInView="onscreen" viewport={{ once: true, amount: 0.8 }} variants={cardVariants}>
-          <SlideShow />
+       
+        
+        
           <Box sx={{ display: "flex", justifyContent: "center", width: "100%", flex: 1 }}>
             <Title>
               New Collections
@@ -195,7 +207,7 @@ const HomePage = () => {
         </Swiper>
       </OnScrollAnimationBox>
 
-
+      <Promotion />
       <Footer />
     </div >
 
