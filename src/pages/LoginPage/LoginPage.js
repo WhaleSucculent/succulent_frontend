@@ -65,7 +65,7 @@ export const LoginPage = () => {
     },
     onCompleted: ({ loginCustomer, data }) => {
       console.log(loginCustomer)
-      if (loginCustomer) {
+      if (loginCustomer.userId) {
         localStorage.setItem(AUTH_TOKEN, loginCustomer.token)
         navigate('/')
         navigate(0);
