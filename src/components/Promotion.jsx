@@ -111,7 +111,7 @@ function Promotion() {
 
                 <Box
                   component="img"
-                  src="https://img.icons8.com/ios/100/000000/clock--v3.png"
+                  src="https://cdn-icons-png.flaticon.com/512/2731/2731865.png"
                   alt="clock"
                   sx={image}
                 />

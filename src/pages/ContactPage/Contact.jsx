@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import map from "assets/images/map.png";
 import { useNavigate } from 'react-router-dom';
 import Footer from 'components/Footer';
+import Promotion from 'components/Promotion';
 
 function Contact() {
   const form = useRef();
@@ -91,6 +92,7 @@ North York, ON M2H 3B4</p>
           </CardContent>
         </Card>
       </div>
+      <Promotion/>
       <Footer/>
 
     </div>
