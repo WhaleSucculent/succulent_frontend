@@ -5,6 +5,7 @@ import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import { Typography, Button } from "@mui/material";
 import Link from './Link';
+import OnScrollAnimationBox from './OnScrollAnimationBox';
 
 function Promotion() {
 
@@ -18,8 +19,8 @@ function Promotion() {
 
 
   const image = {
-    height: {xs: 40, md: 50, xl: 70},
-    my: {xs: 2, md: 3, xl:4},
+    height: { xs: 40, md: 50, xl: 70 },
+    my: { xs: 2, md: 3, xl: 4 },
   };
 
 
@@ -72,10 +73,12 @@ function Promotion() {
             opacity: 0.7,
           }}
         />
-        <Typography variant="h4" marked="center" component="h2" sx={{ mb: { xs: 2, md: 6, lg: 12 }, fontWeight: 500}} fontFamily="monospace">
-        {/* fontSize:{xs: "1.5rem", lg: "2rem" } */}
-          Keep Going, Keep Growing
-        </Typography>
+        <OnScrollAnimationBox>
+          <Typography variant="h4" marked="center" component="h2" sx={{ mb: { xs: 2, md: 6, lg: 12 }, fontWeight: 500 }} fontFamily="monospace">
+            {/* fontSize:{xs: "1.5rem", lg: "2rem" } */}
+            Keep Going, Keep Growing
+          </Typography>
+        </OnScrollAnimationBox>
         <div>
           <Grid container spacing={5}>
             <Grid item xs={12} md={4}>
@@ -87,7 +90,7 @@ function Promotion() {
                   alt="suitcase"
                   sx={image}
                 />
-                <Typography variant="h5" align="center" fontFamily="monospace" sx={{fontWeight: 500}}>
+                <Typography variant="h5" align="center" fontFamily="monospace" sx={{ fontWeight: 500 }}>
                   Over 20 products at our best value.
                 </Typography>
               </Box>
@@ -101,9 +104,11 @@ function Promotion() {
                   alt="graph"
                   sx={image}
                 />
-                <Typography variant="h5" align="center" fontFamily="monospace">
-                  Find your new favorite as simple as one click.
-                </Typography>
+                <OnScrollAnimationBox>
+                  <Typography variant="h5" align="center" fontFamily="monospace">
+                    Find your new favorite as simple as one click.
+                  </Typography>
+                </OnScrollAnimationBox>
               </Box>
             </Grid>
             <Grid item xs={12} md={4}>
@@ -123,19 +128,19 @@ function Promotion() {
             </Grid>
           </Grid>
         </div>
-        <Link to="/register">
-          <Button
-            color= "secondary"
-            size='medium'
-            variant="gradient"
-            component="a"
-            type='button'
-            sx={{ mt: 4, fontWeight: 600}}
-          >
+          <Link to="/register">
+            <Button
+              color="secondary"
+              size='medium'
+              variant="gradient"
+              component="a"
+              type='button'
+              sx={{ mt: 4, fontWeight: 600 }}
+            >
 
-            Get started
-          </Button>
-        </Link>
+              Get started
+            </Button>
+          </Link>
       </Container>
     </Box>
   );

@@ -103,20 +103,27 @@ const HomePage = () => {
       <Banner />
       <Carousel />
       {/* <OnScrollAnimationBox> */}
-      <Box sx={{ display: "flex", justifyContent: "center", width: "100%", flex: 1 }}>
-        <Title style>
-          Featured Products
-        </Title>
-      </Box>
-      <Swiper slidesPerView={downsm ? 1 : betweensmandmd ? 2 : betweenmdandlg ? 3 : betweenlgandxl ? 4 : 5} modules={[Pagination, Autoplay]} >
-        {data.products.slice(1, 7).map(product => (
-          <SwiperSlide style={{ paddingBottom: "2px" }}>
-            <ProductCard key={product.id} product={product} />
-          </SwiperSlide>
-        ))}
-      </Swiper>
-      <SlideShow />
-      <Category />
+      <OnScrollAnimationBox>
+        <Box sx={{ display: "flex", justifyContent: "center", width: "100%", flex: 1 }}>
+          <Title style>
+            Featured Products
+          </Title>
+        </Box>
+      </OnScrollAnimationBox>
+
+      <OnScrollAnimationBox>
+        <Swiper slidesPerView={downsm ? 1 : betweensmandmd ? 2 : betweenmdandlg ? 3 : betweenlgandxl ? 4 : 5} modules={[Pagination, Autoplay]} >
+          {data.products.slice(1, 7).map(product => (
+            <SwiperSlide style={{ paddingBottom: "2px" }}>
+              <ProductCard key={product.id} product={product} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </OnScrollAnimationBox>
+      <OnScrollAnimationBox>
+        <SlideShow />
+      </OnScrollAnimationBox>
+        <Category />
       {/* <Container >
         <Box sx={{ display: "grid", gridTemplateColumns: "repeat(8, 1fr)", Height: "20px" }}>
           {!loading &&
@@ -131,13 +138,14 @@ const HomePage = () => {
         </Box>
       </Container> */}
       {/* </OnScrollAnimationBox> */}
-
       <OnScrollAnimationBox>
         <Box sx={{ display: "flex", justifyContent: "center", width: "100%", flex: 1 }}>
           <Title>
             Featured Categories
           </Title>
         </Box>
+      </OnScrollAnimationBox>
+      <OnScrollAnimationBox>
         <Swiper slidesPerView={downsm ? 1 : betweensmandmd ? 2 : betweenmdandlg ? 3 : betweenlgandxl ? 4 : 5} modules={[Pagination, Autoplay]} >
           {data.products.slice(3, 8).map(product => (
             <SwiperSlide style={{ paddingBottom: "2px" }}>
@@ -146,7 +154,6 @@ const HomePage = () => {
           ))}
         </Swiper>
       </OnScrollAnimationBox>
-
       {/* <Box padding={7}>
         <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'flex-start' }}>
           <img src={img} height={200} width={300} />

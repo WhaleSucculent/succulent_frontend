@@ -1,6 +1,7 @@
 import { Box, styled, Typography } from '@mui/material'
 import { height } from '@mui/system';
 import React from 'react'
+import OnScrollAnimationBox from './OnScrollAnimationBox';
 
 function SlideShow() {
 
@@ -45,7 +46,7 @@ function SlideShow() {
     const BannerImg = styled('img')((src) => ({
         src: `url(${src})`,
         width: '1000px',
-        marginTop:'100px'
+        marginTop: '100px'
 
 
 
@@ -54,11 +55,13 @@ function SlideShow() {
 
     return (
         <div>
-            <BannerContainer sx={{height: "600px"}}>
+            <BannerContainer sx={{ height: "600px" }}>
                 <BannerContent>
                     <BannerImg src='https://cs4100320012e7027bb.blob.core.windows.net/development/succulentpot.png?sp=r&st=2022-08-11T05:11:36Z&se=2029-08-11T13:11:36Z&spr=https&sv=2021-06-08&sr=c&sig=%2BODsspxDlTi%2BUecJBmfIKbSyjryBU1iYUI8hnJ0qIIY%3D' sx={{ width: "20%" }} />
                     {/* <Typography variant='h6'>News header</Typography> */}
-                    <BannerTitle variant='h4' sx={{ xs: { position: "fixed" } }}>New Collections </BannerTitle>
+                    <OnScrollAnimationBox>
+                        <BannerTitle variant='h4' sx={{ xs: { position: "fixed" } }}>New Collections </BannerTitle>
+                    </OnScrollAnimationBox>
                     <BannerDescription variant='subtitle'>Come with a wide range of shapes and colors, succulents and cacti stand out in common houseplants, particularly as low-maintenance types....</BannerDescription>
                 </BannerContent>
             </BannerContainer>

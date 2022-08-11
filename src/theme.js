@@ -31,7 +31,9 @@ export const theme = createTheme({
       '"Segoe UI Emoji"',
       '"Segoe UI Symbol"',
       '"Montserrat"',
-      '"Alumni Sans Inline One"'
+      '"Alumni Sans Inline One"',
+      '"Dancing Script"',
+      '"Pacifico"',
     ].join(','),
     h4: {
       [breakpoints.up('xs')]: {

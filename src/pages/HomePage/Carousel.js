@@ -19,30 +19,32 @@ import slidesrc5 from "assets/images/4.jpg";
 import { Autoplay, Navigation, Pagination } from "swiper";
 import { Box, Typography } from "@mui/material";
 
+// Set the Carousel's Height here, the words cover it will caculate marginTop and margin Left by this value.
+const CarouselHeight = "580px"
 export default function Carousel() {
   return (
     <>
-      <Swiper  pagination={{ dynamicBullets: true, }} modules={[ Autoplay]} className="mySwiper" autoplay={{
+      <Swiper pagination={{ dynamicBullets: true, }} modules={[Autoplay]} className="mySwiper" autoplay={{
         delay: 4000,
       }}>
-        <SwiperSlide style={{ overflow: "visible" }}>
-          <img src={slidesrc4} alt="slid" height="580px" style={{ filter: "opacity(70%)" }} />
-          <Box className="swiper-caption" sx={{ position: "absolute", top: "100%", left: "100%", marginTop: {xs: "-75px", md: "-100px", lg: "100px" }, marginLeft: {xs: "-150px", md: "-100px", lg: "-50px" }, width: {xs: "300px", md: "200px", lg: "1000px" }, height: {xs: "300px", md: "200px", lg: "1000px" }, zIndex: 50 }} >
-            <Typography sx={{ color: "black",mb: {xs:5, md:2}, fontSize: {xs:"2rem",md: "3rem",lg:"4em"}, fontFamily:"Alumni Sans Inline One", fontStyle: "italic"}} >Welcome to <span>Whale Succulent</span></Typography>
-            <Typography sx={{color: "black" ,fontSize: {xs: "1rem", md: "1.5rem",lg:"2em"}}}>
+        <SwiperSlide style={{ overflow: "hidden" }}>
+          <img src={slidesrc4} alt="slid" height={`${CarouselHeight}`} style={{ filter: "opacity(70%)" }} />
+          <Box className="swiper-caption" sx={{ position: "absolute", top: {xs:"40%", md: "60%"}, left: {xs:"0", md:"40%", lg: "30%"} }} >
+            <Typography sx={{ color: "white", mb: { xs: 5, md: 2 }, fontSize: { xs: "2rem", md: "3rem", lg: "5em" }, fontFamily: "Inter var", fontWeight: 900 }} >Welcome to <span>Whale Succulent</span></Typography>
+            <Typography sx={{ color: "white", fontSize: { xs: "1.5rem", md: "2.5rem", lg: "3em" }, fontFamily: "Dancing Script", fontWeight: 900 }}>
               We sales the most beautiful succulent plants in the world.
             </Typography>
           </Box>
         </SwiperSlide>
-   
-        <SwiperSlide style={{ filter: "opacity(70%)" }}>
-          <img src={slidesrc2} alt="slid" height="580px" />
+
+        <SwiperSlide style={{ filter: "opacity(70%)", overflow: "hidden" }}>
+          <img src={slidesrc2} alt="slid" height={`${CarouselHeight}`} />
         </SwiperSlide>
-        <SwiperSlide style={{ filter: "opacity(70%)" }}>
-          <img src={slidesrc3} alt="slid" height="580px" />
+        <SwiperSlide style={{ filter: "opacity(70%)", overflow: "hidden" }}>
+          <img src={slidesrc3} alt="slid" height={`${CarouselHeight}`} />
         </SwiperSlide>
-        <SwiperSlide style={{ filter: "opacity(70%)" }}>
-          <img src={slidesrc5} alt="slid" height="580px" />
+        <SwiperSlide style={{ filter: "opacity(70%)", overflow: "hidden" }}>
+          <img src={slidesrc5} alt="slid" height={`${CarouselHeight}`} />
         </SwiperSlide>
 
       </Swiper>
