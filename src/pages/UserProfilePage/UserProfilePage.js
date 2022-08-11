@@ -95,9 +95,9 @@ export default function UserProfilePage() {
         </Table>
       </TableContainer>
 
-      <AvatarUpload />
-      <ImageEditor />
-      <MUITab />
+      {/* <AvatarUpload /> */}
+      {/* <ImageEditor /> */}
+      {/* <MUITab /> */}
     </Box >
   );
 }

@@ -21,7 +21,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logoimg } from "../assets/images/whale.png"
 import Link from "./Link";
 import { useMeQuery } from "queries/utilQueries";
@@ -47,6 +47,7 @@ import ContactPageIcon from '@mui/icons-material/ContactPage';
 import LandscapeIcon from '@mui/icons-material/Landscape';
 import RiceBowlIcon from '@mui/icons-material/RiceBowl';
 import { useTheme } from "@emotion/react";
+import { clearCart } from "pages/CheckoutPage/features/cartSlice";
 
 const pages = ["Home","Succulents", "Growlights", "Soil/Rocks", "Pots", "Contact"];
 const pageIcons = [<HomeIcon/>,<GrassIcon />, <LightbulbIcon />, <LandscapeIcon />, <RiceBowlIcon />, <ContactPageIcon />];
@@ -74,6 +75,7 @@ const ResponsiveAppBar = (props) => {
   const [open, setOpen] = useState(false);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
 
   const handleOpenUserMenu = (event) => {
@@ -91,8 +93,11 @@ const ResponsiveAppBar = (props) => {
   const handleLogout = () => {
     localStorage.removeItem("auth-token");
     client.clearStore();
-    window.location.reload();
-    navigate('/');
+    dispatch(clearCart())
+    setTimeout(function () {
+      window.location.reload(true);
+    },500);
+    navigate(0);
   }
   const Search = styled("div")(({ theme }) => ({
     position: "relative",

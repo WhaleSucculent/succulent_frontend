@@ -4,16 +4,9 @@ import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
-import { Formik } from 'formik';
-import { deliveryFormSchema } from 'pages/CheckoutPage/components/delivery/delivery-form.schema';
-import Delivery from 'pages/CheckoutPage/components/delivery/delivery';
-import Checkout from 'pages/CheckoutPage/CheckoutPage';
-import { Provider } from 'react-redux';
-import { rootStore } from 'store/root.store';
+
 import ProfileAddressForms from 'components/Form/ProfileAddressForms';
-import { ProfileAddressForm } from 'components/Form/profileaddress-form';
 import ProfileSignupForm from 'components/Form/ProfileSignupForm';
-import ProfilePaymentForm from 'components/Form/ProfilePaymentForm';
 import Payments from "pages/UserProfilePage/Payments";
 
 
@@ -26,7 +19,6 @@ export default function LabTabs() {
 
   return (
     <Box sx={{ width: '100%', typography: 'body1' }}>
-      <Provider store={rootStore}>
         <TabContext value={value}>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <TabList onChange={handleChange} aria-label="lab API tabs example">
@@ -45,7 +37,6 @@ export default function LabTabs() {
             <Payments/>
           </TabPanel>
         </TabContext>
-      </Provider>
     </Box>
   );
 }

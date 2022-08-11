@@ -24,13 +24,13 @@ const DeliveryFormControl = styled(FormControl)(({ theme }) => ({
   marginTop: theme.spacing(2),
 }));
 
-const ProfileSignupForm: FunctionComponent<DeliveryFormProps> = () => {
+const ProfileSignupForm = () => {
   const navigate = useNavigate();
 
   const [updateMyEmailPassword]  = useMutation(UPDATE_MY_EMAIL_PASSWORD)
-  const submitForm = (values: DeliveryFormValues) => {
+  const submitForm = (values) => {
     console.log(values);
-    // updateMyEmailPassword(values);
+
   };
   const { t } = useTranslation();
 

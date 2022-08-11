@@ -40,7 +40,7 @@ const Confirmation: FunctionComponent<ConfirmationProps> = ({
   const navigate = useNavigate();
   const products: string[] = [];
   for(var i = 0; i < getCart.cart.cartTotalQty; i++) {
-    products[i] = getCart.cart.cartItems[i].id;
+    products[i] = getCart.cart.cartItems[i]?.id;
   }
 
   const tax = (getCart.cart.cartTotalAmount*0.05).toFixed(2);

@@ -81,12 +81,12 @@ export const ForgotPassPage = () => {
             </Button>
             <Grid container justifyContent={'center'} >
               <Grid item>
-                <Link to={"/register"} variant="body2">
-                  {"Don't have an account? Sign Up"}
+                <Link to={"/register"} variant="body1" style={{ color: "#3A85AB" }}>
+                  Don't have an account? Sign Up
                 </Link>
               </Grid>
             </Grid>
-            {emailSent && (<Alert severity="success">Email is Sent! Please check your inbox.<Link to={"/"}>back to home</Link></Alert>)}
+            {emailSent && (<Alert severity="success">Email is Sent! Please check your inbox.<Link to={"/"} style={{ color: "#3A85AB" }}>back to home</Link></Alert>)}
           </Box>
         </Box>
       </Container>
