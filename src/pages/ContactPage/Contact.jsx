@@ -34,14 +34,14 @@ function Contact() {
   return (
 
     <div>
-      <Typography variant='h4' align='center' style={{ fontFamily: "monospace", paddingTop:"30px" }}>
-        Contact Us
+      <Typography variant='h4' align='center' pt={3}>
+        CONTACT US
       </Typography>
 
       <Card style={{ maxWidth: 550, margin: "0 auto", padding: "20px 5px" }}>
         <CardContent>
           {/* <Typography gutterBottom variant='h5' style={{fontFamily: "monospace"}}>Contact Us</Typography> */}
-          <Typography variant='body1' component="p" style={{ fontFamily: "monospace" }}>Send us an email, we will get back to you within 24 hours.</Typography>
+          <Typography variant='body1' component="p" mb={2}>Send us an email, we will get back to you within 24 hours.</Typography>
           <form ref={form} onSubmit={sendEmail}>
             <Grid container spacing={1} justifyContent="center" alignItems="center">
 
@@ -74,7 +74,7 @@ function Contact() {
 
       </Card>
       <br />
-      <Typography gutterBottom variant='h4' style={{ fontFamily: "monospace" }} >Come visit us at our store</Typography>
+      <Typography gutterBottom variant='h4'  >Come visit us at our store</Typography>
       <p style={{ fontFamily: "monospace" ,fontSize:"20px"}}>774 Gordon Baker Rd
 
 North York, ON M2H 3B4</p>
