@@ -36,7 +36,7 @@ function SlideShow() {
     const BannerDescription = styled(Typography)(() => ({
         lineHeight: 1.25,
         letterSpacing: 1.25,
-        width: '900px',
+        width: '100%',
         fontSize: '20px',
         marginBottom: '5em',
         fontFamily: "monospace"
