@@ -127,7 +127,7 @@ const HomePage = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-      
+      <SlideShow />
       <Category />
       {/* <Container >
         <Box sx={{ display: "grid", gridTemplateColumns: "repeat(8, 1fr)", Height: "20px" }}>
