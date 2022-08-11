@@ -34,7 +34,7 @@ function SlideShow() {
 
     }));
     const BannerDescription = styled(Typography)(() => ({
-        lineHeight: 1.25,
+        lineHeight: 1.45,
         letterSpacing: 1.25,
         width: '100%',
         fontSize: '20px',
