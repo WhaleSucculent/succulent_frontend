@@ -26,8 +26,8 @@ function SlideShow() {
 
     }));
     const BannerTitle = styled(Typography)(() => ({
-        lineHeight: 3.5,
-        fontSize: '50px',
+        lineHeight: 2.5,
+        fontSize: '40px',
         marginBottom: '10px',
         fontFamily: "monospace"
 
@@ -56,10 +56,10 @@ function SlideShow() {
         <div>
             <BannerContainer sx={{height: "600px"}}>
                 <BannerContent>
-                    <BannerImg src='https://images.unsplash.com/photo-1599523444669-d5849add9ebf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80' sx={{ width: "100%" }} />
+                    <BannerImg src='https://cdn-icons.flaticon.com/png/512/1703/premium/1703178.png?token=exp=1660183674~hmac=77feceb4dc512da1e355069d5ddbf67d' sx={{ width: "20%" }} />
                     {/* <Typography variant='h6'>News header</Typography> */}
-                    <BannerTitle variant='h4' sx={{ xs: { position: "fixed" } }}>New Collections</BannerTitle>
-                    <BannerDescription variant='subtitle'>Come with a wide range of shapes and colors, succulents and cacti stand out in common houseplants, particularly as low-maintenance types. ...</BannerDescription>
+                    <BannerTitle variant='h4' sx={{ xs: { position: "fixed" } }}>New Collections </BannerTitle>
+                    <BannerDescription variant='subtitle'>Come with a wide range of shapes and colors, succulents and cacti stand out in common houseplants, particularly as low-maintenance types....</BannerDescription>
                 </BannerContent>
             </BannerContainer>
         </div>
