@@ -8,10 +8,11 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
-import slidesrc from "assets/images/Slide.png";
-import slidesrc2 from "assets/images/Slide2.jpg";
-import slidesrc3 from "assets/images/1.jpg";
-import slidesrc4 from "assets/images/2.jpg";
+
+import slidesrc2 from "assets/images/3.jpg";
+import slidesrc3 from "assets/images/2.jpg";
+import slidesrc4 from "assets/images/1.jpg";
+import slidesrc5 from "assets/images/4.jpg";
 
 
 // import required modules
@@ -25,7 +26,7 @@ export default function Carousel() {
         delay: 4000,
       }}>
         <SwiperSlide style={{ overflow: "visible" }}>
-          <img src={slidesrc4} alt="slid" height="580px" style={{ filter: "opacity(60%)" }} />
+          <img src={slidesrc4} alt="slid" height="580px" style={{ filter: "opacity(70%)" }} />
           <Box className="swiper-caption" sx={{ position: "absolute", top: "100%", left: "100%", marginTop: {xs: "-75px", md: "-100px", lg: "0px" }, marginLeft: {xs: "-150px", md: "-100px", lg: "-50px" }, width: {xs: "300px", md: "200px", lg: "1000px" }, height: {xs: "300px", md: "200px", lg: "1000px" }, zIndex: 50 }} >
             <Typography sx={{ color: "black",mb: {xs:5, md:2}, fontSize: {xs:"2rem",md: "3rem",lg:"4em"}, fontFamily:"Alumni Sans Inline One", fontStyle: "italic"}} >Welcome to <span>Whale Succulent</span></Typography>
             <Typography sx={{color: "black" ,fontSize: {xs: "1rem", md: "1.5rem",lg:"2em"}}}>
@@ -33,16 +34,16 @@ export default function Carousel() {
             </Typography>
           </Box>
         </SwiperSlide>
-        <SwiperSlide>
-          <img src={slidesrc} alt="slid" height="580px" style={{ filter: "blur(2px)" }} />
+   
+        <SwiperSlide style={{ filter: "opacity(70%)" }}>
+          <img src={slidesrc2} alt="slid" height="580px" />
         </SwiperSlide>
-        <SwiperSlide>
-          <img src={slidesrc2} alt="slid" height="580px" style={{ filter: "blur(2px)" }}/>
+        <SwiperSlide style={{ filter: "opacity(70%)" }}>
+          <img src={slidesrc3} alt="slid" height="580px" />
         </SwiperSlide>
-        <SwiperSlide>
-          <img src={slidesrc3} alt="slid" height="580px" style={{ filter: "blur(2px)" }}/>
+        <SwiperSlide style={{ filter: "opacity(70%)" }}>
+          <img src={slidesrc5} alt="slid" height="580px" />
         </SwiperSlide>
-
 
       </Swiper>
     </>
