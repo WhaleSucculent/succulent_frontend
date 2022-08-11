@@ -100,28 +100,16 @@ const HomePage = () => {
 
   return (
     <div>
-    <Banner />
-
+      <Banner />
       <Carousel />
-      
-     
-      <br></br>
-      <OnScrollAnimationBox>
-     
-       
-      </OnScrollAnimationBox>
-      <OnScrollAnimationBox>
-     
-      </OnScrollAnimationBox>
-
       {/* <OnScrollAnimationBox> */}
       <Box sx={{ display: "flex", justifyContent: "center", width: "100%", flex: 1 }}>
         <Title style>
           Featured Products
         </Title>
       </Box>
-      <Swiper slidesPerView={downsm ? 1 : betweensmandmd ? 2: betweenmdandlg ? 3: betweenlgandxl ? 4:  5} modules={[Pagination,Autoplay]} >
-        {data.products.slice(1,7).map(product => (
+      <Swiper slidesPerView={downsm ? 1 : betweensmandmd ? 2 : betweenmdandlg ? 3 : betweenlgandxl ? 4 : 5} modules={[Pagination, Autoplay]} >
+        {data.products.slice(1, 7).map(product => (
           <SwiperSlide style={{ paddingBottom: "2px" }}>
             <ProductCard key={product.id} product={product} />
           </SwiperSlide>
@@ -151,7 +139,7 @@ const HomePage = () => {
           </Title>
         </Box>
         <Swiper slidesPerView={downsm ? 1 : betweensmandmd ? 2 : betweenmdandlg ? 3 : betweenlgandxl ? 4 : 5} modules={[Pagination, Autoplay]} >
-          {data.products.slice(3,8).map(product => (
+          {data.products.slice(3, 8).map(product => (
             <SwiperSlide style={{ paddingBottom: "2px" }}>
               <ProductCard key={product.id} product={product} />
             </SwiperSlide>
@@ -181,15 +169,10 @@ const HomePage = () => {
 
 
       </Box> */}
- 
- 
-   
+
+
       <OnScrollAnimationBox>
-      
         <Box component={motion.div} initial="offscreen" whileInView="onscreen" viewport={{ once: true, amount: 0.8 }} variants={cardVariants}>
-       
-        
-        
           <Box sx={{ display: "flex", justifyContent: "center", width: "100%", flex: 1 }}>
             <Title>
               New Collections
