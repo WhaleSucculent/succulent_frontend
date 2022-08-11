@@ -7,6 +7,8 @@ import LineResults from "./LineResults";
 import CollectionSidebar from "./CollectionSidebar";
 import { useState } from "react";
 import Loading from "../../components/Loading";
+import Promotion from "components/Promotion";
+import Footer from "components/Footer";
 
 const CollectionPagePot = () => {
   const [stockCheck, setstockCheck] = useState(false);
@@ -169,6 +171,8 @@ const CollectionPagePot = () => {
           </Grid>
         </Grid>
       </Grid>
+      <Promotion/>
+      <Footer/>
     </div>
   );
 };

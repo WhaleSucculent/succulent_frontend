@@ -73,7 +73,7 @@ function App() {
           <Route path="testing" element={<TestingPage />} />
           {/* Router for   */}
           <Route path="/" element={<HeaderFooter />}>
-            <Route index element={<HomePage />} />
+            <Route path="home"element={<HomePage />} />
             <Route path="growlights" element={<CollectionPageGrowLights />} />
             <Route path="soil/rocks" element={<CollectionPageSoil />} />
             <Route path="pots" element={<CollectionPagePot />} />

@@ -40,7 +40,7 @@ import ListItemText from '@mui/material/ListItemText';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
-
+import HomeIcon from '@mui/icons-material/Home';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import GrassIcon from '@mui/icons-material/Grass';
 import ContactPageIcon from '@mui/icons-material/ContactPage';
@@ -48,8 +48,8 @@ import LandscapeIcon from '@mui/icons-material/Landscape';
 import RiceBowlIcon from '@mui/icons-material/RiceBowl';
 import { useTheme } from "@emotion/react";
 
-const pages = ["succulents", "growlights", "soil/rocks", "pots", "contact"];
-const pageIcons = [<GrassIcon />, <LightbulbIcon />, <LandscapeIcon />, <RiceBowlIcon />, <ContactPageIcon />];
+const pages = ["Home","Succulents", "Growlights", "Soil/Rocks", "Pots", "Contact"];
+const pageIcons = [<HomeIcon/>,<GrassIcon />, <LightbulbIcon />, <LandscapeIcon />, <RiceBowlIcon />, <ContactPageIcon />];
 const settings = ["Profile", "Account", "Orders"];
 const drawerWidth = 240;
 
@@ -161,7 +161,7 @@ const ResponsiveAppBar = (props) => {
         <Container maxWidth="xl">
           <Toolbar disableGuters>
             {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
-            <Link to="/">
+            <Link to="/home">
               <Typography
                 noWrap
                 component="a"

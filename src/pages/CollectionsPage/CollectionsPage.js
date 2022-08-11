@@ -11,6 +11,8 @@ import LineResults from "./LineResults";
 import CollectionSidebar from "./CollectionSidebar";
 import { useState } from "react";
 import Loading from "../../components/Loading";
+import Footer from "components/Footer";
+import Promotion from "components/Promotion";
 
 const CollectionsPage = () => {
   const [stockCheck, setstockCheck] = useState(false);
@@ -173,6 +175,8 @@ const CollectionsPage = () => {
           </Grid>
         </Grid>
       </Grid>
+      <Promotion/>
+      <Footer/>
     </div>
   );
 };
