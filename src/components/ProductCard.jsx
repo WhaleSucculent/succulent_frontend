@@ -53,6 +53,7 @@ function ProductCard({ product }) {
                 component="img"
                 alt="Succulent Image"
                 height="300"
+                width="300"
                 src={getImage()}
               />
               <CardContent mt={2}>

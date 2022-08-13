@@ -215,6 +215,14 @@ export const theme = createTheme({
         
 
       }
+    },
+    // This one is to fix the problem of card size. 
+    MuiCardMedia: {
+      styleOverrides: {
+        root: {
+          width: "300px"
+        }
+      }
     }
 
   },

@@ -29,9 +29,7 @@ root.render(
         <ThemeProvider theme={theme}>
           <BrowserRouter>
             <CssBaseline />
-            <Suspense fallback={<Loading />}>
               <App style={{ width: '100vw', overflowX: 'hidden' }} />
-            </Suspense>
           </BrowserRouter>
         </ThemeProvider>
       </ApolloProvider>

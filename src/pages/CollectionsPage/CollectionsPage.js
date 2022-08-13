@@ -22,6 +22,7 @@ const CollectionsPage = () => {
   const [priceMax, setpriceMax] = useState("");
   const [sort, setSort] = useState("");
   const [sortOpen, setSortOpen] = useState(false);
+
   const handleSortChange = (event) => {
     setSort(event.target.value);
   };
@@ -52,14 +53,14 @@ const CollectionsPage = () => {
     setpriceMin(e.target[0].value);
     setpriceFilter(true);
   };
-  const { loading, error, data } = useQuery(GET_PRODUCTS);
+  const { loading, error, data, } = useQuery(GET_PRODUCTS);
   if (loading) return <Loading />;
   if (error) return <ErrorPage/>;
   return (
     <div style={{ marginBottom: "40px" }}>
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <LineStrip category={"Succulent"}/>
+          <LineStrip category={"Succulent"} />
         </Grid>
       </Grid>
 

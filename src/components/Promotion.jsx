@@ -51,7 +51,7 @@ function Promotion() {
           overflow: "hidden",
 
         }}>
-          <iframe title="vimeo" id="vimeoplayer" src="https://player.vimeo.com/video/130332226?api=1&background=1" className="background-video ready" style={{
+          <iframe title="vimeo" id="vimeoplayer" src="https://player.vimeo.com/video/130332226?api=1&background=1&autoplay=1&loop=1&autopause=0&muted=1" className="background-video ready" style={{
             width: "100vw",
             height: "56.25vw", /* Given a 16:9 aspect ratio, 9/16*100 = 56.25 */
             minHeight: "100vh",
