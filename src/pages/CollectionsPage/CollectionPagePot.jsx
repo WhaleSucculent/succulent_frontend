@@ -9,7 +9,7 @@ import { useState } from "react";
 import Loading from "../../components/Loading";
 import Promotion from "components/Promotion";
 import Footer from "components/Footer";
-
+import ErrorPage from "pages/ErrorPage/ErrorPage";
 const CollectionPagePot = () => {
   const [stockCheck, setstockCheck] = useState(false);
   const [priceFilter, setpriceFilter] = useState(false);
@@ -49,7 +49,7 @@ const CollectionPagePot = () => {
   };
   const { loading, error, data } = useQuery(GET_PRODUCTS);
   if (loading) return <Loading />;
-  if (error) return <p>Something went wrong</p>;
+  if (error) return <ErrorPage/>;
   return (
     <div style={{ marginBottom: "40px" }}>
       <Grid container spacing={3}>

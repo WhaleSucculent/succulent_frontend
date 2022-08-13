@@ -40,7 +40,7 @@ export default function Carousel() {
         <SwiperSlide style={{ filter: "opacity(70%)", overflow: "hidden" }}>
           <img src={slidesrc2} alt="slid" height={`${CarouselHeight}`} />
           <Box className="swiper-caption" sx={{ position: "absolute", top: { xs: "40%", md: "60%" }, left: { xs: "0", md: "40%", lg: "30%" } }} >
-            <Typography sx={{ color: "white", mb: { xs: 5, md: 2 }, fontSize: { xs: "2rem", md: "3rem", lg: "5em" }, fontFamily: "Inter var", fontWeight: 900 }} >Most Beautiful Succulent</Typography>
+            <Typography sx={{ color: "white", mb: { xs: 5, md: 2 }, fontSize: { xs: "2rem", md: "3rem", lg: "5em" }, fontFamily: "Inter var", fontWeight: 900 }} >Most Beautiful Succulents</Typography>
             <Typography sx={{ color: "white", fontSize: { xs: "1.5rem", md: "2.5rem", lg: "3em" }, fontFamily: "Dancing Script", fontWeight: 900 }}>
               Rare plants from overseas with one step shopping experience.
             </Typography>
@@ -48,9 +48,21 @@ export default function Carousel() {
         </SwiperSlide>
         <SwiperSlide style={{ filter: "opacity(70%)", overflow: "hidden" }}>
           <img src={slidesrc3} alt="slid" height={`${CarouselHeight}`} />
+          <Box className="swiper-caption" sx={{ position: "absolute", top: { xs: "40%", md: "60%" }, left: { xs: "0", md: "40%", lg: "30%" } }} >
+            <Typography sx={{ color: "white", mb: { xs: 5, md: 2 }, fontSize: { xs: "2rem", md: "3rem", lg: "5em" }, fontFamily: "Inter var", fontWeight: 900 }} >Most Special Succulents</Typography>
+            <Typography sx={{ color: "white", fontSize: { xs: "1.5rem", md: "2.5rem", lg: "3em" }, fontFamily: "Dancing Script", fontWeight: 900 }}>
+              Succulent plants with the most special features.
+            </Typography>
+          </Box>
         </SwiperSlide>
         <SwiperSlide style={{ filter: "opacity(70%)", overflow: "hidden" }}>
           <img src={slidesrc5} alt="slid" height={`${CarouselHeight}`} />
+          <Box className="swiper-caption" sx={{ position: "absolute", top: { xs: "40%", md: "60%" }, left: { xs: "0", md: "40%", lg: "30%" } }} >
+            <Typography sx={{ color: "white", mb: { xs: 5, md: 2 }, fontSize: { xs: "2rem", md: "3rem", lg: "5em" }, fontFamily: "Inter var", fontWeight: 900 }} >Best shopping experience</Typography>
+            <Typography sx={{ color: "white", fontSize: { xs: "1.5rem", md: "2.5rem", lg: "3em" }, fontFamily: "Dancing Script", fontWeight: 900 }}>
+              Shopping with us is the best experience.
+            </Typography>
+          </Box>
         </SwiperSlide>
 
       </Swiper>

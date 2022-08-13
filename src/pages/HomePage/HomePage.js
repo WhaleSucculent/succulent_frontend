@@ -25,6 +25,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper";
 import Title from "pages/AdminHomePage/components/Title";
 import { useTheme } from "@emotion/react";
+import ErrorPage from "pages/ErrorPage/ErrorPage";
 
 const cardVariants = {
   offscreen: {
@@ -96,11 +97,11 @@ const HomePage = () => {
   const { loading, error, data } = useQuery(GET_PRODUCTS);
   console.log(data);
   if (loading) return <Loading />
-  if (error) return <p>Something went wrong</p>;
+  if (error) return <ErrorPage/>
 
   return (
     <div>
-      <Banner />
+      {/* <Banner /> */}
       <Carousel />
       {/* <OnScrollAnimationBox> */}
       <OnScrollAnimationBox>

@@ -30,6 +30,7 @@ import Loading from "../../components/Loading";
 import Rating from "@mui/material/Rating";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper";
+import ErrorPage from "pages/ErrorPage/ErrorPage";
 /* 
 
 function SlideTransition(props) {
@@ -75,7 +76,7 @@ function ProductDetailPage({ open, onClose, setLoading }) {
     handlerAddToCart(quantity);
   };
   if (loading) return <Loading />;
-  if (error) return <p>Something Went Wrong</p>;
+  if (error) return <ErrorPage/>;
   const getRating = () => {
     return data.product.review.length > 0 ? data.product.review[0].stars : 0;
   };

@@ -9,7 +9,7 @@ import { lineSelectedVariants, staggerVariants } from 'assets/config/animationVa
 import { EditAttributesRounded } from '@mui/icons-material';
 import EditProfile from './EditProfile';
 import MUITab from './Components/MUITab';
-
+import ErrorPage from "pages/ErrorPage/ErrorPage";
 
 import AvatarUpload from 'components/AvatarUpload'
 import ImageEditor from 'components/ImageEditor'
@@ -42,62 +42,11 @@ export default function UserProfilePage() {
           Profile
         </Title>
       </Toolbar>
-      <TableContainer component={Paper} sx={{ width: '100%' }}>
-        <Table sx={{ width: '100%' }} aria-label="a dense table">
-          <TableHead>
-          </TableHead>
-          {data && (
-            <TableBody component={motion.div} variants={staggerVariants} initial="start" animate="end">
-            <TableRow component={motion.div} variants={lineSelectedVariants} whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
-              <TableCell>
-                First Name
-              </TableCell>
-              <TableCell>
-                {data.me.firstName}
-              </TableCell>
-            </TableRow>
 
-            <TableRow component={motion.div} variants={lineSelectedVariants} whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
-              <TableCell>
-                Last Name
-              </TableCell>
-              <TableCell>
-                {data.me.lastName}
-              </TableCell>
-            </TableRow>
 
-            <TableRow component={motion.div} variants={lineSelectedVariants} whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
-              <TableCell>
-                Email
-              </TableCell>
-              <TableCell>
-                {data.me.email}
-              </TableCell>
-            </TableRow>
-
-            <TableRow component={motion.div} variants={lineSelectedVariants} whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
-              <TableCell>
-                Phone
-              </TableCell>
-              <TableCell>
-                {data.me.phone}
-              </TableCell>
-              <TableCell>
-                <Button>
-                  <EditProfile customer={data.me}/>
-                  {/* <EditIcon /> */}
-                </Button>
-              </TableCell>
-            </TableRow>
-          </TableBody>
-          )}
-
-        </Table>
-      </TableContainer>
-
-      {/* <AvatarUpload /> */}
-      {/* <ImageEditor /> */}
-      {/* <MUITab /> */}
+      <AvatarUpload />
+      <ImageEditor />
+      <MUITab />
     </Box >
   );
 }

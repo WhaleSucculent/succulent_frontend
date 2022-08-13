@@ -9,6 +9,7 @@ import { useState } from "react";
 import Loading from "../../components/Loading";
 import Footer from "components/Footer";
 import Promotion from "components/Promotion";
+import ErrorPage from "pages/ErrorPage/ErrorPage";
 
 const CollectionPageGrowLights = () => {
   const [stockCheck, setstockCheck] = useState(false);
@@ -49,7 +50,7 @@ const CollectionPageGrowLights = () => {
   };
   const { loading, error, data } = useQuery(GET_PRODUCTS);
   if (loading) return <Loading />;
-  if (error) return <p>Something went wrong</p>;
+  if (error) return <ErrorPage/>;
   return (
     <div style={{ marginBottom: "40px" }}>
       <Grid container spacing={3}>

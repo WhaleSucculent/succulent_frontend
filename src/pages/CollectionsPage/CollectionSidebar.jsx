@@ -8,6 +8,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import ErrorPage from "pages/ErrorPage/ErrorPage";
 // import JustTesting from './JustTesting';
 
 function CollectionSidebar({ stockCheck, handleChange, priceMin, priceMax, priceSubmit, priceMinSet, priceMaxSet }) {

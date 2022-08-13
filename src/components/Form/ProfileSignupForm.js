@@ -4,6 +4,7 @@ import { Form, Formik } from "formik";
 import React, { FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import ErrorPage from "pages/ErrorPage/ErrorPage";
 
 import { deliveryFormSchema } from "../../pages/CheckoutPage/components/delivery/delivery-form.schema";
 import {
@@ -44,7 +45,7 @@ const ProfileSignupForm = () => {
     <>
       <Formik
         enableReinitialize={true}
-        validationSchema={deliveryFormSchema(t)}
+        // validationSchema={deliveryFormSchema(t)}
         initialValues={data.me.orders[0]}
         onSubmit={submitForm}
       >
