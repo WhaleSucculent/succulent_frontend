@@ -48,7 +48,7 @@ function ProductCard({ product }) {
       <Grid component={motion.div} whileHover={{ y: '-15px' }} container spacing={{ xs: 0, md: 1 }} direction="row">
         <Grid item>
           <Card sx={{ maxWidth: 345}}>
-            <Link to={`products/${product.id}`} underline="none">
+            <Link to={`/products/${product.id}`} underline="none">
               <CardMedia
                 component="img"
                 alt="Succulent Image"

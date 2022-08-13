@@ -134,7 +134,7 @@ function ProductDetailPage({ open, onClose, setLoading }) {
               <Typography variant="subtitle" align="left" sx={{}}>
                 <span style={{ fontWeight: "bold" }}>Availability: </span>
                 {`${
-                  data?.product.stock[data?.product.stock.length - 1].total
+                  data?.product?.stock[data?.product.stock.length - 1]?.total
                 } in stock`}
               </Typography>
               <Typography
