@@ -58,7 +58,6 @@ function LineStrip({ category }) {
       <div className="container">
         <Stack
           direction="row"
-          alignItem="center"
           justifyContent="center"
         >
           <ImageList

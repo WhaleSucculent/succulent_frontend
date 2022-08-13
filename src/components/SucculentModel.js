@@ -32,7 +32,6 @@ const SucculentModel = () => {
     if (container && renderer) {
       const scW = container.clientWidth
       const scH = container.clientHeight
-      console.log(scW, scH)
 
       renderer.setSize(scW, scH)
     }
@@ -50,7 +49,6 @@ const SucculentModel = () => {
         alpha: true
       })
       renderer.setPixelRatio(window.devicePixelRatio)
-      console.log(scW, scH)
       renderer.setSize(scW, scH)
       renderer.outputEncoding = THREE.sRGBEncoding
       container.appendChild(renderer.domElement)
@@ -113,7 +111,6 @@ const SucculentModel = () => {
       }
 
       return () => {
-        console.log('unmount')
         cancelAnimationFrame(req)
         renderer.dispose()
       }

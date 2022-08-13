@@ -22,9 +22,7 @@ export const CreditCard: FunctionComponent<CreditCardProps> = ({
   handleChange,
 }) => {
   const { t } = useTranslation();
-          
-            console.log(values);
-          
+
   return (
     <>
       <Grid container spacing={2}>

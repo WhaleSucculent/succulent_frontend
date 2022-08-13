@@ -49,8 +49,8 @@ import RiceBowlIcon from '@mui/icons-material/RiceBowl';
 import { useTheme } from "@emotion/react";
 import { clearCart } from "pages/CheckoutPage/features/cartSlice";
 
-const pages = ["Home","Succulents", "Growlights", "Soil/Rocks", "Pots", "Contact"];
-const pageIcons = [<HomeIcon/>,<GrassIcon />, <LightbulbIcon />, <LandscapeIcon />, <RiceBowlIcon />, <ContactPageIcon />];
+const pages = ["Home", "Succulents", "Growlights", "Soil/Rocks", "Pots", "Contact"];
+const pageIcons = [<HomeIcon />, <GrassIcon />, <LightbulbIcon />, <LandscapeIcon />, <RiceBowlIcon />, <ContactPageIcon />];
 const settings = ["Profile", "Account", "Orders"];
 const drawerWidth = 240;
 
@@ -96,7 +96,7 @@ const ResponsiveAppBar = (props) => {
     dispatch(clearCart())
     setTimeout(function () {
       window.location.reload(true);
-    },500);
+    }, 500);
     navigate(0);
   }
   const Search = styled("div")(({ theme }) => ({
@@ -164,12 +164,10 @@ const ResponsiveAppBar = (props) => {
       <CssBaseline />
       <AppBar position="relative" style={{ background: "white", zIndex: 90 }}>
         <Container maxWidth="xl">
-          <Toolbar disableGuters>
+          <Toolbar>
             {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
             <Link to="/">
-              <Typography
-                noWrap
-                component="a"
+              <Box
                 sx={{
                   mr: 2,
                   ml: 2,
@@ -184,8 +182,8 @@ const ResponsiveAppBar = (props) => {
                   height={55}
                   alt={"Whale Succulent Logo"}
                 />
-                <Typography sx={{fontSize: "1.5rem"}}>WHALE SUCCULENT</Typography>
-              </Typography>
+                <Typography sx={{ fontSize: "1.5rem" }}>WHALE SUCCULENT</Typography>
+              </Box>
             </Link>
 
             {/* Hambuger Menu show when < md */}
@@ -201,9 +199,9 @@ const ResponsiveAppBar = (props) => {
                 <MenuIcon />
               </IconButton>
             </Box>
-
+            
+            {/* Logo when < md, >xs */}
             <Typography
-              variant={{ md: "h5" }}
               noWrap
               component="a"
               href=""
@@ -223,7 +221,7 @@ const ResponsiveAppBar = (props) => {
             {/* Top Menu when md */}
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }} >
               {pages.map((page) => (
-                <Box component={motion.div} whileHover={{ scale: 1.2 }}>
+                <Box component={motion.div} whileHover={{ scale: 1.2 }} key={page}>
                   <Button
                     key={page}
                     onClick={handleCloseNavMenu}
@@ -290,14 +288,13 @@ const ResponsiveAppBar = (props) => {
                     <LoginOutlinedIcon fontSize="large" />
 
                   </Link>) : (<Tooltip title="Open settings">
-                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }} >
                       <Avatar
                         alt={`${data?.me.firstname} ${data?.me.lastname}`}
                         src={data?.me.avatar}
                         fontSize='large'
-
+                        onClick={handleOpenUserMenu} 
+                        sx={{ p: 0 }}
                       />
-                    </IconButton>
                   </Tooltip>)}
                 </Button>
               </Box>
@@ -322,15 +319,12 @@ const ResponsiveAppBar = (props) => {
 
                 >
                   {data && data?.me?.role === "admin" && (
-                    <>
-                      <MenuItem >
-                        <Link to={"admin/product"} color={"primary"} sx={{ display: 'flex', alignItems: "center", justifyItems: "center" }} >
-                          <ChangeCircleOutlinedIcon />
-                          <Typography textAlign="center"  >Admin</Typography>
-                        </Link>
-                      </MenuItem>
-                      <Divider />
-                    </>)}
+                    <MenuItem divider={true}>
+                      <Link to={"admin/product"} color={"primary"} sx={{ display: 'flex', alignItems: "center", justifyItems: "center" }} >
+                        <ChangeCircleOutlinedIcon />
+                        <Typography textAlign="center"  >Admin</Typography>
+                      </Link>
+                    </MenuItem>)}
                   <MenuItem onClick={handleCloseUserMenu}>
                     <Link to={"profile/myprofile"}>
                       <Typography textAlign="center">Profile</Typography>
@@ -364,7 +358,7 @@ const ResponsiveAppBar = (props) => {
           '& .MuiDrawer-paper': {
             width: drawerWidth,
             boxSizing: 'border-box',
-            
+
             backgroundColor: 'background.paper',
           },
           zIndex: 99,
@@ -381,22 +375,22 @@ const ResponsiveAppBar = (props) => {
         <Divider />
         <List>
           {pages.map((text, index) => (
-            <Link to={`${text}`}>
-              <ListItem key={text} disablePadding>
-                <ListItemButton sx={{
+            <Link to={`${text}`} key={text}>
+              <ListItem key={text} disablePadding >
+                <ListItemButton key={text} sx={{
                   '& .MuiListItemIcon-root': {
                     color: "black",
                     ":hover": {
                       color: "#3A85AB",
                     }
-                  
+
                   }
                 }}>
                   <ListItemIcon>
                     {pageIcons[index]}
                   </ListItemIcon>
                   <ListItemText primary={text} sx={{
-                    color: "black", ':hover' : { color: "#3A85AB" }
+                    color: "black", ':hover': { color: "#3A85AB" }
                   }} />
                 </ListItemButton>
               </ListItem>

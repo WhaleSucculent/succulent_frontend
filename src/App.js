@@ -1,8 +1,5 @@
-import logo from "./logo.svg";
 import "./App.css";
-import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
-import Headers from "components/Header";
-import ProductsPage from "pages/ProductsPage/ProductsPage";
+import { Route, Routes, useLocation } from "react-router-dom";
 import ErrorPage from "pages/ErrorPage/ErrorPage";
 import PaymentPage from "pages/PaymentPage/PaymentPage";
 import CheckoutPage from "pages/CheckoutPage/CheckoutPage";
@@ -10,7 +7,6 @@ import LandingPage from "pages/LandingPage/LandingPage";
 import ProductDetailPage from "pages/ProductDetailPage/ProductDetailPage";
 import HomePage from "pages/HomePage/HomePage";
 import UserProfilePage from "pages/UserProfilePage/UserProfilePage";
-import AdminHomePage from "pages/AdminHomePage/AdminHomePage";
 import OrderPage from "pages/AdminOrderPage/AdminOrderPage";
 import AdminHeader from "pages/AdminHomePage/components/Sidebar";
 import AdminProductPage from "pages/AdminHomePage/pages/Inventory";
@@ -48,7 +44,6 @@ import Loading from "components/Loading";
 import { ResetPassPage } from "pages/ResetPassPage/ResetPassPage";
 import { AnimatePresence } from "framer-motion";
 import { CartButton } from "components/CartButton/CartButton";
-import Dashboard from "pages/AdminHomePage/temp/Dashborad";
 import TestingPage from "pages/TestingPage/TestingPage";
 import DashboardHome from "pages/AdminHomePage/temp/DashboardHome";
 
@@ -70,7 +65,6 @@ function App() {
           <Route path="landing" element={<LandingPage />} />
           <Route path="loading" element={<Loading />} />
           <Route path="cartButton" element={<CartButton />} />
-          <Route path="dashboard" element={<Dashboard />} />
           <Route path="testing" element={<TestingPage />} />
           {/* Router for   */}
           <Route path="/" element={<HeaderFooter />}>

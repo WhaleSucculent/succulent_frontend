@@ -53,7 +53,6 @@ function ProductDetailPage({ open, onClose, setLoading }) {
   //const navigate = useNavigate();
   const [quantity, setQuantity] = useState(1);
   const handlerAddToCart = (product) => {
-    console.log("Data in cart Handler "+ quantity)
     dispatch(addToMyCartAmount({product:data?.product,quantity:quantity}));
     //  navigate("/cart")
   };
@@ -62,17 +61,14 @@ function ProductDetailPage({ open, onClose, setLoading }) {
   const matches = useMediaQuery(theme.breakpoints.down("md"));
 
   const { id } = useParams();
-  console.log(id);
 
   const { loading, error, data } = useQuery(GET_PRODUCT, { variables: { id } });
-  console.log(data);
   const { data: productsDetail } = useQuery(GET_PRODUCTS);
 
   
   
   const cartHandler = (e) => {
     e.preventDefault();
-    console.log("form submitted: "+ quantity);
     handlerAddToCart(quantity);
   };
   if (loading) return <Loading />;
@@ -157,9 +153,7 @@ function ProductDetailPage({ open, onClose, setLoading }) {
                       if (parseInt(e.target.value) > data.product.quantity) {
                         e.target.value = data.product.quantity;
                       } 
-                      console.log("Value is: "+e.target.value);
                       setQuantity(parseInt(e.target.value));
-                      console.log("Quantity is "+ quantity)
                       
                     }}
                     InputProps={{

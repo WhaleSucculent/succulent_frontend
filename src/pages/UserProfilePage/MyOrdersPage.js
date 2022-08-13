@@ -32,7 +32,6 @@ import Link from 'components/Link';
 
 export default function DenseTable() {
   const { loading, error, data } = useQuery(GET_ME);
-  console.log(data);
   return (
     <Box>
       <Toolbar

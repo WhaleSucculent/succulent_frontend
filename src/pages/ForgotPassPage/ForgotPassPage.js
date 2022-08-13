@@ -31,8 +31,6 @@ export const ForgotPassPage = () => {
       email: formState.email,
     },
     onCompleted: ({ requestReset, data }) => {
-      console.log(data)
-      console.log(requestReset)
       setEmailSent(true);
     }
   })

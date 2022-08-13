@@ -239,8 +239,6 @@ const AdminOrderPage = () => {
   const {loading, error, data} = useQuery(GET_CUSTOMER, {variables: {id: "62a90f3e88672f1dbd12c32f"}});
   if (loading) return <p>Loading...</p>;
   if (error) return <ErrorPage/>;
-  console.log("Customers data");
-  console.log(data);
   return (
     <div>
       <Container>

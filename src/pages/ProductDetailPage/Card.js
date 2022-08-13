@@ -23,7 +23,6 @@ function ProductCard({ product }) {
       //  navigate("/cart")
     };
     const getReview = () => {
-      console.log(product.productStatus);
       if (product.review.length == 0) {
         return 0;
       }

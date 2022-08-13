@@ -61,10 +61,6 @@ const FileUploader = () => {
 
   return (
     <div>
-      {console.log(blobList)}
-      {console.log(url)}
-      {console.log(uploading)}
-      {console.log(fileName)}
       {storageConfigured && !uploading && DisplayForm()}
       {storageConfigured && uploading && <CircularProgress />}
       <hr />

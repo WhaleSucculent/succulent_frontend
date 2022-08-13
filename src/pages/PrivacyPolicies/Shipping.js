@@ -21,7 +21,6 @@ function Shipping() {
           <Typography variant="h3" sx={{textAlign: "center"}} >
             Shipping Policy
           </Typography>
-          {console.log(shipping)}
           <ReactMarkdown children={content} sourcePos={true} />
         </Box>
       </Container>

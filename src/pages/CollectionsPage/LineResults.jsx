@@ -68,7 +68,7 @@ function LineResults({length, sort, sortOpen, handleSortChange, handleSortClose,
   return (
    
     <div>
-      <Stack direction="row" alignItem="center" sx={{padding:'25px'}} justifyContent="space-between">
+      <Stack direction="row" sx={{padding:'25px'}} justifyContent="space-between">
       <Center>
       <Typography variant="h6" gutterBottom>{length} Products</Typography>
       </Center>

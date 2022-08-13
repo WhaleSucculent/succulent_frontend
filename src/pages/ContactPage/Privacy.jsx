@@ -21,7 +21,6 @@ function Privacy() {
           <Typography variant="h3" sx={{textAlign: "center"}} >
             Privacy Policy
           </Typography>
-          {console.log(privacy)}
           <ReactMarkdown children={content} sourcePos={true} />
         </Box>
       </Container>

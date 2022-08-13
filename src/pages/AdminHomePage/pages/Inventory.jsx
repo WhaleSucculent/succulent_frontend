@@ -90,8 +90,6 @@ function EnhancedTableHead(props) {
   const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } =
     props;
   const createSortHandler = (property) => (event) => {
-    console.log(property)
-    console.log(event)
     onRequestSort(event, property);
   };
 
@@ -214,9 +212,7 @@ export default function Inventory() {
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
-    console.log(isAsc)
     setOrder(isAsc ? 'desc' : 'asc');
-    console.log(property)
     setOrderBy(property);
   };
 
@@ -292,7 +288,6 @@ export default function Inventory() {
                 <>
                   {/* if you don't need to support IE11, you can replace the `stableSort` call with:
                  rows.slice().sort(getComparator(order, orderBy)) */}
-                 {console.log(data.products)}
                   { _.sortBy(data.products, [orderBy])
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((product, index) => {

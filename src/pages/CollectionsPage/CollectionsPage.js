@@ -169,7 +169,7 @@ const CollectionsPage = () => {
                   <Stack direction={{ xs: 'column', sm: 'column', md:'row' }}
                   justifyContent="center"
                   alignItems="center"
-                  spacing={3} item xs={12} sm={6} md={4} key={product.id} sx={{marginTop:"25px"}}>
+                  spacing={3} xs={12} sm={6} md={4} key={product.id} sx={{marginTop:"25px"}}>
                     <ProductCard
                       key={product.id}
                       product={product}

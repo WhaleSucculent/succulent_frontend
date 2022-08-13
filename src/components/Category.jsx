@@ -61,7 +61,7 @@ function Category() {
 
       >
         {itemData.map((item, i) => (
-          <Link to={`/${pages[i]}`}>
+          <Link to={`/${pages[i]}`} key={item?.title}>
             <ImageListItem key={item.img} cols={item.cols || 1} rows={item.rows || 1}>
               <img
                 {...srcset(item.img, 450, item.rows, item.cols)}
@@ -85,7 +85,6 @@ function Category() {
                   >
                   </IconButton>
                 }
-                actionPosition="bottom"
               />
 
             </ImageListItem>

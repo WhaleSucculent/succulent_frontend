@@ -37,7 +37,6 @@ export const LoginPage = () => {
 
   const handleGoogleLogin = (res) => {
 
-    console.log(res)
     setIdToken(res.credential);
     document.getElementById("signInDiv").hidden = true;
   }
@@ -64,7 +63,6 @@ export const LoginPage = () => {
       password: formState.password
     },
     onCompleted: ({ loginCustomer, data }) => {
-      console.log(loginCustomer)
       if (loginCustomer.userId) {
         localStorage.setItem(AUTH_TOKEN, loginCustomer.token)
         navigate('/')
@@ -81,9 +79,7 @@ export const LoginPage = () => {
       idToken: idToken
     },
     onCompleted: ({ loginWithGoogle, data }) => {
-      console.log(loginWithGoogle)
       localStorage.setItem(AUTH_TOKEN, loginWithGoogle.token);
-      console.log("login")
       navigate('/');
       window.location.reload();
     }

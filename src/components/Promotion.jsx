@@ -133,7 +133,6 @@ function Promotion() {
               color="secondary"
               size='medium'
               variant="gradient"
-              component="a"
               type='button'
               sx={{ mt: 4, fontWeight: 600 }}
             >

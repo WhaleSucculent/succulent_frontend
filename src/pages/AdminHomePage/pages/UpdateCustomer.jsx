@@ -38,9 +38,6 @@ function UpdateCustomer({ customer }) {
   const onSubmit = (e) => {
     e.preventDefault();
     editCustomer(status, role);
-    console.log("status: " + status);
-    console.log("role: " + role);
-
   };
 
   

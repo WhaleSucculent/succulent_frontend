@@ -79,7 +79,7 @@ function CheckoutCart() {
 
 
         {/*  shopping cartitem displays here*/}
-        <div>
+        <Box>
           {/* if cartItem.lendth ==0 display continue shopping page */}
           {cart.cartItems.length === 0 ? (
             <Grid container justifyContent="center"
@@ -110,13 +110,11 @@ function CheckoutCart() {
                           <TableHeadCell align="center"> Action</TableHeadCell>
                         </TableRow>
                       </TableHead>
-                        <TableBody component={motion.div} variants={staggerVariants} initial="start" animate="end" >
-                        {console.log(cart)}
+                      <TableBody component={motion.tbody} variants={staggerVariants} initial="start" animate="end" >
                         {cart.cartItems.length > 0 && cart.cartItems?.map((cartItem) => (
-                          <TableRow key={cartItem.name} component={motion.div} variants={lineSelectedVariants} whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
+                          <TableRow key={cartItem.name} component={motion.tr} variants={lineSelectedVariants} whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
                             <TableCell component="th" scope="row" align="center" width={200} height={200} sx={{overflow: "hidden"}}>
                               <img src={cartItem.image[0].imageLink} width={"100%"}  alt={cartItem.name}/>
-                              <br></br>
                               <b size='large'>{cartItem.name}</b>
                             </TableCell>
                             <TableCell align="center" sx={{ display: "flex", flexDirection: {xs: "column", md: "row"} , alignItems: "center", justifyContent: "center", pt: {xs:"50%", lg:"50%",xl: "43%"} }} >
@@ -169,9 +167,7 @@ function CheckoutCart() {
                     <ListItem>
                       <Typography variant="h6" fontSize="20px">
                         <b>Shipping:</b>
-                        <Typography>
-                          <p>To be calculated...</p>
-                        </Typography>
+                        <Typography>To be calculated...</Typography>
 
                       </Typography>
                     </ListItem>
@@ -216,7 +212,7 @@ function CheckoutCart() {
                 </Grid>
               </Grid>
             </Box>)}
-        </div>
+        </Box>
 
       </Box>
       {cart.cartItems.length === 0 ? (<Box sx={{ position: "absolute", bottom: 0, width: "100%" }} >

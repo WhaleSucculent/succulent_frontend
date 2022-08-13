@@ -252,8 +252,6 @@ const AdminProductPage = () => {
 
   // use the products query from graphql
   const { loading, error, data } = useQuery(GET_ADMIN_PRODUCTS);
-
-  console.log(data)
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');

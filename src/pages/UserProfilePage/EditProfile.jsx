@@ -40,9 +40,6 @@ function EditProfile({ customer }) {
    const onSubmit = (e) => {
      e.preventDefault();
      editCustomer(firstName, lastName, email);
-     console.log("firstname: " + firstName);
-     console.log("lastname: " + lastName);
-     console.log("email: " + email);
 
    }
 

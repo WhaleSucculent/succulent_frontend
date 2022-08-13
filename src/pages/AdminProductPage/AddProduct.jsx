@@ -107,7 +107,6 @@ function AddProduct() {
   const onSubmit = (e) => {
     e.preventDefault();
     addProduct(name, description, priceList, postDate, size, category, rare, productStatus, colors, imageIds, imageLink);
-    console.log(postDate);
   }
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);

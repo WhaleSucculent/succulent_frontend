@@ -26,7 +26,6 @@ import { CssBaseline, Grid } from '@mui/material';
 
 export default function UserProfilePage() {
   const { loading, error, data } = useQuery(GET_ME);
-  console.log(data);
 
   return (
     <Box>

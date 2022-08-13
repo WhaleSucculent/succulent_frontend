@@ -19,7 +19,6 @@ import TableHeadCell from "../components/TableHeadCell";
 
 export default function Order() {
   const { loading, error, data } = useQuery(GET_ORDERS);
-  console.log("Orders: " + data)
   if (loading) return <Loading />
   if (error) return <p>Error :(</p>;
   return (

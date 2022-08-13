@@ -49,8 +49,9 @@ export const MenuItem = ({ i }: any) => {
           flex: "40px 0",
           marginRight: "20px",
           border: `2px solid ${colors[i]}`,
-        }}
-      />
+        }}>
+          
+        </div>
       <div
         className="text-placeholder"
         style={{

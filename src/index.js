@@ -12,6 +12,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { theme } from 'theme';
 import { changeLanguage, initI18n } from './services/i18n';
 import Loading from 'components/Loading';
+import { ErrorBoundary } from 'react-error-boundary'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -20,6 +21,15 @@ const defaultLanguage = 'en-GB';
 initI18n(process.env.PUBLIC_URL + '/i18n/{{lng}}.json', defaultLanguage);
 changeLanguage(defaultLanguage);
 
+function ErrorFallback({ error, resetErrorBoundary }) {
+  return (
+    <div role="alert">
+      <p>Something went wrong:</p>
+      <pre>{error.message}</pre>
+      <button onClick={resetErrorBoundary}>Try again</button>
+    </div>
+  )
+}
 
 
 root.render(
@@ -29,7 +39,14 @@ root.render(
         <ThemeProvider theme={theme}>
           <BrowserRouter>
             <CssBaseline />
+            <ErrorBoundary
+              FallbackComponent={ErrorFallback}
+              onReset={() => {
+                // reset the state of your app so the error doesn't happen again
+              }}>
+
               <App style={{ width: '100vw', overflowX: 'hidden' }} />
+            </ErrorBoundary>
           </BrowserRouter>
         </ThemeProvider>
       </ApolloProvider>

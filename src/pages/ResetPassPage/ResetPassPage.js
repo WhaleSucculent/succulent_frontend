@@ -162,11 +162,6 @@ export const ResetPassPage = () => {
                 ),
               }}
             />
-            {console.log(newPassword)}
-            {console.log(confirmPassword)}
-            {console.log(isSamePassword)}
-
-
             <Button
               type="button"
               fullWidth

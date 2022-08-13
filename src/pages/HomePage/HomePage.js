@@ -95,7 +95,6 @@ const HomePage = () => {
 
 
   const { loading, error, data } = useQuery(GET_PRODUCTS);
-  console.log(data);
   if (loading) return <Loading />
   if (error) return <ErrorPage/>
 
@@ -115,7 +114,7 @@ const HomePage = () => {
       <OnScrollAnimationBox>
         <Swiper slidesPerView={downsm ? 1 : betweensmandmd ? 2 : betweenmdandlg ? 3 : betweenlgandxl ? 4 : 5} modules={[Pagination, Autoplay]} >
           {data.products.slice(1, 7).map(product => (
-            <SwiperSlide style={{ paddingBottom: "2px" }}>
+            <SwiperSlide style={{ paddingBottom: "2px" }} key={product.id}>
               <ProductCard key={product.id} product={product} />
             </SwiperSlide>
           ))}
@@ -149,7 +148,7 @@ const HomePage = () => {
       <OnScrollAnimationBox>
         <Swiper slidesPerView={downsm ? 1 : betweensmandmd ? 2 : betweenmdandlg ? 3 : betweenlgandxl ? 4 : 5} modules={[Pagination, Autoplay]} >
           {data.products.slice(3, 8).map(product => (
-            <SwiperSlide style={{ paddingBottom: "2px" }}>
+            <SwiperSlide style={{ paddingBottom: "2px" }} key={product.id}> 
               <ProductCard key={product.id} product={product} />
             </SwiperSlide>
           ))}
@@ -191,7 +190,7 @@ const HomePage = () => {
       <OnScrollAnimationBox>
         <Swiper slidesPerView={downsm ? 1 : betweensmandmd ? 2 : betweenmdandlg ? 3 : betweenlgandxl ? 4 : 5} modules={[Pagination, Autoplay]} >
           {data.products.slice(2, 7).map(product => (
-            <SwiperSlide style={{ paddingBottom: "2px" }}>
+            <SwiperSlide style={{ paddingBottom: "2px" }} key={product.id}>
               <ProductCard key={product.id} product={product} />
             </SwiperSlide>
           ))}
