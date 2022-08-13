@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
@@ -11,6 +11,7 @@ import { CssBaseline, ThemeProvider } from '@mui/material';
 import { BrowserRouter } from 'react-router-dom';
 import { theme } from 'theme';
 import { changeLanguage, initI18n } from './services/i18n';
+import Loading from 'components/Loading';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -27,8 +28,10 @@ root.render(
       <ApolloProvider client={client}>
         <ThemeProvider theme={theme}>
           <BrowserRouter>
-            <CssBaseline/>          
-            <App style={{width:'100vw', overflowX:'hidden'}}/>
+            <CssBaseline />
+            <Suspense fallback={<Loading />}>
+              <App style={{ width: '100vw', overflowX: 'hidden' }} />
+            </Suspense>
           </BrowserRouter>
         </ThemeProvider>
       </ApolloProvider>

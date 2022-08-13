@@ -7,7 +7,7 @@ import useStyles from "./LineStripStyle";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
-import { IconButton } from "@mui/material";
+import { Box, IconButton } from "@mui/material";
 
 function LineStrip({category}) {
   const itemData = [
@@ -65,39 +65,46 @@ function LineStrip({category}) {
         >
           <ImageList
             sx={{ width: "100%", height: "90%" }}
-            variant="quilted"
+            // variant="quilted"
             cols={1}
             rowHeight={480}
           >
-            
-
             <ImageListItem
               key={itemData[getIndex()].img}
               cols={itemData[getIndex()].cols || 1}
               rows={itemData[getIndex()].rows || 1}
+              sx={{overflow: "hidden"}}
             >
-              <img
-                {...srcset(itemData[getIndex()].img, 450, itemData[getIndex()].rows, itemData[getIndex()].cols)}
-                alt={itemData[getIndex()].title}
-                loading="lazy"
-                
-              />
+              <Box sx={{
+                width: "100%",
+                height: "100%",
+                zIndex: "-1",
+                pointerEvents: "none",
+                overflow: "hidden",
+
+              }}>
+                <iframe title="vimeo" id="vimeoplayer1" src="https://player.vimeo.com/video/108595012?api=1&background=1" className="background-video ready" style={{
+                  width: "100vw",
+                  height: "56.25vw", /* Given a 16:9 aspect ratio, 9/16*100 = 56.25 */
+                  minHeight: "100vh",
+                  minWidth: "177.77vh", /* Given a 16:9 aspect ratio, 16/9*100 = 177.77 */
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)"
+                }} />
+              </Box>
               <ImageListItemBar
                 sx={{
-                  backgroundColor: "rgba(0,0,0, 0.65)",
                   height:'100%',
-                  fontSize:'3em',
                   fontWeight:'bolder',
-                  backdropFilter: "blur(2.5px)",
+                  background: 'rgba(0, 0, 0, 0.05)',
                   ".MuiImageListItemBar-title":{
-                   fontSize:'0.45em',
-                   wordWwrap: 'break-word',
-                   height:'100%',
+
                   }
                 }}
                 title ={itemData[getIndex()].title}
                 position="bottom"
-                actionPosition="bottom"
               />
             </ImageListItem>
           </ImageList>

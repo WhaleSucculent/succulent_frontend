@@ -182,14 +182,38 @@ export const theme = createTheme({
         }
       }
     },
-    MuiCardContent:{
-      styleOverrides:{
-        root:{
+    MuiCardContent: {
+      styleOverrides: {
+        root: {
           padding: 3,
-          ":last-child":{
+          ":last-child": {
             paddingBottom: 0
           }
         }
+      }
+    },
+    MuiImageListItemBar: {
+      styleOverrides: {
+        title: {
+          overflowWrap: 'anywhere',
+          height: '100%',
+          textOverflow: 'unset',
+          lineHeight: '2.2rem',
+          whiteSpace: 'normal',
+          [breakpoints.up('xs')]: {
+            fontSize: '1.4rem',
+          },
+          [breakpoints.up('sm')]: {
+            fontSize: '1.8rem',
+            height: 40,
+          },
+
+          [breakpoints.up('lg')]: {
+            fontSize: '2.2rem',
+          },
+        },
+        
+
       }
     }
 
