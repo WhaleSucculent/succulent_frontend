@@ -96,16 +96,16 @@ function CheckoutCart() {
           ) : (
             // if cartItem is not ==0, display shopping cart items.
             <Box >
-              <Grid container  >
-                <Grid item md={9} xs={12} container spacing={1} sx={{ width: "100%", borderRadius: "20px" }}>
+              <Grid container >
+                <Grid item md={9} xs={12} container spacing={1} sx={{ width: "100%", borderRadius: "20px", pr: { xs: 0, md: 5 }, py: {xs:1, md:5}}} >
                   <TableContainer component={Paper} >
-                    <Table aria-label="oreders">
+                    <Table aria-label="oreders" sx={{ overflow: "hidden" }}>
                       <TableHead>
                         <TableRow>
                           <TableHeadCell align="center" size="small">
                             Item
                           </TableHeadCell>
-                            <TableHeadCell align="center"> {downsm ? `Qty` : `Quantity`} </TableHeadCell>
+                          <TableHeadCell align="center"> {downsm ? `Qty` : `Quantity`} </TableHeadCell>
                           <TableHeadCell align="center"> Price</TableHeadCell>
                           <TableHeadCell align="center"> Action</TableHeadCell>
                         </TableRow>
@@ -113,11 +113,11 @@ function CheckoutCart() {
                       <TableBody component={motion.tbody} variants={staggerVariants} initial="start" animate="end" >
                         {cart.cartItems.length > 0 && cart.cartItems?.map((cartItem) => (
                           <TableRow key={cartItem.name} component={motion.tr} variants={lineSelectedVariants} whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
-                            <TableCell component="th" scope="row" align="center" width={200} height={200} sx={{overflow: "hidden"}}>
-                              <img src={cartItem.image[0].imageLink} width={"100%"}  alt={cartItem.name}/>
+                            <TableCell component="th" scope="row" align="center" width={200} height={200} sx={{ overflow: "hidden" }}>
+                              <img src={cartItem.image[0].imageLink} width={"100%"} alt={cartItem.name} />
                               <b size='large'>{cartItem.name}</b>
                             </TableCell>
-                            <TableCell align="center" sx={{ display: "flex", flexDirection: {xs: "column", md: "row"} , alignItems: "center", justifyContent: "center", pt: {xs:"50%", lg:"50%",xl: "43%"} }} >
+                            <TableCell align="center" sx={{ display: "flex", flexDirection: { xs: "column", md: "row" }, alignItems: "center", justifyContent: "center", pt: { xs: "50%", lg: "50%", xl: "43%" } }} >
 
                               <Button onClick={() => handleDecreaseCartQty(cartItem)} sx={{ fontSize: "2rem" }}><RemoveCircleOutlineIcon /></Button>
                               <Typography mx={2}>
@@ -126,7 +126,7 @@ function CheckoutCart() {
                               <Button onClick={() => handleIncreaseCartQty(cartItem)}><AddCircleOutlineIcon /></Button>
 
                             </TableCell>
-                            <TableCell align="center" sx={{fontsize: {xs: "1rem", md: "1.2rem"}}}>
+                            <TableCell align="center" sx={{ fontsize: { xs: "1rem", md: "1.2rem" } }}>
                               $ {cartItem.priceList[0].price}
                             </TableCell>
                             <TableCell align="center">
@@ -140,74 +140,90 @@ function CheckoutCart() {
                     </Table>
                   </TableContainer>
                 </Grid>
-                <Grid item md={3} xs={12}>
+                <Grid item md={3} xs={12} sx={{mt: {sx:0, md:3}}}>
                   {/* here display the Subtotal card on the side */}
 
                   <List>
-                    <ListItem>
-                      <Grid container>
-                        <Typography variant="h6" fontSize="20px">
-                          <b>Subtotal:</b>
-                          <Typography>
-                            <span>${_.round(cart.cartTotalAmount, 2)}</span>
-                          </Typography>
-                        </Typography>
-
-                      </Grid>
-                    </ListItem>
-                    <ListItem>
-                      <Typography variant="h6" fontSize="20px">
-                        <b>Duties & Taxes: </b>
-                        <Typography>
-                          <span>${(cart.cartTotalAmount * 0.05).toFixed(2)}</span>
-                        </Typography>
-
-                      </Typography>
-                    </ListItem>
-                    <ListItem>
-                      <Typography variant="h6" fontSize="20px">
-                        <b>Shipping:</b>
-                        <Typography>To be calculated...</Typography>
-
-                      </Typography>
-                    </ListItem>
                     <Divider />
-                    <ListItem>
-                      <Typography variant="h6" textAlign="left" fontWeight="bold" fontSize="25px">
-                        <b>Total:</b>
-                        <Typography textAlign="right" fontWeight="bold" fontSize="25px">
-                          ${(cart.cartTotalAmount * 1.05).toFixed(2)}
-                        </Typography>
-                      </Typography>
-                    </ListItem>
-                    <ListItem>
+                    <Grid container>
+                      <Grid item xs={6} md={12}>
+                        <ListItem>
+                          <Typography variant="h6" fontSize="20px">
+                            <b>Subtotal:</b>
+                            <Typography>
+                              <span>${_.round(cart.cartTotalAmount, 2)}</span>
+                            </Typography>
+                          </Typography>
 
-                      <Button
-                        href="checkout"
-                        type="button"
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        size="large"
+                        </ListItem>
+                        <ListItem>
+                          <Typography variant="h6" fontSize="20px">
+                            <b>Duties & Taxes: </b>
+                            <Typography>
+                              <span>${(cart.cartTotalAmount * 0.05).toFixed(2)}</span>
+                            </Typography>
 
-                      >
-                        Check Out
-                      </Button>
+                          </Typography>
+                        </ListItem>
+                        <ListItem>
+                          <Typography variant="h6" fontSize="20px">
+                            <b>Shipping:</b>
+                            <Typography>To be calculated...</Typography>
 
-                    </ListItem>
-                    <ListItem>
+                          </Typography>
+                        </ListItem>
+                      </Grid>
 
-                      <Button
-                        href="/"
-                        variant="outlined"
-                        fullWidth
-                        color="primary"
-                        size="large"
-                      >
-                        Continue Shopping
-                      </Button>
+                      <Grid item xs={6} md={12}>
+                        <ListItem>
+                          <Typography variant="h6" textAlign="left" fontWeight="bold" fontSize="25px">
+                            <b>Total:</b>
+                            <Typography textAlign="right" fontWeight="bold" fontSize="25px">
+                              ${(cart.cartTotalAmount * 1.05).toFixed(2)}
+                            </Typography>
+                          </Typography>
+                        </ListItem>
+                      </Grid>
+                    </Grid>
+                    <Divider />
 
-                    </ListItem>
+
+                    <Grid container sx={{ mt: 1 }}>
+                      <Grid item xs={6} md={12}>
+                        <ListItem>
+
+                          <Button
+                            href="checkout"
+                            type="button"
+                            variant="contained"
+                            color="primary"
+                            size="large"
+                            sx={{ width: "100%" }}
+                          >
+                            Check Out
+                          </Button>
+
+                        </ListItem>
+                      </Grid>
+
+                      <Grid item xs={6} md={12}>
+                        <ListItem>
+
+                          <Button
+                            href="/"
+                            variant="outlined"
+                            fullWidth
+                            color="primary"
+                            size="large"
+                            sx={{ width: "100%" }}
+
+                          >
+                            Continue
+                          </Button>
+
+                        </ListItem>
+                      </Grid>
+                    </Grid>
                   </List>
                 </Grid>
               </Grid>

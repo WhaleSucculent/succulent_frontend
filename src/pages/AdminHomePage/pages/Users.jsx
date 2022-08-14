@@ -26,7 +26,7 @@ export default function Users() {
         !loading && !error && (
           <TableContainer component={Paper} sx={{ width: "100%", borderRadius: "20px" }} >
               <Title >Customers</Title>
-            <Table sx={{ minWidth: 650 }}>
+            <Table sx={{ minWidth: 650, overflow: "hidden" }}>
               <TableHead>
                 <TableRow sx={{
                   fontWeight: 'bolder',
@@ -42,7 +42,7 @@ export default function Users() {
                 </TableRow>
               </TableHead>
               {data && (
-                <TableBody component={motion.div} variants={staggerVariants} initial="start" animate="end" >
+                <TableBody component={motion.tbody} variants={staggerVariants} initial="start" animate="end" >
                   {data.customers.map((customer, index) => (
                     <UserRow key={customer.id} customer={customer} index={index} />
                   )

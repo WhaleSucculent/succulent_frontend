@@ -8,7 +8,7 @@ import EditOrder from "./EditOrder";
 function OrderRow({order}) {
   
     return (
-      <TableRow component = {motion.div} variants = { lineSelectedVariants } whileHover = {{ scale: 1.01 }} whileTap = {{ scale: 0.99 }} >
+      <TableRow component = {motion.tr} variants = { lineSelectedVariants } whileHover = {{ scale: 1.01 }} whileTap = {{ scale: 0.99 }} >
          <TableCell align="center">
             {order?.id}
          </TableCell>

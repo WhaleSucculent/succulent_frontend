@@ -8,7 +8,7 @@ import { lineSelectedVariants } from "assets/config/animationVariants";
 
 function UserRow({ customer, index }) {
   return (
-    <TableRow component={motion.div} variants={lineSelectedVariants} whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }} 
+    <TableRow component={motion.tr} variants={lineSelectedVariants} whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }} 
     >
       <TableCell>{index + 1}</TableCell>
       <TableCell>{customer.firstName}</TableCell>

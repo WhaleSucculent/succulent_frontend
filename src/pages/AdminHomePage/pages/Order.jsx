@@ -30,7 +30,7 @@ export default function Order() {
             Order History
           </Title>
 
-          <Table aria-label="collapsible table">
+          <Table aria-label="collapsible table" sx={{overflow: "hidden"}}>
             <TableHead>
               <TableRow sx={{
                 fontWeight: 'bolder',
@@ -46,7 +46,7 @@ export default function Order() {
               </TableRow>
             </TableHead>
             {data && (
-              <TableBody component={motion.div} variants={staggerVariants} initial="start" animate="end" >
+              <TableBody component={motion.tbody} variants={staggerVariants} initial="start" animate="end" >
                 {data.orders.map((order) => (
                   <OrderRow key={order.id} order={order} />
                 ))}

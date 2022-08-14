@@ -113,7 +113,7 @@ function AddProduct() {
 
 
   return (
-      <div style={{ padding: '1.5em' }}>
+      <Box style={{ padding: '1.5em' }}>
         <Button onClick={handleOpen}  >
           <Stack direction="row" justifyContent="center" alignItems="center" color={"primary.dark"} fontWeight={"600"} fontSize={"1rem"}>
             <AddIcon />
@@ -121,7 +121,7 @@ function AddProduct() {
           </Stack>
         </Button>
 
-        <div>
+        <Box>
           <Modal
             aria-labelledby="transition-modal-title"
             aria-describedby="transition-modal-description"
@@ -141,7 +141,7 @@ function AddProduct() {
                 >
                   Add a new Product
                 </Typography>
-                <div style={{ overflow: 'scroll' }} id="transition-modal-description">
+                <Box style={{ overflow: 'scroll' }} id="transition-modal-description">
                   <form onSubmit={onSubmit}>
                     <Stack direction="column" sx={{ marginTop: "1.5em" }} spacing={2}>
                       <TextField
@@ -239,16 +239,16 @@ function AddProduct() {
                       <FileUploaderContext.Provider value={[imageLink, setImageLink]}>
                         <FileUploader />
                       </FileUploaderContext.Provider>
-                      <Button variant="contained" type="submit" endIcon>Add Product</Button>
+                      <Button variant="contained" type="submit">Add Product</Button>
                       {loading && <CircularProgress/>}
                     </Stack>
                   </form>
-                </div>
+                </Box>
               </Box>
             </Fade>
           </Modal>
-        </div>
-      </div>
+        </Box>
+      </Box>
   )
 }
 

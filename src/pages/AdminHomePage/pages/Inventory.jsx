@@ -147,9 +147,9 @@ const EnhancedTableToolbar = (props) => {
 
   return (
     <Box>
-      <Typography align='left'>
+      <Box align='left'>
         <AddProduct />
-      </Typography>
+      </Box>
       <Toolbar
         sx={{
           ...(numSelected > 0 && {
@@ -272,7 +272,7 @@ export default function Inventory() {
           <EnhancedTableToolbar numSelected={selected.length} />
           <TableContainer>
             <Table
-              sx={{ minWidth: 750 }}
+              sx={{ minWidth: 750, overflow: 'hidden' }}
               aria-labelledby="tableTitle"
               size={dense ? 'small' : 'medium'}
             >
@@ -295,7 +295,7 @@ export default function Inventory() {
                       const labelId = `enhanced-table-checkbox-${index}`;
 
                       return (
-                        <TableBody component={motion.div} variants={staggerVariants} initial="start" animate="end">
+                        product && (<TableBody component={motion.tbody} variants={staggerVariants} initial="start" animate="end" key={index}>
                           <TableRow
                             hover
                             onClick={(event) => handleClick(event, product.name)}
@@ -304,7 +304,7 @@ export default function Inventory() {
                             tabIndex={-1}
                             key={product.name}
                             selected={isItemSelected}
-                            component={motion.div}
+                            component={motion.tr}
                             variants={lineSelectedVariants}
                             whileHover={{ scale: 1.01 }}
                             whileTap={{ scale: 0.99 }}
@@ -334,7 +334,7 @@ export default function Inventory() {
                             <TableCell align="right"><EditProduct product={product} /></TableCell>
                             <TableCell align="right"><DeleteProduct product={product} /></TableCell>
                           </TableRow>
-                        </TableBody>
+                        </TableBody>)
                       );
                     })}
                   {emptyRows > 0 && (

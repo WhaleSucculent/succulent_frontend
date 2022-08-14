@@ -6,7 +6,7 @@ import PaginationComp from "./PaginationComp";
 import LineStrip from "./LineStrip";
 import PriceMinMax from "./PriceMinMax";
 import SortBy from "./SortBy";
-import Stack from "@mui/material/Stack";
+import Stack from "@mui/material/Stack"; import { Link, Typography } from '@mui/material';
 import LineResults from "./LineResults";
 import CollectionSidebar from "./CollectionSidebar";
 import { useState } from "react";

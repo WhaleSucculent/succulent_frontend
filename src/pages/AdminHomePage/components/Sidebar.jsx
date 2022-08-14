@@ -164,18 +164,16 @@ function DashboardContent() {
 
           >
             {data && data?.me?.role === "admin" && (
-              <>
-                <MenuItem >
+
+                <MenuItem divider={true} >
                   <Link to={"/"} color={"secondary.main"} sx={{ display: 'flex', alignItems: "center", justifyItems: "center" }} >
                     <ChangeCircleOutlinedIcon />
                     <Typography textAlign="center">Customer</Typography>
                   </Link>
-                </MenuItem>
-                <Divider />
-              </>)}
+                </MenuItem>)}
             <MenuItem onClick={handleCloseUserMenu}  >
               <Link to={"/admin/home"}>
-                <Typography textAlign="center" tex >Dashboard</Typography>
+                <Typography textAlign="center" >Dashboard</Typography>
               </Link>
             </MenuItem>
             <MenuItem onClick={handleCloseUserMenu}>

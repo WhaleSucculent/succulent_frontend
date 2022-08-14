@@ -5,7 +5,6 @@ import Paper from '@mui/material/Paper';
 import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
-import { Link, Typography } from '@mui/material';
 
 const DashboardHome = () => {
   return (
