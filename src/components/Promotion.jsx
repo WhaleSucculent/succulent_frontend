@@ -28,7 +28,7 @@ function Promotion() {
     <Box
 
       component="section"
-      sx={{ display: 'flex', overflow: 'hidden', filter: "opacity(90%)" }}
+      sx={{ display: 'flex', overflow: 'hidden', filter: "opacity(90%)", mt: "2rem" }}
     >
 
       <Container

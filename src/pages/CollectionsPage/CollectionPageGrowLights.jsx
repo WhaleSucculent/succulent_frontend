@@ -10,6 +10,8 @@ import Loading from "../../components/Loading";
 import Footer from "components/Footer";
 import Promotion from "components/Promotion";
 import ErrorPage from "pages/ErrorPage/ErrorPage";
+import { Box } from "@mui/material";
+import Meta from "components/Meta";
 
 const CollectionPageGrowLights = () => {
   const [stockCheck, setstockCheck] = useState(false);
@@ -52,7 +54,8 @@ const CollectionPageGrowLights = () => {
   if (loading) return <Loading />;
   if (error) return <ErrorPage/>;
   return (
-    <div style={{ marginBottom: "40px" }}>
+    <Box>
+      <Meta title={"Grow Light"}/>
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <LineStrip category={"Grow Light"}/>
@@ -174,7 +177,7 @@ const CollectionPageGrowLights = () => {
       </Grid>
       <Promotion/>
       <Footer/>
-    </div>
+    </Box>
   );
 };
 

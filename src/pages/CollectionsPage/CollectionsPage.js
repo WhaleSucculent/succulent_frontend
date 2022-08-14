@@ -6,7 +6,7 @@ import PaginationComp from "./PaginationComp";
 import LineStrip from "./LineStrip";
 import PriceMinMax from "./PriceMinMax";
 import SortBy from "./SortBy";
-import Stack from "@mui/material/Stack"; import { Link, Typography } from '@mui/material';
+import Stack from "@mui/material/Stack"; import { Box, Link, Typography } from '@mui/material';
 import LineResults from "./LineResults";
 import CollectionSidebar from "./CollectionSidebar";
 import { useState } from "react";
@@ -14,6 +14,7 @@ import Loading from "../../components/Loading";
 import Footer from "components/Footer";
 import Promotion from "components/Promotion";
 import ErrorPage from "pages/ErrorPage/ErrorPage";
+import Meta from "components/Meta";
 
 const CollectionsPage = () => {
   const [stockCheck, setstockCheck] = useState(false);
@@ -57,7 +58,8 @@ const CollectionsPage = () => {
   if (loading) return <Loading />;
   if (error) return <ErrorPage/>;
   return (
-    <div style={{ marginBottom: "40px" }}>
+    <Box>
+    <Meta title={"Succulent"}/>
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <LineStrip category={"Succulent"} />
@@ -182,7 +184,7 @@ const CollectionsPage = () => {
       </Grid>
       <Promotion/>
       <Footer/>
-    </div>
+    </Box>
   );
 };
 

@@ -10,6 +10,8 @@ import Loading from "../../components/Loading";
 import Footer from "components/Footer";
 import Promotion from "components/Promotion";
 import ErrorPage from "pages/ErrorPage/ErrorPage";
+import { Box } from "@mui/material";
+import Meta from "components/Meta";
 
 const CollectionPageSoil = () => {
   const [stockCheck, setstockCheck] = useState(false);
@@ -52,10 +54,11 @@ const CollectionPageSoil = () => {
   if (loading) return <Loading />;
   if (error) return <ErrorPage/>;
   return (
-    <div style={{ marginBottom: "40px" }}>
+    <Box>
+      <Meta title="Soil" />
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <LineStrip category={"Soil"}/>
+          <LineStrip category={"Soil & Rocks"}/>
         </Grid>
       </Grid>
 
@@ -174,7 +177,7 @@ const CollectionPageSoil = () => {
       </Grid>
       <Promotion/>
       <Footer/>
-    </div>
+    </Box>
   );
 };
 

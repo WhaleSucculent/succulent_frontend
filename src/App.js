@@ -69,7 +69,13 @@ function App() {
           {/* Router for   */}
           <Route path="/" element={<HeaderFooter />}>
             <Route  index element={<HomePage />} />
+
             <Route path="home" element={<HomePage />} />
+            <Route path="succulents" element={<CollectionsPage />}>
+              <Route path="new" element={<CollectionsPage />} />
+              <Route path="rare" element={<CollectionsPage />} />
+              <Route path="best" element={<CollectionsPage />} />
+            </Route>
             <Route path="growlights" element={<CollectionPageGrowLights />} />
             <Route path="soil/rocks" element={<CollectionPageSoil />} />
             <Route path="pots" element={<CollectionPagePot />} />
@@ -84,11 +90,7 @@ function App() {
             <Route path="products">
               <Route path=":id" element={<ProductDetailPage />} />
             </Route>
-            <Route path="succulents" element={<CollectionsPage />}>
-              <Route path="new" element={<CollectionsPage />} />
-              <Route path="rare" element={<CollectionsPage />} />
-              <Route path="best" element={<CollectionsPage />} />
-            </Route>
+
             <Route path="cart" element={<CheckoutCart />} />
             <Route path="checkout" element={<CheckoutPage />} />
             <Route path="checkout/*" element={<CheckoutPage />} />

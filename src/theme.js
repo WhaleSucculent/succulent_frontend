@@ -192,6 +192,13 @@ export const theme = createTheme({
         }
       }
     },
+    MuiImageList:{
+      styleOverrides: {
+        root: {
+          marginTop: 0,
+        }
+      }
+    },
     MuiImageListItemBar: {
       styleOverrides: {
         title: {

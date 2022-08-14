@@ -26,6 +26,7 @@ import { Autoplay, Pagination } from "swiper";
 import Title from "pages/AdminHomePage/components/Title";
 import { useTheme } from "@emotion/react";
 import ErrorPage from "pages/ErrorPage/ErrorPage";
+import Meta from "components/Meta";
 
 const cardVariants = {
   offscreen: {
@@ -99,7 +100,8 @@ const HomePage = () => {
   if (error) return <ErrorPage/>
 
   return (
-    <div>
+    <Box>
+      <Meta/>
       {/* <Banner /> */}
       <Carousel />
       {/* <OnScrollAnimationBox> */}
@@ -199,7 +201,7 @@ const HomePage = () => {
 
       <Promotion />
       <Footer />
-    </div >
+    </Box >
 
   );
 };

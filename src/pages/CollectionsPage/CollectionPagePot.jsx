@@ -10,6 +10,8 @@ import Loading from "../../components/Loading";
 import Promotion from "components/Promotion";
 import Footer from "components/Footer";
 import ErrorPage from "pages/ErrorPage/ErrorPage";
+import { Box } from "@mui/material";
+import Meta from "components/Meta";
 const CollectionPagePot = () => {
   const [stockCheck, setstockCheck] = useState(false);
   const [priceFilter, setpriceFilter] = useState(false);
@@ -51,7 +53,8 @@ const CollectionPagePot = () => {
   if (loading) return <Loading />;
   if (error) return <ErrorPage/>;
   return (
-    <div style={{ marginBottom: "40px" }}>
+    <Box >
+      <Meta title="Pots" />
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <LineStrip category={"Pots"}/>
@@ -173,7 +176,7 @@ const CollectionPagePot = () => {
       </Grid>
       <Promotion/>
       <Footer/>
-    </div>
+    </Box>
   );
 };
 

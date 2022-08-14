@@ -31,6 +31,7 @@ import Rating from "@mui/material/Rating";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper";
 import ErrorPage from "pages/ErrorPage/ErrorPage";
+import Meta from "components/Meta";
 /* 
 
 function SlideTransition(props) {
@@ -77,7 +78,8 @@ function ProductDetailPage({ open, onClose, setLoading }) {
     return data.product.review.length > 0 ? data.product.review[0].stars : 0;
   };
   return (
-    <>
+    <Box>
+      <Meta title={data?.product.name}/>
       <Container sx={{ marginBottom: "40px" }}>
         {/* <DialogContent> */}
         <Box margin="30px">
@@ -235,7 +237,7 @@ function ProductDetailPage({ open, onClose, setLoading }) {
         </Container>
       </Container>
       <Footer/>
-    </>
+    </Box>
   );
 }
 

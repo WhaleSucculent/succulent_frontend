@@ -15,7 +15,7 @@ function Shipping() {
   })
 
   return (
-    <div>
+    <Box sx={{mt: 3}}>
       <Container>
         <Box sx={{textAlign: "left"}}>
           <Typography variant="h3" sx={{textAlign: "center"}} >
@@ -25,7 +25,7 @@ function Shipping() {
         </Box>
       </Container>
 
-    </div>
+    </Box>
   )
 }
 

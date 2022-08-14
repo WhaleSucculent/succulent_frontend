@@ -1,5 +1,6 @@
 
 import { Box, Container, Typography } from '@mui/material'
+import Meta from 'components/Meta';
 import React, { useEffect, useState } from 'react'
 import ReactMarkdown from 'react-markdown'
 import privacy from "../../docs/privacy.md"
@@ -15,7 +16,8 @@ function Privacy() {
   })
 
   return (
-    <div>
+    <Box sx={{ mt: 3 }}>
+      <Meta title={"Privacy"}/>
       <Container>
         <Box sx={{textAlign: "left"}}>
           <Typography variant="h3" sx={{textAlign: "center"}} >
@@ -25,7 +27,7 @@ function Privacy() {
         </Box>
       </Container>
 
-    </div>
+    </Box>
   )
 }
 
