@@ -67,9 +67,9 @@ function LineStrip({ category }) {
             rowHeight={480}
           >
             <ImageListItem
-              key={itemData[getIndex()].img}
-              cols={itemData[getIndex()].cols || 1}
-              rows={itemData[getIndex()].rows || 1}
+              key={itemData[getIndex()]?.img}
+              cols={itemData[getIndex()]?.cols || 1}
+              rows={itemData[getIndex()]?.rows || 1}
               sx={{ overflow: "hidden" }}
             >
               <Box sx={{
@@ -80,7 +80,7 @@ function LineStrip({ category }) {
                 overflow: "hidden",
                 filter: "opacity(80%)"
               }}>
-                <iframe title="vimeo" id="vimeoplayer1" src={`${itemData[getIndex()].video}?api=1&background=1&autoplay=1&loop=1&autopause=0&muted=1`} className="background-video ready" allow="autoplay"
+                <iframe title="vimeo" id="vimeoplayer1" src={`${itemData[getIndex()]?.video}?api=1&background=1&autoplay=1&loop=1&autopause=0&muted=1`} className="background-video ready" allow="autoplay"
                   style={{
                     width: "100vw",
                     height: "56.25vw", /* Given a 16:9 aspect ratio, 9/16*100 = 56.25 */
@@ -101,7 +101,7 @@ function LineStrip({ category }) {
 
                   }
                 }}
-                title={itemData[getIndex()].title}
+                title={itemData[getIndex()]?.title}
                 position="bottom"
               />
             </ImageListItem>
