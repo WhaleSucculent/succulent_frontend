@@ -1,9 +1,22 @@
-# Getting Started with Create React App
+## How to run this project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).test
-test jira
-test on Github Desktop
-test
+### Configure frontend environment variable
+
+```
+REACT_APP_SERVICE_ID=                             // Service ID from email.js: https://www.emailjs.com/
+REACT_APP_TEMPLATE_ID=                            // Template ID from email.js
+REACT_APP_PUBLIC_KEY=                             // Public key from email.js
+REACT_APP_AZURE_SASTOKEN=                         // SASTOKEN from azure blob storage: https://azure.microsoft.com/en-ca/services/storage/blobs/
+REACT_APP_AZURE_STORAGE_ACCOUNT_NAME=             // Azure blob storage account name
+REACT_APP_GOOGLE_CLIENT_ID=                       // Google Authentication api id
+```
+
+### Configure backend
+This is the frontend of this project you also need the [backend](https://github.com/WhaleSucculent/succulent_backend) to run this project.
+
+
+
+
 
 ## Available Scripts
 
