@@ -58,7 +58,7 @@ const CollectionPageSoil = () => {
       <Meta title="Soil" />
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <LineStrip category={"Soil & Rocks"}/>
+          <LineStrip category={"Soil"}/>
         </Grid>
       </Grid>
 

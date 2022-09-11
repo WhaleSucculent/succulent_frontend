@@ -28,10 +28,10 @@ export default function LabTabs() {
             </TabList>
           </Box>
           <TabPanel value="1">
-            <ProfileSignupForm />
+            {/* <ProfileSignupForm /> */}
           </TabPanel>
           <TabPanel value="2">
-            <ProfileAddressForms />
+            {/* <ProfileAddressForms /> */}
           </TabPanel>
           <TabPanel value="3">
             <Payments/>

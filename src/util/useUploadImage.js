@@ -15,6 +15,7 @@ const useUploadImage = (file) => {
 
       // *** UPLOAD TO AZURE STORAGE ***
       const reutrnUrl = await uploadFileToBlob(file);
+      console.log(reutrnUrl)
 
       // prepare UI for results
       setUrl(reutrnUrl)

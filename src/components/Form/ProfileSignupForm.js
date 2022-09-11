@@ -54,9 +54,9 @@ const ProfileSignupForm = () => {
             <DeliveryFormControl>
               <SignupForm
                 formName="signup"
-                errors={errors.signup}
-                touched={touched.signup}
-                values={values.signup}
+                errors={errors?.signup}
+                touched={touched?.signup}
+                values={values?.signup}
               />
             </DeliveryFormControl>
 
