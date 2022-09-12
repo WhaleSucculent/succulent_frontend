@@ -60,6 +60,7 @@ function ProductCard({ product }) {
                 alt={`Product image of ${product.name}`}
                 height="300"
                 width="300"
+                sx={{margin: "auto", width: "100%", height: "100%", objectFit: "contain"}}
                 src={getImage()}
               />
               <CardContent mt={2}>

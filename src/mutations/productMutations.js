@@ -52,8 +52,10 @@ mutation updateProduct($id:ID!, $name: String!, $priceLists:[PriceListInput]!, $
     category
     description
     productStatus
+    imageLinks
     image{
       name
+      imageLink
     }
   }
 }
@@ -80,8 +82,10 @@ mutation deleteProduct($id:ID!){
     category
     description
     productStatus
+    imageLinks
     image{
       name
+      imageLink
     }
   }
 }

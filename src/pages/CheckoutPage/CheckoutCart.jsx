@@ -117,14 +117,12 @@ function CheckoutCart() {
                               <img src={cartItem.image[0].imageLink} width={"100%"} alt={cartItem.name} />
                               <b size='large'>{cartItem.name}</b>
                             </TableCell>
-                            <TableCell align="center" sx={{ display: "flex", flexDirection: { xs: "column", md: "row" }, alignItems: "center", justifyContent: "center", pt: { xs: "50%", lg: "50%", xl: "43%" } }} >
-
+                            <TableCell align="center" >
                               <Button onClick={() => handleDecreaseCartQty(cartItem)} sx={{ fontSize: "2rem" }}><RemoveCircleOutlineIcon /></Button>
                               <Typography mx={2}>
                                 {cartItem.cartQty}
                               </Typography>
                               <Button onClick={() => handleIncreaseCartQty(cartItem)}><AddCircleOutlineIcon /></Button>
-
                             </TableCell>
                             <TableCell align="center" sx={{ fontsize: { xs: "1rem", md: "1.2rem" } }}>
                               $ {cartItem.priceList[0].price}

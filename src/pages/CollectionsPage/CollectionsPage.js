@@ -93,11 +93,12 @@ const CollectionsPage = () => {
             </Grid>
           </Grid>
           <Grid justifyContent="center" alignItems="center"  container spacing={3}>
+          {console.log(data.products)}
             {!loading &&
               !error &&
               data.products
                 .filter((product) => {
-                  if (product.category === "Succulent") {
+                  if (product.category === "Succulents") {
                     if (stockCheck) {
                       if (priceFilter) {
                         if (priceMin === "" && priceMax === "") {
