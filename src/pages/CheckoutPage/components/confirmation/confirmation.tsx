@@ -11,7 +11,7 @@ import { AddressFormValues } from '../address/address-form-values.interface';
 import { CheckoutStepper } from '../checkout-stepper/checkout-stepper';
 import { Purchase } from './components/purchase';
 import  getCart  from '../../store/cartStore';
-import  { createOrder, insertNewOrder }  from './components/post';
+import  { insertNewOrder, makePayment }  from './components/post';
 
 import { ConfirmationProps, mapStateToProps } from './confirmation.props';
 
@@ -47,15 +47,16 @@ const Confirmation: FunctionComponent<ConfirmationProps> = ({
   const total = (getCart.cart.cartTotalAmount*1.05).toFixed(2);
 
   const submitForm = () => {
-    
-
+    //redirect to payment page
+    //makePayment(total,'','','','');
+    //create new order
     insertNewOrder(
       '',
       deliveryForm.signup.email,
       '',
       '',
       new Date(),
-      'unpaid',
+      'undelivered',
       products,
       '',
       '',
