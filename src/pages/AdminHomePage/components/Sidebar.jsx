@@ -1,170 +1,249 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
+import { useState } from 'react';
+import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import Divider from '@mui/material/Divider';
-import Drawer from '@mui/material/Drawer';
-import IconButton from '@mui/material/IconButton';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import MenuIcon from '@mui/icons-material/Menu';
+import MuiDrawer from '@mui/material/Drawer';
+import Box from '@mui/material/Box';
+import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
+import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
-import HomeIcon from '@mui/icons-material/Home';
-import PersonIcon from '@mui/icons-material/Person';
-import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
-import StorefrontIcon from '@mui/icons-material/Storefront';
+import Divider from '@mui/material/Divider';
+import IconButton from '@mui/material/IconButton';
+import { client } from "graphql/apolloClient";
+
+import MenuIcon from '@mui/icons-material/Menu';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import { mainListItems, secondaryListItems } from './listItems';
+import { Outlet, useNavigate } from 'react-router-dom';
+import { Avatar, Menu, MenuItem, Tooltip } from '@mui/material';
+import { useMeQuery } from 'queries/utilQueries';
+import ChangeCircleOutlinedIcon from '@mui/icons-material/ChangeCircleOutlined';
 import Link from 'components/Link';
-import { Outlet } from 'react-router-dom';
+
+
+
 const drawerWidth = 240;
 
-function Sidebar(props) {
-  const { window } = props;
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+const AppBar = styled(MuiAppBar, {
+  shouldForwardProp: (prop) => prop !== 'open',
+})(({ theme, open }) => ({
+  zIndex: theme.zIndex.drawer + 1,
+  transition: theme.transitions.create(['width', 'margin'], {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  ...(open && {
+    marginLeft: drawerWidth,
+    width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  }),
+}));
 
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
+const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
+  ({ theme, open }) => ({
+    '& .MuiDrawer-paper': {
+      position: 'relative',
+      whiteSpace: 'nowrap',
+      width: drawerWidth,
+      transition: theme.transitions.create('width', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+      boxSizing: 'border-box',
+      ...(!open && {
+        overflowX: 'hidden',
+        transition: theme.transitions.create('width', {
+          easing: theme.transitions.easing.sharp,
+          duration: theme.transitions.duration.leavingScreen,
+        }),
+        width: theme.spacing(7),
+        [theme.breakpoints.up('sm')]: {
+          width: theme.spacing(9),
+        },
+      }),
+    },
+  }),
+);
+
+
+function DashboardContent() {
+  const [open, setOpen] = useState(true);
+  const { data, loading, error } = useMeQuery();
+
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);
+  const navigate = useNavigate();
+
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
   };
 
-  const drawer = (
-    <div>
-      <Toolbar />
-      <Divider />
-      <List>
-        <ListItem >
-          <Link to={'/admin/home'} color="inherit" underline='hover'>
-            <ListItemButton >
-              <ListItemIcon>
-                <HomeIcon />
-              </ListItemIcon>
-              <ListItemText primary="Home" />
-            </ListItemButton>
-          </Link>
-        </ListItem>
-        <Divider />
-        <ListItem >
-          <Link to={'/admin/user'} color="inherit" underline='hover'>
-            <ListItemButton>
-              <ListItemIcon>
-                <PersonIcon />
-              </ListItemIcon>
-              <ListItemText primary="User"><Link href="/admin/user" underline="none">
-                {'underline="none"'}
-              </Link></ListItemText>
-            </ListItemButton>
-          </Link>
-        </ListItem>
-        <Divider />
-        <ListItem >
-          <Link to={'/admin/product'} color="inherit" underline='hover'>
-            <ListItemButton>
-              <ListItemIcon>
-                <StorefrontIcon />
-              </ListItemIcon>
-              <ListItemText primary="Inventory" />
-            </ListItemButton>
-          </Link>
-        </ListItem>
-        <Divider />
-        <ListItem >
-          <Link to={'/admin/order'} color="inherit" underline='hover'>
-            <ListItemButton>
-              <ListItemIcon>
-                <ShoppingBasketIcon />
-              </ListItemIcon>
-              <ListItemText primary="Order" />
-            </ListItemButton>
-          </Link>
-        </ListItem>
-        
-        <Divider />
-      </List>
-    </div>
-  );
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
 
-  const container = window !== undefined ? () => window().document.body : undefined;
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
+  const toggleDrawer = () => {
+    setOpen(!open);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("auth-token");
+    client.clearStore();
+    window.location.reload();
+    navigate('/');
+  }
 
   return (
-    <>
-      <Box sx={{ display: 'flex' }}>
-        <CssBaseline />
-        <AppBar
-          position="fixed"
+
+    <Box sx={{ display: 'flex' }}>
+      <CssBaseline />
+      <AppBar position="absolute" open={open} sx={{ bgcolor: "white" }}>
+        <Toolbar
           sx={{
-            width: { sm: `calc(100% - ${drawerWidth}px)` },
-            ml: { sm: `${drawerWidth}px` },
+            pr: '24px', // keep right padding when drawer closed
           }}
         >
-          <Toolbar>
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              edge="start"
-              onClick={handleDrawerToggle}
-              sx={{ mr: 2, display: { sm: 'none' } }}
-            >
-              <MenuIcon />
+          <IconButton
+            edge="start"
+            color="inherit"
+            aria-label="open drawer"
+            onClick={toggleDrawer}
+            sx={{
+              marginRight: '36px',
+              ...(open && { display: 'none' }),
+            }}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography
+            component="h1"
+            variant="h6"
+            color="inherit"
+            noWrap
+            sx={{ flexGrow: 1 }}
+          >
+
+          </Typography>
+          <Tooltip title="Open settings">
+            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }} >
+              <Avatar
+                alt={`${data?.firstname} ${data?.lastname}`}
+                src={data?.me.avatar}
+                fontSize='large'
+
+              />
             </IconButton>
-            <Typography variant="h6" noWrap component="div">
-              Admin Dashbaord
-            </Typography>
-          </Toolbar>
-        </AppBar>
-        <Box
-          component="nav"
-          sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
-          aria-label="mailbox folders"
-        >
-          {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-          <Drawer
-            container={container}
-            variant="temporary"
-            open={mobileOpen}
-            onClose={handleDrawerToggle}
-            ModalProps={{
-              keepMounted: true, // Better open performance on mobile.
+
+          </Tooltip>
+          <Menu
+            sx={{ mt: "45px" }}
+            id="menu-appbar"
+            anchorEl={anchorElUser}
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "right",
             }}
-            sx={{
-              display: { xs: 'block', sm: 'none' },
-              '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+            keepMounted
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "right",
             }}
+            open={Boolean(anchorElUser)}
+            onClose={handleCloseUserMenu}
+
+
           >
-            {drawer}
-          </Drawer>
-          <Drawer
-            variant="permanent"
-            sx={{
-              display: { xs: 'none', sm: 'block' },
-              '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
-            }}
-            open
-          >
-            {drawer}
-          </Drawer>
-        </Box>
-        <Box
-          component="main"
-          sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
+            {data && data?.me?.role === "admin" && (
+
+                <MenuItem divider={true} >
+                  <Link to={"/"} color={"secondary.main"} sx={{ display: 'flex', alignItems: "center", justifyItems: "center" }} >
+                    <ChangeCircleOutlinedIcon />
+                    <Typography textAlign="center">Customer</Typography>
+                  </Link>
+                </MenuItem>)}
+            <MenuItem onClick={handleCloseUserMenu}  >
+              <Link to={"/admin/home"}>
+                <Typography textAlign="center" >Dashboard</Typography>
+              </Link>
+            </MenuItem>
+            <MenuItem onClick={handleCloseUserMenu}>
+              <Link to={"/admin/order"}>
+                <Typography textAlign="center">Orders</Typography>
+              </Link>
+            </MenuItem>
+            <MenuItem onClick={handleCloseUserMenu}>
+              <Link to={"/admin/user"}>
+                <Typography textAlign="center">Payment</Typography>
+              </Link>
+            </MenuItem>
+            <MenuItem onClick={handleCloseUserMenu}>
+              <Link to={"/admin/product"}>
+                <Typography textAlign="center">Inventory</Typography>
+              </Link>
+            </MenuItem>
+            <Divider />
+            <MenuItem onClick={handleLogout}>
+              <Typography textAlign="center">Logout</Typography>
+            </MenuItem>
+          </Menu>
+        </Toolbar>
+      </AppBar>
+      <Drawer variant="permanent" open={open} >
+        <Toolbar
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'flex-end',
+            px: [1],
+          }}
         >
-          <Toolbar>
-              <Outlet/>
-          </Toolbar>
-        </Box>
+          <IconButton onClick={toggleDrawer} sx={{
+            color: "#3A85AB",
+            ":hover": {
+              color: "#8AD8FF"
+            }
+          }}>
+            <ChevronLeftIcon />
+          </IconButton>
+        </Toolbar>
+        <Divider />
+        <List component="nav" >
+          {mainListItems}
+          <Divider sx={{ my: 1, bgcolor: 'primary.dark'}}  />
+          {secondaryListItems}
+        </List>
+      </Drawer>
+      <Box
+        component="main"
+        sx={{
+          backgroundColor: (theme) =>
+            theme.palette.mode === 'light'
+              ? theme.palette.grey[100]
+              : theme.palette.grey[900],
+          flexGrow: 1,
+          height: '100vh',
+          overflow: 'auto',
+        }}
+      >
+        <Toolbar />
+        <Outlet />
+
       </Box>
-    </>
+    </Box>
+
   );
 }
 
-Sidebar.propTypes = {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
-  window: PropTypes.func,
-};
-
-export default Sidebar;
+export default function Dashboard() {
+  return <DashboardContent />;
+}

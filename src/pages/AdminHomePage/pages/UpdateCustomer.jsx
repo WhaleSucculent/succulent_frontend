@@ -26,6 +26,7 @@ const style = {
 
 function UpdateCustomer({ customer }) {
   const [status, setStatus] = useState(customer.status);
+  // const [firstName, setFirstName] = useState(customer.firstName);
   const [role, setRole] = useState(customer.role);
   const [open, setOpen] = useState(false);
   
@@ -37,9 +38,6 @@ function UpdateCustomer({ customer }) {
   const onSubmit = (e) => {
     e.preventDefault();
     editCustomer(status, role);
-    console.log("status: " + status);
-    console.log("role: " + role);
-
   };
 
   

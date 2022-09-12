@@ -2,9 +2,6 @@ import { grid, styled } from '@mui/system';
 import img1 from "../../assets/images/1.jpg"
 import Typography from "@mui/material/Typography";
 function CollectionMain() {
-   
-
-
    const Container = styled("div")(() =>({
       backgroundColor: '#7e7d82',
       display: 'flex',

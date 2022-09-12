@@ -24,6 +24,33 @@ import { useEffect, useState } from 'react';
 import { useLazyQuery, useQuery } from '@apollo/client';
 import { GET_ADMIN_PRODUCTS } from 'queries/productQueries';
 import AddBoxIcon from '@mui/icons-material/AddBox';
+import { motion } from 'framer-motion';
+
+const variants = {
+  open: {
+    transition: { staggerChildren: 0.07, delayChildren: 0.2 }
+  },
+  closed: {
+    transition: { staggerChildren: 0.05, staggerDirection: -1 }
+  }
+};
+
+const liVariants = {
+  open: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      y: { stiffness: 1000, velocity: -100 }
+    }
+  },
+  closed: {
+    y: 50,
+    opacity: 0,
+    transition: {
+      y: { stiffness: 1000 }
+    }
+  }
+};
 
 
 function descendingComparator(a, b, orderBy) {
@@ -106,8 +133,8 @@ function EnhancedTableHead(props) {
 
   return (
     <TableHead>
-      <TableRow>
-        <TableCell padding="checkbox">
+      <TableRow component={motion.ul} variants={variants}>
+        <TableCell padding="checkbox" component={motion.li} variants={liVariants} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
           <Checkbox
             color="primary"
             indeterminate={numSelected > 0 && numSelected < rowCount}
@@ -225,8 +252,6 @@ const AdminProductPage = () => {
 
   // use the products query from graphql
   const { loading, error, data } = useQuery(GET_ADMIN_PRODUCTS);
-
-  console.log(data)
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');

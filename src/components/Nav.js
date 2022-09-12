@@ -1,7 +1,5 @@
-import * as React from "react";
 import { styled } from "@mui/material/styles";
 import {
-  AppBar,
   Box,
   Toolbar,
   IconButton,
@@ -15,12 +13,15 @@ import {
   InputBase,
   Badge,
   Divider,
+  Drawer,
+  List,
+  CssBaseline,
+  AppBar,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import AdbIcon from "@mui/icons-material/Adb";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logoimg } from "../assets/images/whale.png"
 import Link from "./Link";
 import { useMeQuery } from "queries/utilQueries";
@@ -29,23 +30,54 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { client } from "graphql/apolloClient";
 import ChangeCircleOutlinedIcon from '@mui/icons-material/ChangeCircleOutlined';
 import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
+import { AnimateSharedLayout, motion } from "framer-motion";
+import React, { useState } from "react";
+import './Nav.css';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
-const pages = ["succulents", "growlights", "soil/rocks", "pots", "information"];
-const settings = [<Link to='/profile'>Profile</Link>, "Account", <Link to='myorders'>Orders</Link>];
+import HomeIcon from '@mui/icons-material/Home';
+import LightbulbIcon from '@mui/icons-material/Lightbulb';
+import GrassIcon from '@mui/icons-material/Grass';
+import ContactPageIcon from '@mui/icons-material/ContactPage';
+import LandscapeIcon from '@mui/icons-material/Landscape';
+import RiceBowlIcon from '@mui/icons-material/RiceBowl';
+import { useTheme } from "@emotion/react";
+import { clearCart } from "pages/CheckoutPage/features/cartSlice";
 
-const ResponsiveAppBar = () => {
+const pages = ["Home", "Succulents", "Growlights", "Soil/Rocks", "Pots", "Contact"];
+const pageIcons = [<HomeIcon />, <GrassIcon />, <LightbulbIcon />, <LandscapeIcon />, <RiceBowlIcon />, <ContactPageIcon />];
+const settings = ["Profile", "Account", "Orders"];
+const drawerWidth = 240;
+
+
+const DrawerHeader = styled('div')(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  padding: theme.spacing(0, 1),
+  // necessary for content to be below app bar
+  ...theme.mixins.toolbar,
+  justifyContent: 'flex-end',
+}));
+
+const ResponsiveAppBar = (props) => {
   const { data, loading, error } = useMeQuery();
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);
   const { cartTotalQty } = useSelector(state => state.cart);
+  const [selectedMenuItem, setSelectedMenuItem] = useState(0);
+  const { window } = props;
+  const theme = useTheme();
+  const [open, setOpen] = useState(false);
 
   const navigate = useNavigate();
-  const location = useLocation();
+  const dispatch = useDispatch();
 
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -61,8 +93,11 @@ const ResponsiveAppBar = () => {
   const handleLogout = () => {
     localStorage.removeItem("auth-token");
     client.clearStore();
-    window.location.reload();
-    navigate('/');
+    dispatch(clearCart())
+    setTimeout(function () {
+      window.location.reload(true);
+    }, 500);
+    navigate(0);
   }
   const Search = styled("div")(({ theme }) => ({
     position: "relative",
@@ -111,29 +146,34 @@ const ResponsiveAppBar = () => {
     },
   }));
 
+
   if (loading) return <div>Lo</div>
   if (error) return <div>Lo</div>
 
 
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
+
   return (
-    <>
-      <AppBar position="static" style={{ background: "white" }}>
+    <Box sx={{ display: 'flex' }}>
+      <CssBaseline />
+      <AppBar position="relative" style={{ background: "white", zIndex: 90 }}>
         <Container maxWidth="xl">
-          <Toolbar disableGutters>
+          <Toolbar>
             {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
             <Link to="/">
-              <Typography
-                variant="h6"
-                noWrap
-                component="a"
+              <Box
                 sx={{
                   mr: 2,
-                  display: { xs: "none", md: "flex" },
-                  fontFamily: "monospace",
-                  fontWeight: 700,
-                  letterSpacing: ".3rem",
-                  color: "black",
-                  textDecoration: "none",
+                  ml: 2,
+                  pl: 2,
+                  display: { xs: "none", md: "flex", alignItems: "center" },
+                  color: "primary.main",
                 }}
               >
                 <img
@@ -142,90 +182,65 @@ const ResponsiveAppBar = () => {
                   height={55}
                   alt={"Whale Succulent Logo"}
                 />
-                <p>Whale Succulent</p>
-              </Typography>
+                <Typography sx={{ fontSize: "1.5rem" }}>WHALE SUCCULENT</Typography>
+              </Box>
             </Link>
 
-            <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+            {/* Hambuger Menu show when < md */}
+            <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }} component={motion.div} whileHover={{ scale: 1.2 }}>
               <IconButton
                 size="large"
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
-                onClick={handleOpenNavMenu}
+                onClick={handleDrawerOpen}
               //   color="inherit"
               >
                 <MenuIcon />
               </IconButton>
-              <Menu
-                id="menu-appbar"
-                color="black"
-                anchorEl={anchorElNav}
-                anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "left",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "left",
-                }}
-                open={Boolean(anchorElNav)}
-                onClose={handleCloseNavMenu}
-                sx={{
-                  display: { xs: "block", md: "none" },
-                }}
-              >
-                {pages.map((page) => (
-                  <MenuItem
-                    key={page}
-                    onClick={handleCloseNavMenu}
-                    style={{ color: "black" }}
-                  >
-                    <Link to={`${page}`} underline={"hover"}>
-                      <Typography textAlign="center">{page}</Typography>
-                    </Link>
-                  </MenuItem>
-                ))}
-              </Menu>
             </Box>
-            <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+            
+            {/* Logo when < md, >xs */}
             <Typography
-              variant="h5"
               noWrap
               component="a"
               href=""
               sx={{
                 mr: 2,
-                display: { xs: "flex", md: "none" },
+                display: { xs: "none", sm: "flex", md: "none" },
                 flexGrow: 1,
-                fontFamily: "monospace",
+                fontFamily: "Montserrat",
                 fontWeight: 700,
-                letterSpacing: ".3rem",
-                color: "inherit",
+                color: "primary.main",
                 textDecoration: "none",
               }}
             >
-              LOGO
+              Whale
             </Typography>
-            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+
+            {/* Top Menu when md */}
+            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }} >
               {pages.map((page) => (
-                <Button
-                  key={page}
-                  onClick={handleCloseNavMenu}
-                  sx={{
-                    my: 2,
-                    color: "white",
-                    display: "block",
-                    color: "#000000",
-                  }}
-                >
-                  <Link to={`${page}`} underline={"hover"} color={"black"}>
-                    {page}
-                  </Link>
-                </Button>
+                <Box component={motion.div} whileHover={{ scale: 1.2 }} key={page}>
+                  <Button
+                    key={page}
+                    onClick={handleCloseNavMenu}
+                    sx={{
+                      my: 2,
+                      color: "white",
+                      display: "block",
+                      color: "#000000",
+                    }}
+                  >
+                    <Link to={`${page}`} color={"text.primary"}>
+                      {page}
+                    </Link>
+                  </Button>
+                </Box>
               ))}
             </Box>
+
+            {/* Seach Box */}
             <Box>
               <Search>
                 <SearchIconWrapper>
@@ -237,7 +252,9 @@ const ResponsiveAppBar = () => {
                 />
               </Search>
             </Box>
-            <Box>
+
+            {/* Shopping Cart button */}
+            <Box component={motion.div} whileHover={{ scale: 1.2 }}>
               <Button
                 onClick={handleCloseNavMenu}
                 sx={{
@@ -248,89 +265,140 @@ const ResponsiveAppBar = () => {
                 }}
               >
                 <Badge badgeContent={cartTotalQty} color="error">
-                  <Link to={"cart"} underline={"hover"} >
-                    <ShoppingCartOutlinedIcon 
-                    fontSize="large"/>
+                  <Link to={"cart"} >
+                    <ShoppingCartOutlinedIcon fontSize="large" />
                   </Link>
                 </Badge>
               </Button>
             </Box>
 
-
+            {/* Avatar and The Menu under it */}
             <Box sx={{ flexGrow: 0 }}>
+              <Box component={motion.div} whileHover={{ scale: 1.2 }}>
+                <Button
+                  onClick={handleCloseNavMenu}
+                  sx={{
+                    my: 2,
+                    color: "white",
+                    display: "block",
+                    color: "#000000",
+                  }}
+                >
+                  {!data?.me ? (<Link to={"login"}>
+                    <LoginOutlinedIcon fontSize="large" />
 
-            <Button
-                onClick={handleCloseNavMenu}
-                sx={{
-                  my: 2,
-                  color: "white",
-                  display: "block",
-                  color: "#000000",
-                }}
-              >
-              {console.log(data)}
-              {console.log(data.email)}
-              {!data?.me ? (<Link to={"login"} underline={"hover"} color={"black"}>
-                <LoginOutlinedIcon fontSize="large"/>
-               
-              </Link>) : (<Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }} >
-                  <Avatar
-                    alt={`${data.firstname} ${data.lastname}`}
-                    src={data.avatar}
-                    fontSize='large'
-                  
-                  />
-                </IconButton>
-              </Tooltip>)}
-              </Button>
+                  </Link>) : (<Tooltip title="Open settings">
+                      <Avatar
+                        alt={`${data?.me.firstname} ${data?.me.lastname}`}
+                        src={data?.me.avatar}
+                        fontSize='large'
+                        onClick={handleOpenUserMenu} 
+                        sx={{ p: 0 }}
+                      />
+                  </Tooltip>)}
+                </Button>
+              </Box>
 
-              <Menu
-                sx={{ mt: "45px" }}
-                id="menu-appbar"
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
-              >
-                {console.log(location)}
-                {console.log(data.me)}
-                {data && data?.me?.role === "admin" && (
-                  <>
-                    <MenuItem >
-                      <Link to={"admin/product"} underline={"hover"} color={"black"} sx={{ display: 'flex', alignItems: "center", justifyItems: "center" }} >
+              <Box sx={{ flexGrow: 0 }}>
+
+                <Menu
+                  sx={{ mt: "50px" }}
+                  id="menu-appbar"
+                  anchorEl={anchorElUser}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  open={Boolean(anchorElUser)}
+                  onClose={handleCloseUserMenu}
+
+                >
+                  {data && data?.me?.role === "admin" && (
+                    <MenuItem divider={true}>
+                      <Link to={"admin/product"} color={"primary"} sx={{ display: 'flex', alignItems: "center", justifyItems: "center" }} >
                         <ChangeCircleOutlinedIcon />
                         <Typography textAlign="center"  >Admin</Typography>
                       </Link>
-                    </MenuItem>
-                    <Divider />
-                  </>)}
-
-                {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Link to={`${setting}`.toLowerCase()} underline={"hover"}>
-                      <Typography textAlign="center">{setting}</Typography>
+                    </MenuItem>)}
+                  <MenuItem onClick={handleCloseUserMenu}>
+                    <Link to={"profile/myprofile"}>
+                      <Typography textAlign="center">Profile</Typography>
                     </Link>
                   </MenuItem>
-                ))}
-                <Divider />
-                <MenuItem onClick={handleLogout}>
-                  <Typography textAlign="center">Logout</Typography>
-                </MenuItem>
-              </Menu>
+                  <MenuItem onClick={handleCloseUserMenu}>
+                    <Link to={"profile/myorders"}>
+                      <Typography textAlign="center">Orders</Typography>
+                    </Link>
+                  </MenuItem>
+                  <MenuItem onClick={handleCloseUserMenu}>
+                    <Link to={"profile/payments"}>
+                      <Typography textAlign="center">Payment</Typography>
+                    </Link>
+                  </MenuItem>
+                  <Divider />
+                  <MenuItem onClick={handleLogout}>
+                    <Typography textAlign="center">Logout</Typography>
+                  </MenuItem>
+                </Menu>
+              </Box>
             </Box>
           </Toolbar>
         </Container>
       </AppBar>
-    </>
+      <Drawer
+        sx={{
+          width: 0,
+          flexShrink: 0,
+          overflow: "hidden",
+          '& .MuiDrawer-paper': {
+            width: drawerWidth,
+            boxSizing: 'border-box',
+
+            backgroundColor: 'background.paper',
+          },
+          zIndex: 99,
+        }}
+        variant="persistent"
+        anchor="left"
+        open={open}
+      >
+        <DrawerHeader>
+          <IconButton onClick={handleDrawerClose}>
+            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+          </IconButton>
+        </DrawerHeader>
+        <Divider />
+        <List>
+          {pages.map((text, index) => (
+            <Link to={`${text}`} key={text}>
+              <ListItem key={text} disablePadding >
+                <ListItemButton key={text} sx={{
+                  '& .MuiListItemIcon-root': {
+                    color: "black",
+                    ":hover": {
+                      color: "#3A85AB",
+                    }
+
+                  }
+                }}>
+                  <ListItemIcon>
+                    {pageIcons[index]}
+                  </ListItemIcon>
+                  <ListItemText primary={text} sx={{
+                    color: "black", ':hover': { color: "#3A85AB" }
+                  }} />
+                </ListItemButton>
+              </ListItem>
+            </Link>
+          ))}
+        </List>
+      </Drawer>
+    </Box>
   );
 };
 export default ResponsiveAppBar;

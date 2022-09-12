@@ -8,11 +8,12 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import ErrorPage from "pages/ErrorPage/ErrorPage";
 // import JustTesting from './JustTesting';
 
 function CollectionSidebar({ stockCheck, handleChange, priceMin, priceMax, priceSubmit, priceMinSet, priceMaxSet }) {
   return (
-    <Stack direction="column" alignItems="center" justifyContent="center" sx={{ marginTop: '30px', marginLeft: '15px' }}>
+    <Stack direction={{ xs: 'column', sm: 'row', md:'row' }} spacing={2} alignItems="center" justifyContent="center" sx={{ marginTop: '30px', marginLeft: '15px' }}>
       <TableContainer component={Paper} >
         <Table>
           <TableHead >

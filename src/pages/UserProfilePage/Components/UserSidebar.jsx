@@ -31,10 +31,21 @@ function UserSidebar(props) {
   };
 
   const drawer = (
-    <div>
-      <Toolbar />
+    <Box>
+      <CssBaseline />
+
+      <Drawer
+        variant="permanent"
+        sx={{
+          width: drawerWidth,
+          flexShrink: 0,
+          [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' },
+          zIndex: (theme) => theme.zIndex.drawer -1
+        }}
+      >
+        <Toolbar />
       <Divider />
-      <List>
+      <List sx={{paddingTop:'50px'}}>
         <ListItem >
           <Link to={'/profile/myprofile'} color="inherit" underline='hover'>
             <ListItemButton >
@@ -61,7 +72,7 @@ function UserSidebar(props) {
         </ListItem>
         <Divider />
         <ListItem >
-          <Link to={'/admin/product'} color="inherit" underline='hover'>
+          <Link to={'/profile/address'} color="inherit" underline='hover'>
             <ListItemButton>
               <ListItemIcon>
               <BusinessIcon/>
@@ -72,7 +83,7 @@ function UserSidebar(props) {
         </ListItem>
         <Divider />
         <ListItem >
-          <Link to={'/admin/order'} color="inherit" underline='hover'>
+          <Link to={'/profile/payments'} color="inherit" underline='hover'>
             <ListItemButton>
               <ListItemIcon>
               <PaymentIcon/>
@@ -83,8 +94,10 @@ function UserSidebar(props) {
         </ListItem>
         <Divider />
         <Divider />
+  
       </List>
-    </div>
+      </Drawer>
+    </Box>
   );
 
   const container = window !== undefined ? () => window().document.body : undefined;

@@ -141,8 +141,8 @@ export const RegisterPage = () => {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link to={"/login"} variant="body2">
-                  Already have an account? Sign in
+                <Link to={"/login"} variant="body2" >
+                  Already have an account? <Typography variant="body2" color="#3A85AB">Sign in!</Typography>
                 </Link>
               </Grid>
             </Grid>

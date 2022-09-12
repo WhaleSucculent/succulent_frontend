@@ -17,7 +17,7 @@ const GET_PRODUCTS = gql`
         price
         postDate
       }
-      stock{
+      stocks{
         total
       }
       colors
@@ -53,7 +53,7 @@ const GET_PRODUCT = gql`
         price
         postDate
       }
-      stock{
+      stocks{
         total
       }
       colors

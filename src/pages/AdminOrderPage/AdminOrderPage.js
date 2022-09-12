@@ -22,6 +22,7 @@ import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector
 import Check from '@mui/icons-material/Check';
 import PropTypes from 'prop-types';
 import img1 from '../../assets/images/1.jpg'
+import ErrorPage from "pages/ErrorPage/ErrorPage";
 
 
 const steps=[
@@ -237,9 +238,7 @@ const ColorlibStepIconRoot = styled('div')(({ theme, ownerState }) => ({
 const AdminOrderPage = () => {
   const {loading, error, data} = useQuery(GET_CUSTOMER, {variables: {id: "62a90f3e88672f1dbd12c32f"}});
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Something went wrong</p>;
-  console.log("Customers data");
-  console.log(data);
+  if (error) return <ErrorPage/>;
   return (
     <div>
       <Container>

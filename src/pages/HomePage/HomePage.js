@@ -7,8 +7,8 @@ import Box from "@mui/material/Box";
 import ProductCard from "components/ProductCard";
 import { Container } from "@mui/system";
 import Grid from '@mui/material/Grid';
-import { Height } from "@mui/icons-material";
-import { CircularProgress, Divider, Typography } from "@mui/material";
+import { Height, Margin } from "@mui/icons-material";
+import { CircularProgress, Divider, Toolbar, Typography, useMediaQuery } from "@mui/material";
 import ButtonBase from '@mui/material/ButtonBase';
 import img from "assets/images/map.jpg";
 import { Link } from "react-router-dom";
@@ -17,6 +17,32 @@ import Loading from "components/Loading";
 import SlideShow from "components/SlideShow";
 import Banner from "components/Banner";
 import Category from "components/Category";
+import { motion } from "framer-motion";
+import OnScrollAnimationBox from "components/OnScrollAnimationBox";
+import { CartButton } from "components/CartButton/CartButton";
+import Footer from "components/Footer";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper";
+import Title from "pages/AdminHomePage/components/Title";
+import { useTheme } from "@emotion/react";
+import ErrorPage from "pages/ErrorPage/ErrorPage";
+import Meta from "components/Meta";
+
+const cardVariants = {
+  offscreen: {
+    y: 200,
+    opacity: 0
+  },
+  onscreen: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: "spring",
+      bounce: 0.3,
+      duration: 0.6
+    }
+  }
+};
 
 function Item(props) {
   const { sx, ...other } = props;
@@ -49,67 +75,87 @@ Item.propTypes = {
     PropTypes.object,
   ]),
 };
+const transition = { duration: 0.5, ease: [0.43, 0.13, 0.23, 0.96] };
+const thumbnailVariants = {
+  initial: { scale: 0.9, opacity: 0 },
+  enter: { scale: 1, opacity: 1, transition },
+  exit: {
+    scale: 0.5,
+    opacity: 0,
+    transition: { duration: 1.5, ...transition }
+  }
+};
 
 const HomePage = () => {
+  const theme = useTheme();
+  const downsm = useMediaQuery(theme.breakpoints.down('sm'));
+  const betweensmandmd = useMediaQuery(theme.breakpoints.between('sm', 'md'));
+  const betweenmdandlg = useMediaQuery(theme.breakpoints.between('md', 'lg'));
+  const betweenlgandxl = useMediaQuery(theme.breakpoints.between('lg', 'xl'));
+  const upxl = useMediaQuery(theme.breakpoints.up('xl'));
+
+
   const { loading, error, data } = useQuery(GET_PRODUCTS);
-  console.log(data);
   if (loading) return <Loading />
-  if (error) return <p>Something went wrong</p>;
+  if (error) return <ErrorPage/>
 
   return (
-    <div>
-       <Banner/>
+    <Box>
+      <Meta/>
+      {/* <Banner /> */}
       <Carousel />
-     
-      
-      <Promotion />
-      <Category/>
-     
-      <Box padding={'20px'}>
-        <Typography fontWeight={300} variant="h5">
-        Featured Products
-          <Divider/>
-         
-
-        </Typography>
-      </Box>
-      <Container>
-        <Box sx={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", Height: "20px" }}>
-          {!loading &&
-            !error &&
-            data.products.slice(0, 3).map((product) => (
-              <Grid container spacing={2} columns={12} key={product.id}>
-                <Item xs={4} lg={3}>
-                  <ProductCard key={product.id} product={product} />
-                </Item>
-              </Grid> 
-            ))}
+      {/* <OnScrollAnimationBox> */}
+      <OnScrollAnimationBox>
+        <Box sx={{ display: "flex", justifyContent: "center", width: "100%", flex: 1 }}>
+          <Title style>
+            Featured Products
+          </Title>
         </Box>
+      </OnScrollAnimationBox>
 
-      </Container>
-      <Box padding={'20px'}>
-        <Typography fontWeight={300} variant="h6">
-        
-        Featured Categories
-          <Divider/>
-       
-        </Typography>
-      </Box>
-         
-      <Container>
-        <Box sx={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gridTemplateRows: "repeat(1, minmax(1, 2))", Height: "20px" }}>
+      <OnScrollAnimationBox>
+        <Swiper slidesPerView={downsm ? 1 : betweensmandmd ? 2 : betweenmdandlg ? 3 : betweenlgandxl ? 4 : 5} modules={[Pagination, Autoplay]} >
+          {data.products.slice(1, 7).map(product => (
+            <SwiperSlide style={{ paddingBottom: "2px" }} key={product.id}>
+              <ProductCard key={product.id} product={product} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </OnScrollAnimationBox>
+      <OnScrollAnimationBox>
+        <SlideShow />
+      </OnScrollAnimationBox>
+        <Category />
+      {/* <Container >
+        <Box sx={{ display: "grid", gridTemplateColumns: "repeat(8, 1fr)", Height: "20px" }}>
           {!loading &&
             !error &&
-            data.products.slice(3, 6).map((product) => (
-              <Grid container spacing={2} columns={12} key={product.id}>
-                <Item xs={4} lg={3}>
+            data.products.slice(0, 8).map((product) => (
+              <Grid container spacing={2} columns={12} key={product.id} >
+                <Item xs={4} lg={3} >
                   <ProductCard key={product.id} product={product} />
                 </Item>
               </Grid>
             ))}
         </Box>
-      </Container>
- 
+      </Container> */}
+      {/* </OnScrollAnimationBox> */}
+      <OnScrollAnimationBox>
+        <Box sx={{ display: "flex", justifyContent: "center", width: "100%", flex: 1 }}>
+          <Title>
+            Featured Categories
+          </Title>
+        </Box>
+      </OnScrollAnimationBox>
+      <OnScrollAnimationBox>
+        <Swiper slidesPerView={downsm ? 1 : betweensmandmd ? 2 : betweenmdandlg ? 3 : betweenlgandxl ? 4 : 5} modules={[Pagination, Autoplay]} >
+          {data.products.slice(3, 8).map(product => (
+            <SwiperSlide style={{ paddingBottom: "2px" }} key={product.id}> 
+              <ProductCard key={product.id} product={product} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </OnScrollAnimationBox>
       {/* <Box padding={7}>
         <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'flex-start' }}>
           <img src={img} height={200} width={300} />
@@ -132,28 +178,30 @@ const HomePage = () => {
 
 
       </Box> */}
-       <SlideShow/>
-       <br></br>
-       <Box padding={'20px'}>
-        <Typography fontWeight={300} variant="h6">
-        New Collections
-          <Divider/>
-        </Typography>
-      </Box>
-       <Container>
-        <Box sx={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", Height: "20px" }}>
-          {!loading &&
-            !error &&
-            data.products.slice(0, 3).map((product) => (
-              <Grid container spacing={2} columns={12} key={product.id}>
-                <Item xs={4} lg={3}>
-                  <ProductCard key={product.id} product={product} />
-                </Item>
-              </Grid> 
-            ))}
+
+
+      <OnScrollAnimationBox>
+        <Box component={motion.div} initial="offscreen" whileInView="onscreen" viewport={{ once: true, amount: 0.8 }} variants={cardVariants}>
+          <Box sx={{ display: "flex", justifyContent: "center", width: "100%", flex: 1 }}>
+            <Title>
+              New Collections
+            </Title>
+          </Box>
         </Box>
-      </Container>
-    </div>
+      </OnScrollAnimationBox>
+      <OnScrollAnimationBox>
+        <Swiper slidesPerView={downsm ? 1 : betweensmandmd ? 2 : betweenmdandlg ? 3 : betweenlgandxl ? 4 : 5} modules={[Pagination, Autoplay]} >
+          {data.products.slice(2, 7).map(product => (
+            <SwiperSlide style={{ paddingBottom: "2px" }} key={product.id}>
+              <ProductCard key={product.id} product={product} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </OnScrollAnimationBox>
+
+      <Promotion />
+      <Footer />
+    </Box >
 
   );
 };

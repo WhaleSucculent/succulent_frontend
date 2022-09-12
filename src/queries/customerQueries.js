@@ -9,6 +9,7 @@ const GET_CUSTOMERS = gql`
         lastName
         status
         role
+        avatar
         orders{
            id
            shippingAddress{
@@ -42,6 +43,7 @@ const GET_CUSTOMERS = gql`
          lastName
        }
  creditCards{
+   id
    cardNo
    holderName
    expirationDate
@@ -56,6 +58,7 @@ const GET_CUSTOMER = gql`
          email
          firstName
          lastName
+         avatar
          orders{
             id
             shippingAddress{
@@ -108,10 +111,26 @@ const GET_ME = gql`
       lastName
       role
       phone
+      avatar
       orders{
         id
         orderDate
         orderStatus
+        shippingAddress{
+          firstName
+          lastName
+          apartment
+          city
+          country
+          state
+          zipcode
+          address
+        }
+        billingAddress{
+          firstName
+          lastName
+          city
+        }
         productsInCart{
           qty
           price
@@ -120,17 +139,13 @@ const GET_ME = gql`
             description
           }
         }
-        shippingAddress{
-          firstName
-          lastName
-          apartment
-          city
-          country
-          state
-        }
-        
       }
-      
+      creditCards{
+        id
+        cardNo
+        holderName
+        expirationDate
+      }
     }
 }`
 

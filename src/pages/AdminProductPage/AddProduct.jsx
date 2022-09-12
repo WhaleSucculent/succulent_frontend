@@ -1,16 +1,19 @@
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import AddIcon from '@mui/icons-material/Add';
-import { useState } from "react";
+import { createContext, useState } from "react";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import { useMutation } from "@apollo/client";
 import { ADD_PRODUCT } from "../../mutations/productMutations";
 import { GET_PRODUCTS } from "../../queries/productQueries";
 import Box from "@mui/material/Box";
-import { Paper } from "@mui/material";
+import { CircularProgress, Paper } from "@mui/material";
 import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
+import FileUploader from "components/FileUploader";
+
+export const FileUploaderContext = createContext();
 
 const style = {
   position: "absolute",
@@ -22,8 +25,8 @@ const style = {
   border: "2px solid #000",
   boxShadow: 24,
   p: 4,
-  height:"90vh",
-  overflowY:"scroll"
+  height: "90vh",
+  overflowY: "scroll"
 };
 let today = new Date();
 var dd = String(today.getDate()).padStart(2, '0');
@@ -43,6 +46,7 @@ function AddProduct() {
   const [height, setHeight] = useState("");
   const [radius, setRadius] = useState("");
   const [quantity, setQuantity] = useState(0);
+  const [imageLink, setImageLink] = useState("");
 
   const [category, setCategory] = useState("");
   const [rare, setRare] = useState(false);
@@ -50,76 +54,97 @@ function AddProduct() {
   const [colors, setColors] = useState([]);
   const [imageIds, setImageIds] = useState([]);
   const [open, setOpen] = useState(false);
-  
-  const [addProduct] = useMutation(ADD_PRODUCT, {
+
+  const [addProduct, {loading, error}] = useMutation(ADD_PRODUCT, {
     variables: {
       name,
       description,
-      priceList:[{price:parseFloat(price),postDate:postDate}],
+      priceList: [{ price: parseFloat(price), postDate: postDate }],
       postDate,
-      size:{width:width, height:height, length:length, radius:radius},
+      size: { width: width, height: height, length: length, radius: radius },
       category,
       rare,
       productStatus,
       colors,
       imageIds,
-      quantity:parseInt(quantity),
+      quantity: parseInt(quantity),
+      imageLinks: [imageLink],
+      images: [{ name: name, category: category, imageLink: imageLink  }]
     },
-   update(cache, {data: {addProduct}}) {
+    update(cache, { data: { addProduct } }) {
       const { products } = cache.readQuery({
         query: GET_PRODUCTS,
       });
       cache.writeQuery({
         query: GET_PRODUCTS,
-        data:{
+        data: {
           products: [...products, addProduct],
         },
       });
-   },
+    },
+    onCompleted: () => {
+      setName("");
+      setDescription("");
+      setPrice("");
+      setPriceList([]);
+      setPostDate(today);
+      setSize({});
+      setLength("");
+      setWidth("");
+      setHeight("");
+      setRadius("");
+      setQuantity(0);
+      setImageLink("");
+      setCategory("");
+      setRare(false);
+      setProductStatus("");
+      setColors([]);
+      setImageIds([]);
+      setOpen(false)
+    }
   });
 
   const onSubmit = (e) => {
     e.preventDefault();
-    addProduct(name, description, priceList, postDate, size, category, rare, productStatus, colors, imageIds);
-    console.log(postDate);
+    addProduct(name, description, priceList, postDate, size, category, rare, productStatus, colors, imageIds, imageLink);
   }
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
 
   return (
-    <div style={{ padding:'1.5em'}}>
-      <Button onClick={handleOpen} color="primary">
-        <Stack direction="row" justifyContent="center" alignItems="center">
-          <AddIcon />
-          <div>Add Product</div>
+      <Box style={{ padding: '1.5em' }}>
+        <Button onClick={handleOpen}  >
+          <Stack direction="row" justifyContent="center" alignItems="center" color={"primary.dark"} fontWeight={"600"} fontSize={"1rem"}>
+            <AddIcon />
+            Add Product
           </Stack>
-      </Button>
+        </Button>
 
-      <div>
-      <Modal
-          aria-labelledby="transition-modal-title"
-          aria-describedby="transition-modal-description"
-          open={open}
-          onClose={handleClose}
-          closeAfterTransition
-          BackdropProps={{
-            timeout: 500,
-          }}
-        >
-          <Fade in={open}>
-            <Box sx={style}>
-              <Typography
-                id="transition-modal-title"
-                variant="h6"
-                component="h2"
-              >
-                Add a new Product
-              </Typography>
-              <div style={{overflow:'scroll'}} id="transition-modal-description">
-                <form onSubmit={onSubmit}>
-                  <Stack direction="column" sx={{ marginTop: "1.5em" }} spacing={2}>
-                    <TextField
+        <Box>
+          <Modal
+            aria-labelledby="transition-modal-title"
+            aria-describedby="transition-modal-description"
+            open={open}
+            onClose={handleClose}
+            closeAfterTransition
+            BackdropProps={{
+              timeout: 500,
+            }}
+          >
+            <Fade in={open}>
+              <Box sx={style}>
+                <Typography
+                  id="transition-modal-title"
+                  variant="h6"
+                  component="h2"
+                >
+                  Add a new Product
+                </Typography>
+                <Box style={{ overflow: 'scroll' }} id="transition-modal-description">
+                  <form onSubmit={onSubmit}>
+                    <Stack direction="column" sx={{ marginTop: "1.5em" }} spacing={2}>
+                      <TextField
                         id="name"
                         label="Name"
                         value={name}
@@ -141,7 +166,7 @@ function AddProduct() {
                         onChange={(e) => setPrice(e.target.value)}
                         variant="outlined"
                       />
-                       <TextField
+                      <TextField
                         id="quantity"
                         label="Quantity"
                         value={quantity}
@@ -150,37 +175,37 @@ function AddProduct() {
                       />
                       <Typography variant="body2" component="p">Enter the dimension Information</Typography>
                       <Stack direction="row">
-                      <TextField
-                        id="length"
-                        label="Length"
-                        value={length}
-                        onChange={(e) => setLength(e.target.value)}
-                        variant="outlined"
-                      />
-                      <TextField
-                        id="width"
-                        label="Width"
-                        value={width}
-                        onChange={(e) => setWidth(e.target.value)}
-                        variant="outlined"
-                    />
+                        <TextField
+                          id="length"
+                          label="Length"
+                          value={length}
+                          onChange={(e) => setLength(e.target.value)}
+                          variant="outlined"
+                        />
+                        <TextField
+                          id="width"
+                          label="Width"
+                          value={width}
+                          onChange={(e) => setWidth(e.target.value)}
+                          variant="outlined"
+                        />
                       </Stack>
 
                       <Stack direction="row">
-                      <TextField
-                        id="height"
-                        label="Height"
-                        value={height}
-                        onChange={(e) => setHeight(e.target.value)}
-                        variant="outlined"
-                      />
-                      <TextField
-                        id="radius"
-                        label="Radius"
-                        value={radius}
-                        onChange={(e) => setRadius(e.target.value)}
-                        variant="outlined"
-                    />
+                        <TextField
+                          id="height"
+                          label="Height"
+                          value={height}
+                          onChange={(e) => setHeight(e.target.value)}
+                          variant="outlined"
+                        />
+                        <TextField
+                          id="radius"
+                          label="Radius"
+                          value={radius}
+                          onChange={(e) => setRadius(e.target.value)}
+                          variant="outlined"
+                        />
                       </Stack>
                       <TextField
                         id="category"
@@ -188,48 +213,42 @@ function AddProduct() {
                         value={category}
                         onChange={(e) => setCategory(e.target.value)}
                         variant="outlined"
-                    />
-                    <TextField
+                      />
+                      <TextField
                         id="rare"
                         label="Rare"
                         value={rare}
                         onChange={(e) => setRare(e.target.value)}
                         variant="outlined"
-                    />
-                    <TextField
+                      />
+                      <TextField
                         id="productStatus"
                         label="Product Status"
                         value={productStatus}
                         onChange={(e) => setProductStatus(e.target.value)}
-                        variant="outlined"
-                    />
+                        variantn="outlined"
+                      />
 
-                    <TextField
+                      <TextField
                         id="colors"
                         label="Colors"
                         value={colors}
                         onChange={(e) => setColors(e.target.value)}
                         variant="outlined"
-                    />
-                    <Button
-                      variant="contained"
-                      component="label"
-                    >
-                      Upload Image
-                      <input
-                        type="file"
-                        hidden
                       />
-                    </Button>
-                    <Button variant="contained" type="submit">Add Product</Button>
-                  </Stack>
-                </form>
-              </div>
-            </Box>
-          </Fade>
-        </Modal>
-      </div>
-    </div>
+                      <FileUploaderContext.Provider value={[imageLink, setImageLink]}>
+                        <FileUploader />
+                      </FileUploaderContext.Provider>
+                      <Button variant="contained" type="submit">Add Product</Button>
+                      {loading && <CircularProgress/>}
+                    </Stack>
+                  </form>
+                </Box>
+              </Box>
+            </Fade>
+          </Modal>
+        </Box>
+      </Box>
   )
 }
 

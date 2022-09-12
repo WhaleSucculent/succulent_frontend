@@ -1,7 +1,7 @@
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import EditIcon from "@mui/icons-material/Edit";
-import { useState } from "react";
+import { createContext, useState } from "react";
 import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
 import Box from "@mui/material/Box";
@@ -10,7 +10,8 @@ import TextField from "@mui/material/TextField";
 import { useMutation, useQuery } from "@apollo/client";
 import {UPDATE_PRODUCT} from "../../../mutations/productMutations";
 import {GET_PRODUCT} from "../../../queries/productQueries";
-
+import FileUploader from "components/FileUploader";
+import { FileUploaderContext } from "pages/AdminProductPage/AddProduct";
 
 const style = {
     position: "absolute",
@@ -49,7 +50,7 @@ function EditProduct({product}) {
   const [productStatus, setProductStatus] = useState(product.productStatus);
   const [colors, setColors] = useState(product.colors);
   const [imageIds, setImageIds] = useState(product.image);
-
+  const [imageLink, setImageLink] = useState("");
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -200,16 +201,9 @@ function EditProduct({product}) {
                         onChange={(e) => setColors(e.target.value)}
                         variant="outlined"
                     />
-                    <Button
-                      variant="contained"
-                      component="label"
-                    >
-                      Update Image
-                      <input
-                        type="file"
-                        hidden
-                      />
-                    </Button>
+                    <FileUploaderContext.Provider value={[imageLink, setImageLink]}>
+                      <FileUploader />
+                    </FileUploaderContext.Provider>
                     <Button variant="contained" type="submit">Edit Product</Button>
                   </Stack>
                 </form>

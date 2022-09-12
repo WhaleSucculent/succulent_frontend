@@ -17,7 +17,7 @@ import { AUTH_TOKEN } from './constants';
 import { useNavigate } from 'react-router-dom';
 import Link from 'components/Link';
 import { useMeQuery } from 'queries/utilQueries';
-import { CircularProgress } from '@mui/material';
+import { Alert, CircularProgress } from '@mui/material';
 import { Google } from '@mui/icons-material';
 
 
@@ -31,11 +31,12 @@ export const LoginPage = () => {
     name: ''
   });
 
+  const [loginState, setLoginState] = useState(true)
+
   const [idToken, setIdToken] = useState('');
 
   const handleGoogleLogin = (res) => {
-    
-    console.log(res)
+
     setIdToken(res.credential);
     document.getElementById("signInDiv").hidden = true;
   }
@@ -62,11 +63,14 @@ export const LoginPage = () => {
       password: formState.password
     },
     onCompleted: ({ loginCustomer, data }) => {
-      console.log(loginCustomer)
-      localStorage.setItem(AUTH_TOKEN, loginCustomer.token);
-      console.log("login")
-      navigate('/');
-      window.location.reload();
+      if (loginCustomer.userId) {
+        localStorage.setItem(AUTH_TOKEN, loginCustomer.token)
+        navigate('/')
+        navigate(0);
+      } else {
+        setLoginState(false)
+      }
+
     }
   })
 
@@ -75,9 +79,7 @@ export const LoginPage = () => {
       idToken: idToken
     },
     onCompleted: ({ loginWithGoogle, data }) => {
-      console.log(loginWithGoogle)
       localStorage.setItem(AUTH_TOKEN, loginWithGoogle.token);
-      console.log("login")
       navigate('/');
       window.location.reload();
     }
@@ -158,10 +160,10 @@ export const LoginPage = () => {
             >
               Sign In
             </Button>
-            <Box width={"100%"}>
+            {/* <Box width={"100%"}>
               <div id='signInDiv' onClick={loginWithGoogle} ></div>
               <Button >google</Button>
-            </Box>
+            </Box> */}
             <Grid container>
               <Grid item xs>
                 <Link to={"/forgot"} variant="body2">
@@ -172,6 +174,9 @@ export const LoginPage = () => {
                 <Link to={"/register"} variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
+              </Grid>
+              <Grid item>
+                {!loginState && <Alert severity='error'>You password or username is wrong, Please try again</Alert>}
               </Grid>
             </Grid>
           </Box>

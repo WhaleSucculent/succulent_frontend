@@ -37,7 +37,8 @@
     "email": "Email",
     "password": "Password",
     "confirmPassword": "Confirm Password",
-    "guestCheckout": "Guest Checkout"
+    "guestCheckout": "Guest Checkout",
+    "newPassword": "New Password"
   },
   "address": {
     "firstName": "First Name",
